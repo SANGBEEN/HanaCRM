@@ -5,5 +5,7 @@
 <configuration>
     <typeAliases>
         <!-- <typeAlias type="kr.co.bit.board.vo.BoardVO" alias="board" /> -->
+        <typeAlias type="kr.co.bit.hanacrm.Customer.CusVO" alias="cus"/>
+        <typeAlias type="kr.co.bit.hanacrm.Employee.EmpVO" alias="emp"/>
     </typeAliases>
 </configuration>
