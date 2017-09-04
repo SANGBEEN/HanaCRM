@@ -42,7 +42,7 @@
    	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
    		<property name="dataSource" ref="dataSource"/> <!-- DB 접근하려고 써줌 -->
    	</bean>
-   	
+   
    	<tx:annotation-driven/>
     
 	<context:component-scan base-package="kr.co.bit.hanacrm" />
