@@ -16,17 +16,18 @@ public class EmpController {
 	@Autowired
 	private EmpService empService;
 	
-	//로그인 
-	@RequestMapping(value="/login.do", method=RequestMethod.POST)
-	public String login(@RequestParam("id")String id, @RequestParam("password")String password, HttpSession session){
-		EmpVO emp = new EmpVO();
-		emp.setId(id);
-		emp.setPassword(password);
-		emp = empService.login(emp);
-		session.setAttribute("emp", emp);
-		System.out.println(emp);
-		return "login/login";
-	}
+//	//로그인 
+//	@RequestMapping(value="/login", method=RequestMethod.POST)
+//	public String login(@RequestParam("id")String id, @RequestParam("password")String password, HttpSession session){
+//		EmpVO emp = new EmpVO();
+//		System.out.println("login : "+id);
+//		emp.setId(id);
+//		emp.setPassword(password);
+//		emp = empService.login(emp);
+//		session.setAttribute("emp", emp);
+//		System.out.println(emp);
+//		return "/main/main";
+//	}
 	
 	//로그아웃 
 	@RequestMapping(value="/logout.do", method=RequestMethod.GET)
