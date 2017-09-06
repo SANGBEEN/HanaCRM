@@ -1,7 +1,9 @@
 package kr.co.bit.hanacrm.Employee;
 
+//  영업사원
 public class EmpVO {
-	private Integer no;
+
+    private Integer no;
 
     private String id;
 
@@ -15,12 +17,17 @@ public class EmpVO {
 
     private String sns;
 
-    private String fax;
+    private Integer fax;
 
     private Integer deptNo;
 
     //  활동지역
-    private String regionNo;
+    private Integer regionNo;
+
+    //  명함용
+    private String code;
+
+    private String position;
 
     public Integer getNo() {
         return no;
@@ -78,11 +85,11 @@ public class EmpVO {
         this.sns = sns;
     }
 
-    public String getFax() {
+    public Integer getFax() {
         return fax;
     }
 
-    public void setFax(String fax) {
+    public void setFax(Integer fax) {
         this.fax = fax;
     }
 
@@ -94,36 +101,37 @@ public class EmpVO {
         this.deptNo = deptNo;
     }
 
-    public String getRegionNo() {
+    public Integer getRegionNo() {
         return regionNo;
     }
 
-    public void setRegionNo(String regionNo) {
+    public void setRegionNo(Integer regionNo) {
         this.regionNo = regionNo;
     }
 
-    // Employee 모델 복사
-    public void CopyData(EmpVO param)
-    {
-        this.no = param.getNo();
-        this.id = param.getId();
-        this.password = param.getPassword();
-        this.name = param.getName();
-        this.email = param.getEmail();
-        this.phone = param.getPhone();
-        this.sns = param.getSns();
-        this.fax = param.getFax();
-        this.deptNo = param.getDeptNo();
-        this.regionNo = param.getRegionNo();
+    public String getCode() {
+        return code;
     }
-    
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
+    }
+
 	public EmpVO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
 	public EmpVO(Integer no, String id, String password, String name, String email, String phone, String sns,
-			String fax, Integer deptNo, String regionNo) {
+			Integer fax, Integer deptNo, Integer regionNo, String code, String position) {
 		super();
 		this.no = no;
 		this.id = id;
@@ -135,6 +143,19 @@ public class EmpVO {
 		this.fax = fax;
 		this.deptNo = deptNo;
 		this.regionNo = regionNo;
+		this.code = code;
+		this.position = position;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("EmpVO [no=").append(no).append(", id=").append(id).append(", password=").append(password)
+				.append(", name=").append(name).append(", email=").append(email).append(", phone=").append(phone)
+				.append(", sns=").append(sns).append(", fax=").append(fax).append(", deptNo=").append(deptNo)
+				.append(", regionNo=").append(regionNo).append(", code=").append(code).append(", position=")
+				.append(position).append("]");
+		return builder.toString();
 	}
     
 }

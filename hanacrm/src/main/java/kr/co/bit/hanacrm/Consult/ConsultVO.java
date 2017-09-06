@@ -7,17 +7,13 @@ public class ConsultVO {
 
 	private Integer no;
 
-	private String customerNo;
+	private Integer customerNo;
 
-	private String employeeNo;
-
-	// 여러개?( , , , )
-	private String product;
+	private Integer employeeNo;
 
 	private String content;
 
-	private Date consultDate;
-
+	// YYYYMMDD
 	private Date regDate;
 
 	public Integer getNo() {
@@ -28,28 +24,20 @@ public class ConsultVO {
 		this.no = no;
 	}
 
-	public String getCustomerNo() {
+	public Integer getCustomerNo() {
 		return customerNo;
 	}
 
-	public void setCustomerNo(String customerNo) {
+	public void setCustomerNo(Integer customerNo) {
 		this.customerNo = customerNo;
 	}
 
-	public String getEmployeeNo() {
+	public Integer getEmployeeNo() {
 		return employeeNo;
 	}
 
-	public void setEmployeeNo(String employeeNo) {
+	public void setEmployeeNo(Integer employeeNo) {
 		this.employeeNo = employeeNo;
-	}
-
-	public String getProduct() {
-		return product;
-	}
-
-	public void setProduct(String product) {
-		this.product = product;
 	}
 
 	public String getContent() {
@@ -60,14 +48,6 @@ public class ConsultVO {
 		this.content = content;
 	}
 
-	public Date getConsultDate() {
-		return consultDate;
-	}
-
-	public void setConsultDate(Date consultDate) {
-		this.consultDate = consultDate;
-	}
-
 	public Date getRegDate() {
 		return regDate;
 	}
@@ -76,32 +56,28 @@ public class ConsultVO {
 		this.regDate = regDate;
 	}
 
-	// Consult 모델 복사
-	public void CopyData(ConsultVO param) {
-		this.no = param.getNo();
-		this.customerNo = param.getCustomerNo();
-		this.employeeNo = param.getEmployeeNo();
-		this.product = param.getProduct();
-		this.content = param.getContent();
-		this.consultDate = param.getConsultDate();
-		this.regDate = param.getRegDate();
-	}
-
 	public ConsultVO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public ConsultVO(Integer no, String customerNo, String employeeNo, String product, String content, Date consultDate,
-			Date regDate) {
+	public ConsultVO(Integer no, Integer customerNo, Integer employeeNo, String content, Date regDate) {
 		super();
 		this.no = no;
 		this.customerNo = customerNo;
 		this.employeeNo = employeeNo;
-		this.product = product;
 		this.content = content;
-		this.consultDate = consultDate;
 		this.regDate = regDate;
 	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("ConsultVO [no=").append(no).append(", customerNo=").append(customerNo).append(", employeeNo=")
+				.append(employeeNo).append(", content=").append(content).append(", regDate=").append(regDate)
+				.append("]");
+		return builder.toString();
+	}
+
 	
 }

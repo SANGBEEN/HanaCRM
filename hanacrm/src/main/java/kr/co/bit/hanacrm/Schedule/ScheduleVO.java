@@ -11,13 +11,27 @@ public class ScheduleVO {
 
 	private Integer customerNo;
 
-	private Date regDate;
-
 	private String location;
 
-	private String comment;
-
+	// meeting 2
 	private Integer type;
+
+	private String comments;
+
+	// YYMMDDHH24MI
+	private Date startDate;
+
+	// YYMMDDHH24MI
+	private Date endDate;
+
+	// YYMMDD
+	private Date regDate;
+
+	// 매우 중요 2
+	private Integer importance;
+
+	// 한번,매일,매주,매달,매년
+	private String repetition;
 
 	public Integer getNo() {
 		return no;
@@ -43,28 +57,12 @@ public class ScheduleVO {
 		this.customerNo = customerNo;
 	}
 
-	public Date getRegDate() {
-		return regDate;
-	}
-
-	public void setRegDate(Date regDate) {
-		this.regDate = regDate;
-	}
-
 	public String getLocation() {
 		return location;
 	}
 
 	public void setLocation(String location) {
 		this.location = location;
-	}
-
-	public String getComment() {
-		return comment;
-	}
-
-	public void setComment(String comment) {
-		this.comment = comment;
 	}
 
 	public Integer getType() {
@@ -75,15 +73,52 @@ public class ScheduleVO {
 		this.type = type;
 	}
 
-	// Schedule 모델 복사
-	public void CopyData(ScheduleVO param) {
-		this.no = param.getNo();
-		this.employeeNo = param.getEmployeeNo();
-		this.customerNo = param.getCustomerNo();
-		this.regDate = param.getRegDate();
-		this.location = param.getLocation();
-		this.comment = param.getComment();
-		this.type = param.getType();
+	public String getComments() {
+		return comments;
+	}
+
+	public void setComments(String comments) {
+		this.comments = comments;
+	}
+
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+
+	public Date getRegDate() {
+		return regDate;
+	}
+
+	public void setRegDate(Date regDate) {
+		this.regDate = regDate;
+	}
+
+	public Integer getImportance() {
+		return importance;
+	}
+
+	public void setImportance(Integer importance) {
+		this.importance = importance;
+	}
+
+	public String getRepetition() {
+		return repetition;
+	}
+
+	public void setRepetition(String repetition) {
+		this.repetition = repetition;
 	}
 
 	public ScheduleVO() {
@@ -91,16 +126,31 @@ public class ScheduleVO {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ScheduleVO(Integer no, Integer employeeNo, Integer customerNo, Date regDate, String location, String comment,
-			Integer type) {
+	public ScheduleVO(Integer no, Integer employeeNo, Integer customerNo, String location, Integer type,
+			String comments, Date startDate, Date endDate, Date regDate, Integer importance, String repetition) {
 		super();
 		this.no = no;
 		this.employeeNo = employeeNo;
 		this.customerNo = customerNo;
-		this.regDate = regDate;
 		this.location = location;
-		this.comment = comment;
 		this.type = type;
+		this.comments = comments;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.regDate = regDate;
+		this.importance = importance;
+		this.repetition = repetition;
 	}
-	
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("ScheduleVO [no=").append(no).append(", employeeNo=").append(employeeNo).append(", customerNo=")
+				.append(customerNo).append(", location=").append(location).append(", type=").append(type)
+				.append(", comments=").append(comments).append(", startDate=").append(startDate).append(", endDate=")
+				.append(endDate).append(", regDate=").append(regDate).append(", importance=").append(importance)
+				.append(", repetition=").append(repetition).append("]");
+		return builder.toString();
+	}
+
 }
