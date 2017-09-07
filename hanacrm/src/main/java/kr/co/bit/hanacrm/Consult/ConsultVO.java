@@ -1,20 +1,32 @@
 package kr.co.bit.hanacrm.Consult;
 
-import java.sql.Date;
+import java.util.Date;
+import java.util.List;
+
+import kr.co.bit.hanacrm.Customer.CusVO;
 
 //상담내역 (진행중인)
 public class ConsultVO {
 
 	private Integer no;
-
 	private Integer customerNo;
-
 	private Integer employeeNo;
-
 	private String content;
-
-	// YYYYMMDD
 	private Date regDate;
+	
+	private CusVO cusVO;
+	private List<ConsultProductVO> consultProduct;
+	
+	public ConsultVO() {
+	}	
+
+	public ConsultVO(Integer no, Integer customerNo, Integer employeeNo, String content, Date regDate) {
+		this.no = no;
+		this.customerNo = customerNo;
+		this.employeeNo = employeeNo;
+		this.content = content;
+		this.regDate = regDate;
+	}
 
 	public Integer getNo() {
 		return no;
@@ -56,18 +68,20 @@ public class ConsultVO {
 		this.regDate = regDate;
 	}
 
-	public ConsultVO() {
-		super();
-		// TODO Auto-generated constructor stub
+	public List<ConsultProductVO> getConsultProduct() {
+		return consultProduct;
 	}
 
-	public ConsultVO(Integer no, Integer customerNo, Integer employeeNo, String content, Date regDate) {
-		super();
-		this.no = no;
-		this.customerNo = customerNo;
-		this.employeeNo = employeeNo;
-		this.content = content;
-		this.regDate = regDate;
+	public void setConsultProduct(List<ConsultProductVO> consultProduct) {
+		this.consultProduct = consultProduct;
+	}
+
+	public CusVO getCusVO() {
+		return cusVO;
+	}
+
+	public void setCusVO(CusVO cusVO) {
+		this.cusVO = cusVO;
 	}
 
 	@Override
@@ -77,7 +91,5 @@ public class ConsultVO {
 				.append(employeeNo).append(", content=").append(content).append(", regDate=").append(regDate)
 				.append("]");
 		return builder.toString();
-	}
-
-	
+	}	
 }

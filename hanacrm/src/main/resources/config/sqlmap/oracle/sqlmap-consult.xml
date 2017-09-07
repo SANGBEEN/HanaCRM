@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="consult.consultDAO">
+
+<!-- resultMap 설정 시작 -->
+	<resultMap type="consult" id="consultMap">
+		<result column="customer_no" property="customerNo"/>
+		<result column="employee_no" property="employeeNo"/>
+		<result column="reg_date" property="regDate"/>
+	</resultMap>
+	
+	<resultMap type="consultProduct" id="consultProductMap">
+		<result column="consult_no" property="consultNo"/>
+		<result column="product_no" property="productNo"/>
+		<result column="reg_date" property="regDate"/>
+	</resultMap>
+	
+	<resultMap type="cus" id="customerMap">
+		<result column="birth_date" property="birthDate"/>
+		<result column="employee_no" property="employeeNo"/>
+		<result column="reg_date" property="regDate"/>
+	</resultMap>	
+<!-- resultMap 설정 끝 -->
+
+<!-- 쿼리 -->
+	<select id="consultList" resultMap="consultMap">
+		select * from consult
+	</select>
+	
+	<select id="consultProductList" resultMap="consultProductMap">
+		select * from consult_product
+	</select>
+	
+	<select id="consultCustomer" resultMap="customerMap">
+		select * from customer 
+	</select>
+	
+</mapper>

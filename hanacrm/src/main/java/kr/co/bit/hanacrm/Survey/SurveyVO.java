@@ -1,7 +1,7 @@
-package kr.co.bit.hanacrm.Survay;
+package kr.co.bit.hanacrm.Survey;
 
 //고객 설문(평가) - 명함
-public class SurvayVO {
+public class SurveyVO {
 
 	private Integer no;
 
@@ -44,12 +44,12 @@ public class SurvayVO {
 		this.score = score;
 	}
 
-	public SurvayVO() {
+	public SurveyVO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public SurvayVO(Integer no, Integer customerNo, Integer employeeNo, String score) {
+	public SurveyVO(Integer no, Integer customerNo, Integer employeeNo, String score) {
 		super();
 		this.no = no;
 		this.customerNo = customerNo;
