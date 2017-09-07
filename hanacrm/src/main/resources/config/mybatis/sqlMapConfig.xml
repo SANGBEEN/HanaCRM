@@ -7,8 +7,8 @@
         <!-- <typeAlias type="kr.co.bit.board.vo.BoardVO" alias="board" /> -->
         <typeAlias type="kr.co.bit.hanacrm.Customer.CusVO" alias="cus"/>
         <typeAlias type="kr.co.bit.hanacrm.Employee.EmpVO" alias="emp"/>
-        <typeAlias type="kr.co.bit.hanacrm.Contract.ContractVO" alias="emp"/>
-        <typeAlias type="kr.co.bit.hanacrm.Deposit.DepositVO" alias="emp"/>
-        <typeAlias type="kr.co.bit.hanacrm.Schedule.ScheduleVO" alias="emp"/>
+        <typeAlias type="kr.co.bit.hanacrm.Contract.ContractVO" alias="contract"/>
+        <typeAlias type="kr.co.bit.hanacrm.Deposit.DepositVO" alias="deposit"/>
+        <typeAlias type="kr.co.bit.hanacrm.Schedule.ScheduleVO" alias="schedule"/>
     </typeAliases>
 </configuration>

@@ -41,9 +41,15 @@
 	                return false;
 	                break;
 	            case "register-form":
-	                var $rg_username=$('#register_id').val();
+	                var $rg_id=$('#register_id').val();
 	                var $rg_email=$('#register_email').val();
 	                var $rg_password=$('#register_password').val();
+	                var $rg_name=$('#register_name').val();
+	                var $rg_phone=$('#register_phone').val();
+	                var $rg_position=$('#register_position').val();
+	                var $rg_sns=$('#register_sns').val();
+	                var $rg_fax=$('#register_fax').val();
+	                var $rg_deptNo=$('#register_deptNo').val();
 	                if ($rg_username == "ERROR") {
 	                    msgChange($('#div-register-msg'), $('#icon-register-msg'), $('#text-register-msg'), "error", "glyphicon-remove", "Register error");
 	                } else {

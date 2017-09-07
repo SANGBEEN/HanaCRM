@@ -68,7 +68,7 @@
 		
 		<!-- 2. 고객 관리 탭 -->
 		<li class="">
-			<a href="#">
+			<a href="${pageContext.request.contextPath}/customer">
 				<i class="menu-icon fa fa-list"></i>
 				<span class="menu-text"> 고객 관리 </span>
 			</a>

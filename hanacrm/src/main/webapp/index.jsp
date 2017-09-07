@@ -121,7 +121,7 @@ html {
 							<input id="register_fax" class="form-control" name="fax"
 								type="text" placeholder="fax (-제외)" >
 								
-							<input id="register_department" class="form-control" name="department" 
+							<input id="register_deptNo" class="form-control" name="deptNo" 
 								type="text" placeholder="부서 (선택??)" >
 						</div>
 						<div class="modal-footer">

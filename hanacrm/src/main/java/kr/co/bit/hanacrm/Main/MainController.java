@@ -24,10 +24,14 @@ public class MainController {
 		System.out.println("login : " + id);
 		emp.setId(id);
 		emp.setPassword(password);
-		emp = empService.login(emp);
-		session.setAttribute("emp", emp);
-		System.out.println(emp);
-		return "redirect:/main";
+		EmpVO loginEmp = new EmpVO();
+		loginEmp = empService.login(emp);
+		System.out.println(loginEmp);
+		if(loginEmp!=null){
+			session.setAttribute("emp", loginEmp);
+			return "redirect:/main";
+		}
+		return "redirect:/";
 	}
 	//메인화면(대시보드)
 	@RequestMapping(value="/main", method=RequestMethod.GET)

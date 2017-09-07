@@ -1,6 +1,9 @@
 package kr.co.bit.hanacrm.Employee;
 
+import org.springframework.stereotype.Component;
+
 //  영업사원
+@Component
 public class EmpVO {
 
     private Integer no;
@@ -17,7 +20,7 @@ public class EmpVO {
 
     private String sns;
 
-    private Integer fax;
+    private String fax;
 
     private Integer deptNo;
 
@@ -85,11 +88,11 @@ public class EmpVO {
         this.sns = sns;
     }
 
-    public Integer getFax() {
+    public String getFax() {
         return fax;
     }
 
-    public void setFax(Integer fax) {
+    public void setFax(String fax) {
         this.fax = fax;
     }
 
@@ -131,7 +134,7 @@ public class EmpVO {
 	}
 
 	public EmpVO(Integer no, String id, String password, String name, String email, String phone, String sns,
-			Integer fax, Integer deptNo, Integer regionNo, String code, String position) {
+			String fax, Integer deptNo, Integer regionNo, String code, String position) {
 		super();
 		this.no = no;
 		this.id = id;

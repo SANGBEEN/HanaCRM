@@ -10,7 +10,7 @@ public class EmpDAO {
 	private SqlSessionTemplate sql;
 	
 	public int join(EmpVO emp){
-		return sql.insert("", emp);
+		return sql.insert("emp.EmpDAO.empJoin", emp);
 	}
 
 	public EmpVO login(EmpVO emp) {
