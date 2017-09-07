@@ -19,7 +19,7 @@ public class MainController {
 	
 	// 로그인
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(@RequestParam("id") String id, @RequestParam("password") String password, HttpSession session) {
+	public String login(@RequestParam("uid") String id, @RequestParam("password") String password, HttpSession session) {
 		EmpVO emp = new EmpVO();
 		System.out.println("login : " + id);
 		emp.setId(id);
@@ -27,7 +27,6 @@ public class MainController {
 		emp = empService.login(emp);
 		session.setAttribute("emp", emp);
 		System.out.println(emp);
-		//세션등록 
 		return "redirect:/main";
 	}
 	//메인화면(대시보드)
@@ -35,5 +34,11 @@ public class MainController {
 	public String main(){
 		System.out.println("main");
 		return "/main/main";
+	}
+	//로그아웃 
+	@RequestMapping(value="/logout.do", method=RequestMethod.GET)
+	public String logout(HttpSession session){
+		session.invalidate();
+		return "redirect:/";
 	}
 }

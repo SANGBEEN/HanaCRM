@@ -6,4 +6,8 @@
 	<select id="empLogin" parameterType="emp" resultType="emp">
 		select no, id, name, email from employee where id=#{id} and password=#{password}
 	</select>
+	
+	<insert id="empJoin" parameterType="emp">
+		
+	</insert>
 </mapper>

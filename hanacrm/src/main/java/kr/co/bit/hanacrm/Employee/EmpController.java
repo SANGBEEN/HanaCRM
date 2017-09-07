@@ -16,41 +16,16 @@ public class EmpController {
 	@Autowired
 	private EmpService empService;
 	
-//	//로그인 
-//	@RequestMapping(value="/login", method=RequestMethod.POST)
-//	public String login(@RequestParam("id")String id, @RequestParam("password")String password, HttpSession session){
-//		EmpVO emp = new EmpVO();
-//		System.out.println("login : "+id);
-//		emp.setId(id);
-//		emp.setPassword(password);
-//		emp = empService.login(emp);
-//		session.setAttribute("emp", emp);
-//		System.out.println(emp);
-//		return "/main/main";
-//	}
-	
-	//로그아웃 
-	@RequestMapping(value="/logout.do", method=RequestMethod.GET)
-	public String logout(HttpSession session){
-		session.invalidate();
-		return "redirect:/";
-	}
 	//회원가입 
-	@RequestMapping(value="/join.do",method=RequestMethod.POST)
-	public String join(EmpVO empVO, Model model, HttpSession session){
+	@RequestMapping(value="/join",method=RequestMethod.POST)
+	public String join(@RequestParam("uid") String id, EmpVO empVO, Model model, HttpSession session){
+		empVO.setId(id);
 		System.out.println("가입정보 "+empVO);
 		empService.join(empVO);
 		
 		return "redirect:/";
 	}
-	//회원가입 폼 
-	@RequestMapping(value="/join.do",method=RequestMethod.GET)
-	public String joinForm(EmpVO empVO, Model model, HttpSession session){
-		System.out.println("가입정보 "+empVO);
-		empService.join(empVO);
-		
-		return "redirect:/";
-	}
+
 	//회원정보 
 	@RequestMapping(value="/detail.do/", method=RequestMethod.GET)
 	public String detail(HttpSession session){
@@ -58,7 +33,5 @@ public class EmpController {
 	}
 	//회원정보수정 
 
-	//로그인
-	//로그아웃
 	
 }
