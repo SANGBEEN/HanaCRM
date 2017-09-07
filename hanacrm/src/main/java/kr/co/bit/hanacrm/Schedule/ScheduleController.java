@@ -1,15 +1,15 @@
 package kr.co.bit.hanacrm.Schedule;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import kr.co.bit.hanacrm.Employee.EmpService;
-import kr.co.bit.hanacrm.Employee.EmpVO;
 
 @Controller
 public class ScheduleController {
@@ -17,9 +17,11 @@ public class ScheduleController {
 	@Autowired
 	private ScheduleService scheduleService;
 	
-	//메인화면(대시보드)
-	@RequestMapping(value="/schedule", method=RequestMethod.GET)
-	public String main(){
+	
+	@RequestMapping(value="/schedule/{date}", method=RequestMethod.GET)
+	public String schedule(HttpServletRequest request, @PathVariable String date){
+		//request.setAttribute("scheduleList", scheduleService.schedule(date));
+		System.out.println("sc");
 		return "/schedule/schedule";
 	}
 }

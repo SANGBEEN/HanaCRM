@@ -2,7 +2,10 @@ package kr.co.bit.hanacrm.Schedule;
 
 import java.sql.Date;
 
+import org.springframework.stereotype.Component;
+
 //할일, 예약, 생일, 기념일, 명절, 진행상황등등
+@Component
 public class ScheduleVO {
 
 	private Integer no;
@@ -32,6 +35,26 @@ public class ScheduleVO {
 
 	// 한번,매일,매주,매달,매년
 	private String repetition;
+	
+	public ScheduleVO() {
+		super();
+	}
+	
+	public ScheduleVO(Integer no, Integer employeeNo, Integer customerNo, String location, Integer type,
+			String comments, Date startDate, Date endDate, Date regDate, Integer importance, String repetition) {
+		super();
+		this.no = no;
+		this.employeeNo = employeeNo;
+		this.customerNo = customerNo;
+		this.location = location;
+		this.type = type;
+		this.comments = comments;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.regDate = regDate;
+		this.importance = importance;
+		this.repetition = repetition;
+	}
 
 	public Integer getNo() {
 		return no;
@@ -119,28 +142,7 @@ public class ScheduleVO {
 
 	public void setRepetition(String repetition) {
 		this.repetition = repetition;
-	}
-
-	public ScheduleVO() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	public ScheduleVO(Integer no, Integer employeeNo, Integer customerNo, String location, Integer type,
-			String comments, Date startDate, Date endDate, Date regDate, Integer importance, String repetition) {
-		super();
-		this.no = no;
-		this.employeeNo = employeeNo;
-		this.customerNo = customerNo;
-		this.location = location;
-		this.type = type;
-		this.comments = comments;
-		this.startDate = startDate;
-		this.endDate = endDate;
-		this.regDate = regDate;
-		this.importance = importance;
-		this.repetition = repetition;
-	}
+	}	
 
 	@Override
 	public String toString() {
