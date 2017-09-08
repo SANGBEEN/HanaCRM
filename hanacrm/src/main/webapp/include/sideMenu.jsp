@@ -51,7 +51,8 @@
 		
 		<!-- 1. 일정 관리 탭 -->
 		<li class="">
-			<a href="#">
+<!-------------------------------- 오늘 날짜 계산해서 넣기  ------------------------------->
+			<a href="${pageContext.request.contextPath}/schedule/list/201709">
 				<i class="menu-icon fa fa-calendar"></i>
 
 				<span class="menu-text">

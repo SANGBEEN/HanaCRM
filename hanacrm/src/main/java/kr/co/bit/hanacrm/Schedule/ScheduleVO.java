@@ -36,6 +36,9 @@ public class ScheduleVO {
 	// 한번,매일,매주,매달,매년
 	private String repetition;
 	
+	// 날짜 String type
+	private String date;
+	
 	public ScheduleVO() {
 		super();
 	}
@@ -142,7 +145,15 @@ public class ScheduleVO {
 
 	public void setRepetition(String repetition) {
 		this.repetition = repetition;
-	}	
+	}
+	
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
 
 	@Override
 	public String toString() {
@@ -151,8 +162,10 @@ public class ScheduleVO {
 				.append(customerNo).append(", location=").append(location).append(", type=").append(type)
 				.append(", comments=").append(comments).append(", startDate=").append(startDate).append(", endDate=")
 				.append(endDate).append(", regDate=").append(regDate).append(", importance=").append(importance)
-				.append(", repetition=").append(repetition).append("]");
+				.append(", repetition=").append(repetition).append(", date=").append(date).append("]");
 		return builder.toString();
 	}
+
+	
 
 }
