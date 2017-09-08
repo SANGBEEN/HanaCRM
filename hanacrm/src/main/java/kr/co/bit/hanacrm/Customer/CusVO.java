@@ -127,13 +127,9 @@ public class CusVO {
 		// TODO Auto-generated constructor stub
 	}
 
-<<<<<<< HEAD
+
 	public CusVO(Integer no, String name, String birthDate, String phone, Integer employeeNo, String comments,
 			String grade,String post, String address,String regDate) {
-=======
-	public CusVO(Integer no, String name, Date birthDate, String phone, Integer employeeNo, String comment,
-			String grade, Integer type, String post, String address, Integer importance, Date regDate) {
->>>>>>> sales
 		super();
 		this.no = no;
 		this.name = name;
