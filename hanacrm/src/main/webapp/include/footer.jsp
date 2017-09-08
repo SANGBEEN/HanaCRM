@@ -1,27 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<div class="footer">
-	<div class="footer-inner">
-		<div class="footer-content">
-			<span class="bigger-120">
-				<span class="blue bolder">우리조</span>
-				Application &copy; 2017
-			</span>
-
-			&nbsp; &nbsp;
-			<span class="action-buttons">
-				<a href="#">
-					<i class="ace-icon fa fa-twitter-square light-blue bigger-150"></i>
-				</a>
-
-				<a href="#">
-					<i class="ace-icon fa fa-facebook-square text-primary bigger-150"></i>
-				</a>
-
-				<a href="#">
-					<i class="ace-icon fa fa-rss-square orange bigger-150"></i>
-				</a>
-			</span>
-		</div>
-	</div>
-</div>
+<footer>
+	<p>
+		<span style="text-align:left;float:left">&copy; 2013 <a href="http://jiji262.github.io/Bootstrap_Metro_Dashboard/" alt="Bootstrap_Metro_Dashboard">Bootstrap Metro Dashboard</a></span>
+	</p>
+</footer>
