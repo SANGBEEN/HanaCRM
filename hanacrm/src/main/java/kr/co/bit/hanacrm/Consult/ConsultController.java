@@ -16,8 +16,8 @@ public class ConsultController {
 	
 	@RequestMapping(value="/sales/consult", method=RequestMethod.GET)
 	public String selectList(HttpServletRequest request){
-		//request.setAttribute("consultList", consultService.selectList());
-		System.out.println(consultService.selectList().get(0).getNo());
+		request.setAttribute("consultList", consultService.selectList());
+		//System.out.println(consultService.selectList().get(0).getNo());
 		return "/sales/consult";
 	}
 	

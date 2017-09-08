@@ -20,7 +20,7 @@ public class ConsultService {
 			
 			consult.setConsultProduct(consultDAO.consultProductList(consult.getNo()));
 			
-			consult.setCusVO(consultDAO.consultCustomer(consult.getCustomerNo()));
+			consult.setCustomerVO(consultDAO.consultCustomer(consult.getCustomerNo()));
 		}
 		
 		return consultList;
