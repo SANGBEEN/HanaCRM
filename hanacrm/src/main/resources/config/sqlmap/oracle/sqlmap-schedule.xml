@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="schedule.ScheduleDAO">
+
+	<!-- 사원의 n월 일정 -->
+	<select id="selectList" parameterType="schedule" resultType="schedule">
+		select *
+		from schedule
+		where employee_no = #{employeeNo}
+			and to_char(start_date, 'yyyymm')=#{date}
+	</select>
+	
+	<!-- 일정 상세 정보 -->
+	<select id="selectByNo" parameterType="int">
+		select *
+		from schedule
+		where no = #{no}
+	</select>
+	
+	<!-- 일정 추가 -->
+	<insert id="insert" parameterType="schedule">
+		insert into schedule (no, employee_no, customer_no, location, type, comments,
+							 start_date, end_date, reg_date, importance, repetition)
+		values (schedule_seq.nextval, #{employeeNo}, #{customerNo}, #{location}, #{type}, #{comments},
+				#{startDate}, #{endDate}, sysdate, #{importance}, #{repetition})
+	</insert>
+	
+	<!-- 일정 수정 -->
+	<update id="update" parameterType="schedule">
+		update schedule
+		<set> <!-- set comma는 뒤에  -->
+			<if test="employee_no!=null">
+				employee_no = #{employeeNo},
+			</if>
+	 		<if test="location!=null">
+				location = #{location},
+			</if>
+			<if test="type!=null">
+				type = #{type},
+			</if>
+			<if test="comments!=null">
+				comments = #{comments},
+			</if>
+			<if test="start_date!=null">
+				start_date = #{startDate},
+			</if>
+			<if test="end_date!=null">
+				end_date = #{endDate},
+			</if>
+			<if test="importance!=null">
+				importance = #{importance},
+			</if>
+			<if test="repetition!=null">
+				repetition = #{repetition}
+			</if>
+		</set>
+	</update>
+	
+	<!-- 일정 삭제 -->
+	<delete id="delete" parameterType="int">
+		delete from schedule
+		where no = #{no}
+	</delete>
+	
+</mapper>

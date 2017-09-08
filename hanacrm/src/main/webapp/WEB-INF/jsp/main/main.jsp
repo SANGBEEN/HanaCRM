@@ -11,37 +11,37 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
 		<!-- bootstrap & fontawesome -->
-		<link rel="stylesheet" href="assets/css/bootstrap.min.css" />
-		<link rel="stylesheet" href="assets/font-awesome/4.5.0/css/font-awesome.min.css" />
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/font-awesome/4.5.0/css/font-awesome.min.css" />
 
 		<!-- page specific plugin styles -->
 
 		<!-- text fonts -->
-		<link rel="stylesheet" href="assets/css/fonts.googleapis.com.css" />
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/fonts.googleapis.com.css" />
 
 		<!-- ace styles -->
-		<link rel="stylesheet" href="assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
 
 		<!--[if lte IE 9]>
-			<link rel="stylesheet" href="assets/css/ace-part2.min.css" class="ace-main-stylesheet" />
+			<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/ace-part2.min.css" class="ace-main-stylesheet" />
 		<![endif]-->
-		<link rel="stylesheet" href="assets/css/ace-skins.min.css" />
-		<link rel="stylesheet" href="assets/css/ace-rtl.min.css" />
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/ace-skins.min.css" />
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/ace-rtl.min.css" />
 
 		<!--[if lte IE 9]>
-		  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
+		  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/ace-ie.min.css" />
 		<![endif]-->
 
 		<!-- inline styles related to this page -->
 
 		<!-- ace settings handler -->
-		<script src="assets/js/ace-extra.min.js"></script>
+		<script src="${pageContext.request.contextPath}/assets/js/ace-extra.min.js"></script>
 
 		<!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
 
 		<!--[if lte IE 8]>
-		<script src="assets/js/html5shiv.min.js"></script>
-		<script src="assets/js/respond.min.js"></script>
+		<script src="${pageContext.request.contextPath}/assets/js/html5shiv.min.js"></script>
+		<script src="${pageContext.request.contextPath}/assets/js/respond.min.js"></script>
 		<![endif]-->
 	</head>
 
@@ -665,7 +665,7 @@
 															<div class="clearfix">
 																<div class="itemdiv memberdiv">
 																	<div class="user">
-																		<img alt="Bob Doe's avatar" src="assets/images/avatars/user.jpg" />
+																		<img alt="Bob Doe's avatar" src="${pageContext.request.contextPath}/assets/images/avatars/user.jpg" />
 																	</div>
 
 																	<div class="body">
@@ -718,7 +718,7 @@
 
 																<div class="itemdiv memberdiv">
 																	<div class="user">
-																		<img alt="Joe Doe's avatar" src="assets/images/avatars/avatar2.png" />
+																		<img alt="Joe Doe's avatar" src="${pageContext.request.contextPath}/assets/images/avatars/avatar2.png" />
 																	</div>
 
 																	<div class="body">
@@ -771,7 +771,7 @@
 
 																<div class="itemdiv memberdiv">
 																	<div class="user">
-																		<img alt="Jim Doe's avatar" src="assets/images/avatars/avatar.png" />
+																		<img alt="Jim Doe's avatar" src="${pageContext.request.contextPath}/assets/images/avatars/avatar.png" />
 																	</div>
 
 																	<div class="body">
@@ -824,7 +824,7 @@
 
 																<div class="itemdiv memberdiv">
 																	<div class="user">
-																		<img alt="Alex Doe's avatar" src="assets/images/avatars/avatar5.png" />
+																		<img alt="Alex Doe's avatar" src="${pageContext.request.contextPath}/assets/images/avatars/avatar5.png" />
 																	</div>
 
 																	<div class="body">
@@ -845,7 +845,7 @@
 
 																<div class="itemdiv memberdiv">
 																	<div class="user">
-																		<img alt="Bob Doe's avatar" src="assets/images/avatars/avatar2.png" />
+																		<img alt="Bob Doe's avatar" src="${pageContext.request.contextPath}/assets/images/avatars/avatar2.png" />
 																	</div>
 
 																	<div class="body">
@@ -866,7 +866,7 @@
 
 																<div class="itemdiv memberdiv">
 																	<div class="user">
-																		<img alt="Susan's avatar" src="assets/images/avatars/avatar3.png" />
+																		<img alt="Susan's avatar" src="${pageContext.request.contextPath}/assets/images/avatars/avatar3.png" />
 																	</div>
 
 																	<div class="body">
@@ -887,7 +887,7 @@
 
 																<div class="itemdiv memberdiv">
 																	<div class="user">
-																		<img alt="Phil Doe's avatar" src="assets/images/avatars/avatar4.png" />
+																		<img alt="Phil Doe's avatar" src="${pageContext.request.contextPath}/assets/images/avatars/avatar4.png" />
 																	</div>
 
 																	<div class="body">
@@ -908,7 +908,7 @@
 
 																<div class="itemdiv memberdiv">
 																	<div class="user">
-																		<img alt="Alexa Doe's avatar" src="assets/images/avatars/avatar1.png" />
+																		<img alt="Alexa Doe's avatar" src="${pageContext.request.contextPath}/assets/images/avatars/avatar1.png" />
 																	</div>
 
 																	<div class="body">
@@ -947,7 +947,7 @@
 															<div class="comments">
 																<div class="itemdiv commentdiv">
 																	<div class="user">
-																		<img alt="Bob Doe's Avatar" src="assets/images/avatars/avatar.png" />
+																		<img alt="Bob Doe's Avatar" src="${pageContext.request.contextPath}/assets/images/avatars/avatar.png" />
 																	</div>
 
 																	<div class="body">
@@ -1003,7 +1003,7 @@
 
 																<div class="itemdiv commentdiv">
 																	<div class="user">
-																		<img alt="Jennifer's Avatar" src="assets/images/avatars/avatar1.png" />
+																		<img alt="Jennifer's Avatar" src="${pageContext.request.contextPath}/assets/images/avatars/avatar1.png" />
 																	</div>
 
 																	<div class="body">
@@ -1037,7 +1037,7 @@
 
 																<div class="itemdiv commentdiv">
 																	<div class="user">
-																		<img alt="Joe's Avatar" src="assets/images/avatars/avatar2.png" />
+																		<img alt="Joe's Avatar" src="${pageContext.request.contextPath}/assets/images/avatars/avatar2.png" />
 																	</div>
 
 																	<div class="body">
@@ -1071,7 +1071,7 @@
 
 																<div class="itemdiv commentdiv">
 																	<div class="user">
-																		<img alt="Rita's Avatar" src="assets/images/avatars/avatar3.png" />
+																		<img alt="Rita's Avatar" src="${pageContext.request.contextPath}/assets/images/avatars/avatar3.png" />
 																	</div>
 
 																	<div class="body">
@@ -1138,7 +1138,7 @@
 													<div class="dialogs">
 														<div class="itemdiv dialogdiv">
 															<div class="user">
-																<img alt="Alexa's Avatar" src="assets/images/avatars/avatar1.png" />
+																<img alt="Alexa's Avatar" src="${pageContext.request.contextPath}/assets/images/avatars/avatar1.png" />
 															</div>
 
 															<div class="body">
@@ -1162,7 +1162,7 @@
 
 														<div class="itemdiv dialogdiv">
 															<div class="user">
-																<img alt="John's Avatar" src="assets/images/avatars/avatar.png" />
+																<img alt="John's Avatar" src="${pageContext.request.contextPath}/assets/images/avatars/avatar.png" />
 															</div>
 
 															<div class="body">
@@ -1186,7 +1186,7 @@
 
 														<div class="itemdiv dialogdiv">
 															<div class="user">
-																<img alt="Bob's Avatar" src="assets/images/avatars/user.jpg" />
+																<img alt="Bob's Avatar" src="${pageContext.request.contextPath}/assets/images/avatars/user.jpg" />
 															</div>
 
 															<div class="body">
@@ -1211,7 +1211,7 @@
 
 														<div class="itemdiv dialogdiv">
 															<div class="user">
-																<img alt="Jim's Avatar" src="assets/images/avatars/avatar4.png" />
+																<img alt="Jim's Avatar" src="${pageContext.request.contextPath}/assets/images/avatars/avatar4.png" />
 															</div>
 
 															<div class="body">
@@ -1235,7 +1235,7 @@
 
 														<div class="itemdiv dialogdiv">
 															<div class="user">
-																<img alt="Alexa's Avatar" src="assets/images/avatars/avatar1.png" />
+																<img alt="Alexa's Avatar" src="${pageContext.request.contextPath}/assets/images/avatars/avatar1.png" />
 															</div>
 
 															<div class="body">
@@ -1296,34 +1296,34 @@
 		<!-- basic scripts -->
 
 		<!--[if !IE]> -->
-		<script src="assets/js/jquery-2.1.4.min.js"></script>
+		<script src="${pageContext.request.contextPath}/assets/js/jquery-2.1.4.min.js"></script>
 
 		<!-- <![endif]-->
 
 		<!--[if IE]>
-<script src="assets/js/jquery-1.11.3.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/jquery-1.11.3.min.js"></script>
 <![endif]-->
 		<script type="text/javascript">
-			if('ontouchstart' in document.documentElement) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+			if('ontouchstart' in document.documentElement) document.write("<script src='${pageContext.request.contextPath}/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
 		</script>
-		<script src="assets/js/bootstrap.min.js"></script>
+		<script src="${pageContext.request.contextPath}/assets/js/bootstrap.min.js"></script>
 
 		<!-- page specific plugin scripts -->
 
 		<!--[if lte IE 8]>
-		  <script src="assets/js/excanvas.min.js"></script>
+		  <script src="${pageContext.request.contextPath}/assets/js/excanvas.min.js"></script>
 		<![endif]-->
-		<script src="assets/js/jquery-ui.custom.min.js"></script>
-		<script src="assets/js/jquery.ui.touch-punch.min.js"></script>
-		<script src="assets/js/jquery.easypiechart.min.js"></script>
-		<script src="assets/js/jquery.sparkline.index.min.js"></script>
-		<script src="assets/js/jquery.flot.min.js"></script>
-		<script src="assets/js/jquery.flot.pie.min.js"></script>
-		<script src="assets/js/jquery.flot.resize.min.js"></script>
+		<script src="${pageContext.request.contextPath}/assets/js/jquery-ui.custom.min.js"></script>
+		<script src="${pageContext.request.contextPath}/assets/js/jquery.ui.touch-punch.min.js"></script>
+		<script src="${pageContext.request.contextPath}/assets/js/jquery.easypiechart.min.js"></script>
+		<script src="${pageContext.request.contextPath}/assets/js/jquery.sparkline.index.min.js"></script>
+		<script src="${pageContext.request.contextPath}/assets/js/jquery.flot.min.js"></script>
+		<script src="${pageContext.request.contextPath}/assets/js/jquery.flot.pie.min.js"></script>
+		<script src="${pageContext.request.contextPath}/assets/js/jquery.flot.resize.min.js"></script>
 
 		<!-- ace scripts -->
-		<script src="assets/js/ace-elements.min.js"></script>
-		<script src="assets/js/ace.min.js"></script>
+		<script src="${pageContext.request.contextPath}/assets/js/ace-elements.min.js"></script>
+		<script src="${pageContext.request.contextPath}/assets/js/ace.min.js"></script>
 
 		<!-- inline scripts related to this page -->
 		<script type="text/javascript">
