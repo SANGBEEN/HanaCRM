@@ -12,7 +12,7 @@
 
 <!-- page specific plugin styles -->
 <link rel="stylesheet" href="assets/css/jquery-ui.min.css" />
-<link rel="stylesheet" href="assets/css/boo  tstrap-datepicker3.min.css" />
+<link rel="stylesheet" href="assets/css/bootstrap-datepicker3.min.css" />
 <link rel="stylesheet" href="assets/css/ui.jqgrid.min.css" />
 
 <!-- text fonts -->
@@ -249,6 +249,8 @@
 				var grid_selector = "#grid-table";
 				var pager_selector = "#grid-pager";
 				
+				var _data = ${cusList};
+				console.log(_data);
 				
 				var parent_column = $(grid_selector).closest('[class*="col-"]');
 				//resize to fit page size
@@ -289,7 +291,7 @@
 					//subGridModel: [{ name : ['No','Item Name','Qty'], width : [55,200,80] }],
 					//datatype: "xml",
 					//for this example we are using local data
-					data: grid_data,
+					data: _data,
 					datatype: "local",
 					height: 400,
 					colNames:['NO','reg_date','Name', 'phone', 'grade'],

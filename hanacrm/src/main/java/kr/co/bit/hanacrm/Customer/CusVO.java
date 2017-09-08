@@ -1,34 +1,29 @@
 package kr.co.bit.hanacrm.Customer;
 
-import java.sql.Date;
 
 public class CusVO {
 	private Integer no;
 
     private String name;
 
-    private Date birthDate;
+    private String birthDate;
 
     private String phone;
 
     private Integer employeeNo;
 
-    private String comment;
+    private String comments;
 
     //  잠재,일반,우수?
-    private Integer grade;
-
-    //  ??
-    private Integer type;
+    private String grade;
 
     //  우편
     private String post;
 
     private String address;
 
-    private Integer importance;
 
-    private Date regDate;
+    private String regDate;
 
     public Integer getNo() {
         return no;
@@ -46,11 +41,11 @@ public class CusVO {
         this.name = name;
     }
 
-    public Date getBirthDate() {
+    public String getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(String birthDate) {
         this.birthDate = birthDate;
     }
 
@@ -70,28 +65,20 @@ public class CusVO {
         this.employeeNo = employeeNo;
     }
 
-    public String getComment() {
-        return comment;
+    public String getComments() {
+        return comments;
     }
 
-    public void setComment(String comment) {
-        this.comment = comment;
+    public void setComments(String comments) {
+        this.comments = comments;
     }
 
-    public Integer getGrade() {
+    public String getGrade() {
         return grade;
     }
 
-    public void setGrade(Integer grade) {
+    public void setGrade(String grade) {
         this.grade = grade;
-    }
-
-    public Integer getType() {
-        return type;
-    }
-
-    public void setType(Integer type) {
-        this.type = type;
     }
 
     public String getPost() {
@@ -110,19 +97,12 @@ public class CusVO {
         this.address = address;
     }
 
-    public Integer getImportance() {
-        return importance;
-    }
 
-    public void setImportance(Integer importance) {
-        this.importance = importance;
-    }
-
-    public Date getRegDate() {
+    public String getRegDate() {
         return regDate;
     }
 
-    public void setRegDate(Date regDate) {
+    public void setRegDate(String regDate) {
         this.regDate = regDate;
     }
 
@@ -134,12 +114,10 @@ public class CusVO {
         this.birthDate = param.getBirthDate();
         this.phone = param.getPhone();
         this.employeeNo = param.getEmployeeNo();
-        this.comment = param.getComment();
+        this.comments = param.getComments();
         this.grade = param.getGrade();
-        this.type = param.getType();
         this.post = param.getPost();
         this.address = param.getAddress();
-        this.importance = param.getImportance();
         this.regDate = param.getRegDate();
     }
 
@@ -148,20 +126,18 @@ public class CusVO {
 		// TODO Auto-generated constructor stub
 	}
 
-	public CusVO(Integer no, String name, Date birthDate, String phone, Integer employeeNo, String comment,
-			Integer grade, Integer type, String post, String address, Integer importance, Date regDate) {
+	public CusVO(Integer no, String name, String birthDate, String phone, Integer employeeNo, String comments,
+			String grade,String post, String address,String regDate) {
 		super();
 		this.no = no;
 		this.name = name;
 		this.birthDate = birthDate;
 		this.phone = phone;
 		this.employeeNo = employeeNo;
-		this.comment = comment;
+		this.comments = comments;
 		this.grade = grade;
-		this.type = type;
 		this.post = post;
 		this.address = address;
-		this.importance = importance;
 		this.regDate = regDate;
 	}
     
