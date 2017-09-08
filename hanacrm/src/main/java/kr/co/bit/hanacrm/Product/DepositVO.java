@@ -1,4 +1,4 @@
-package kr.co.bit.hanacrm.Deposit;
+package kr.co.bit.hanacrm.Product;
 
 import java.sql.Date;
 
