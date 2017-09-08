@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <typeAliases>
+        <!-- <typeAlias type="kr.co.bit.board.vo.BoardVO" alias="board" /> -->
+        <typeAlias type="kr.co.bit.hanacrm.Customer.CusVO" alias="cus"/>
+        <typeAlias type="kr.co.bit.hanacrm.Employee.EmpVO" alias="emp"/>        
+        <typeAlias type="kr.co.bit.hanacrm.Schedule.ScheduleVO" alias="schedule"/>
+        <typeAlias type="kr.co.bit.hanacrm.Contract.ContractVO" alias="contract"/>
+         
+        <typeAlias type="kr.co.bit.hanacrm.Consult.ConsultVO" alias="consult"/>
+        <typeAlias type="kr.co.bit.hanacrm.Consult.ConsultProductVO" alias="consultProduct"/>          
+        <typeAlias type="kr.co.bit.hanacrm.Product.DepositVO" alias="deposit"/>
+        <typeAlias type="kr.co.bit.hanacrm.Product.SavingsVO" alias="savings"/>
+        
+        <typeAlias type="kr.co.bit.hanacrm.Memo.MemoVO" alias="memo"/>
+    </typeAliases>
+</configuration>

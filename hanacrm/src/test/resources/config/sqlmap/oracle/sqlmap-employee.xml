@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="emp.EmpDAO">
+	<select id="empLogin" parameterType="emp" resultType="emp">
+		select no, id, name, email from employee where id=#{id} and password=#{password}
+	</select>
+	<insert id="empJoin" parameterType="emp">
+		insert into employee 
+		values(employee_seq.nextval, #{id},#{password},#{name},#{email},#{phone},#{sns, jdbcType=VARCHAR},#{fax,jdbcType=VARCHAR},#{deptNo,jdbcType=NUMERIC},#{regionNo, jdbcType=NUMERIC},#{code},#{position, jdbcType=VARCHAR})
+	</insert>
+</mapper>

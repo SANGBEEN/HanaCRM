@@ -19,13 +19,13 @@ public class ScheduleController {
 	@Autowired
 	private ScheduleService scheduleService;
 	
-	@Autowired
-	private HttpSession session;
+//	@Autowired
+//	private HttpSession session;
 	
 	
 	// 일정 관리 메인
 	@RequestMapping(value="/schedule/list/{date}", method=RequestMethod.GET)
-	public String selectList(HttpServletRequest request, @PathVariable String date){
+	public String selectList(HttpServletRequest request, @PathVariable String date,HttpSession session){
 		EmpVO emp = (EmpVO) session.getAttribute("emp");
 		ScheduleVO schedule = new ScheduleVO();
 	//	schedule.setEmployeeNo(emp.getNo());
