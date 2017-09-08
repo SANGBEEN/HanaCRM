@@ -18,8 +18,8 @@ public class ConsultDAO {
 		return sqlSessionTemplate.selectList("consult.consultDAO.consultList");
 	}
 
-	public List<ConsultProductVO> consultProductList(Integer no) {
-		return sqlSessionTemplate.selectList("consult.consultDAO.consultProductList", no);
+	public List<ConsultProductVO> consultProductList(Integer consultNo) {
+		return sqlSessionTemplate.selectList("consult.consultDAO.consultProductList", consultNo);
 	}
 
 	public CusVO consultCustomer(Integer customerNo) {

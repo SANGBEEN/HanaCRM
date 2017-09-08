@@ -31,12 +31,12 @@
 		select * from consult
 	</select>
 	
-	<select id="consultProductList" resultMap="consultProductMap">
-		select * from consult_product
+	<select id="consultProductList" parameterType="int" resultMap="consultProductMap">
+		select * from consult_product where consult_no=#{consultNo}
 	</select>
 	
-	<select id="consultCustomer" resultMap="customerMap">
-		select * from customer 
+	<select id="consultCustomer" parameterType="int" resultMap="customerMap">
+		select * from customer where no=#{customerNo}
 	</select>
 	
 </mapper>

@@ -16,7 +16,7 @@ public class CusVO {
     private String comment;
 
     //  잠재,일반,우수?
-    private Integer grade;
+    private String grade;
 
     //  ??
     private Integer type;
@@ -78,11 +78,11 @@ public class CusVO {
         this.comment = comment;
     }
 
-    public Integer getGrade() {
+    public String getGrade() {
         return grade;
     }
 
-    public void setGrade(Integer grade) {
+    public void setGrade(String grade) {
         this.grade = grade;
     }
 
@@ -149,7 +149,7 @@ public class CusVO {
 	}
 
 	public CusVO(Integer no, String name, Date birthDate, String phone, Integer employeeNo, String comment,
-			Integer grade, Integer type, String post, String address, Integer importance, Date regDate) {
+			String grade, Integer type, String post, String address, Integer importance, Date regDate) {
 		super();
 		this.no = no;
 		this.name = name;
