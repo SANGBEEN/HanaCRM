@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="memo.memoDAO">
+
+<!-- resultMap 설정 시작 -->
+	<resultMap type="memo" id="memoMap">
+		<result column="employee_no" property="employeeNo"/>
+		<result column="reg_date" property="regDate"/>
+	</resultMap>
+<!-- resultMap 설정 끝 -->
+
+<!-- 쿼리 -->
+	<select id="consultList" resultMap="consultMap">
+		select * from consult
+	</select>
+	
+	<select id="consultProductList" parameterType="int" resultMap="consultProductMap">
+		select * from consult_product where consult_no=#{consultNo}
+	</select>
+	
+	<select id="consultCustomer" parameterType="int" resultMap="customerMap">
+		select * from customer where no=#{customerNo}
+	</select>
+	
+</mapper>

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class ConsultController {
@@ -27,16 +28,19 @@ public class ConsultController {
 		return null;
 	}*/
 	
+	@ResponseBody
 	@RequestMapping(value="/sales/consult", method=RequestMethod.POST)
 	public String insert(ConsultVO consultVO){
 		return consultService.insert(consultVO);
 	}
 	
+	@ResponseBody
 	@RequestMapping(value="/sales/consult", method=RequestMethod.PUT)
 	public String update(ConsultVO consultVO){
 		return consultService.update(consultVO);
 	}
 	
+	@ResponseBody
 	@RequestMapping(value="/sales/consult/{no}", method=RequestMethod.DELETE)
 	public String delete(@PathVariable int no){
 		return consultService.delete(no);
