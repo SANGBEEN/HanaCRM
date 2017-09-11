@@ -1,16 +1,21 @@
 package kr.co.bit.hanacrm.Customer;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -28,23 +33,24 @@ public class CusController {
 	
 	//전체조회
 	@RequestMapping(method=RequestMethod.GET)
-	public String list(Model model){
-		
+	public String list(Model model, HttpServletRequest req){
+//		int page = (int)req.getAttribute("page");
 	    List<CusVO> cusList = new ArrayList<>();
 	    cusList = cusService.list();
 	    for(CusVO cus : cusList){
 	    	System.out.println(cus);
 	    }
-		//VO to JSON
-		ObjectMapper mapper = new ObjectMapper();
-		try {
-			String json = mapper.writeValueAsString(cusList);
-			model.addAttribute("cusList", json);
-			System.out.println("==========");
-			System.out.println(json);
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
-		}
+//		//VO to JSON
+//		ObjectMapper mapper = new ObjectMapper();
+//		try {
+//			String json = mapper.writeValueAsString(cusList);
+//			model.addAttribute("cusList", json);
+//			System.out.println("==========");
+//			System.out.println(json);
+//		} catch (JsonProcessingException e) {
+//			e.printStackTrace();
+//		}
+	    model.addAttribute("cusList", cusList);
 		return "customer/list";	
 	}
 	
@@ -66,26 +72,37 @@ public class CusController {
 		return "";
 	}
 	
-	//고객등록 
+	//고객등록
 	@RequestMapping(method=RequestMethod.POST)
-	public String create(CusVO cus){
-		if(cusService.create(cus)==1)
-			return "";
-		return "";
+	public String create(CusVO cus, Model model){
+		System.out.println("고객등록");
+		System.out.println(cus.toString());
+		//임시사원번호
+		cus.setEmployeeNo(21);
+		
+		//Map<String, Object> res = new HashMap<>();
+		
+		if(cusService.create(cus)==1){
+			//res.put("msg", "등록성공");
+			model.addAttribute("msg", "등록성공");
+		}else
+			model.addAttribute("msg", "등록실패");
+		model.addAttribute("url", "/customer");
+		return "process/alertProcess";
 	}
-	//고객수정  
+	//고객수정
 	@RequestMapping(method=RequestMethod.PUT)
 	public String update(CusVO cus){
 		if(cusService.update(cus)==1)
-			return "";
-		return "";
+			return "redirect:/customer/"+cus.getNo();
+		return "redirect:/customer";
 	}
 	//고객삭제 
-	@RequestMapping(method=RequestMethod.DELETE)
-	public String delete(@RequestParam("no") int no){
+	@RequestMapping(value="/{no}",method=RequestMethod.DELETE)
+	public String delete(@PathVariable int no){
 		if(cusService.delete(no)==1){
 			return "";
 		}
-		return "";
+		return "redirect:/customer";
 	}
 }

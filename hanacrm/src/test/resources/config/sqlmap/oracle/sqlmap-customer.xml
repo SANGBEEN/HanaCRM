@@ -14,7 +14,7 @@
 	</select>
 	
 	<insert id="insert" parameterType="cus">
-		insert into customer(customer_seq.nextval, #{name}, #{birthDate}, #{phone}, #{employeeId}, #{comments,jdbcType=VARCHAR}, #{grade}, #{post,jdbcType=VARCHAR},#{address,jdbcType=VARCHAR},#{regDate})
+		insert into customer values(customer_seq.nextval, #{name}, #{birthDate}, #{phone}, #{employeeNo}, #{comments,jdbcType=VARCHAR}, #{grade}, #{post,jdbcType=VARCHAR},#{address,jdbcType=VARCHAR},#{regDate})
 	</insert>
 	<update id="update" parameterType="cus">
 		update customer
