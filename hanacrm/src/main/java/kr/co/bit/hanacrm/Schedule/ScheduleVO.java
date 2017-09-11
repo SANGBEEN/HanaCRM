@@ -4,6 +4,9 @@ import java.sql.Date;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 //할일, 예약, 생일, 기념일, 명절, 진행상황등등
 @Component
 public class ScheduleVO {
@@ -157,13 +160,24 @@ public class ScheduleVO {
 
 	@Override
 	public String toString() {
+		String json = "";
+		//VO to JSON
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			json = mapper.writeValueAsString(this);
+			System.out.println(json);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		
 		StringBuilder builder = new StringBuilder();
-		builder.append("ScheduleVO [no=").append(no).append(", employeeNo=").append(employeeNo).append(", customerNo=")
+		 builder.append("ScheduleVO [no=").append(no).append(", employeeNo=").append(employeeNo).append(", customerNo=")
 				.append(customerNo).append(", location=").append(location).append(", type=").append(type)
 				.append(", comments=").append(comments).append(", startDate=").append(startDate).append(", endDate=")
 				.append(endDate).append(", regDate=").append(regDate).append(", importance=").append(importance)
 				.append(", repetition=").append(repetition).append(", date=").append(date).append("]");
-		return builder.toString();
+
+		return json; //builder.toString();
 	}
 
 	

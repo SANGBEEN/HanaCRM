@@ -1,5 +1,9 @@
 package kr.co.bit.hanacrm.Schedule;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -24,15 +28,29 @@ public class ScheduleController {
 	
 	
 	// 일정 관리 메인
-	@RequestMapping(value="/schedule/list/{date}", method=RequestMethod.GET)
-	public String selectList(HttpServletRequest request, @PathVariable String date){
+	@RequestMapping(value="/schedule/list", method=RequestMethod.GET)
+	public String selectList(HttpServletRequest request){
 		EmpVO emp = (EmpVO) session.getAttribute("emp");
 		ScheduleVO schedule = new ScheduleVO();
-	//	schedule.setEmployeeNo(emp.getNo());
+		schedule.setEmployeeNo(1); //emp.getNo());
+		String date = new SimpleDateFormat("yyyyMM").format(new Date());
+		schedule.setDate(date);
+		request.setAttribute("scheduleList", scheduleService.selectList(schedule));
+		System.out.println((List<ScheduleVO>)request.getAttribute("scheduleList"));
+		return "/schedule/schedule";
+	}
+	
+	// n월 일정 리스트
+	@ResponseBody
+	@RequestMapping(value="/schedule/list/{date}", method=RequestMethod.GET)
+	public List<ScheduleVO> selectListByDate(HttpServletRequest request, @PathVariable String date){
+		EmpVO emp = (EmpVO) session.getAttribute("emp");
+		ScheduleVO schedule = new ScheduleVO();
+		schedule.setEmployeeNo(1); //emp.getNo());
 		schedule.setDate(date);
 	//	request.setAttribute("scheduleList", scheduleService.selectList(schedule));
 		System.out.println(schedule);
-		return "/schedule/schedule";
+		return scheduleService.selectList(schedule);
 	}
 	
 	// 일정 추가
