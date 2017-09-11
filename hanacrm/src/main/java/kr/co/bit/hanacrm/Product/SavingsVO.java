@@ -2,7 +2,10 @@ package kr.co.bit.hanacrm.Product;
 
 import java.sql.Date;
 
+import org.springframework.stereotype.Component;
+
 //  상품정보(적금)
+@Component
 public class SavingsVO {
 
     private Integer no;
