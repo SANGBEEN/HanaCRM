@@ -12,33 +12,30 @@ public class ConsultService {
 	private ConsultDAO consultDAO;
 
 	public List<ConsultVO> selectList() {
-		List<ConsultVO> consultList = consultDAO.consultList();
+		List<ConsultVO> consultList = consultDAO.selectList();
 		
 		for(int i = 0; i < consultList.size(); i++)
 		{
 			ConsultVO consult = consultList.get(i);
 			
-			consult.setConsultProduct(consultDAO.consultProductList(consult.getNo()));
+			consult.setConsultProduct(consultDAO.selectProductList(consult.getNo()));
 			
-			consult.setCustomerVO(consultDAO.consultCustomer(consult.getCustomerNo()));
+			consult.setCustomerVO(consultDAO.selectCustomer(consult.getCustomerNo()));
 		}
 		
 		return consultList;
 	}
 
-	public String insert(ConsultVO consultVO) {
-		// TODO Auto-generated method stub
-		return null;
+	public Integer insert(ConsultVO consultVO) {
+		return consultDAO.insert(consultVO);
 	}
 
-	public String update(ConsultVO consultVO) {
-		// TODO Auto-generated method stub
-		return null;
+	public Integer update(ConsultVO consultVO) {
+		return consultDAO.update(consultVO);
 	}
 
-	public String delete(int no) {
-		// TODO Auto-generated method stub
-		return null;
+	public Integer delete(int no) {
+		return consultDAO.delete(no);
 	}
 
 }
