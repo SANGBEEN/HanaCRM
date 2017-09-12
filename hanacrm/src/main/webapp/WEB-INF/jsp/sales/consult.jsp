@@ -99,9 +99,45 @@
 							  </tr>
 						</thead>   
 						<tbody>
-							<tr>
+							<tr class="row-minimize-hs">
 								<td>0</td>
-								<td>Dennis Ji</td>
+								<td>Dennis Ji</td>								
+								
+<!-- <a href="#" class="btn-minimize-hs"><i class="halflings-icon chevron-up"></i></a> -->								
+
+<!-- $('.btn-minimize').click(function(e){
+		e.preventDefault();
+		var $target = $(this).parent().parent().next('.box-content');
+		if($target.is(':visible')) $('i',$(this)).removeClass('chevron-up').addClass('chevron-down');
+		else 					   $('i',$(this)).removeClass('chevron-down').addClass('chevron-up');
+		$target.slideToggle();
+	});	 -->
+						
+<!-- <li>
+	<a class="dropmenu" href="#"><i class="icon-folder-close-alt"></i><span class="hidden-tablet"> Dropdown</span></a>
+	<ul style="display: block;">
+		<li><a class="submenu" href="submenu.html"><i class="icon-file-alt"></i><span class="hidden-tablet"> Sub Menu 1</span></a></li>
+		<li><a class="submenu" href="submenu2.html"><i class="icon-file-alt"></i><span class="hidden-tablet"> Sub Menu 2</span></a></li>
+		<li><a class="submenu" href="submenu3.html"><i class="icon-file-alt"></i><span class="hidden-tablet"> Sub Menu 3</span></a></li>
+	</ul>	
+</li>
+
+<li><a class="dropmenu" href="#"><i class="icon-tasks"></i><span class="hidden-tablet"> 영업 관리</span></a>
+	<ul>
+		<li><a class="submenu" href="submenu.html"><i class="icon-file-alt"></i><span class="hidden-tablet"> Sub Menu 1</span></a></li>
+		<li><a class="submenu" href="submenu2.html"><i class="icon-file-alt"></i><span class="hidden-tablet"> Sub Menu 2</span></a></li>
+		<li><a class="submenu" href="submenu3.html"><i class="icon-file-alt"></i><span class="hidden-tablet"> Sub Menu 3</span></a></li>
+	</ul>	
+</li> -->
+
+<!-- $('.dropmenu').click(function(e){
+
+		e.preventDefault();
+
+		$(this).parent().find('ul').slideToggle();
+	
+	}); -->
+								
 								<td class="center">2012/01/01</td>
 								<td class="center">Member</td>
 								<td class="center">
@@ -120,11 +156,132 @@
 								</td>
 							</tr>
 							
+							<tr class="row-detail-hs" style="display: none">
+								<td colspan="6">
+									<div>
+										<a href="#">
+											<img class="avatar" alt="Dennis Ji" src="${pageContext.request.contextPath}/img/avatar.jpg">
+										</a>
+									</div>
+									<div>
+										<strong>Name:</strong> <a href="#">Dennis Ji</a><br>
+										<strong>Since:</strong> Jul 25, 2012 11:09<br>
+										<strong>Status:</strong> <span class="label label-success">Approved</span>
+									</div>																	
+								</td>                                
+							</tr>
+							
+							<!-- <tr class="row-detail-hs" style="display: none">
+								<td colspan="8">
+									<div class="table-detail">
+										<div class="row">
+											<div class="col-xs-12 col-sm-2">
+												<div class="text-center">
+													<img height="150" class="thumbnail inline no-margin-bottom" alt="Domain Owner's Avatar" src="assets/images/avatars/profile-pic.jpg">
+													<br>
+													<div class="width-80 label label-info label-xlg arrowed-in arrowed-in-right">
+														<div class="inline position-relative">
+															<a class="user-title-label" href="#">
+																<i class="ace-icon fa fa-circle light-green"></i>
+																&nbsp;
+																<span class="white">Alex M. Doe</span>
+															</a>
+														</div>
+													</div>
+												</div>
+											</div>
+
+											<div class="col-xs-12 col-sm-7">
+												<div class="space visible-xs"></div>
+
+												<div class="profile-user-info profile-user-info-striped">
+													<div class="profile-info-row">
+														<div class="profile-info-name"> Username </div>
+
+														<div class="profile-info-value">
+															<span>alexdoe</span>
+														</div>
+													</div>
+
+													<div class="profile-info-row">
+														<div class="profile-info-name"> Location </div>
+
+														<div class="profile-info-value">
+															<i class="fa fa-map-marker light-orange bigger-110"></i>
+															<span>Netherlands, Amsterdam</span>
+														</div>
+													</div>
+
+													<div class="profile-info-row">
+														<div class="profile-info-name"> Age </div>
+
+														<div class="profile-info-value">
+															<span>38</span>
+														</div>
+													</div>
+
+													<div class="profile-info-row">
+														<div class="profile-info-name"> Joined </div>
+
+														<div class="profile-info-value">
+															<span>2010/06/20</span>
+														</div>
+													</div>
+
+													<div class="profile-info-row">
+														<div class="profile-info-name"> Last Online </div>
+
+														<div class="profile-info-value">
+															<span>3 hours ago</span>
+														</div>
+													</div>
+
+													<div class="profile-info-row">
+														<div class="profile-info-name"> About Me </div>
+
+														<div class="profile-info-value">
+															<span>Bio</span>
+														</div>
+													</div>
+												</div>
+											</div>
+
+											<div class="col-xs-12 col-sm-3">
+												<div class="space visible-xs"></div>
+												<h4 class="header blue lighter less-margin">Send a message to Alex</h4>
+
+												<div class="space-6"></div>
+
+												<form>
+													<fieldset>
+														<textarea class="width-100" resize="none" placeholder="Type something…"></textarea>
+													</fieldset>
+
+													<div class="hr hr-dotted"></div>
+
+													<div class="clearfix">
+														<label class="pull-left">
+															<input type="checkbox" class="ace">
+															<span class="lbl"> Email me a copy</span>
+														</label>
+
+														<button class="pull-right btn btn-sm btn-primary btn-white btn-round" type="button">
+															Submit
+															<i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
+														</button>
+													</div>
+												</form>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr> -->
+							
 						<c:forEach items="${ consultList }" var="consultVO">						
 												
-							<tr>
+							<tr class="row-minimize-hs">
 								<td>${ consultVO.no }</td>
-								<td><a class="dropmenu" href="#">${ consultVO.customerVO.name }</a></td>
+								<td>${ consultVO.customerVO.name }</td>
 								<td class="center">${ consultVO.regDate }</td>
 								<td class="center">${ consultVO.customerVO.grade }</td>
 								<td class="center">
@@ -141,8 +298,34 @@
 										<i class="halflings-icon white trash"></i> 
 									</a>
 								</td>
-							</tr>						
-												
+							</tr>
+							
+							<tr class="row-detail-hs" style="display: none">
+								<td colspan="6">
+									<div>
+										<a href="#">
+											<img class="avatar" alt="${ consultVO.customerVO.name }" src="${pageContext.request.contextPath}/img/avatar.jpg">
+										</a>
+									</div>
+									<div>
+										<strong>이름:</strong> <a href="#">${ consultVO.customerVO.name }</a><br>
+										<strong>생년월일:</strong> ${ consultVO.customerVO.birthDate }<br>
+										<strong>연락처:</strong> ${ consultVO.customerVO.phone }<br>
+										<strong>우편번호:</strong> ${ consultVO.customerVO.post }<br>
+										<strong>주소:</strong> ${ consultVO.customerVO.address }<br>
+										<strong>분류:</strong> ${ consultVO.customerVO.grade }<br>
+										<strong>비고:</strong> ${ consultVO.customerVO.comments }<br>
+										
+											<c:forEach items="${ consultVO.consultProduct }" var="consultProductVO">
+												<strong>상품 종류 임시:</strong> ${ consultProductVO.type }<br>
+												<strong>상품 번호 임시:</strong> ${ consultProductVO.productNo }<br>
+											</c:forEach>
+										
+										<strong>상담 내용:</strong> ${ consultVO.content }<br>
+									</div>																	
+								</td>                                
+							</tr>	
+						
 						</c:forEach>
 						
 						<%-- <c:forEach items="${ approve }" var="approveVO">
@@ -245,6 +428,13 @@
 		<script src="${pageContext.request.contextPath}/js/retina.js"></script>
 
 		<script src="${pageContext.request.contextPath}/js/custom.js"></script>
+		
+		<script>
+			$('.row-minimize-hs').click(function(e){
+				e.preventDefault();
+				$(this).next('.row-detail-hs').slideToggle();
+			});
+		</script>
 	<!-- end: JavaScript-->
 	
 </body>
