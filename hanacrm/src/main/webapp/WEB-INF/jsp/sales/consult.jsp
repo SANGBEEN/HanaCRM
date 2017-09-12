@@ -302,11 +302,11 @@
 							
 							<tr class="row-detail-hs" style="display: none">
 								<td colspan="6">
-									<div>
+									<%-- <div>
 										<a href="#">
 											<img class="avatar" alt="${ consultVO.customerVO.name }" src="${pageContext.request.contextPath}/img/avatar.jpg">
 										</a>
-									</div>
+									</div> --%>
 									<div>
 										<strong>이름:</strong> <a href="#">${ consultVO.customerVO.name }</a><br>
 										<strong>생년월일:</strong> ${ consultVO.customerVO.birthDate }<br>
@@ -369,9 +369,6 @@
 	
 	<div class="clearfix"></div>
 	
-	<!-- 헤더 -->
-	<jsp:include page="/include/header.jsp"/>
-	
 	<!-- start: JavaScript-->
 
 		<script src="${pageContext.request.contextPath}/js/jquery-1.9.1.min.js"></script>
@@ -430,10 +427,26 @@
 		<script src="${pageContext.request.contextPath}/js/custom.js"></script>
 		
 		<script>
+		
+			/* 상세 보기 */
 			$('.row-minimize-hs').click(function(e){
 				e.preventDefault();
 				$(this).next('.row-detail-hs').slideToggle();
 			});
+			
+			/* 수정 */
+			$('.btn btn-info').click(function(e){
+				e.preventDefault();
+				$(this).parent().next('.row-detail-hs').empty();
+			});
+			
+			/* 삭제 */
+			$('.btn btn-danger').click(function(e){
+				e.preventDefault();
+				$(this).parent().next('.row-minimize-hs').empty();
+				$(this).parent().next('.row-detail-hs').empty();
+			});
+			
 		</script>
 	<!-- end: JavaScript-->
 	

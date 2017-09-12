@@ -15,6 +15,7 @@ public class ConsultVO {
 	private Date regDate;
 	
 	private CusVO customerVO;
+	
 	private List<ConsultProductVO> consultProduct;
 	
 	public ConsultVO() {
