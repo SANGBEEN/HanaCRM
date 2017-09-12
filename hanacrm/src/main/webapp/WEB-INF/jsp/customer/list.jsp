@@ -1,5 +1,6 @@
-        <%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -129,15 +130,21 @@
 											</td>
 											<td>${cus.address}</td>
 											<td class="center">
-												<a class="btn btn-success" href="#">
+												<a class="btn btn-success" href="${pageContext.request.contextPath}/customer/${cus.no}">
 														<i class="halflings-icon white zoom-in"></i>
 												</a> 
-												<a class="btn btn-info" href="#"> <i
-														class="halflings-icon white edit"></i>
-												</a> 
-												<a class="btn btn-danger" href="#"> <i
-														class="halflings-icon white trash"></i>
-												</a>
+													<form action="${pageContext.request.contextPath}/customer/${cus.no}" method="post" style="display: inline-block;" onsubmit="return myCheck();">
+													    <input type="hidden" name = "_method" value="delete">
+													    <button type="submit" class="btn btn-danger"><i class="halflings-icon white trash"></i></button>
+													
+													</form>
+												
+									<%-- 			<form:form method="delete" action="${pageContext.request.contextPath}/customer/${cus.no}">
+												      <p class="submit"><input type="submit" value="Delete Pet"/></p>
+												</form:form> --%>
+											<%-- 	<a class="btn btn-danger" href="${pageContext.request.contextPath}/customer/${cus.no}"> 
+													<i class="halflings-icon white trash"></i>
+												</a> --%>
 											</td>
 										</tr>
 									</c:forEach>
@@ -360,6 +367,12 @@
 				console.dir(data);
 			},
 		});		
+	}
+	
+	function myCheck(){
+		if(window.confirm('삭제하시겠습니까?')==true)
+			return true;
+		return false;
 	}
 	
 	$('#addCustomerBtn').click(function(){

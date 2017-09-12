@@ -1,24 +1,16 @@
 package kr.co.bit.hanacrm.Customer;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import kr.co.bit.hanacrm.Consult.ConsultService;
 import kr.co.bit.hanacrm.Consult.ConsultVO;
@@ -69,7 +61,7 @@ public class CusController {
 		System.out.println(customer);
 		System.out.println(consultList);
 		
-		return "";
+		return "customer/detail";
 	}
 	
 	//고객등록
@@ -97,12 +89,17 @@ public class CusController {
 			return "redirect:/customer/"+cus.getNo();
 		return "redirect:/customer";
 	}
-	//고객삭제 
+	//고객삭제
 	@RequestMapping(value="/{no}",method=RequestMethod.DELETE)
 	public String delete(@PathVariable int no){
 		if(cusService.delete(no)==1){
-			return "";
+			System.out.println("삭제성공");
+			return "redirect:/customer";
 		}
+		System.out.println("삭제실패");
 		return "redirect:/customer";
 	}
 }
+//1.@restcontroller 쓰고 ModelAndView써서포워딩 -> 가능하나 RestController 목적의 위배됨
+//2.api요청을 ajax를 이용하고 모든데이터를 json으로 리턴후 뷰 포워딩
+//3.restcontroller이나 @responsebody를 안쓰고 put delete 구현?

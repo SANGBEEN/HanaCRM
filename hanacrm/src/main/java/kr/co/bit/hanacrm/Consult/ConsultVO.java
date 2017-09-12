@@ -20,13 +20,19 @@ public class ConsultVO {
 	public ConsultVO() {
 	}	
 
-	public ConsultVO(Integer no, Integer customerNo, Integer employeeNo, String content, Date regDate) {
+	public ConsultVO(Integer no, Integer customerNo, Integer employeeNo, String content, Date regDate, CusVO cusVO,
+			List<ConsultProductVO> consultProduct) {
+		super();
 		this.no = no;
 		this.customerNo = customerNo;
 		this.employeeNo = employeeNo;
 		this.content = content;
 		this.regDate = regDate;
+		this.cusVO = cusVO;
+		this.consultProduct = consultProduct;
 	}
+
+
 
 	public Integer getNo() {
 		return no;
