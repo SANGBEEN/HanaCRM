@@ -38,6 +38,28 @@
 	<!-- start: Favicon -->
 	<link rel="shortcut icon" href="img/favicon.ico">
 	<!-- end: Favicon -->
+	
+	<style>
+		.Meeting {
+			background-color : '#00A300'
+		}
+		
+		.Task {
+			color : #2D89EF
+		}
+		
+		.Call {
+			background-color : #FFC40D
+		}
+		
+		.Event {
+			color : #999
+		}
+		
+		.Other {
+			color : #333
+		}
+	</style>
 </head>
 <body>
 	<!-- 헤더 -->
@@ -87,6 +109,7 @@
 						<div class="external-event badge badge-inverse">Other</div>
 						<p>
 							<label for="drop-remove"><input type="checkbox" id="drop-remove" /> remove after drop</label>
+							<button id="addBtn">추가테스트</button>
 						</p>
 						</div>
 
@@ -184,8 +207,11 @@
 	<script> 
 		 console.log('${scheduleList}');
 		 
+		 
 		 jQuery(function($) {
 				
+			 var modal = $('#addModal');
+			 
 				/* initialize the external events
 				-----------------------------------------------------------------*/
 
@@ -209,15 +235,17 @@
 					
 				});
 				
-				/* get event data
+				/* get event data from our server
 				-----------------------------------------------------------------*/
 				
 				var eventList = [];
 				var data = ${scheduleList};
 				for(var i=0; i<data.length; i++){
-					eventList.push({ title : data[i].comments,
+				 	eventList.push({ title : data[i].comments,
 									start : new Date(data[i].startDate),
-									className : data[i].type});
+									end: new Date(data[i].endDate),
+									className: data[i].type,
+									id: data[i].no});
 					
 				}
 				
@@ -249,7 +277,10 @@
 					},
 					events: 
 						eventList
-						/* [
+						
+						/*
+							테스트 데이터
+						[
 						
 						 {
 								title: '${scheduleList[0].comments}',
@@ -270,32 +301,119 @@
 					},*/
 					
 					editable: true,
-					droppable: true, // this allows things to be dropped onto the calendar !!!
-					drop: function(date) { // this function is called when something is dropped
-					
-						// retrieve the dropped element's stored Event Object
-						var originalEventObject = $(this).data('eventObject');
-						var $extraEventClass = $(this).attr('data-class');
+					eventDrop: function(event, delta, revertFunc) {
+						/* 
+							달력 내에서의 드래그
+							날짜 수정 반영하기
+						*/
+
+				        alert(event.title + " was dropped on "+event.id);
 						
-						
-						// we need to copy it, so that multiple events don't have a reference to the same object
-						var copiedEventObject = $.extend({}, originalEventObject);
-						
-						// assign it the date that was reported
-						copiedEventObject.start = date;
-						copiedEventObject.allDay = false;
-						if($extraEventClass) copiedEventObject['className'] = [$extraEventClass];
-						
-						// render the event on the calendar
-						// the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
-						$('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
-						
-						// is the "remove after drop" checkbox checked?
-						if ($('#drop-remove').is(':checked')) {
-							// if so, remove the element from the "Draggable Events" list
-							$(this).remove();
+						var test = {
+								no: event.id,
+			        			startDate: event.start,
+			        			endDate: event.end,
+			        			employeeNo: null,
+			        			comments: null,
+			        			customerNo: null,
+			        			type: null,
+			        			location: null,
+			        			importance: null,
+			        			repetition: null,
+			        			date: null,
+			        			regDate: null
 						}
 						
+						console.log(test);
+
+				         if (confirm("Are you sure about this change?")) {
+				        	$.ajax({
+				        		url: "${pageContext.request.contextPath}/schedule",
+				        		type: "put",
+				        		dataType: "json",
+				        		data: test, 
+				        		success: function(data){
+				        			alert('날짜 수정됨');
+						            revertFunc();
+				        		},
+				        		error: function(e){
+				      				console.log(e);
+				        			alert('error');
+				        		}
+				        	});
+				        }
+
+				    },
+					
+					droppable: true, // this allows things to be dropped onto the calendar !!!
+					drop: function(date, jsEvent) { // this function is called when something is dropped
+						
+						/* 
+							달력에 새로운 이벤트 추가
+							모달 띄우기
+						*/
+	
+						// 등록 폼 모달 띄움
+						modal.modal();
+						
+						/*
+							기본 셋팅
+							1. type 설정 (어딨지)
+							2. 시작 날짜 설정 (date 이용)
+						
+						*/
+						var form = document.addScheduleForm;
+						
+						form.type.value = 'Call';
+				
+						// 등록 함수
+						modal.find('form').on('submit', function(ev){
+							ev.preventDefault();
+							
+							// 캘린더에 쓰일 Data
+							var calEvent = {title:'', start:'', end:'', className:'', id:''};
+							calEvent.title = $(this).find("input[id=comments]").val();
+							calEvent.className = form.type.value;
+							calEvent.start = '2017-09-20'; //$(this).find("input[id=start]").val();
+							calEvent.end = '2017-09-20'; //$(this).find("input[id=end]").val();
+							
+							console.log(calEvent);
+							
+							// 서버에 보낼 Data
+							var scheduleData = {
+				        			employeeNo: 1, //'${session.emp.no}',
+				        			comments: calEvent.title,
+				        			customerNo: 1,
+				        			type: form.type.value,
+				        			location: form.location.value,
+				        			importance: 1,
+				        			repetition: form.repetition.value,
+				        			startDate: calEvent.start,
+				        			endDate: calEvent.end
+				        		};
+							
+							console.log(scheduleData);
+							
+							 $.ajax({
+				        		url: "${pageContext.request.contextPath}/schedule",
+				        		type: "post",
+				        		data: scheduleData, 
+				        		success: function(data){
+				        			alert('추가');
+									modal.modal("hide");
+									calendar.fullCalendar('updateEvent', calEvent);
+				        		},
+				        		error: function(){
+				        			alert('error');
+				        		}
+				        	});
+							
+						}); 
+							
+						modal.modal('show').on('hidden', function(){
+							modal.remove();
+						}); 
+
 					}
 					,
 					selectable: true,
@@ -322,9 +440,26 @@
 					}
 					,
 					eventClick: function(calEvent, jsEvent, view) {
+						
+						alert(calEvent.title+"\n"+calEvent.start+"\n"+calEvent.end+"\n"+calEvent.className);
+						
+						modal.modal();
+						
+						/*
+						기본 셋팅
+						1. type 설정 (어딨지)
+						2. 시작 날짜 설정 (date 이용)
+					
+					*/
+						var form = document.addScheduleForm;
+						form.comments.value = calEvent.title;
+						form.type.value = calEvent.className;
+						form.location.value = 'test';
+						form.repetition.value = "매주";
 
+						//   원본 모달
 						//display a modal
-						var modal = 
+						/* var modal = 
 						'<div class="modal fade">\
 						  <div class="modal-dialog">\
 						   <div class="modal-content">\
@@ -342,39 +477,33 @@
 							 </div>\
 						  </div>\
 						 </div>\
-						</div>';
-					
-					
-						var modal = $(modal).appendTo('body');
-						modal.find('form').on('submit', function(ev){
-							ev.preventDefault();
-
-							calEvent.title = $(this).find("input[type=text]").val();
-							calendar.fullCalendar('updateEvent', calEvent);
-							modal.modal("hide");
-						});
-						modal.find('button[data-action=delete]').on('click', function() {
-							calendar.fullCalendar('removeEvents' , function(ev){
-								return (ev._id == calEvent._id);
-							})
-							modal.modal("hide");
-						});
+						</div>'; */
 						
-						modal.modal('show').on('hidden', function(){
-							modal.remove();
-						});
-
-
-						//console.log(calEvent.id);
-						//console.log(jsEvent);
-						//console.log(view);
-
-						// change the border color just for fun
-						//$(this).css('border-color', 'red');
-
+						// retrieve the dropped element's stored Event Object
+						/* var originalEventObject = $(this).data('eventObject');
+						var $extraEventClass = $(this).attr('data-class');
+						
+						
+						// we need to copy it, so that multiple events don't have a reference to the same object
+						var copiedEventObject = $.extend({}, originalEventObject);
+						
+						// assign it the date that was reported
+						copiedEventObject.start = date;
+						copiedEventObject.allDay = true;
+						if($extraEventClass) copiedEventObject['className'] = [$extraEventClass];
+						
+						// render the event on the calendar
+						// the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
+						$('#calendar').fullCalendar('renderEvent', copiedEventObject, true); */
 					}
 				});
 		 })
+		 
+		 $('.addBtn').click(function(){
+			 alert('btn\n'+eventList);
+		 })
 	</script>
+	
+	<jsp:include page="/include/addScheduleModal.jsp"/>
 </body>
 </html>

@@ -39,7 +39,7 @@
 	<update id="update" parameterType="schedule">
 		update schedule
 		<set> <!-- set comma는 뒤에  -->
-			<if test="employee_no!=null">
+			<if test="employeeNo!=null">
 				employee_no = #{employeeNo},
 			</if>
 	 		<if test="location!=null">
@@ -51,10 +51,10 @@
 			<if test="comments!=null">
 				comments = #{comments},
 			</if>
-			<if test="start_date!=null">
+			<if test="startDate!=null">
 				start_date = #{startDate},
 			</if>
-			<if test="end_date!=null">
+			<if test="endDate!=null">
 				end_date = #{endDate},
 			</if>
 			<if test="importance!=null">
@@ -64,6 +64,7 @@
 				repetition = #{repetition}
 			</if>
 		</set>
+		where no = #{no}
 	</update>
 	
 	<!-- 일정 삭제 -->

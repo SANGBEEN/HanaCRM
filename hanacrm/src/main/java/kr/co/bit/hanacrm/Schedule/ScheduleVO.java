@@ -20,7 +20,7 @@ public class ScheduleVO {
 	private String location;
 
 	// meeting 2
-	private Integer type;
+	private String type;
 
 	private String comments;
 
@@ -46,7 +46,7 @@ public class ScheduleVO {
 		super();
 	}
 	
-	public ScheduleVO(Integer no, Integer employeeNo, Integer customerNo, String location, Integer type,
+	public ScheduleVO(Integer no, Integer employeeNo, Integer customerNo, String location, String type,
 			String comments, Date startDate, Date endDate, Date regDate, Integer importance, String repetition) {
 		super();
 		this.no = no;
@@ -94,11 +94,11 @@ public class ScheduleVO {
 		this.location = location;
 	}
 
-	public Integer getType() {
+	public String getType() {
 		return type;
 	}
 
-	public void setType(Integer type) {
+	public void setType(String type) {
 		this.type = type;
 	}
 
@@ -157,6 +157,62 @@ public class ScheduleVO {
 	public void setDate(String date) {
 		this.date = date;
 	}
+	
+	/*
+	// type - typeName 매칭
+	public String typeName() {
+		String result = "Meeting";
+		
+		switch (type) {
+		case 1:
+			result = "Meeting";
+			break;
+		case 2:			
+			result = "Task";
+			break;
+		case 3:
+			result = "Call";
+			break;
+		case 4:
+			result = "Event";		
+			break;
+		case 5:
+			result = "Other";			
+			break;
+
+		default:
+			break;
+		}
+		
+		return result;
+	}
+*/	
+/*	public String color() {
+		String result = "2FABE9";
+		
+		switch (type) {
+		case 1:
+			result = "#00A300";
+			break;
+		case 2:			
+			result = "#2D89EF";
+			break;
+		case 3:
+			result = "#FFC40D";
+			break;
+		case 4:
+			result = "#999";		
+			break;
+		case 5:
+			result = "#333";			
+			break;
+
+		default:
+			break;
+		}
+		
+		return result;
+	}*/
 
 	@Override
 	public String toString() {

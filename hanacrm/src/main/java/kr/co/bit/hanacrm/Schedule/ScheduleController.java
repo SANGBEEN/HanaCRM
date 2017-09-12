@@ -57,13 +57,18 @@ public class ScheduleController {
 	@ResponseBody
 	@RequestMapping(value="/schedule", method=RequestMethod.POST)
 	public int insert(HttpServletRequest request, ScheduleVO schedule) {
+		System.out.println("일정 추가");
+		System.out.println(schedule);
 		return scheduleService.insert(schedule);
 	}
 	
 	// 일정 수정
 	@ResponseBody
 	@RequestMapping(value="/schedule", method=RequestMethod.PUT)
-	public int update(HttpServletRequest request, @PathVariable ScheduleVO schedule){
+	public int update(HttpServletRequest request, ScheduleVO schedule){
+		System.out.println("일정 수정");
+		//System.out.println(request.getParameter("no"));
+		System.out.println("aaa - "+schedule);
 		return scheduleService.update(schedule);
 	}
 	
@@ -71,6 +76,7 @@ public class ScheduleController {
 	@ResponseBody
 	@RequestMapping(value="/schedule/{no}", method=RequestMethod.DELETE)
 	public int delete(HttpServletRequest request, @PathVariable int no){
+		System.out.println("일정 삭제");
 		return scheduleService.delete(no);
 	}
 	
