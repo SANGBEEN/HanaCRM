@@ -14,7 +14,8 @@ public class ConsultVO {
 	private String content;
 	private Date regDate;
 	
-	private CusVO cusVO;
+	private CusVO customerVO;
+	
 	private List<ConsultProductVO> consultProduct;
 	
 	public ConsultVO() {
@@ -80,14 +81,14 @@ public class ConsultVO {
 
 	public void setConsultProduct(List<ConsultProductVO> consultProduct) {
 		this.consultProduct = consultProduct;
+	}	
+
+	public CusVO getCustomerVO() {
+		return customerVO;
 	}
 
-	public CusVO getCusVO() {
-		return cusVO;
-	}
-
-	public void setCusVO(CusVO cusVO) {
-		this.cusVO = cusVO;
+	public void setCustomerVO(CusVO customerVO) {
+		this.customerVO = customerVO;
 	}
 
 	@Override

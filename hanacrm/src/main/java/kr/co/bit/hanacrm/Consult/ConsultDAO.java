@@ -14,16 +14,28 @@ public class ConsultDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 
-	public List<ConsultVO> consultList() {
-		return sqlSessionTemplate.selectList("consult.consultDAO.consultList");
+	public List<ConsultVO> selectList() {
+		return sqlSessionTemplate.selectList("consult.ConsultDAO.selectList");
 	}
 
-	public List<ConsultProductVO> consultProductList(Integer consultNo) {
-		return sqlSessionTemplate.selectList("consult.consultDAO.consultProductList", consultNo);
+	public List<ConsultProductVO> selectProductList(Integer consultNo) {
+		return sqlSessionTemplate.selectList("consult.ConsultDAO.selectProductList", consultNo);
 	}
 
-	public CusVO consultCustomer(Integer customerNo) {
-		return sqlSessionTemplate.selectOne("consult.consultDAO.consultCustomer", customerNo);
+	public CusVO selectCustomer(Integer customerNo) {
+		return sqlSessionTemplate.selectOne("consult.ConsultDAO.selectCustomer", customerNo);
+	}
+
+	public Integer insert(ConsultVO consultVO) {
+		return sqlSessionTemplate.insert("consult.ConsultDAO.insert", consultVO);
+	}
+
+	public Integer update(ConsultVO consultVO) {
+		return sqlSessionTemplate.update("consult.ConsultDAO.update", consultVO);
+	}
+
+	public Integer delete(int no) {
+		return sqlSessionTemplate.delete("consult.ConsultDAO.delete", no);
 	}
 
 }

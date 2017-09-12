@@ -2,7 +2,10 @@ package kr.co.bit.hanacrm.Memo;
 
 import java.sql.Date;
 
+import org.springframework.stereotype.Component;
+
 //사원의 개인적인 메모
+@Component
 public class MemoVO {
 
 	private Integer no;
