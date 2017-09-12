@@ -159,11 +159,6 @@
 							<tr class="row-detail-hs" style="display: none">
 								<td colspan="6">
 									<div>
-										<a href="#">
-											<img class="avatar" alt="Dennis Ji" src="${pageContext.request.contextPath}/img/avatar.jpg">
-										</a>
-									</div>
-									<div>
 										<strong>Name:</strong> <a href="#">Dennis Ji</a><br>
 										<strong>Since:</strong> Jul 25, 2012 11:09<br>
 										<strong>Status:</strong> <span class="label label-success">Approved</span>
@@ -368,8 +363,31 @@
 	</div>
 	
 	<div class="clearfix"></div>
-	
+		
 	<!-- start: JavaScript-->
+		<script>			
+			
+			/* 수정 */
+			$('.btn btn-info').click(function(e){
+				e.preventDefault();
+				$(this).parent().next('.row-detail-hs').empty();
+				$("#myModal").modal();
+			});
+			
+			/* 삭제 */
+			$('.btn btn-danger').click(function(e){
+				e.preventDefault();
+				$(this).parent().next('.row-minimize-hs').empty();
+				$(this).parent().next('.row-detail-hs').empty();
+			});
+			
+			/* 상세 보기 */
+			$('.row-minimize-hs').click(function(e){
+				e.preventDefault();
+				$(this).next('.row-detail-hs').slideToggle();
+			});
+			
+		</script>
 
 		<script src="${pageContext.request.contextPath}/js/jquery-1.9.1.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/jquery-migrate-1.0.0.min.js"></script>
@@ -426,28 +444,6 @@
 
 		<script src="${pageContext.request.contextPath}/js/custom.js"></script>
 		
-		<script>
-		
-			/* 상세 보기 */
-			$('.row-minimize-hs').click(function(e){
-				e.preventDefault();
-				$(this).next('.row-detail-hs').slideToggle();
-			});
-			
-			/* 수정 */
-			$('.btn btn-info').click(function(e){
-				e.preventDefault();
-				$(this).parent().next('.row-detail-hs').empty();
-			});
-			
-			/* 삭제 */
-			$('.btn btn-danger').click(function(e){
-				e.preventDefault();
-				$(this).parent().next('.row-minimize-hs').empty();
-				$(this).parent().next('.row-detail-hs').empty();
-			});
-			
-		</script>
 	<!-- end: JavaScript-->
 	
 </body>
