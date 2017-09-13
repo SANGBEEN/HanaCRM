@@ -22,6 +22,7 @@
 	<link id="base-style" href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
 	<link id="base-style-responsive" href="${pageContext.request.contextPath}/css/style-responsive.css" rel="stylesheet">
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext' rel='stylesheet' type='text/css'>
+	
 	<!-- end: CSS -->
 	
 
@@ -41,23 +42,28 @@
 	
 	<style>
 		.Meeting {
-			background-color : '#00A300'
+			background-color : #00A300 !important;
+			color: white
 		}
 		
 		.Task {
-			color : #2D89EF
+			background-color : #2D89EF !important;
+			color: white
 		}
 		
 		.Call {
-			background-color : #FFC40D
+			background-color : #FFC40D !important;
+			color: white
 		}
 		
 		.Event {
-			color : #999
+			background-color : #999 !important;
+			color: white
 		}
 		
 		.Other {
-			color : #333
+			background-color : #333 !important;
+			color: white
 		}
 	</style>
 </head>
@@ -161,6 +167,7 @@
 
 	<script src="${pageContext.request.contextPath}/js/jquery.cookie.js"></script>
 
+	<%-- <script src='${pageContext.request.contextPath}/js/fullcalendar.js'></script> --%>
 	<script src='${pageContext.request.contextPath}/js/fullcalendar.min.js'></script>
 
 	<script src='${pageContext.request.contextPath}/js/jquery.dataTables.min.js'></script>
@@ -212,7 +219,7 @@
 				
 			 var modal = $('#addModal');
 			 
-				/* initialize the external events
+				/************************** initialize the external events
 				-----------------------------------------------------------------*/
 
 				$('#external-events div.external-event').each(function() {
@@ -235,7 +242,7 @@
 					
 				});
 				
-				/* get event data from our server
+				/************************** get event data from our server
 				-----------------------------------------------------------------*/
 				
 				var eventList = [];
@@ -250,7 +257,7 @@
 				}
 				
 				
-				/* initialize the calendar
+				/************************** initialize the calendar
 				-----------------------------------------------------------------*/
 
 				var date = new Date();
@@ -302,12 +309,14 @@
 					
 					editable: true,
 					eventDrop: function(event, delta, revertFunc) {
-						/* 
+						/***************************
 							달력 내에서의 드래그
 							날짜 수정 반영하기
-						*/
+						***************************/
 
-				        alert(event.title + " was dropped on "+event.id);
+				       // alert(event.title + " was dropped on "+event.id);
+						
+						console.log(event);
 						
 						var test = {
 								no: event.id,
@@ -330,8 +339,9 @@
 				        	$.ajax({
 				        		url: "${pageContext.request.contextPath}/schedule",
 				        		type: "put",
+				        		contentType: "application/json; charset=uft-8",
 				        		dataType: "json",
-				        		data: test, 
+				        		data: JSON.stringify(test), 
 				        		success: function(data){
 				        			alert('날짜 수정됨');
 						            revertFunc();
@@ -348,48 +358,74 @@
 					droppable: true, // this allows things to be dropped onto the calendar !!!
 					drop: function(date, jsEvent) { // this function is called when something is dropped
 						
-						/* 
+						/************************** 
 							달력에 새로운 이벤트 추가
 							모달 띄우기
-						*/
+						***************************/
 	
 						// 등록 폼 모달 띄움
 						modal.modal();
+					
 						
-						/*
+						// retrieve the dropped element's stored Event Object
+						var originalEventObject = $(this).data('eventObject');
+						var $extraEventClass = $(this).attr('data-class');
+						
+						
+						// we need to copy it, so that multiple events don't have a reference to the same object
+						var copiedEventObject = $.extend({}, originalEventObject);
+						
+						// assign it the date that was reported
+						copiedEventObject.start = date;
+						copiedEventObject.end = date;
+						copiedEventObject.allDay = false;
+						copiedEventObject.className = originalEventObject.title;
+						/* if($extraEventClass) 
+							copiedEventObject['className'] = [$extraEventClass]; */
+					
+						console.log(copiedEventObject);
+						
+						/************************
 							기본 셋팅
 							1. type 설정 (어딨지)
 							2. 시작 날짜 설정 (date 이용)
 						
-						*/
+						**************************/
 						var form = document.addScheduleForm;
+						console.log('1: '+originalEventObject.title);
+						form.scheduleType.value = copiedEventObject.className;
+					//	$("#scheduleType").val();
 						
-						form.type.value = 'Call';
+						console.log($("#scheduleType").val());
 				
 						// 등록 함수
 						modal.find('form').on('submit', function(ev){
 							ev.preventDefault();
 							
 							// 캘린더에 쓰일 Data
-							var calEvent = {title:'', start:'', end:'', className:'', id:''};
-							calEvent.title = $(this).find("input[id=comments]").val();
-							calEvent.className = form.type.value;
-							calEvent.start = '2017-09-20'; //$(this).find("input[id=start]").val();
-							calEvent.end = '2017-09-20'; //$(this).find("input[id=end]").val();
+						//	var calEvent = {title:'', start:'', end:'', className:'', id:''};
+							copiedEventObject.title = $(this).find("input[id=comments]").val();
+							copiedEventObject.className = form.scheduleType.value;
+							//calEvent.start = '2017-09-20'; //$(this).find("input[id=start]").val();
+							//calEvent.end = '2017-09-20'; //$(this).find("input[id=end]").val();
 							
-							console.log(calEvent);
+							// 날짜 format							
+							var fullDate = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate();
+							
+							console.log(copiedEventObject);
+							console.log(fullDate);
 							
 							// 서버에 보낼 Data
 							var scheduleData = {
 				        			employeeNo: 1, //'${session.emp.no}',
-				        			comments: calEvent.title,
+				        			comments: form.comments.value,
 				        			customerNo: 1,
-				        			type: form.type.value,
+				        			type: copiedEventObject.className,
 				        			location: form.location.value,
-				        			importance: 1,
+				        			importance: 1,  // important
 				        			repetition: form.repetition.value,
-				        			startDate: calEvent.start,
-				        			endDate: calEvent.end
+				        			startDate: fullDate,
+				        			endDate: fullDate
 				        		};
 							
 							console.log(scheduleData);
@@ -401,7 +437,9 @@
 				        		success: function(data){
 				        			alert('추가');
 									modal.modal("hide");
-									calendar.fullCalendar('updateEvent', calEvent);
+									// render the event on the calendar
+									// the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
+									$('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
 				        		},
 				        		error: function(){
 				        			alert('error');
@@ -410,9 +448,14 @@
 							
 						}); 
 							
+						$('#modalCancle').click(function(){
+							modal.modal("hide");
+						});
+						
 						modal.modal('show').on('hidden', function(){
 							modal.remove();
 						}); 
+						
 
 					}
 					,
@@ -420,7 +463,7 @@
 					selectHelper: true,
 					select: function(start, end, allDay) {
 						
-						bootbox.prompt("New Event Title:", function(title) {
+						b/* ootbox.prompt("New Event Title:", function(title) {
 							if (title !== null) {
 								calendar.fullCalendar('renderEvent',
 									{
@@ -436,7 +479,7 @@
 						});
 						
 
-						calendar.fullCalendar('unselect');
+						calendar.fullCalendar('unselect'); */
 					}
 					,
 					eventClick: function(calEvent, jsEvent, view) {
@@ -449,8 +492,8 @@
 						기본 셋팅
 						1. type 설정 (어딨지)
 						2. 시작 날짜 설정 (date 이용)
-					
-					*/
+						*/
+						
 						var form = document.addScheduleForm;
 						form.comments.value = calEvent.title;
 						form.type.value = calEvent.className;
@@ -478,23 +521,7 @@
 						  </div>\
 						 </div>\
 						</div>'; */
-						
-						// retrieve the dropped element's stored Event Object
-						/* var originalEventObject = $(this).data('eventObject');
-						var $extraEventClass = $(this).attr('data-class');
-						
-						
-						// we need to copy it, so that multiple events don't have a reference to the same object
-						var copiedEventObject = $.extend({}, originalEventObject);
-						
-						// assign it the date that was reported
-						copiedEventObject.start = date;
-						copiedEventObject.allDay = true;
-						if($extraEventClass) copiedEventObject['className'] = [$extraEventClass];
-						
-						// render the event on the calendar
-						// the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
-						$('#calendar').fullCalendar('renderEvent', copiedEventObject, true); */
+
 					}
 				});
 		 })

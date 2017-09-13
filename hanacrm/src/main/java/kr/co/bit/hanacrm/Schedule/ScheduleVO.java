@@ -221,7 +221,7 @@ public class ScheduleVO {
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			json = mapper.writeValueAsString(this);
-			System.out.println(json);
+			//System.out.println(json);
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
