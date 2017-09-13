@@ -81,6 +81,7 @@
 					<div class="box-header" data-original-title>
 						<h2><i class="halflings-icon user"></i><span class="break"></span>상담 내역</h2>
 						<div class="box-icon">
+							<a href="#" class="consult-insert-hs"><i class="halflings-icon plus"></i></a>
 							<a href="#" class="btn-setting"><i class="halflings-icon wrench"></i></a>
 							<a href="#" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
 							<a href="#" class="btn-close"><i class="halflings-icon remove"></i></a>
@@ -92,6 +93,7 @@
 							  <tr>
 							  	<th>번호</th>	
 								<th>고객 이름</th>
+								<th>요약</th>
 								<th>상담 날짜</th>
 								<th>고객 타입</th>
 								<th>상태</th>
@@ -137,7 +139,7 @@
 		$(this).parent().find('ul').slideToggle();
 	
 	}); -->
-								
+								<td class="center">Title</td>
 								<td class="center">2012/01/01</td>
 								<td class="center">Member</td>
 								<td class="center">
@@ -277,6 +279,7 @@
 							<tr class="row-minimize-hs">
 								<td>${ consultVO.no }</td>
 								<td>${ consultVO.customerVO.name }</td>
+								<td>${ consultVO.title }</td>
 								<td class="center">${ consultVO.regDate }</td>
 								<td class="center">${ consultVO.customerVO.grade }</td>
 								<td class="center">
@@ -362,33 +365,104 @@
 		</div>
 	</div>
 	
+	<!-- 추가 -->
+	<div class="modal hide fade" id="consultInsert">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">×</button>
+			<h3>추가</h3>
+		</div>
+		<div class="modal-body">
+			<div class="control-group">
+				<label class="control-label" for="focusedInput">고객 이름</label>
+				<div class="controls">
+				  <input class="input-xlarge focused" id="consultTitle" type="text" value="${ consultVO.title }">
+				</div>
+			</div>
+			<div class="control-group">
+			  <label class="control-label" for="date01">상담 날짜</label>
+			  <div class="controls">
+				<input type="text" class="input-xlarge datepicker hasDatepicker" id="date01" value="02/16/12">
+			  </div>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<a href="#" class="btn" data-dismiss="modal">취소</a>
+			<a href="#" class="btn btn-primary" data-dismiss="modal">확인</a>
+			<a href="#" class="btn btn-warning product-hs">상품</a>
+		</div>
+	</div>
+	
+	<!-- 고객 및 상품 선택 -->
+	<div class="modal hide fade" id="consultCustomerProductSelect">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">×</button>
+			<h3>추가</h3>
+		</div>
+		<div class="modal-body">
+			<div class="control-group">
+				<label class="control-label" for="focusedInput">앙뇽</label>
+				<div class="controls">
+				  <input class="input-xlarge focused" id="consultTitle" type="text" value="${ consultVO.title }">
+				</div>
+			</div>
+			<div class="control-group">
+			  <label class="control-label" for="date01">어서와</label>
+			  <div class="controls">
+				<input type="text" class="input-xlarge datepicker hasDatepicker" id="date01" value="02/16/12">
+			  </div>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<a href="#" class="btn" data-dismiss="modal">취소</a>
+			<a href="#" class="btn btn-primary" data-dismiss="modal">확인</a>
+		</div>
+	</div>
+	
+	<!-- 수정 -->
+	<div class="modal hide fade" id="consultUpdate">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">×</button>
+			<h3>수정</h3>
+		</div>
+		<div class="modal-body">
+			<div class="control-group">
+				<label class="control-label" for="focusedInput">상담 요약</label>
+				<div class="controls">
+				  <input class="input-xlarge focused" id="consultTitle" type="text" value="${ consultVO.title }">
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="focusedInput">상담 내용</label>
+				<div class="controls">
+				  <input class="input-xlarge focused" id="consultContent" type="text" value="${ consultVO.content }">
+				</div>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<a href="#" class="btn" data-dismiss="modal">취소</a>
+			<a href="#" class="btn btn-primary" data-dismiss="modal">확인</a>
+		</div>
+	</div>
+	
+	<!-- 삭제 -->
+	<div class="modal hide fade" id="consultDelete">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">×</button>
+			<h3>삭제</h3>
+		</div>
+		<div class="modal-body">
+			<p>삭제하시겠습니까?</p>
+		</div>
+		<div class="modal-footer">
+			<a href="#" class="btn" data-dismiss="modal">취소</a>
+			<a href="#" class="btn btn-primary" data-dismiss="modal">확인</a>
+		</div>
+	</div>
+	
 	<div class="clearfix"></div>
 		
 	<!-- start: JavaScript-->
-		<script>			
-			
-			/* 수정 */
-			$('.btn btn-info').click(function(e){
-				e.preventDefault();
-				$(this).parent().next('.row-detail-hs').empty();
-				$("#myModal").modal();
-			});
-			
-			/* 삭제 */
-			$('.btn btn-danger').click(function(e){
-				e.preventDefault();
-				$(this).parent().next('.row-minimize-hs').empty();
-				$(this).parent().next('.row-detail-hs').empty();
-			});
-			
-			/* 상세 보기 */
-			$('.row-minimize-hs').click(function(e){
-				e.preventDefault();
-				$(this).next('.row-detail-hs').slideToggle();
-			});
-			
-		</script>
-
+	
 		<script src="${pageContext.request.contextPath}/js/jquery-1.9.1.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/jquery-migrate-1.0.0.min.js"></script>
 	
@@ -443,6 +517,56 @@
 		<script src="${pageContext.request.contextPath}/js/retina.js"></script>
 
 		<script src="${pageContext.request.contextPath}/js/custom.js"></script>
+		
+		<script>	
+		
+			/* 상세 보기 */
+			$('.row-minimize-hs').click(function(e){
+				e.preventDefault();
+				$(this).next('.row-detail-hs').slideToggle();
+				console.log("상세");
+			});		
+		
+			/* 수정 */
+			$('.btn-info').click(function(e){
+				e.preventDefault();
+				e.stopPropagation();
+				/* $(this).parent().next('.row-detail-hs').empty(); */
+				$("#consultUpdate").modal();
+				console.log("수정");
+			});
+			
+			/* 삭제 */
+			$('.btn-danger').click(function(e){
+				e.preventDefault();
+				e.stopPropagation();
+				/* $(this).parent().next('.row-minimize-hs').empty();
+				$(this).parent().next('.row-detail-hs').empty(); */
+				$("#consultDelete").modal();
+				console.log("삭제");
+			});
+			
+			/* 추가 */
+			$('.consult-insert-hs').click(function(e){
+				e.preventDefault();
+				e.stopPropagation();
+				/* $(this).parent().next('.row-minimize-hs').empty();
+				$(this).parent().next('.row-detail-hs').empty(); */
+				$("#consultInsert").modal();
+				console.log("추가");
+			});
+			
+			/* 상품 선택 */
+			$('.product-hs').click(function(e){
+				e.preventDefault();
+				e.stopPropagation();
+				/* $(this).parent().next('.row-minimize-hs').empty();
+				$(this).parent().next('.row-detail-hs').empty(); */
+				$("#consultCustomerProductSelect").modal();
+				console.log("상품");
+			});
+			
+		</script>
 		
 	<!-- end: JavaScript-->
 	
