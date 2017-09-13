@@ -1,6 +1,6 @@
 package kr.co.bit.hanacrm.Product;
 
-import java.sql.Date;
+import java.util.List;
 
 import org.springframework.stereotype.Component;
 
@@ -11,7 +11,7 @@ public class DepositVO {
     private Integer no;
 
     //  공시 제출월 YYYYMM
-    private Date dclsMonth;
+    private String dclsMonth;
 
     //  금융회사 코드
     private Integer finCoNo;
@@ -47,30 +47,26 @@ public class DepositVO {
     private Integer maxLimit;
 
     //  공시 시작일
-    private Date dclsStrtDay;
+    private String dclsStrtDay;
 
     //  공시 종료일
-    private Date dclsEndDay;
+    private String dclsEndDay;
 
     //  금융회사 제출일 YYYYMMDDHH24MI
-    private Date finCoSubmDay;
+    private String finCoSubmDay;
 
-    //  저축 금리 유형(s:단리 m:복리)
-    private String intrRateType;
+    // 옵션내용
+    private List<OptionVO> optionList;
+    
+    public List<OptionVO> getOptionList() {
+		return optionList;
+	}
 
-    //  저축 금리 유형명
-    private String intrRateTypeNm;
+	public void setOptionList(List<OptionVO> optionList) {
+		this.optionList = optionList;
+	}
 
-    //  저축 기간 단위: 개월
-    private Integer saveTrm;
-
-    //  저축 금리 소수점 2자리
-    private Integer intrRate;
-
-    //  최고 우대금리 소수점 2자리
-    private Integer intrRate2;
-
-    public Integer getNo() {
+	public Integer getNo() {
         return no;
     }
 
@@ -78,11 +74,11 @@ public class DepositVO {
         this.no = no;
     }
 
-    public Date getDclsMonth() {
+    public String getDclsMonth() {
         return dclsMonth;
     }
 
-    public void setDclsMonth(Date dclsMonth) {
+    public void setDclsMonth(String dclsMonth) {
         this.dclsMonth = dclsMonth;
     }
 
@@ -174,79 +170,40 @@ public class DepositVO {
         this.maxLimit = maxLimit;
     }
 
-    public Date getDclsStrtDay() {
+    public String getDclsStrtDay() {
         return dclsStrtDay;
     }
 
-    public void setDclsStrtDay(Date dclsStrtDay) {
+    public void setDclsStrtDay(String dclsStrtDay) {
         this.dclsStrtDay = dclsStrtDay;
     }
 
-    public Date getDclsEndDay() {
+    public String getDclsEndDay() {
         return dclsEndDay;
     }
 
-    public void setDclsEndDay(Date dclsEndDay) {
+    public void setDclsEndDay(String dclsEndDay) {
         this.dclsEndDay = dclsEndDay;
     }
 
-    public Date getFinCoSubmDay() {
+    public String getFinCoSubmDay() {
         return finCoSubmDay;
     }
 
-    public void setFinCoSubmDay(Date finCoSubmDay) {
+    public void setFinCoSubmDay(String finCoSubmDay) {
         this.finCoSubmDay = finCoSubmDay;
     }
 
-    public String getIntrRateType() {
-        return intrRateType;
-    }
-
-    public void setIntrRateType(String intrRateType) {
-        this.intrRateType = intrRateType;
-    }
-
-    public String getIntrRateTypeNm() {
-        return intrRateTypeNm;
-    }
-
-    public void setIntrRateTypeNm(String intrRateTypeNm) {
-        this.intrRateTypeNm = intrRateTypeNm;
-    }
-
-    public Integer getSaveTrm() {
-        return saveTrm;
-    }
-
-    public void setSaveTrm(Integer saveTrm) {
-        this.saveTrm = saveTrm;
-    }
-
-    public Integer getIntrRate() {
-        return intrRate;
-    }
-
-    public void setIntrRate(Integer intrRate) {
-        this.intrRate = intrRate;
-    }
-
-    public Integer getIntrRate2() {
-        return intrRate2;
-    }
-
-    public void setIntrRate2(Integer intrRate2) {
-        this.intrRate2 = intrRate2;
-    }
+   
 
 	public DepositVO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public DepositVO(Integer no, Date dclsMonth, Integer finCoNo, String korCoNm, String finPrdtCd, String finPrdtNm,
+	public DepositVO(Integer no, String dclsMonth, Integer finCoNo, String korCoNm, String finPrdtCd, String finPrdtNm,
 			String joinWay, String mtrtInt, String spclCnd, Integer joinDeny, String joinMember, String etcNote,
-			Integer maxLimit, Date dclsStrtDay, Date dclsEndDay, Date finCoSubmDay, String intrRateType,
-			String intrRateTypeNm, Integer saveTrm, Integer intrRate, Integer intrRate2) {
+			Integer maxLimit, String dclsStrtDay, String dclsEndDay, String finCoSubmDay) {
 		super();
 		this.no = no;
 		this.dclsMonth = dclsMonth;
@@ -264,11 +221,6 @@ public class DepositVO {
 		this.dclsStrtDay = dclsStrtDay;
 		this.dclsEndDay = dclsEndDay;
 		this.finCoSubmDay = finCoSubmDay;
-		this.intrRateType = intrRateType;
-		this.intrRateTypeNm = intrRateTypeNm;
-		this.saveTrm = saveTrm;
-		this.intrRate = intrRate;
-		this.intrRate2 = intrRate2;
 	}
 
 	@Override
@@ -280,12 +232,12 @@ public class DepositVO {
 				.append(mtrtInt).append(", spclCnd=").append(spclCnd).append(", joinDeny=").append(joinDeny)
 				.append(", joinMember=").append(joinMember).append(", etcNote=").append(etcNote).append(", maxLimit=")
 				.append(maxLimit).append(", dclsStrtDay=").append(dclsStrtDay).append(", dclsEndDay=")
-				.append(dclsEndDay).append(", finCoSubmDay=").append(finCoSubmDay).append(", intrRateType=")
-				.append(intrRateType).append(", intrRateTypeNm=").append(intrRateTypeNm).append(", saveTrm=")
-				.append(saveTrm).append(", intrRate=").append(intrRate).append(", intrRate2=").append(intrRate2)
-				.append("]");
+				.append(dclsEndDay).append(", finCoSubmDay=").append(finCoSubmDay).append(", optionList=")
+				.append(optionList).append("]");
 		return builder.toString();
 	}
+
+
 
     
 

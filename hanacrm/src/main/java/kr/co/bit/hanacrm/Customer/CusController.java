@@ -52,8 +52,10 @@ public class CusController {
 		
 		CusVO customer = new CusVO();
 		List<ConsultVO> consultList = new ArrayList<>();
+		
 		customer = cusService.detail(no);
-		consultList = conService.selectList();
+		//consultList = conService.selectList();
+		//하나씩 조회해서 consultVO에 set 해서 리턴하는 서비스 
 		model.addAttribute("customer", customer);
 		//타임라인 일단 상담내역만 
 		model.addAttribute("consultList", consultList);

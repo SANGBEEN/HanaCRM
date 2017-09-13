@@ -13,9 +13,10 @@
         <typeAlias type="kr.co.bit.hanacrm.Consult.ConsultVO" alias="consult"/>
         <typeAlias type="kr.co.bit.hanacrm.Consult.ConsultProductVO" alias="consultProduct"/>          
         <typeAlias type="kr.co.bit.hanacrm.Product.DepositVO" alias="deposit"/>
+        <typeAlias type="kr.co.bit.hanacrm.Product.OptionVO" alias="option"/>
         <typeAlias type="kr.co.bit.hanacrm.Product.SavingsVO" alias="savings"/>
         
         <typeAlias type="kr.co.bit.hanacrm.Memo.MemoVO" alias="memo"/>
-        <typeAlias type="kr.co.bit.hanacrm.Report.ReportVO" alias="report"/>
+        <!-- <typeAlias type="kr.co.bit.hanacrm.Report.ReportVO" alias="report"/> -->
     </typeAliases>
 </configuration>

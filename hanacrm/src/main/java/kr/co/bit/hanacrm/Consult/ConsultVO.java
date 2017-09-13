@@ -13,7 +13,7 @@ public class ConsultVO {
 	private Integer employeeNo;
 	private String content;
 	private Date regDate;
-	
+	private String title;
 	private CusVO customerVO;
 	
 	private List<ConsultProductVO> consultProduct;
@@ -21,7 +21,7 @@ public class ConsultVO {
 	public ConsultVO() {
 	}	
 
-	public ConsultVO(Integer no, Integer customerNo, Integer employeeNo, String content, Date regDate, CusVO cusVO,
+	public ConsultVO(Integer no, Integer customerNo, Integer employeeNo, String content, Date regDate,String title,
 			List<ConsultProductVO> consultProduct) {
 		super();
 		this.no = no;
@@ -29,11 +29,19 @@ public class ConsultVO {
 		this.employeeNo = employeeNo;
 		this.content = content;
 		this.regDate = regDate;
-		this.cusVO = cusVO;
+		this.title = title;
 		this.consultProduct = consultProduct;
 	}
 
 
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
 	public Integer getNo() {
 		return no;
@@ -96,7 +104,9 @@ public class ConsultVO {
 		StringBuilder builder = new StringBuilder();
 		builder.append("ConsultVO [no=").append(no).append(", customerNo=").append(customerNo).append(", employeeNo=")
 				.append(employeeNo).append(", content=").append(content).append(", regDate=").append(regDate)
-				.append("]");
+				.append(", title=").append(title).append(", customerVO=").append(customerVO).append(", consultProduct=")
+				.append(consultProduct).append("]");
 		return builder.toString();
-	}	
+	}
+	
 }
