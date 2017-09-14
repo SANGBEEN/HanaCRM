@@ -392,25 +392,33 @@
 		</div>
 	</div>
 	
-	<!-- 고객 및 상품 선택 -->
+	<!-- 일정 및 상품 선택 -->
 	<div class="modal hide fade" id="consultCustomerProductSelect">
 		<div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal">×</button>
 			<h3>추가</h3>
 		</div>
 		<div class="modal-body">
-			<div class="control-group">
-				<label class="control-label" for="focusedInput">앙뇽</label>
-				<div class="controls">
-				  <input class="input-xlarge focused" id="consultTitle" type="text" value="${ consultVO.title }">
-				</div>
-			</div>
-			<div class="control-group">
-			  <label class="control-label" for="date01">어서와</label>
-			  <div class="controls">
-				<input type="text" class="input-xlarge datepicker hasDatepicker" id="date01" value="02/16/12">
-			  </div>
-			</div>
+			<table class="table table-striped table-bordered bootstrap-datatable datatable">
+				<tr>
+					<td width="50%">
+					<div class="control-group">
+					<%-- <label class="control-label" for="focusedInput">앙뇽</label>
+						<div class="controls">
+						  <input class="input-xlarge focused" id="consultTitle" type="text" width="" value="${ consultVO.title }">
+						</div> --%>ㄱㅂ
+					</div>
+					</td>
+					<td>
+					<div class="control-group">
+					<!-- <label class="control-label" for="date01">어서와</label>
+					  <div class="controls">
+						<input type="text" class="input-xlarge datepicker hasDatepicker" id="date01" value="02/16/12">
+					  </div> -->ㄱㅂ2
+					</div>
+					</td>
+				</tr>
+			</table>
 		</div>
 		<div class="modal-footer">
 			<a href="#" class="btn" data-dismiss="modal">취소</a>
