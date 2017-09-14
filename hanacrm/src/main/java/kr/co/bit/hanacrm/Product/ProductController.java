@@ -23,10 +23,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.co.bit.hanacrm.Util.Util;
+
 @Controller
 @RequestMapping("/product")
 public class ProductController {
-
+	
+	private final String AUTH = Util.jsonParse("auth");
+	
 	@Autowired
 	private ProductService productService;
 	
@@ -49,11 +53,10 @@ public class ProductController {
 		res.setContentType("text/html; charset=utf-8");
 		
 		String addr="http://finlife.fss.or.kr/finlifeapi/depositProductsSearch.json?auth=";
-		String auth="49bb53dc3ef5b88bbe5eb3b85b8c3077";
 		String topFinGrpNo = "&" + "topFinGrpNo=020000";
 		String pageNo = "&" + "pageNo=1";
 		
-		addr = addr + auth + topFinGrpNo + pageNo;
+		addr = addr + AUTH + topFinGrpNo + pageNo;
 		System.out.println("url : "+addr);
 		URL url = new URL(addr);
 		InputStreamReader isr = new InputStreamReader(url.openConnection().getInputStream(),"utf-8");
@@ -129,11 +132,10 @@ public class ProductController {
 		res.setContentType("text/html; charset=utf-8");
 		
 		String addr="http://finlife.fss.or.kr/finlifeapi/savingProductsSearch.json?auth=";
-		String auth="49bb53dc3ef5b88bbe5eb3b85b8c3077";
 		String topFinGrpNo = "&" + "topFinGrpNo=020000";
 		String pageNo = "&" + "pageNo=1";
 		//max_page_no확인해야함
-		addr = addr + auth + topFinGrpNo + pageNo;
+		addr = addr + AUTH + topFinGrpNo + pageNo;
 		System.out.println("url : "+addr);
 		URL url = new URL(addr);
 		InputStreamReader isr = new InputStreamReader(url.openConnection().getInputStream(),"utf-8");
