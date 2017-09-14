@@ -4,10 +4,6 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="deposit.DepositDAO">
 	<insert id="insert" parameterType="deposit">
-		insert into deposit_info values(
-			deposit_info_seq.nextval, #{dclsMonth},#{finCoNo},#{korCoNm},#{finPrdtCd},#{finPrdtNm},#{joinWay},
-			#{mtrtInt, jdbcType=VARCHAR},#{spclCnd, jdbcType=VARCHAR},#{joinDeny, jdbcType=NUMERIC},#{joinMember, jdbcType=VARCHAR},
-			#{etcNote, jdbcType=VARCHAR},#{maxLimit, jdbcType=NUMERIC},#{dclsStrtDay, jdbcType=DATE},#{dclsEndDay},#{finCoSubmDay}
-		)
+		insert into deposit_info values(deposit_info_seq.nextval, to_date(#{dclsMonth},'YYYY/MM'),#{finCoNo},#{korCoNm},#{finPrdtCd},#{finPrdtNm},#{joinWay},#{mtrtInt, jdbcType=VARCHAR},#{spclCnd, jdbcType=VARCHAR},#{joinDeny, jdbcType=NUMERIC},#{joinMember, jdbcType=VARCHAR},#{etcNote, jdbcType=VARCHAR},#{maxLimit, jdbcType=NUMERIC},to_date(#{dclsStrtDay, jdbcType=DATE},'YYYY/MM/DD'),to_date(#{dclsEndDay},'YYYY/MM/DD'),to_date(#{finCoSubmDay},'YYYY/MM/DD HH24:MI:SS'))
 	</insert>
 </mapper>

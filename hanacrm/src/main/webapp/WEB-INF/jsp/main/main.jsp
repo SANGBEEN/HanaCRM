@@ -75,7 +75,8 @@
 			<div class="row-fluid">
 				
 				<div class="span3 statbox purple" onTablet="span6" onDesktop="span3">
-					<button id="savingsBtn">예금 api 요청</button>
+					<button id="depositBtn">예금 api 요청</button>
+					<button id="savingsBtn">적금 api 요청</button>
 				</div>
 				
 				<div class="span3 statbox green" onTablet="span6" onDesktop="span3">
@@ -779,6 +780,33 @@
 	
 	<script>
 	$().ready(function(){
+		$('#depositBtn').click(function(){
+			//var url = "http://finlife.fss.or.kr/finlifeapi/depositProductsSearch.json?callback=?&auth=49bb53dc3ef5b88bbe5eb3b85b8c3077&topFinGrpNo=020000&pageNo=1";
+			$.ajax({
+				type:'GET',
+				url:'${pageContext.request.contextPath}/product/deposit',
+				//url:url,
+				//crossDomain: true,
+				dataType:'json',
+				//jsonpCallback: "myCallback",
+				/* data:{
+					auth : "49bb53dc3ef5b88bbe5eb3b85b8c3077",
+					topFinGrpNo : "020000",
+					pageNo:"1"
+					
+				}, */
+				success:function(data){
+					//console.log(data.result);
+					// var result = $.parseJSON(data);
+					console.dir(data); 
+					console.log('success');
+				},
+				error:function(xhr, status, error){
+					console.log(error);
+				},
+			
+			});
+		});
 		$('#savingsBtn').click(function(){
 			//var url = "http://finlife.fss.or.kr/finlifeapi/depositProductsSearch.json?callback=?&auth=49bb53dc3ef5b88bbe5eb3b85b8c3077&topFinGrpNo=020000&pageNo=1";
 			$.ajax({

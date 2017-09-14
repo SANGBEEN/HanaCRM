@@ -11,10 +11,10 @@ public class OptionVO {
     private String dclsMonth;
 
     //  금융회사 코드
-    private Integer finCoNo;
+    private String finCoNo;
 
-    //  금융회사명
-    private String korCoNm;
+//  금융상품 코드
+    private String finPrdtCd;
 
 //  저축 금리 유형(s:단리 m:복리)
     private String intrRateType;
@@ -26,10 +26,10 @@ public class OptionVO {
     private Integer saveTrm;
 
     //  저축 금리 소수점 2자리
-    private Integer intrRate;
+    private Double intrRate;
 
     //  최고 우대금리 소수점 2자리
-    private Integer intrRate2;
+    private Double intrRate2;
 
     //  적립 유형
     private String rsrvType;
@@ -42,14 +42,14 @@ public class OptionVO {
 		// TODO Auto-generated constructor stub
 	}
 
-	public OptionVO(Integer no, String dclsMonth, Integer finCoNo, String korCoNm, String intrRateType,
-			String intrRateTypeNm, Integer saveTrm, Integer intrRate, Integer intrRate2, String rsrvType,
+	public OptionVO(Integer no, String dclsMonth, String finCoNo, String finPrdtCd, String intrRateType,
+			String intrRateTypeNm, Integer saveTrm, Double intrRate, Double intrRate2, String rsrvType,
 			String rsrvTypeNm) {
 		super();
 		this.no = no;
 		this.dclsMonth = dclsMonth;
 		this.finCoNo = finCoNo;
-		this.korCoNm = korCoNm;
+		this.finPrdtCd = finPrdtCd;
 		this.intrRateType = intrRateType;
 		this.intrRateTypeNm = intrRateTypeNm;
 		this.saveTrm = saveTrm;
@@ -75,20 +75,20 @@ public class OptionVO {
 		this.dclsMonth = dclsMonth;
 	}
 
-	public Integer getFinCoNo() {
+	public String getFinCoNo() {
 		return finCoNo;
 	}
 
-	public void setFinCoNo(Integer finCoNo) {
+	public void setFinCoNo(String finCoNo) {
 		this.finCoNo = finCoNo;
 	}
 
-	public String getKorCoNm() {
-		return korCoNm;
+	public String getFinPrdtCd() {
+		return finPrdtCd;
 	}
 
-	public void setKorCoNm(String korCoNm) {
-		this.korCoNm = korCoNm;
+	public void setFinPrdtCd(String finPrdtCd) {
+		this.finPrdtCd = finPrdtCd;
 	}
 
 	public String getIntrRateType() {
@@ -115,19 +115,19 @@ public class OptionVO {
 		this.saveTrm = saveTrm;
 	}
 
-	public Integer getIntrRate() {
+	public Double getIntrRate() {
 		return intrRate;
 	}
 
-	public void setIntrRate(Integer intrRate) {
+	public void setIntrRate(Double intrRate) {
 		this.intrRate = intrRate;
 	}
 
-	public Integer getIntrRate2() {
+	public Double getIntrRate2() {
 		return intrRate2;
 	}
 
-	public void setIntrRate2(Integer intrRate2) {
+	public void setIntrRate2(Double intrRate2) {
 		this.intrRate2 = intrRate2;
 	}
 
@@ -151,11 +151,12 @@ public class OptionVO {
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("OptionVO [no=").append(no).append(", dclsMonth=").append(dclsMonth).append(", finCoNo=")
-				.append(finCoNo).append(", korCoNm=").append(korCoNm).append(", intrRateType=").append(intrRateType)
+				.append(finCoNo).append(", finPrdtCd=").append(finPrdtCd).append(", intrRateType=").append(intrRateType)
 				.append(", intrRateTypeNm=").append(intrRateTypeNm).append(", saveTrm=").append(saveTrm)
 				.append(", intrRate=").append(intrRate).append(", intrRate2=").append(intrRate2).append(", rsrvType=")
 				.append(rsrvType).append(", rsrvTypeNm=").append(rsrvTypeNm).append("]");
 		return builder.toString();
 	}
-    
+	
+	
 }

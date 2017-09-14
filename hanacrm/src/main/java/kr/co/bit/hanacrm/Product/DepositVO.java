@@ -14,7 +14,7 @@ public class DepositVO {
     private String dclsMonth;
 
     //  금융회사 코드
-    private Integer finCoNo;
+    private String finCoNo;
 
     //  금융회사명
     private String korCoNm;
@@ -82,11 +82,11 @@ public class DepositVO {
         this.dclsMonth = dclsMonth;
     }
 
-    public Integer getFinCoNo() {
+    public String getFinCoNo() {
         return finCoNo;
     }
 
-    public void setFinCoNo(Integer finCoNo) {
+    public void setFinCoNo(String finCoNo) {
         this.finCoNo = finCoNo;
     }
 
@@ -201,7 +201,7 @@ public class DepositVO {
 		// TODO Auto-generated constructor stub
 	}
 
-	public DepositVO(Integer no, String dclsMonth, Integer finCoNo, String korCoNm, String finPrdtCd, String finPrdtNm,
+	public DepositVO(Integer no, String dclsMonth, String finCoNo, String korCoNm, String finPrdtCd, String finPrdtNm,
 			String joinWay, String mtrtInt, String spclCnd, Integer joinDeny, String joinMember, String etcNote,
 			Integer maxLimit, String dclsStrtDay, String dclsEndDay, String finCoSubmDay) {
 		super();

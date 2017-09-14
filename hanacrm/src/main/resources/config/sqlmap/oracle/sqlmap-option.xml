@@ -3,10 +3,16 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="option.OptionDAO">
-	<insert id="insert" parameterType="option">
+	<insert id="insertDepositOption" parameterType="option">
 		insert into deposit_options values(
-			deposit_options_seq.nextval, #{dclsMonth},#{finCoNo},#{finPrdtCd},#{intrRateType},#{intrRateTypeNm},
+			deposit_options_seq.nextval, to_date(#{dclsMonth},'YYYY/MM'),#{finCoNo},#{finPrdtCd,jdbcType=VARCHAR},#{intrRateType},#{intrRateTypeNm},
 			#{saveTrm},#{intrRate},#{intrRate2}
+		)
+	</insert>
+		<insert id="insertSavingsOption" parameterType="option">
+		insert into savings_options values(
+			savings_options_seq.nextval, to_date(#{dclsMonth},'YYYY/MM'),#{finCoNo},#{finPrdtCd,jdbcType=VARCHAR},
+			#{intrRateType},#{intrRateTypeNm},#{saveTrm},#{intrRate},#{intrRate2},#{rsrvType},#{rsrvTypeNm}
 		)
 	</insert>
 </mapper>

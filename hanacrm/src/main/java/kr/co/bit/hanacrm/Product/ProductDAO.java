@@ -16,7 +16,16 @@ public class ProductDAO {
 	}
 	public int insertDepositOption(OptionVO option) {
 		// TODO Auto-generated method stub
-		return sql.insert("option.OptionDAO.insert", option);
+		return sql.insert("option.OptionDAO.insertDepositOption", option);
+	}
+	public int insertSavings(SavingsVO savingsVO) {
+		// TODO Auto-generated method stub
+		return sql.insert("savings.SavingsDAO.insert",savingsVO);
+		
+	}
+	public int insertSavingsOption(OptionVO option) {
+		// TODO Auto-generated method stub
+		return sql.insert("option.OptionDAO.insertSavingsOption", option);
 	}
 	
 	

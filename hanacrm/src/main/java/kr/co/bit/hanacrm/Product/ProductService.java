@@ -27,11 +27,31 @@ public class ProductService {
 		for(int i=0;i<depositList.size();i++){
 			pDao.insertDeposit(depositList.get(i));
 			result++;
+			System.out.println(result);
 		}
 		
 		for(int i=0;i<optionList.size();i++){
 			pDao.insertDepositOption(optionList.get(i));
 			result++;
+			System.out.println(result);
+		}
+		
+		return result;
+	}
+
+	public int insertSavings(List<SavingsVO> savingsList, List<OptionVO> optionList) {
+		int result=0;
+		
+//		for(int i=0;i<savingsList.size();i++){
+//			pDao.insertSavings(savingsList.get(i));
+//			result++;
+//			System.out.println(result);
+//		}
+		
+		for(int i=0;i<optionList.size();i++){
+			pDao.insertSavingsOption(optionList.get(i));
+			result++;
+			System.out.println(result);
 		}
 		
 		return result;
