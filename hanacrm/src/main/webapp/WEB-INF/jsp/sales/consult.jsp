@@ -396,25 +396,34 @@
 	<div class="modal hide fade" id="consultCustomerProductSelect">
 		<div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal">×</button>
-			<h3>추가</h3>
+			<h3>일정 및 상품</h3>
 		</div>
 		<div class="modal-body">
 			<table class="table table-striped table-bordered bootstrap-datatable datatable">
 				<tr>
 					<td width="50%">
-					<div class="control-group">
-					<%-- <label class="control-label" for="focusedInput">앙뇽</label>
-						<div class="controls">
-						  <input class="input-xlarge focused" id="consultTitle" type="text" width="" value="${ consultVO.title }">
-						</div> --%>ㄱㅂ
+					<div class="schedule-list">
+						<c:forEach items="scheduleList" var="scheduleVO">
+							<table class="table table-striped table-bordered bootstrap-datatable datatable">
+								<tr>
+									<td>
+										<div class="controls">											
+									  		<input type="radio" name="optionsRadios" value="<%-- ${ scheduleVO.no } --%>">
+									  	</div>
+									</td>
+									<td>
+										
+									</td>
+								</tr>
+							</table>
+						</c:forEach>
 					</div>
 					</td>
 					<td>
-					<div class="control-group">
-					<!-- <label class="control-label" for="date01">어서와</label>
-					  <div class="controls">
-						<input type="text" class="input-xlarge datepicker hasDatepicker" id="date01" value="02/16/12">
-					  </div> -->ㄱㅂ2
+					<div class="product-list">
+						<c:forEach items="productList" var="productVO">
+							
+						</c:forEach>
 					</div>
 					</td>
 				</tr>

@@ -22,9 +22,9 @@ public class ConsultDAO {
 		return sqlSessionTemplate.selectList("consult.ConsultDAO.selectProductList", consultNo);
 	}
 
-	public CusVO selectCustomer(Integer customerNo) {
+	/*public CusVO selectCustomer(Integer customerNo) {
 		return sqlSessionTemplate.selectOne("consult.ConsultDAO.selectCustomer", customerNo);
-	}
+	}*/
 
 	public Integer insert(ConsultVO consultVO) {
 		return sqlSessionTemplate.insert("consult.ConsultDAO.insert", consultVO);

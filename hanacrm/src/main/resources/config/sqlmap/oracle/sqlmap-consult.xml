@@ -35,8 +35,8 @@
 		select * from consult_product where consult_no=#{consultNo}
 	</select>
 	
-	<select id="selectCustomer" parameterType="int" resultMap="customerMap">
+	<!-- <select id="selectCustomer" parameterType="int" resultMap="customerMap">
 		select * from customer where no=#{customerNo}
-	</select>
+	</select> -->
 	
 </mapper>

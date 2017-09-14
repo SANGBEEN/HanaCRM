@@ -5,11 +5,16 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kr.co.bit.hanacrm.Customer.CusDAO;
+
 @Service
 public class ConsultService {
 	
 	@Autowired
 	private ConsultDAO consultDAO;
+	
+	@Autowired
+	private CusDAO customerDAO;	
 
 	public List<ConsultVO> selectList() {
 		List<ConsultVO> consultList = consultDAO.selectList();
@@ -20,7 +25,8 @@ public class ConsultService {
 			
 			consult.setConsultProduct(consultDAO.selectProductList(consult.getNo()));
 			
-			consult.setCustomerVO(consultDAO.selectCustomer(consult.getCustomerNo()));
+			//consult.setCustomerVO(consultDAO.selectCustomer(consult.getCustomerNo()));
+			consult.setCustomerVO(customerDAO.detail(consult.getCustomerNo()));
 		}
 		
 		return consultList;
