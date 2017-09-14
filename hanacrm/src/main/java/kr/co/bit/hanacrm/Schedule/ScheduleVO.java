@@ -7,6 +7,8 @@ import org.springframework.stereotype.Component;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import kr.co.bit.hanacrm.Customer.CusVO;
+
 //할일, 예약, 생일, 기념일, 명절, 진행상황등등
 @Component
 public class ScheduleVO {
@@ -41,6 +43,9 @@ public class ScheduleVO {
 	
 	// 날짜 String type
 	private String date;
+	
+	// 고객 정보
+	private CusVO customer;
 	
 	public ScheduleVO() {
 		super();
@@ -158,6 +163,14 @@ public class ScheduleVO {
 		this.date = date;
 	}
 	
+	public CusVO getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(CusVO customer) {
+		this.customer = customer;
+	}
+	
 	/*
 	// type - typeName 매칭
 	public String typeName() {
@@ -214,6 +227,7 @@ public class ScheduleVO {
 		return result;
 	}*/
 
+
 	@Override
 	public String toString() {
 		String json = "";
@@ -225,17 +239,16 @@ public class ScheduleVO {
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
-		
+
+		/*
 		StringBuilder builder = new StringBuilder();
 		 builder.append("ScheduleVO [no=").append(no).append(", employeeNo=").append(employeeNo).append(", customerNo=")
 				.append(customerNo).append(", location=").append(location).append(", type=").append(type)
 				.append(", comments=").append(comments).append(", startDate=").append(startDate).append(", endDate=")
 				.append(endDate).append(", regDate=").append(regDate).append(", importance=").append(importance)
 				.append(", repetition=").append(repetition).append(", date=").append(date).append("]");
-
+		 */
 		return json; //builder.toString();
-	}
-
-	
+	}	
 
 }

@@ -11,25 +11,52 @@
 	<div class="box-content">
 		<div class="form-horizontal">
 			<fieldset>
+			
+			<!-- Type select -->
+			  <div class="control-group">
+				<label class="control-label" for="selectError3">Type</label>
+				<div class="controls">
+				  <select id="scheduleType" name="scheduleType">
+					<option value="Meeting">Meeting</option>
+				  	<option value="Call">Call</option>
+				  	<option value="Task">Task</option>
+				  	<option value="Event">Event</option>
+				  	<option value="Other">Other</option>	
+				  	<option value="Important">Important</option>
+				  </select>
+				</div>
+			  </div>
+			  
+			  <div class="control-group">
+				<label class="control-label">시작일</label>
+				<div class="controls">
+				  <span id="startDate" class="uneditable-input"></span>
+				</div>
+			  </div>
+			  
+			  <div class="control-group">
+				<label class="control-label">종료일</label>
+				<div class="controls">
+				  <span id="endDate" class="">Some value here</span>
+				</div>
+			  </div>
+			  
+			  <div class="control-group">
+				<label class="control-label" for="focusedInput">location</label>
+				<div class="controls">
+				  <input class="input-xlarge" id="location" name="location" type="text" value="">
+				</div>
+			  </div>
+
+			  <!-- Comment -->
 			  <div class="control-group">
 				<label class="control-label" for="focusedInput">Comments</label>
 				<div class="controls">
 				  <input class="input-xlarge focused" id="comments" name="comments" type="text" value="">
 				</div>
 			  </div>
-			  <div class="control-group">
-				<label class="control-label" for="focusedInput">location</label>
-				<div class="controls">
-				  <input class="input-xlarge focused" id="location" name="location" type="text" value="">
-				</div>
-			  </div>
-			  <div class="control-group">
-				<label class="control-label">Uneditable input</label>
-				<div class="controls">
-				  <span class="input-xlarge uneditable-input">Some value here</span>
-				</div>
-			  </div>
-			  <div class="control-group">
+
+			  <!-- <div class="control-group">
 				<label class="control-label" for="disabledInput">Disabled input</label>
 				<div class="controls">
 				  <input class="input-xlarge disabled" id="disabledInput" type="text" placeholder="Disabled input here…" disabled="">
@@ -64,20 +91,7 @@
 				  <input type="text" id="inputSuccess">
 				  <span class="help-inline">Woohoo!</span>
 				</div>
-			  </div>
-			  <div class="control-group">
-				<label class="control-label" for="selectError3">Type</label>
-				<div class="controls">
-				  <select id="scheduleType" name="scheduleType">
-					<option value="Meeting">Meeting</option>
-				  	<option value="Call">Call</option>
-				  	<option value="Task">Task</option>
-				  	<option value="Event">Event</option>
-				  	<option value="Other">Other</option>	
-				  	<option value="Important">Important</option>
-				  </select>
-				</div>
-			  </div>
+			  </div> -->
 			  <div class="control-group">
 				<label class="control-label" for="selectError3">반복</label>
 				<div class="controls">

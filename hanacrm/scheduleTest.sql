@@ -9,3 +9,8 @@ where employee_no = 1
 		
 select * from user_tables
 select * from user_tab_columns
+
+select *
+from schedule s join customer c on (s.customer_no = c.no)
+where s.no = 22
+order by s.no desc
