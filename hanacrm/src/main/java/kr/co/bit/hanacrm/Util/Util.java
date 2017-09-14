@@ -22,7 +22,7 @@ public class Util {
 		Object obj;
 		String str="";
 		try {
-			Resource resource = new ClassPathResource("config/db_config.json");
+			Resource resource = new ClassPathResource("config/config.json");
 			FileReader fr = new FileReader(resource.getFile());
 			
 			obj = parser.parse(fr);

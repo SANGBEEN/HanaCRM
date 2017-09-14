@@ -205,112 +205,35 @@ input.hidden {
 							<h1>Timeline</h1>
 
 							<div class="timeline">
-								<c:forEach var="" items="">
-									<div class="timeslot">
-	
+								<c:forEach var="consult" items="${consultList }" varStatus="status">
+									<c:choose>
+										<c:when test="${status.index%2==0}">
+											<div class="timeslot">
+										</c:when>
+										<c:otherwise>
+											<div class="timeslot alt">
+										</c:otherwise>
+									</c:choose>
 										<div class="task">
-											<span> <span class="type">appointment</span> <span
-												class="details"> Dennis Ji at Bootstrap Metro
-													Dashboard HQ </span> <span> remaining time <span
-													class="remaining"> 3h 38m 15s </span>
-											</span>
+											<span> 
+												<span class="type">${consult.title }</span>
+												<span class="details"> ${consult.content } </span> 
+												<span>  상담상품 
+													<c:forEach var="product" items="${consult.consultProduct}">
+														<span class="remaining"> ${product.productNo} </span>
+													</c:forEach>
+												</span>
 											</span>
 											<div class="arrow"></div>
 										</div>
 										<div class="icon">
 											<i class="icon-map-marker"></i>
 										</div>
-										<div class="time">3:43 PM</div>
+										<div class="time">${consult.regDate }</div>
 	
 									</div>
 								</c:forEach>
-								<div class="timeslot">
-
-									<div class="task">
-										<span> <span class="type">appointment</span> <span
-											class="details"> Dennis Ji at Bootstrap Metro
-												Dashboard HQ </span> <span> remaining time <span
-												class="remaining"> 3h 38m 15s </span>
-										</span>
-										</span>
-										<div class="arrow"></div>
-									</div>
-									<div class="icon">
-										<i class="icon-map-marker"></i>
-									</div>
-									<div class="time">3:43 PM</div>
-
-								</div>
-
-								<div class="clearfix"></div>
-
-								<div class="timeslot alt">
-
-									<div class="task">
-										<span> <span class="type">phone call</span> <span
-											class="details"> Dennis Ji </span> <span> remaining
-												time <span class="remaining"> 3h 38m 15s </span>
-										</span>
-										</span>
-										<div class="arrow"></div>
-									</div>
-									<div class="icon">
-										<i class="icon-phone"></i>
-									</div>
-									<div class="time">3:43 PM</div>
-
-								</div>
-
-								<div class="timeslot">
-
-									<div class="task">
-										<span> <span class="type">mail</span> <span
-											class="details"> Dennis Ji </span> <span> remaining
-												time <span class="remaining"> 3h 38m 15s </span>
-										</span>
-										</span>
-										<div class="arrow"></div>
-									</div>
-									<div class="icon">
-										<i class="icon-envelope"></i>
-									</div>
-									<div class="time">3:43 PM</div>
-
-								</div>
-
-								<div class="timeslot alt">
-
-									<div class="task">
-										<span> <span class="type">deadline</span> <span
-											class="details"> Fixed bugs </span> <span> remaining
-												time <span class="remaining"> 3h 38m 15s </span>
-										</span>
-										</span>
-										<div class="arrow"></div>
-									</div>
-									<div class="icon">
-										<i class="icon-calendar"></i>
-									</div>
-									<div class="time">3:43 PM</div>
-
-								</div>
-
-								<div class="timeslot">
-
-									<div class="task">
-										<span> <span class="type">appointment</span> <span
-											class="details"> Dennis Ji at Bootstrap Metro
-												Dashboard HQ </span> <span> remaining time <span
-												class="remaining"> 3h 38m 15s </span>
-										</span>
-										</span>
-										<div class="arrow"></div>
-									</div>
-									<div class="icon">
-										<i class="icon-map-marker"></i>
-									</div>
-									<div class="time">3:43 PM</div>
-								</div>
+				
 							</div>
 						</div>
 					</div>
