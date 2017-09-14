@@ -13,7 +13,12 @@ public class ScheduleDAO {
 	private SqlSessionTemplate sqlSessionTemplate;
 
 
-	// 일정 관리 메인
+	// 일정 전체 리스트
+	public List<ScheduleVO> selectListAll(int employeeNo) {
+		return sqlSessionTemplate.selectList("schedule.ScheduleDAO.selectListAll", employeeNo);
+	}
+	
+	// n월 일정
 	public List<ScheduleVO> selectList(ScheduleVO schedule) {
 		return sqlSessionTemplate.selectList("schedule.ScheduleDAO.selectList", schedule);
 	}
