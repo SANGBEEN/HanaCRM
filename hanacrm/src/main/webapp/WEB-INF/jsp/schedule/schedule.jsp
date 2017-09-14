@@ -65,6 +65,12 @@
 			background-color : #333 !important;
 			color: white
 		}
+		
+		.Important{
+			background-color : #EB3C00 !important;
+			border-color : #EB3C00 !important;
+			color: white
+		}
 	</style>
 </head>
 <body>
@@ -108,14 +114,18 @@
 						<!-- 이벤트 분류 -->
 						<h4>Draggable Events</h4>
 						<div class="external-event badge badge-important">Important</div>
+						<br/>
 						<div class="external-event badge badge-success">Meeting</div>
+						<br/>
 						<div class="external-event badge badge-warning">Call</div>
+						<br/>
 						<div class="external-event badge badge-info">Task</div>
+						<br/>
 						<div class="external-event badge">Event</div>
+						<br/>
 						<div class="external-event badge badge-inverse">Other</div>
 						<p>
-							<label for="drop-remove"><input type="checkbox" id="drop-remove" /> remove after drop</label>
-							<button id="addBtn">추가테스트</button>
+<!-- 							<label for="drop-remove"><input type="checkbox" id="drop-remove" /> remove after drop</label> -->
 						</p>
 						</div>
 
@@ -151,6 +161,8 @@
 	
 	<!-- 푸터 -->
 	<jsp:include page="/include/footer.jsp"/>
+	
+	
 	
 	<!-- start: JavaScript-->
 
@@ -218,6 +230,7 @@
 		 jQuery(function($) {
 				
 			 var modal = $('#addModal');
+			 modal.remove();
 			 
 				/************************** initialize the external events
 				-----------------------------------------------------------------*/
@@ -273,7 +286,7 @@
 					//firstDay: 1,// >> change first day of week 
 					
 					buttonHtml: {
-						prev: '<i class="ace-icon fa fa-chevron-left"></i>',
+						prev: '<button type="button" class="fc-prev-button fc-button fc-state-default fc-corner-left"><span class="fc-icon fc-icon-left-single-arrow"></span></button>',//'<i class="ace-icon fa fa-chevron-left"></i>',
 						next: '<i class="ace-icon fa fa-chevron-right"></i>'
 					},
 				
@@ -308,15 +321,13 @@
 					},*/
 					
 					editable: true,
-					eventDrop: function(event, delta, revertFunc) {
+					eventDrop: function(event, dayDelta, minuteDelta, allDay, revertFunc) {
 						/***************************
 							달력 내에서의 드래그
 							날짜 수정 반영하기
 						***************************/
-
+	
 				       // alert(event.title + " was dropped on "+event.id);
-						
-						console.log(event);
 						
 						var test = {
 								no: event.id,
@@ -334,7 +345,7 @@
 						}
 						
 						console.log(test);
-
+	
 				         if (confirm("Are you sure about this change?")) {
 				        	$.ajax({
 				        		url: "${pageContext.request.contextPath}/schedule",
@@ -344,17 +355,18 @@
 				        		data: JSON.stringify(test), 
 				        		success: function(data){
 				        			alert('날짜 수정됨');
-						            revertFunc();
 				        		},
 				        		error: function(e){
 				      				console.log(e);
 				        			alert('error');
+						        	revertFunc();	
 				        		}
 				        	});
+				        }else {
+				        	revertFunc();	
 				        }
-
-				    },
-					
+			        },
+				    
 					droppable: true, // this allows things to be dropped onto the calendar !!!
 					drop: function(date, jsEvent) { // this function is called when something is dropped
 						
@@ -378,7 +390,7 @@
 						// assign it the date that was reported
 						copiedEventObject.start = date;
 						copiedEventObject.end = date;
-						copiedEventObject.allDay = false;
+						copiedEventObject.allDay = true;
 						copiedEventObject.className = originalEventObject.title;
 						/* if($extraEventClass) 
 							copiedEventObject['className'] = [$extraEventClass]; */
@@ -400,6 +412,7 @@
 				
 						// 등록 함수
 						modal.find('form').on('submit', function(ev){
+							// We don't want this to act as a link so cancel the link action
 							ev.preventDefault();
 							
 							// 캘린더에 쓰일 Data
@@ -428,6 +441,8 @@
 				        			endDate: fullDate
 				        		};
 							
+							
+							
 							console.log(scheduleData);
 							
 							 $.ajax({
@@ -436,20 +451,23 @@
 				        		data: scheduleData, 
 				        		success: function(data){
 				        			alert('추가');
-									modal.modal("hide");
+				        			modal.modal("hide");
+									modal.remove();
 									// render the event on the calendar
 									// the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
 									$('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
+									modal.find('form').find('button[type=submit]').unbind('click');
 				        		},
 				        		error: function(){
 				        			alert('error');
 				        		}
 				        	});
 							
+							 $(".modal-body input").val("")
 						}); 
 							
 						$('#modalCancle').click(function(){
-							modal.modal("hide");
+							modal.remove();
 						});
 						
 						modal.modal('show').on('hidden', function(){
@@ -526,11 +544,7 @@
 				});
 		 })
 		 
-		 $('.addBtn').click(function(){
-			 alert('btn\n'+eventList);
-		 })
 	</script>
-	
 	<jsp:include page="/include/addScheduleModal.jsp"/>
 </body>
 </html>
