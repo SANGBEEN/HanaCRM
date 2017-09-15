@@ -31,8 +31,8 @@
 	<!-- 일정 상세 정보 -->
 	<select id="selectByNo" parameterType="int" resultMap="scheduleMap">
 		select *
-		from schedule
-		where no = #{no}
+		from schedule s		<!--  join customer c on (s.customer_no = c.no) -->
+		where s.no = #{no}
 	</select>
 	
 	<!-- 일정 추가 -->
