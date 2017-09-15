@@ -412,7 +412,14 @@
 									  	</div>
 									</td>
 									<td>
-										
+										<div class="controls">
+										  	<span class="input-xlarge uneditable-input">${ scheduleVO }</span>
+										</div>
+									</td>
+									<td>
+										<div class="controls">
+										  	<span class="input-xlarge uneditable-input">${ scheduleVO }</span>
+										</div>
 									</td>
 								</tr>
 							</table>
@@ -579,9 +586,41 @@
 				e.stopPropagation();
 				/* $(this).parent().next('.row-minimize-hs').empty();
 				$(this).parent().next('.row-detail-hs').empty(); */
+				
+				$.ajax({
+	        		url: "${pageContext.request.contextPath}/schedule",
+	        		type: "get",
+	        		contentType: "application/json; charset=uft-8",
+	        		dataType: "json",
+	        		data: JSON.stringify({
+						no: event.id,
+	        			startDate: event.start,
+	        			endDate: event.end,
+	        			employeeNo: null,
+	        			comments: null,
+	        			customerNo: null,
+	        			type: null,
+	        			location: null,
+	        			importance: null,
+	        			repetition: null,
+	        			date: null,
+	        			regDate: null
+						}),
+	        		success: function(data){
+	        			alert('날짜 수정됨');
+			            revertFunc();
+	        		},
+	        		error: function(e){
+	      				console.log(e);
+	        			alert('error');
+	        		}
+	        	});
+				
 				$("#consultCustomerProductSelect").modal();
 				console.log("상품");
 			});
+			
+			
 			
 		</script>
 		
