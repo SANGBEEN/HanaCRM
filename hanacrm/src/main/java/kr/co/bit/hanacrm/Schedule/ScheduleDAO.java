@@ -43,4 +43,9 @@ public class ScheduleDAO {
 		return sqlSessionTemplate.selectOne("schedule.ScheduleDAO.selectByNo", no);
 	}
 
+	// 타입별 일정 리스트
+	public List<ScheduleVO> selectListByType(ScheduleVO schedule) {
+		return sqlSessionTemplate.selectList("schedule.ScheduleDAO.selectListByType",schedule);
+	}
+
 }

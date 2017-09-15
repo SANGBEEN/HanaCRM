@@ -16,7 +16,7 @@
 			  <div class="control-group">
 				<label class="control-label" for="selectError3">Type</label>
 				<div class="controls">
-				  <select id="scheduleType" name="scheduleType">
+				  <select id="scheduleType"> <!-- name="scheduleType" -->
 					<option value="Meeting">Meeting</option>
 				  	<option value="Call">Call</option>
 				  	<option value="Task">Task</option>
@@ -37,14 +37,14 @@
 			  <div class="control-group">
 				<label class="control-label">종료일</label>
 				<div class="controls">
-				  <span id="endDate" class="">Some value here</span>
+				  <span id="endDate" class=""></span>
 				</div>
 			  </div>
 			  
 			  <div class="control-group">
 				<label class="control-label" for="focusedInput">location</label>
 				<div class="controls">
-				  <input class="input-xlarge" id="location" name="location" type="text" value="">
+				  <input class="input-xlarge" id="location" type="text" value=""> <!-- name="location" -->
 				</div>
 			  </div>
 
@@ -52,7 +52,7 @@
 			  <div class="control-group">
 				<label class="control-label" for="focusedInput">Comments</label>
 				<div class="controls">
-				  <input class="input-xlarge focused" id="comments" name="comments" type="text" value="">
+				  <input class="input-xlarge focused" id="comments" type="text" value=""> <!-- name="comments" -->
 				</div>
 			  </div>
 
@@ -95,7 +95,7 @@
 			  <div class="control-group">
 				<label class="control-label" for="selectError3">반복</label>
 				<div class="controls">
-				  <select name="repetition" id="repetition">
+				  <select id="repetition"> <!-- name="repetition" -->
 				  	<option value="한번">한번</option>
 				  	<option value="매일">매일</option>
 				  	<option value="매주">매주</option>
