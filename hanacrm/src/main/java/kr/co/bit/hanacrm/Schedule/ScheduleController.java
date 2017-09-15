@@ -24,13 +24,7 @@ public class ScheduleController {
 
 	@Autowired
 	private ScheduleService scheduleService;
-	
-<<<<<<< HEAD
-	@Autowired
-	private HttpSession session;
-=======
->>>>>>> 36adb156cdb296aef40f4312b9113ed357fdc0b8
-	
+		
 	// 일정 전체 리스트
 	@RequestMapping(value="/schedule/list", method=RequestMethod.GET)
 	public String selectList(Model model, HttpSession session){

@@ -589,32 +589,19 @@
 				
 				$.ajax({
 	        		url: "${pageContext.request.contextPath}/schedule",
-	        		type: "get",
+	        		type: "put",
 	        		contentType: "application/json; charset=uft-8",
 	        		dataType: "json",
-	        		data: JSON.stringify({
-						no: event.id,
-	        			startDate: event.start,
-	        			endDate: event.end,
-	        			employeeNo: null,
-	        			comments: null,
-	        			customerNo: null,
-	        			type: null,
-	        			location: null,
-	        			importance: null,
-	        			repetition: null,
-	        			date: null,
-	        			regDate: null
-						}),
+	        		data: JSON.stringify(test), 
 	        		success: function(data){
-	        			alert('날짜 수정됨');
-			            revertFunc();
+	        			alert('날짜 늘어남');
 	        		},
 	        		error: function(e){
 	      				console.log(e);
 	        			alert('error');
+			        	revertFunc();	
 	        		}
-	        	});
+	        	});		
 				
 				$("#consultCustomerProductSelect").modal();
 				console.log("상품");
