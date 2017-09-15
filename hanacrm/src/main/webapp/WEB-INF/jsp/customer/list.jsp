@@ -381,6 +381,7 @@
 		
 		// form
 		var queryString = $("form[name=addForm]").serialize();
+		console.log(quertString);
 		alert(queryString);
 		$.ajax({
 			type:'POST',

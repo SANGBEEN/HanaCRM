@@ -9,8 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.bit.hanacrm.Consult.ConsultService;
 import kr.co.bit.hanacrm.Consult.ConsultVO;
@@ -85,11 +88,26 @@ public class CusController {
 		return "process/alertProcess";
 	}
 	//고객수정
+	@ResponseBody
 	@RequestMapping(method=RequestMethod.PUT)
 	public String update(CusVO cus){
-		if(cusService.update(cus)==1)
-			return "redirect:/customer/"+cus.getNo();
-		return "redirect:/customer";
+		System.out.println("풋풋");
+//		if(cusService.update(cus)==1)
+//			return "redirect:/customer/"+cus.getNo();
+		//return "redirect:/customer";
+		System.out.println(cus);
+		return "success";
+	}
+	//고객수정테스트 
+
+	@RequestMapping(value="/test", method=RequestMethod.POST)
+	public String update2(CusVO cus){
+		System.out.println("풋풋");
+//		if(cusService.update(cus)==1)
+//			return "redirect:/customer/"+cus.getNo();
+		//return "redirect:/customer";
+		System.out.println(cus);
+		return "success";
 	}
 	//고객삭제
 	@RequestMapping(value="/{no}",method=RequestMethod.DELETE)
