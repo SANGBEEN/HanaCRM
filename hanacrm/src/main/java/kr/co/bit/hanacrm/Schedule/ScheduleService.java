@@ -55,4 +55,8 @@ public class ScheduleService {
 		return schedule;
 	}
 
+	public List<ScheduleVO> selectListByType(ScheduleVO schedule) {
+		return scheduleDAO.selectListByType(schedule);
+	}
+
 }

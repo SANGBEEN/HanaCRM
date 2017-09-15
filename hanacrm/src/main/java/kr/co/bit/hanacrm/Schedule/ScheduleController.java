@@ -25,13 +25,10 @@ public class ScheduleController {
 	@Autowired
 	private ScheduleService scheduleService;
 	
-	@Autowired
-	private HttpSession session;
-	
 	
 	// 일정 전체 리스트
 	@RequestMapping(value="/schedule/list", method=RequestMethod.GET)
-	public String selectList(Model model){
+	public String selectList(Model model, HttpSession session){
 		EmpVO emp = (EmpVO) session.getAttribute("emp");
 		// emp.getNo()
 		model.addAttribute("scheduleList", scheduleService.selectListAll(1));
@@ -53,14 +50,25 @@ public class ScheduleController {
 	// n월 일정 리스트
 	@ResponseBody
 	@RequestMapping(value="/schedule/list/{date}", method=RequestMethod.GET)
-	public List<ScheduleVO> selectListByDate(Model model, @PathVariable String date){
+	public List<ScheduleVO> selectListByDate(Model model, HttpSession session, @PathVariable String date){
 		EmpVO emp = (EmpVO) session.getAttribute("emp");
 		ScheduleVO schedule = new ScheduleVO();
 		schedule.setEmployeeNo(1); //emp.getNo());
 		schedule.setDate(date);
-		model.addAttribute("scheduleList", scheduleService.selectList(schedule));
+	//	model.addAttribute("scheduleList", scheduleService.selectList(schedule));
 	//	System.out.println(schedule);
 		return scheduleService.selectList(schedule);
+	}
+		
+	// 날짜, 타입별 일정 리스트
+	@ResponseBody
+	@RequestMapping(value="/schedule/listForConsult", method=RequestMethod.GET)
+	public List<ScheduleVO> selectListByType(Model model, HttpSession session, ScheduleVO schedule){
+		EmpVO emp = (EmpVO) session.getAttribute("emp");
+		schedule.setEmployeeNo(1); //emp.getNo());
+	//	model.addAttribute("scheduleList", scheduleService.selectListByType(schedule));
+		//	System.out.println(schedule);
+		return scheduleService.selectListByType(schedule);
 	}
 	
 	// 일정 추가

@@ -12,7 +12,7 @@
 /* Import Section
 =================================================================== */
 @import url("jquery-ui-1.8.21.custom.css");								/* jQuery User Interface Framework Styles */
-@import url("fullcalendar.css");										/* Calendars Styles */
+@import url("fullcalendar.min.css");										/* Calendars Styles */
 @import url("chosen.css");												/* Select Boxes Styles */  
 @import url("uniform.default.css");										/* Uniform Styles */
 @import url("jquery.cleditor.css");										/* Text Editor Styles. */  

@@ -28,6 +28,15 @@
 			and to_char(start_date, 'yyyymm')=#{date}
 	</select>
 	
+	<!-- 사원의 n월 일정 -->
+	<select id="selectListByType" parameterType="schedule" resultMap="scheduleMap">
+		select *
+		from schedule
+		where employee_no = #{employeeNo}
+			and to_char(start_date, 'yyyymm')=#{date}
+			and type = #{type}
+	</select>
+	
 	<!-- 일정 상세 정보 -->
 	<select id="selectByNo" parameterType="int" resultMap="scheduleMap">
 		select *
