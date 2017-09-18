@@ -1,44 +1,60 @@
 package kr.co.bit.hanacrm.Consult;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import kr.co.bit.hanacrm.Customer.CusDAO;
 
 @Service
 public class ConsultService {
 	
 	@Autowired
 	private ConsultDAO consultDAO;
+	
+	@Autowired
+	private CusDAO customerDAO;	
 
 	public List<ConsultVO> selectList() {
-		List<ConsultVO> consultList = consultDAO.consultList();
+		List<ConsultVO> consultList = consultDAO.selectList();
 		
 		for(int i = 0; i < consultList.size(); i++)
 		{
 			ConsultVO consult = consultList.get(i);
 			
-			consult.setConsultProduct(consultDAO.consultProductList(consult.getNo()));
+			consult.setConsultProduct(consultDAO.selectProductList(consult.getNo()));
 			
-			consult.setCusVO(consultDAO.consultCustomer(consult.getCustomerNo()));
+			//consult.setCustomerVO(consultDAO.selectCustomer(consult.getCustomerNo()));
+			consult.setCustomerVO(customerDAO.detail(consult.getCustomerNo()));
 		}
 		
 		return consultList;
 	}
 
-	public String insert(ConsultVO consultVO) {
-		// TODO Auto-generated method stub
-		return null;
+	public Integer insert(ConsultVO consultVO) {
+		return consultDAO.insert(consultVO);
 	}
 
-	public String update(ConsultVO consultVO) {
-		// TODO Auto-generated method stub
-		return null;
+	public Integer update(ConsultVO consultVO) {
+		return consultDAO.update(consultVO);
 	}
 
-	public String delete(int no) {
-		// TODO Auto-generated method stub
-		return null;
+	public Integer delete(int no) {
+		return consultDAO.delete(no);
 	}
-
+	
+	public List<ConsultVO> selectList(int customerNo) {
+		List<ConsultVO> consultList = consultDAO.selectByCusNo(customerNo);
+		
+		for(int i = 0; i < consultList.size(); i++)
+		{
+			List<ConsultProductVO> cpList = new ArrayList<>();
+			cpList = consultDAO.selectProductList(consultList.get(i).getNo());
+			consultList.get(i).setConsultProduct(cpList);
+		}	
+		
+		return consultList;
+	} 
 }

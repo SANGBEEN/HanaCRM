@@ -1,6 +1,8 @@
 package kr.co.bit.hanacrm.Customer;
 
+import org.springframework.stereotype.Component;
 
+@Component
 public class CusVO {
 	private Integer no;
 
@@ -142,5 +144,17 @@ public class CusVO {
 		this.address = address;
 		this.regDate = regDate;
 	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("CusVO [no=").append(no).append(", name=").append(name).append(", birthDate=").append(birthDate)
+				.append(", phone=").append(phone).append(", employeeNo=").append(employeeNo).append(", comments=")
+				.append(comments).append(", grade=").append(grade).append(", post=").append(post).append(", address=")
+				.append(address).append(", regDate=").append(regDate).append("]");
+		return builder.toString();
+	}
+
+	
     
 }

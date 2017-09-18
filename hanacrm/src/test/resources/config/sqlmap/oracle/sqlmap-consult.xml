@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="consult.ConsultDAO">
+
+<!-- resultMap 설정 시작 -->
+	<resultMap type="consult" id="consultMap">
+		<result column="customer_no" property="customerNo"/>
+		<result column="employee_no" property="employeeNo"/>
+		<result column="reg_date" property="regDate"/>
+	</resultMap>
+	
+	<resultMap type="consultProduct" id="consultProductMap">
+		<result column="consult_no" property="consultNo"/>
+		<result column="product_no" property="productNo"/>
+		<result column="reg_date" property="regDate"/>
+	</resultMap>
+	
+	<resultMap type="cus" id="customerMap">
+		<result column="birth_date" property="birthDate"/>
+		<result column="employee_no" property="employeeNo"/>
+		<result column="reg_date" property="regDate"/>
+	</resultMap>
+		
+<!-- resultMap 설정 끝 -->
+
+<!-- 쿼리 -->
+	<select id="selectList" resultMap="consultMap">
+		select * from consult
+	</select>
+	
+	<select id="selectProductList" parameterType="int" resultMap="consultProductMap">
+		select * from consult_product where consult_no=#{consultNo}
+	</select>
+	
+	<select id="selectCustomer" parameterType="int" resultMap="customerMap">
+		select * from customer where no=#{customerNo}
+	</select>
+	
+	<select id="select" parameterType="int" resultMap="consultMap">
+		select * from consult where customer_no=#{no}
+	</select>
+	
+	
+</mapper>

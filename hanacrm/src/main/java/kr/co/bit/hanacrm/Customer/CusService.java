@@ -14,6 +14,22 @@ public class CusService {
 		// TODO Auto-generated method stub
 		return cusDao.selectAll();
 	}
-	
-	
+
+	public CusVO detail(int no) {
+		// TODO Auto-generated method stub
+		return cusDao.detail(no);
+	}
+
+	public int create(CusVO cus) {
+		// TODO Auto-generated method stub
+		return cusDao.create(cus);
+	}
+	public int update(CusVO cus) {
+		// TODO Auto-generated method stub
+		return cusDao.update(cus);
+	}
+	public int delete(int no) {
+		// TODO Auto-generated method stub
+		return cusDao.delete(no);
+	}
 }

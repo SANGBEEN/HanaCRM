@@ -7,4 +7,49 @@
 		select no, name, to_char(birth_date,'yyyy-mm-dd') as birthDate, phone, employee_no as employeeNo, comments, grade, post, address, to_char(reg_date,'yyyy-mm-dd') as regDate
 		from customer
 	</select>
+	<select id="selectByNo"  parameterType="int" resultType="cus">
+		select no, name, to_char(birth_date,'yyyy-mm-dd') as birthDate, phone, employee_no as employeeNo, comments, grade, post, address, to_char(reg_date,'yyyy-mm-dd') as regDate
+		from customer
+		where no=#{no}
+	</select>
+	
+	<insert id="insert" parameterType="cus">
+		insert into customer values(customer_seq.nextval, #{name}, #{birthDate}, #{phone}, #{employeeNo}, #{comments,jdbcType=VARCHAR}, #{grade}, #{post,jdbcType=VARCHAR},#{address,jdbcType=VARCHAR},#{regDate})
+	</insert>
+	<update id="update" parameterType="cus">
+		update customer
+		<set>
+			<if test="name!=null" >
+			 	name=#{name},
+			</if>
+			<if test="birthDate!=null" >
+			 	birth_date=#{birthDate},
+			</if>
+			<if test="phone!=null" >
+			 	phone=#{phone},
+			</if>
+			<if test="employeeNo!=null" >
+			 	employee_no=#{employeeNo},
+			</if>
+			<if test="comments!=null" >
+			 	comments=#{comments},
+			</if>
+			<if test="grade!=null" >
+			 	grade=#{grade},
+			</if>
+			<if test="post!=null" >
+			 	post=#{post},
+			</if>
+			<if test="address!=null" >
+			 	address=#{address},
+			</if>
+			<if test="regDate!=null" >
+			 	reg_date=#{regDate}
+			</if>
+		</set>
+		where no=#{no}
+	</update>
+	<delete id="deleteByNo" parameterType="int">
+		delete from customer where no=#{no}
+	</delete>
 </mapper>

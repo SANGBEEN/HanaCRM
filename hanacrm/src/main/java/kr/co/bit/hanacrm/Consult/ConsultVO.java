@@ -12,20 +12,29 @@ public class ConsultVO {
 	private Integer customerNo;
 	private Integer employeeNo;
 	private String content;
-	private Date regDate;
+	private String regDate;
+	private String title;
+
+	private CusVO customerVO;
 	
-	private CusVO cusVO;
 	private List<ConsultProductVO> consultProduct;
 	
 	public ConsultVO() {
-	}	
 
-	public ConsultVO(Integer no, Integer customerNo, Integer employeeNo, String content, Date regDate) {
+	}
+	
+
+	public ConsultVO(Integer no, Integer customerNo, Integer employeeNo, String content, String regDate,String title,
+			List<ConsultProductVO> consultProduct) {
+		super();
+
 		this.no = no;
 		this.customerNo = customerNo;
 		this.employeeNo = employeeNo;
 		this.content = content;
 		this.regDate = regDate;
+		this.title = title;
+		this.consultProduct = consultProduct;
 	}
 
 	public Integer getNo() {
@@ -52,6 +61,14 @@ public class ConsultVO {
 		this.employeeNo = employeeNo;
 	}
 
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
 	public String getContent() {
 		return content;
 	}
@@ -60,11 +77,11 @@ public class ConsultVO {
 		this.content = content;
 	}
 
-	public Date getRegDate() {
+	public String getRegDate() {
 		return regDate;
 	}
 
-	public void setRegDate(Date regDate) {
+	public void setRegDate(String regDate) {
 		this.regDate = regDate;
 	}
 
@@ -74,14 +91,14 @@ public class ConsultVO {
 
 	public void setConsultProduct(List<ConsultProductVO> consultProduct) {
 		this.consultProduct = consultProduct;
+	}	
+
+	public CusVO getCustomerVO() {
+		return customerVO;
 	}
 
-	public CusVO getCusVO() {
-		return cusVO;
-	}
-
-	public void setCusVO(CusVO cusVO) {
-		this.cusVO = cusVO;
+	public void setCustomerVO(CusVO customerVO) {
+		this.customerVO = customerVO;
 	}
 
 	@Override
@@ -89,7 +106,10 @@ public class ConsultVO {
 		StringBuilder builder = new StringBuilder();
 		builder.append("ConsultVO [no=").append(no).append(", customerNo=").append(customerNo).append(", employeeNo=")
 				.append(employeeNo).append(", content=").append(content).append(", regDate=").append(regDate)
-				.append("]");
+				.append(", title=").append(title).append(", customerVO=").append(customerVO).append(", consultProduct=")
+				.append(consultProduct).append("]");
+
 		return builder.toString();
-	}	
+	}
+	
 }

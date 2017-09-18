@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="memo.MemoDAO">
+
+<!-- resultMap 설정 시작 -->
+	<resultMap type="memo" id="memoMap">
+		<result column="employee_no" property="employeeNo"/>
+		<result column="reg_date" property="regDate"/>
+	</resultMap>
+<!-- resultMap 설정 끝 -->
+
+<!-- 쿼리 -->
+	<select id="selectList" parameterType="int" resultMap="memoMap">
+		select * from memo where employee_no=#{employeeNo}
+	</select>
+	
+	<insert id="insert" parameterType="memo">
+		insert into memo(no, content, employee_no, reg_date) 
+		values(MEMO_SEQ.nextVal, #{content}, #{employeeNo}, sysdate)
+	</insert>
+	
+	<update id="update" parameterType="memo">
+		update memo set content=#{content}, reg_date=sysdate where no=#{no} <!-- and employee_no=#{employeeNo} -->
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		delete from memo where no=#{no}
+	</delete>
+	
+	<!-- <select id="selectByNo" parameterType="int">
+		select * from memo where no=#{no}
+	</select> -->
+	
+</mapper>
