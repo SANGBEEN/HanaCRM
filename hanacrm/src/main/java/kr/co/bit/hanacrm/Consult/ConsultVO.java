@@ -1,6 +1,5 @@
 package kr.co.bit.hanacrm.Consult;
 
-import java.util.Date;
 import java.util.List;
 
 import kr.co.bit.hanacrm.Customer.CusVO;
@@ -21,13 +20,11 @@ public class ConsultVO {
 	
 	public ConsultVO() {
 
-	}
-	
+	}	
 
 	public ConsultVO(Integer no, Integer customerNo, Integer employeeNo, String content, String regDate,String title,
 			List<ConsultProductVO> consultProduct) {
 		super();
-
 		this.no = no;
 		this.customerNo = customerNo;
 		this.employeeNo = employeeNo;
