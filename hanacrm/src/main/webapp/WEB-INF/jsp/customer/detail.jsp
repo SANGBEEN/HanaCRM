@@ -28,6 +28,16 @@ input.hidden {
 	border-bottom: 1px #f8f8f8 solid;
 	margin: 5px 0 5px 0
 }
+
+.myInput{
+	background-color: white !important;
+	border : 0 !important;
+}
+.modifyInput{
+	border: solid 1px black !important;
+	
+}
+
 </style>
 <!-- start: Meta -->
 <meta charset="utf-8">
@@ -130,54 +140,64 @@ input.hidden {
 												<div class="clearfix"></div>
 												<hr style="margin: 5px 0 5px 0;">
 												
-												<div class="col-sm-5 col-xs-6 tital ">No:</div>
-												<div class="col-sm-7 col-xs-6 ">${customer.no}</div>
-												<div class="clearfix"></div>
-												<div class="bot-border"></div>
-
-												<div class="col-sm-5 col-xs-6 tital ">Name:</div>
-												<div class="col-sm-7">${customer.name }</div>
-												<div class="clearfix"></div>
-												<div class="bot-border"></div>
-
-												<div class="col-sm-5 col-xs-6 tital ">Phone:</div>
-												<div class="col-sm-7">${customer.phone }</div>
-												<div class="clearfix"></div>
-												<div class="bot-border"></div>
-
-												<div class="col-sm-5 col-xs-6 tital ">Grade:</div>
-												<div class="col-sm-7">${customer.grade }</div>
-
-												<div class="clearfix"></div>
-												<div class="bot-border"></div>
-
-												<div class="col-sm-5 col-xs-6 tital ">Address:</div>
-												<div class="col-sm-7">${customer.address }</div>
-
-												<div class="clearfix"></div>
-												<div class="bot-border"></div>
-
-												<div class="col-sm-5 col-xs-6 tital ">Birth Date:</div>
-												<div class="col-sm-7">${customer.birthDate }</div>
-
-												<div class="clearfix"></div>
-												<div class="bot-border"></div>
-
-												<div class="col-sm-5 col-xs-6 tital ">Reg Date:</div>
-												<div class="col-sm-7">${customer.regDate }</div>
-
-												<div class="clearfix"></div>
-												<div class="bot-border"></div>
-
-												<div class="col-sm-5 col-xs-6 tital ">Post:</div>
-												<div class="col-sm-7">${customer.post }</div>
+												<form name="modifyForm">
+												
+												<div class="col-sm-5 col-xs-6 tital "> 
+													No:<input type="text" class="myInput" name="no" value="${customer.no }" readonly="readonly"/> 
+												</div>
 												
 												<div class="clearfix"></div>
 												<div class="bot-border"></div>
 
-												<div class="col-sm-5 col-xs-6 tital ">Comments:</div>
-												<div class="col-sm-7">${customer.comments }</div>
+												<div class="col-sm-5 col-xs-6 tital ">
+													Name:<input type="text" class="myInput" name="name" value="${customer.name }" readonly="readonly"/> 
+												</div>
+												<div class="clearfix"></div>
+												<div class="bot-border"></div>
 
+												<div class="col-sm-5 col-xs-6 tital ">
+													Phone:<input type="text" class="myInput" name="phone" value="${customer.phone }" readonly="readonly"/> 
+												</div>
+												<div class="clearfix"></div>
+												<div class="bot-border"></div>
+
+												<div class="col-sm-5 col-xs-6 tital ">
+													Grade:<input type="text" class="myInput" name="grade" value="${customer.grade }" readonly="readonly"/> 
+												</div>
+												<div class="clearfix"></div>
+												<div class="bot-border"></div>
+
+												<div class="col-sm-5 col-xs-6 tital ">
+													Address:<input type="text" class="myInput" name="address" value="${customer.address }" readonly="readonly"/> 
+												</div>
+												<div class="clearfix"></div>
+												<div class="bot-border"></div>
+
+												<div class="col-sm-5 col-xs-6 tital ">
+													Birth Date:<input type="text" class="myInput" name="birthDate" value="${customer.birthDate }" readonly="readonly"/> 
+												</div>
+												<div class="clearfix"></div>
+												<div class="bot-border"></div>
+
+												<div class="col-sm-5 col-xs-6 tital ">
+													Reg Date:<input type="text" class="myInput" name="regDate" value="${customer.regDate }" readonly="readonly"/>
+												</div>
+												<div class="clearfix"></div>
+												<div class="bot-border"></div>
+
+												<div class="col-sm-5 col-xs-6 tital ">
+													Post:<input type="text" class="myInput" name="post" value="${customer.post }" readonly="readonly"/> 
+												</div>
+												<div class="clearfix"></div>
+												<div class="bot-border"></div>
+
+												<div class="col-sm-5 col-xs-6 tital ">
+													Comments:<input type="text" class="myInput" name="comments" value="${customer.comments }" readonly="readonly"/> 
+												</div>
+												<input type="hidden" name="employeeNo" value="${customer.employeeNo }">
+												<!-- <input type="submit" value="수정"/> -->
+												</form>
+												<button id="modifyBtn">수정</button>
 												<!-- /.box-body -->
 											</div>
 											<!-- /.box -->
@@ -185,16 +205,6 @@ input.hidden {
 									</div>
 								</div>
 							</div>
-							<script>
-								$(function() {
-									$('#profile-image1').on(
-											'click',
-											function() {
-												$('#profile-image-upload')
-														.click();
-											});
-								});
-							</script>
 						</div>
 					</div>
 
@@ -205,94 +215,35 @@ input.hidden {
 							<h1>Timeline</h1>
 
 							<div class="timeline">
-
-								<div class="timeslot">
-
-									<div class="task">
-										<span> <span class="type">appointment</span> <span
-											class="details"> Dennis Ji at Bootstrap Metro
-												Dashboard HQ </span> <span> remaining time <span
-												class="remaining"> 3h 38m 15s </span>
-										</span>
-										</span>
-										<div class="arrow"></div>
+								<c:forEach var="consult" items="${consultList }" varStatus="status">
+									<c:choose>
+										<c:when test="${status.index%2==0}">
+											<div class="timeslot">
+										</c:when>
+										<c:otherwise>
+											<div class="timeslot alt">
+										</c:otherwise>
+									</c:choose>
+										<div class="task">
+											<span> 
+												<span class="type">${consult.title }</span>
+												<span class="details"> ${consult.content } </span> 
+												<span>  상담상품 
+													<c:forEach var="product" items="${consult.consultProduct}">
+														<span class="remaining"> ${product.productNo} </span>
+													</c:forEach>
+												</span>
+											</span>
+											<div class="arrow"></div>
+										</div>
+										<div class="icon">
+											<i class="icon-map-marker"></i>
+										</div>
+										<div class="time">${consult.regDate }</div>
+	
 									</div>
-									<div class="icon">
-										<i class="icon-map-marker"></i>
-									</div>
-									<div class="time">3:43 PM</div>
-
-								</div>
-
-								<div class="clearfix"></div>
-
-								<div class="timeslot alt">
-
-									<div class="task">
-										<span> <span class="type">phone call</span> <span
-											class="details"> Dennis Ji </span> <span> remaining
-												time <span class="remaining"> 3h 38m 15s </span>
-										</span>
-										</span>
-										<div class="arrow"></div>
-									</div>
-									<div class="icon">
-										<i class="icon-phone"></i>
-									</div>
-									<div class="time">3:43 PM</div>
-
-								</div>
-
-								<div class="timeslot">
-
-									<div class="task">
-										<span> <span class="type">mail</span> <span
-											class="details"> Dennis Ji </span> <span> remaining
-												time <span class="remaining"> 3h 38m 15s </span>
-										</span>
-										</span>
-										<div class="arrow"></div>
-									</div>
-									<div class="icon">
-										<i class="icon-envelope"></i>
-									</div>
-									<div class="time">3:43 PM</div>
-
-								</div>
-
-								<div class="timeslot alt">
-
-									<div class="task">
-										<span> <span class="type">deadline</span> <span
-											class="details"> Fixed bugs </span> <span> remaining
-												time <span class="remaining"> 3h 38m 15s </span>
-										</span>
-										</span>
-										<div class="arrow"></div>
-									</div>
-									<div class="icon">
-										<i class="icon-calendar"></i>
-									</div>
-									<div class="time">3:43 PM</div>
-
-								</div>
-
-								<div class="timeslot">
-
-									<div class="task">
-										<span> <span class="type">appointment</span> <span
-											class="details"> Dennis Ji at Bootstrap Metro
-												Dashboard HQ </span> <span> remaining time <span
-												class="remaining"> 3h 38m 15s </span>
-										</span>
-										</span>
-										<div class="arrow"></div>
-									</div>
-									<div class="icon">
-										<i class="icon-map-marker"></i>
-									</div>
-									<div class="time">3:43 PM</div>
-								</div>
+								</c:forEach>
+				
 							</div>
 						</div>
 					</div>
@@ -401,5 +352,53 @@ input.hidden {
 	<script src="${pageContext.request.contextPath}/js/retina.js"></script>
 
 	<script src="${pageContext.request.contextPath}/js/custom.js"></script>
+	<script>
+		function modifyForm(){
+			//readonly속성가져와서 readonly면 클래스가져와서 속성변경, 아니면 수정한 폼 전송 
+			if($('.myInput').attr("readonly")==true){
+				$('.myInput').attr("readonly",false);
+				console.log("readonly");
+			}
+			var form = $("form[name=modifyFrom]").serialize();
+			console.log(form);
+			return;
+		};
+		
+		$().ready(function() {
+			$('#profile-image1').on('click', function() {
+				$('#profile-image-upload').click();
+			});
+			
+			$('#modifyBtn').click(function(){
+				console.log("click");
+				console.log($('.myInput')[0].value);
+				
+				console.log($('input.myInput')[0].readOnly);
+				if($('input.myInput')[0].readOnly==true){
+					$('.myInput').attr("readonly",false);
+					$('.myInput').addClass('modifyInput');
+					console.log("readonly");
+				}else{
+					var queryString = $('form[name="modifyForm"]').serialize();
+					console.log(queryString);
+					//json을 문자열로 바꿔서 컨트롤러에서 RequestBody로 받음 
+					$.ajax({
+							type:'PUT',
+							url:'${pageContext.request.contextPath}/customer',
+							data:queryString,
+							dataType:'json',
+							error:function(xhr, status, error){
+								console.log(error);
+							},
+							success:function(data){
+								console.dir(data);
+							},
+					});
+				}
+			});
+			
+		})
+	</script>
+
 </body>
 </html>

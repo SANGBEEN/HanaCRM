@@ -38,4 +38,9 @@ public class ConsultDAO {
 		return sqlSessionTemplate.delete("consult.ConsultDAO.delete", no);
 	}
 
+	public List<ConsultVO> selectByCusNo(int customerNo) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.selectList("consult.ConsultDAO.select", customerNo);
+	}
+
 }

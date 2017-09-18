@@ -4,7 +4,7 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-<mapper namespace="consult.consultDAO">
+<mapper namespace="consult.ConsultDAO">
 
 <!-- resultMap 설정 시작 -->
 	<resultMap type="consult" id="consultMap">
@@ -23,20 +23,26 @@
 		<result column="birth_date" property="birthDate"/>
 		<result column="employee_no" property="employeeNo"/>
 		<result column="reg_date" property="regDate"/>
-	</resultMap>	
+	</resultMap>
+		
 <!-- resultMap 설정 끝 -->
 
 <!-- 쿼리 -->
-	<select id="consultList" resultMap="consultMap">
+	<select id="selectList" resultMap="consultMap">
 		select * from consult
 	</select>
 	
-	<select id="consultProductList" parameterType="int" resultMap="consultProductMap">
+	<select id="selectProductList" parameterType="int" resultMap="consultProductMap">
 		select * from consult_product where consult_no=#{consultNo}
 	</select>
 	
-	<select id="consultCustomer" parameterType="int" resultMap="customerMap">
+	<select id="selectCustomer" parameterType="int" resultMap="customerMap">
 		select * from customer where no=#{customerNo}
 	</select>
+	
+	<select id="select" parameterType="int" resultMap="consultMap">
+		select * from consult where customer_no=#{no}
+	</select>
+	
 	
 </mapper>

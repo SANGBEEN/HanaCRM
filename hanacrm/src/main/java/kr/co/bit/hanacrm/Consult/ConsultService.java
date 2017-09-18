@@ -1,5 +1,6 @@
 package kr.co.bit.hanacrm.Consult;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,5 +44,17 @@ public class ConsultService {
 	public Integer delete(int no) {
 		return consultDAO.delete(no);
 	}
-
+	
+	public List<ConsultVO> selectList(int customerNo) {
+		List<ConsultVO> consultList = consultDAO.selectByCusNo(customerNo);
+		
+		for(int i = 0; i < consultList.size(); i++)
+		{
+			List<ConsultProductVO> cpList = new ArrayList<>();
+			cpList = consultDAO.selectProductList(consultList.get(i).getNo());
+			consultList.get(i).setConsultProduct(cpList);
+		}	
+		
+		return consultList;
+	} 
 }

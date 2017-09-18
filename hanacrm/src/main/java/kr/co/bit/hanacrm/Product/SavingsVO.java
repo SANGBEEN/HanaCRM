@@ -11,10 +11,10 @@ public class SavingsVO {
     private Integer no;
 
     //  공시 제출월 YYYYMM
-    private Date dclsMonth;
+    private String dclsMonth;
 
     //  금융회사 코드
-    private Integer finCoNo;
+    private String finCoNo;
 
     //  금융회사명
     private String korCoNm;
@@ -47,229 +47,22 @@ public class SavingsVO {
     private Integer maxLimit;
 
     //  공시 시작일
-    private Date dclsStrtDay;
+    private String dclsStrtDay;
 
     //  공시 종료일
-    private Date dclsEndDay;
+    private String dclsEndDay;
 
     //  금융회사 제출일 YYYYMMDDHH24MI
-    private Date finCoSubmDay;
-
-    //  저축 금리 유형(s:단리 m:복리)
-    private String intrRateType;
-
-    //  저축 금리 유형명
-    private String intrRateTypeNm;
-
-    //  저축 기간 단위: 개월
-    private Integer saveTrm;
-
-    //  저축 금리 소수점 2자리
-    private Integer intrRate;
-
-    //  최고 우대금리 소수점 2자리
-    private Integer intrRate2;
-
-    //  적립 유형
-    private String rsrvType;
-
-    //  적립 유형명
-    private String rsrvTypeNm;
-
-    public Integer getNo() {
-        return no;
-    }
-
-    public void setNo(Integer no) {
-        this.no = no;
-    }
-
-    public Date getDclsMonth() {
-        return dclsMonth;
-    }
-
-    public void setDclsMonth(Date dclsMonth) {
-        this.dclsMonth = dclsMonth;
-    }
-
-    public Integer getFinCoNo() {
-        return finCoNo;
-    }
-
-    public void setFinCoNo(Integer finCoNo) {
-        this.finCoNo = finCoNo;
-    }
-
-    public String getKorCoNm() {
-        return korCoNm;
-    }
-
-    public void setKorCoNm(String korCoNm) {
-        this.korCoNm = korCoNm;
-    }
-
-    public String getFinPrdtCd() {
-        return finPrdtCd;
-    }
-
-    public void setFinPrdtCd(String finPrdtCd) {
-        this.finPrdtCd = finPrdtCd;
-    }
-
-    public String getFinPrdtNm() {
-        return finPrdtNm;
-    }
-
-    public void setFinPrdtNm(String finPrdtNm) {
-        this.finPrdtNm = finPrdtNm;
-    }
-
-    public String getJoinWay() {
-        return joinWay;
-    }
-
-    public void setJoinWay(String joinWay) {
-        this.joinWay = joinWay;
-    }
-
-    public String getMtrtInt() {
-        return mtrtInt;
-    }
-
-    public void setMtrtInt(String mtrtInt) {
-        this.mtrtInt = mtrtInt;
-    }
-
-    public String getSpclCnd() {
-        return spclCnd;
-    }
-
-    public void setSpclCnd(String spclCnd) {
-        this.spclCnd = spclCnd;
-    }
-
-    public Integer getJoinDeny() {
-        return joinDeny;
-    }
-
-    public void setJoinDeny(Integer joinDeny) {
-        this.joinDeny = joinDeny;
-    }
-
-    public String getJoinMember() {
-        return joinMember;
-    }
-
-    public void setJoinMember(String joinMember) {
-        this.joinMember = joinMember;
-    }
-
-    public String getEtcNote() {
-        return etcNote;
-    }
-
-    public void setEtcNote(String etcNote) {
-        this.etcNote = etcNote;
-    }
-
-    public Integer getMaxLimit() {
-        return maxLimit;
-    }
-
-    public void setMaxLimit(Integer maxLimit) {
-        this.maxLimit = maxLimit;
-    }
-
-    public Date getDclsStrtDay() {
-        return dclsStrtDay;
-    }
-
-    public void setDclsStrtDay(Date dclsStrtDay) {
-        this.dclsStrtDay = dclsStrtDay;
-    }
-
-    public Date getDclsEndDay() {
-        return dclsEndDay;
-    }
-
-    public void setDclsEndDay(Date dclsEndDay) {
-        this.dclsEndDay = dclsEndDay;
-    }
-
-    public Date getFinCoSubmDay() {
-        return finCoSubmDay;
-    }
-
-    public void setFinCoSubmDay(Date finCoSubmDay) {
-        this.finCoSubmDay = finCoSubmDay;
-    }
-
-    public String getIntrRateType() {
-        return intrRateType;
-    }
-
-    public void setIntrRateType(String intrRateType) {
-        this.intrRateType = intrRateType;
-    }
-
-    public String getIntrRateTypeNm() {
-        return intrRateTypeNm;
-    }
-
-    public void setIntrRateTypeNm(String intrRateTypeNm) {
-        this.intrRateTypeNm = intrRateTypeNm;
-    }
-
-    public Integer getSaveTrm() {
-        return saveTrm;
-    }
-
-    public void setSaveTrm(Integer saveTrm) {
-        this.saveTrm = saveTrm;
-    }
-
-    public Integer getIntrRate() {
-        return intrRate;
-    }
-
-    public void setIntrRate(Integer intrRate) {
-        this.intrRate = intrRate;
-    }
-
-    public Integer getIntrRate2() {
-        return intrRate2;
-    }
-
-    public void setIntrRate2(Integer intrRate2) {
-        this.intrRate2 = intrRate2;
-    }
-
-    public String getRsrvType() {
-        return rsrvType;
-    }
-
-    public void setRsrvType(String rsrvType) {
-        this.rsrvType = rsrvType;
-    }
-
-    public String getRsrvTypeNm() {
-        return rsrvTypeNm;
-    }
-
-    public void setRsrvTypeNm(String rsrvTypeNm) {
-        this.rsrvTypeNm = rsrvTypeNm;
-    }
+    private String finCoSubmDay;
 
 	public SavingsVO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public SavingsVO(Integer no, Date dclsMonth, Integer finCoNo, String korCoNm, String finPrdtCd, String finPrdtNm,
+	public SavingsVO(Integer no, String dclsMonth, String finCoNo, String korCoNm, String finPrdtCd, String finPrdtNm,
 			String joinWay, String mtrtInt, String spclCnd, Integer joinDeny, String joinMember, String etcNote,
-			Integer maxLimit, Date dclsStrtDay, Date dclsEndDay, Date finCoSubmDay, String intrRateType,
-			String intrRateTypeNm, Integer saveTrm, Integer intrRate, Integer intrRate2, String rsrvType,
-			String rsrvTypeNm) {
+			Integer maxLimit, String dclsStrtDay, String dclsEndDay, String finCoSubmDay) {
 		super();
 		this.no = no;
 		this.dclsMonth = dclsMonth;
@@ -287,13 +80,134 @@ public class SavingsVO {
 		this.dclsStrtDay = dclsStrtDay;
 		this.dclsEndDay = dclsEndDay;
 		this.finCoSubmDay = finCoSubmDay;
-		this.intrRateType = intrRateType;
-		this.intrRateTypeNm = intrRateTypeNm;
-		this.saveTrm = saveTrm;
-		this.intrRate = intrRate;
-		this.intrRate2 = intrRate2;
-		this.rsrvType = rsrvType;
-		this.rsrvTypeNm = rsrvTypeNm;
+	}
+
+	public Integer getNo() {
+		return no;
+	}
+
+	public void setNo(Integer no) {
+		this.no = no;
+	}
+
+	public String getDclsMonth() {
+		return dclsMonth;
+	}
+
+	public void setDclsMonth(String dclsMonth) {
+		this.dclsMonth = dclsMonth;
+	}
+
+	public String getFinCoNo() {
+		return finCoNo;
+	}
+
+	public void setFinCoNo(String finCoNo) {
+		this.finCoNo = finCoNo;
+	}
+
+	public String getKorCoNm() {
+		return korCoNm;
+	}
+
+	public void setKorCoNm(String korCoNm) {
+		this.korCoNm = korCoNm;
+	}
+
+	public String getFinPrdtCd() {
+		return finPrdtCd;
+	}
+
+	public void setFinPrdtCd(String finPrdtCd) {
+		this.finPrdtCd = finPrdtCd;
+	}
+
+	public String getFinPrdtNm() {
+		return finPrdtNm;
+	}
+
+	public void setFinPrdtNm(String finPrdtNm) {
+		this.finPrdtNm = finPrdtNm;
+	}
+
+	public String getJoinWay() {
+		return joinWay;
+	}
+
+	public void setJoinWay(String joinWay) {
+		this.joinWay = joinWay;
+	}
+
+	public String getMtrtInt() {
+		return mtrtInt;
+	}
+
+	public void setMtrtInt(String mtrtInt) {
+		this.mtrtInt = mtrtInt;
+	}
+
+	public String getSpclCnd() {
+		return spclCnd;
+	}
+
+	public void setSpclCnd(String spclCnd) {
+		this.spclCnd = spclCnd;
+	}
+
+	public Integer getJoinDeny() {
+		return joinDeny;
+	}
+
+	public void setJoinDeny(Integer joinDeny) {
+		this.joinDeny = joinDeny;
+	}
+
+	public String getJoinMember() {
+		return joinMember;
+	}
+
+	public void setJoinMember(String joinMember) {
+		this.joinMember = joinMember;
+	}
+
+	public String getEtcNote() {
+		return etcNote;
+	}
+
+	public void setEtcNote(String etcNote) {
+		this.etcNote = etcNote;
+	}
+
+	public Integer getMaxLimit() {
+		return maxLimit;
+	}
+
+	public void setMaxLimit(Integer maxLimit) {
+		this.maxLimit = maxLimit;
+	}
+
+	public String getDclsStrtDay() {
+		return dclsStrtDay;
+	}
+
+	public void setDclsStrtDay(String dclsStrtDay) {
+		this.dclsStrtDay = dclsStrtDay;
+	}
+
+	public String getDclsEndDay() {
+		return dclsEndDay;
+	}
+
+	public void setDclsEndDay(String dclsEndDay) {
+		this.dclsEndDay = dclsEndDay;
+	}
+
+	public String getFinCoSubmDay() {
+		return finCoSubmDay;
+	}
+
+	public void setFinCoSubmDay(String finCoSubmDay) {
+		this.finCoSubmDay = finCoSubmDay;
 	}
 
 	@Override
@@ -305,10 +219,7 @@ public class SavingsVO {
 				.append(mtrtInt).append(", spclCnd=").append(spclCnd).append(", joinDeny=").append(joinDeny)
 				.append(", joinMember=").append(joinMember).append(", etcNote=").append(etcNote).append(", maxLimit=")
 				.append(maxLimit).append(", dclsStrtDay=").append(dclsStrtDay).append(", dclsEndDay=")
-				.append(dclsEndDay).append(", finCoSubmDay=").append(finCoSubmDay).append(", intrRateType=")
-				.append(intrRateType).append(", intrRateTypeNm=").append(intrRateTypeNm).append(", saveTrm=")
-				.append(saveTrm).append(", intrRate=").append(intrRate).append(", intrRate2=").append(intrRate2)
-				.append(", rsrvType=").append(rsrvType).append(", rsrvTypeNm=").append(rsrvTypeNm).append("]");
+				.append(dclsEndDay).append(", finCoSubmDay=").append(finCoSubmDay).append("]");
 		return builder.toString();
 	}
 

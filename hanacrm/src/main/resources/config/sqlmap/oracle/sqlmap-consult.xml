@@ -23,7 +23,8 @@
 		<result column="birth_date" property="birthDate"/>
 		<result column="employee_no" property="employeeNo"/>
 		<result column="reg_date" property="regDate"/>
-	</resultMap>	
+	</resultMap>
+		
 <!-- resultMap 설정 끝 -->
 
 <!-- 쿼리 -->
@@ -38,5 +39,10 @@
 	<!-- <select id="selectCustomer" parameterType="int" resultMap="customerMap">
 		select * from customer where no=#{customerNo}
 	</select> -->
+	
+	<select id="select" parameterType="int" resultMap="consultMap">
+		select * from consult where customer_no=#{no}
+	</select>
+	
 	
 </mapper>

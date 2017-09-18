@@ -75,13 +75,10 @@
 			<div class="row-fluid">
 				
 				<div class="span3 statbox purple" onTablet="span6" onDesktop="span3">
-					<div class="boxchart">5,6,7,2,0,4,2,4,8,2,3,3,2</div>
-					<div class="number">854<i class="icon-arrow-up"></i></div>
-					<div class="title">visits</div>
-					<div class="footer">
-						<a href="#"> read full report</a>
-					</div>	
+					<button id="depositBtn">예금 api 요청</button>
+					<button id="savingsBtn">적금 api 요청</button>
 				</div>
+				
 				<div class="span3 statbox green" onTablet="span6" onDesktop="span3">
 					<div class="boxchart">1,2,6,4,0,8,2,4,5,3,1,7,5</div>
 					<div class="number">123<i class="icon-arrow-up"></i></div>
@@ -780,6 +777,65 @@
 	<script src="${pageContext.request.contextPath}/js/retina.js"></script>
 
 	<script src="${pageContext.request.contextPath}/js/custom.js"></script>
+	
+	<script>
+	$().ready(function(){
+		$('#depositBtn').click(function(){
+			//var url = "http://finlife.fss.or.kr/finlifeapi/depositProductsSearch.json?callback=?&auth=49bb53dc3ef5b88bbe5eb3b85b8c3077&topFinGrpNo=020000&pageNo=1";
+			$.ajax({
+				type:'GET',
+				url:'${pageContext.request.contextPath}/product/deposit',
+				//url:url,
+				//crossDomain: true,
+				dataType:'json',
+				//jsonpCallback: "myCallback",
+				/* data:{
+					auth : "49bb53dc3ef5b88bbe5eb3b85b8c3077",
+					topFinGrpNo : "020000",
+					pageNo:"1"
+					
+				}, */
+				success:function(data){
+					//console.log(data.result);
+					// var result = $.parseJSON(data);
+					console.dir(data); 
+					console.log('success');
+				},
+				error:function(xhr, status, error){
+					console.log(error);
+				},
+			
+			});
+		});
+		$('#savingsBtn').click(function(){
+			//var url = "http://finlife.fss.or.kr/finlifeapi/depositProductsSearch.json?callback=?&auth=49bb53dc3ef5b88bbe5eb3b85b8c3077&topFinGrpNo=020000&pageNo=1";
+			$.ajax({
+				type:'GET',
+				url:'${pageContext.request.contextPath}/product/savings',
+				//url:url,
+				//crossDomain: true,
+				dataType:'json',
+				//jsonpCallback: "myCallback",
+				/* data:{
+					auth : "49bb53dc3ef5b88bbe5eb3b85b8c3077",
+					topFinGrpNo : "020000",
+					pageNo:"1"
+					
+				}, */
+				success:function(data){
+					//console.log(data.result);
+					// var result = $.parseJSON(data);
+					console.dir(data); 
+					console.log('success');
+				},
+				error:function(xhr, status, error){
+					console.log(error);
+				},
+			
+			});
+		});
+	});
+	</script>
 	<!-- end: JavaScript-->
 
 </body>

@@ -1,6 +1,8 @@
 package kr.co.bit.hanacrm.Customer;
 
+import org.springframework.stereotype.Component;
 
+@Component
 public class CusVO {
 	private Integer no;
 

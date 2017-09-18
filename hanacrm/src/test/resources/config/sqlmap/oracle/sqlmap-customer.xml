@@ -28,8 +28,8 @@
 			<if test="phone!=null" >
 			 	phone=#{phone},
 			</if>
-			<if test="employeeId!=null" >
-			 	employee_id=#{employeeId},
+			<if test="employeeNo!=null" >
+			 	employee_no=#{employeeNo},
 			</if>
 			<if test="comments!=null" >
 			 	comments=#{comments},
@@ -44,9 +44,10 @@
 			 	address=#{address},
 			</if>
 			<if test="regDate!=null" >
-			 	red_date=#{regDate}
+			 	reg_date=#{regDate}
 			</if>
 		</set>
+		where no=#{no}
 	</update>
 	<delete id="deleteByNo" parameterType="int">
 		delete from customer where no=#{no}
