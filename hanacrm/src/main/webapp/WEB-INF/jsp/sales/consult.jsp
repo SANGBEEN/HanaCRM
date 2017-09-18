@@ -587,21 +587,67 @@
 				/* $(this).parent().next('.row-minimize-hs').empty();
 				$(this).parent().next('.row-detail-hs').empty(); */
 				
+				var date = new Date();
+				var year = date.getFullYear();
+				var month = date.getMonth();
+				var date1 = date.getDate();
+				
 				$.ajax({
-	        		url: "${pageContext.request.contextPath}/schedule",
-	        		type: "put",
+	        		url: "${pageContext.request.contextPath}/schedule/listForConsult",
+	        		type: "get",
 	        		contentType: "application/json; charset=uft-8",
 	        		dataType: "json",
-	        		data: JSON.stringify(test), 
+	        		data: { 
+	        				"type"	:	"Meeting", 
+	        				"date"	:	date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate() 
+	        		}, 
 	        		success: function(data){
-	        			alert('날짜 늘어남');
+	        			console.dir(data);
+	        			var jsonData = JSON.parse(data);	        			
+	        	        console.log("jsonData: " + jsonData);
+	        	        
+	        	        html = '<table class="table table-striped table-bordered bootstrap-datatable datatable">';
+	        	        html += '<tr><th>번호</th><th>고객 이름</th><th>일정</th></tr>';
+	        	        
+	        	        for (var i = 0; i < jsonData.length; i++) {
+	        	           // console.log("124");
+	        	            html += '<tr><td><input type="radio" name="optionsRadios" value="' + jsonData[i].no + '"></td>' 
+	        	            		+ '<td><span class="input-xlarge uneditable-input">' + jsonData[i].customer.name + '</span></td>' 
+	        	            		+ '<td><span class="input-xlarge uneditable-input">' + jsonData[i].comments + '</span></td></tr>';
+	        	        }
+	        	        
+	        	        html += '</table>';
+	        	 
+	        	        document.querySelector('.schedule-list').innerHTML = html;
+	        	        console.log(html);
+	        	        
+	        	        <%-- <c:forEach items="scheduleList" var="scheduleVO">
+							<table class="table table-striped table-bordered bootstrap-datatable datatable">
+								<tr>
+									<td>
+										<div class="controls">											
+									  		<input type="radio" name="optionsRadios" value="${ scheduleVO.no }">
+									  	</div>
+									</td>
+									<td>
+										<div class="controls">
+										  	<span class="input-xlarge uneditable-input">${ scheduleVO }</span>
+										</div>
+									</td>
+									<td>
+										<div class="controls">
+										  	<span class="input-xlarge uneditable-input">${ scheduleVO }</span>
+										</div>
+									</td>
+								</tr>
+							</table>
+						</c:forEach> --%>
 	        		},
 	        		error: function(e){
 	      				console.log(e);
 	        			alert('error');
-			        	revertFunc();	
 	        		}
-	        	});		
+	        	});
 				
 				$("#consultCustomerProductSelect").modal();
 				console.log("상품");

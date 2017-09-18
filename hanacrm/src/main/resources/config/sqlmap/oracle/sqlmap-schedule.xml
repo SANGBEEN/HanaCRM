@@ -33,7 +33,7 @@
 		select *
 		from schedule
 		where employee_no = #{employeeNo}
-			and to_char(start_date, 'yyyymm')=#{date}
+			and to_date(#{date}, 'yyyy-mm-dd') between to_char(start_date, 'yyyy-mm-dd') and to_char(end_date, 'yyyy-mm-dd')
 			and type = #{type}
 	</select>
 	

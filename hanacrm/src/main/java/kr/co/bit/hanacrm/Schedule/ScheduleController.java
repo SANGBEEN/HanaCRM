@@ -66,8 +66,10 @@ public class ScheduleController {
 		EmpVO emp = (EmpVO) session.getAttribute("emp");
 		schedule.setEmployeeNo(1); //emp.getNo());
 	//	model.addAttribute("scheduleList", scheduleService.selectListByType(schedule));
-		//	System.out.println(schedule);
-		return scheduleService.selectListByType(schedule);
+			System.out.println(schedule);
+			List<ScheduleVO> list = scheduleService.selectListByType(schedule);
+			System.out.println(list);
+		return list; //scheduleService.selectListByType(schedule);
 	}
 	
 	// 일정 추가

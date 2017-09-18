@@ -10,7 +10,7 @@ import kr.co.bit.hanacrm.Customer.CusVO;
 
 @Service
 public class ScheduleService {
-	
+
 	@Autowired
 	private ScheduleDAO scheduleDAO;
 
@@ -21,22 +21,22 @@ public class ScheduleService {
 	public List<ScheduleVO> selectListAll(int employeeNo) {
 		return scheduleDAO.selectListAll(employeeNo);
 	}
-	
+
 	// n월 일정
 	public List<ScheduleVO> selectList(ScheduleVO schedule) {
 		return scheduleDAO.selectList(schedule);
 	}
-	
+
 	// 일정 추가
 	public int insert(ScheduleVO schedule) {
 		return scheduleDAO.insert(schedule);
 	}
-	
+
 	// 일정 수정
 	public int update(ScheduleVO schedule) {
 		return scheduleDAO.update(schedule);
 	}
-	
+
 	// 일정 삭제
 	public int delete(int no) {
 		return scheduleDAO.delete(no);
@@ -44,19 +44,24 @@ public class ScheduleService {
 
 	// 일정 상세정보
 	public ScheduleVO selectByNo(int no) {
-		
+
 		ScheduleVO schedule = scheduleDAO.selectByNo(no);
 
 		// cusDAO 에서 고객 정보 받아오기
 		CusVO customer = new CusVO();
 		schedule.getCustomerNo();
-		
+
 		schedule.setCustomer(customer);
 		return schedule;
 	}
 
 	public List<ScheduleVO> selectListByType(ScheduleVO schedule) {
-		return scheduleDAO.selectListByType(schedule);
+		List<ScheduleVO> list = scheduleDAO.selectListByType(schedule);
+		for(int i=0; i<list.size(); i++) {
+			ScheduleVO s = list.get(i);
+			s.setCustomer(cusDAO.detail(s.getCustomerNo()));
+		}
+		return list;
 	}
 
 }
