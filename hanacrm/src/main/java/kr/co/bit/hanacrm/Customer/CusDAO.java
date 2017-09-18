@@ -33,5 +33,10 @@ public class CusDAO {
 		// TODO Auto-generated method stub
 		return sql.delete("cus.CusDAO.deleteByNo", no);
 	}
+
+	public List<CusVO> selectByEmpNo(int no) {
+		// TODO Auto-generated method stub
+		return sql.selectOne("cus.CusDAO.selectByEmpNo", no);
+	}
 	
 }

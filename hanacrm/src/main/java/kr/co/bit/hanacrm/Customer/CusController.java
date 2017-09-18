@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.bit.hanacrm.Consult.ConsultService;
 import kr.co.bit.hanacrm.Consult.ConsultVO;
+import kr.co.bit.hanacrm.Employee.EmpVO;
 
 @Controller
 @RequestMapping("/customer")
@@ -28,8 +29,9 @@ public class CusController {
 	//전체조회
 	@RequestMapping(method=RequestMethod.GET)
 	public String list(Model model, HttpSession session){
+		EmpVO emp = (EmpVO) session.getAttribute("emp");
 	    List<CusVO> cusList = new ArrayList<>();
-	    cusList = cusService.list();
+	    cusList = cusService.list(emp.getNo());
 	    for(CusVO cus : cusList){
 	    	System.out.println(cus);
 	    }

@@ -10,9 +10,9 @@ public class CusService {
 	@Autowired
 	private CusDAO cusDao;
 
-	public List<CusVO> list() {
+	public List<CusVO> list(int no) {
 		// TODO Auto-generated method stub
-		return cusDao.selectAll();
+		return cusDao.selectByEmpNo(no);
 	}
 
 	public CusVO detail(int no) {

@@ -29,7 +29,7 @@ public class LoginAspect {
 		if (request != null) {
 			String strUrl = request.getRequestURL().toString();
 			// 로그인 페이지 제외
-			if (!strUrl.endsWith("/index.jsp")) {
+			if (!strUrl.endsWith("/index.jsp") && !strUrl.endsWith("/login")) {
 				// 세션체킹
 				HttpSession session = request.getSession();
 				EmpVO emp = (EmpVO) session.getAttribute("emp");
