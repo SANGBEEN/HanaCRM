@@ -300,7 +300,7 @@
 	<script src="js/bootstrap.min.js"></script>
 
 	<script src="js/jquery.cookie.js"></script>
-
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
 	<script src='js/fullcalendar.min.js'></script>
 
 	<script src='js/jquery.dataTables.min.js'></script>

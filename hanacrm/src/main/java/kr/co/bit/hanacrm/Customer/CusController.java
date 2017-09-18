@@ -90,19 +90,7 @@ public class CusController {
 	//고객수정
 	@ResponseBody
 	@RequestMapping(method=RequestMethod.PUT)
-	public String update(CusVO cus){
-		System.out.println("풋풋");
-//		if(cusService.update(cus)==1)
-//			return "redirect:/customer/"+cus.getNo();
-		//return "redirect:/customer";
-		System.out.println(cus);
-		return "success";
-	}
-	//고객수정테스트 
-
-	@RequestMapping(value="/test", method=RequestMethod.POST)
-	public String update2(CusVO cus){
-		System.out.println("풋풋");
+	public String update(@RequestBody CusVO cus){
 //		if(cusService.update(cus)==1)
 //			return "redirect:/customer/"+cus.getNo();
 		//return "redirect:/customer";

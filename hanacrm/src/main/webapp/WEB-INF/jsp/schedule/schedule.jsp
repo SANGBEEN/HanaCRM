@@ -42,7 +42,8 @@
 	
 	<!-- start: javascript -->
 	<script src='${pageContext.request.contextPath}/js/jquery.min.js'></script> <!-- for calendar -->
-	<script src='${pageContext.request.contextPath}/js/moment.min.js'></script> <!-- for calendar -->
+	<%-- <script src='${pageContext.request.contextPath}/js/moment.min.js'></script> <!-- for calendar --> --%>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
 	<!-- end: javascript -->
 	
 	<style>
@@ -169,7 +170,7 @@
 	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 
 	<script src="${pageContext.request.contextPath}/js/jquery.cookie.js"></script>
-
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/locale/af.js"></script>
 	<script src='${pageContext.request.contextPath}/js/fullcalendar.js'></script>
 	<%-- <script src='${pageContext.request.contextPath}/js/fullcalendar.min.js'></script> --%>
 
