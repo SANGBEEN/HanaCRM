@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.bit.hanacrm.Customer.CusDAO;
+import kr.co.bit.hanacrm.Product.ProductDAO;
 
 @Service
 public class ConsultService {
@@ -16,6 +17,9 @@ public class ConsultService {
 	
 	@Autowired
 	private CusDAO customerDAO;	
+	
+	@Autowired
+	private ProductDAO productDAO;
 
 	public List<ConsultVO> selectList() {
 		List<ConsultVO> consultList = consultDAO.selectList();
@@ -52,6 +56,11 @@ public class ConsultService {
 		{
 			List<ConsultProductVO> cpList = new ArrayList<>();
 			cpList = consultDAO.selectProductList(consultList.get(i).getNo());
+			for(int j=0;j<cpList.size();j++){
+				int type = cpList.get(j).getType();
+				int no = cpList.get(j).getProductNo();
+				cpList.get(j).setProductName(productDAO.selectNameByNo(type, no));
+			}
 			consultList.get(i).setConsultProduct(cpList);
 		}	
 		

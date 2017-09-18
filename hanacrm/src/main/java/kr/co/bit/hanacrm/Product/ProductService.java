@@ -42,11 +42,11 @@ public class ProductService {
 	public int insertSavings(List<SavingsVO> savingsList, List<OptionVO> optionList) {
 		int result=0;
 		
-//		for(int i=0;i<savingsList.size();i++){
-//			pDao.insertSavings(savingsList.get(i));
-//			result++;
-//			System.out.println(result);
-//		}
+		for(int i=0;i<savingsList.size();i++){
+			pDao.insertSavings(savingsList.get(i));
+			result++;
+			System.out.println(result);
+		}
 		
 		for(int i=0;i<optionList.size();i++){
 			pDao.insertSavingsOption(optionList.get(i));

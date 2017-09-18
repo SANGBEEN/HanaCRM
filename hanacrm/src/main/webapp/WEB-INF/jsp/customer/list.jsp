@@ -67,9 +67,9 @@
 
 
 				<ul class="breadcrumb">
-					<li><i class="icon-home"></i> <a href="index.html">Home</a> <i
+					<li><i class="icon-home"></i> <a href="${pageContext.request.contextPath}/main">Home</a> <i
 						class="icon-angle-right"></i></li>
-					<li><a href="#">Tables</a></li>
+					<li><a href="${pageContext.request.contextPath}/customer">고객목록</a></li>
 				</ul>
 
 				<div class="row-fluid sortable">

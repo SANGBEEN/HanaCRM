@@ -40,7 +40,7 @@ public class MainController {
 		return "/main/main";
 	}
 	//로그아웃 
-	@RequestMapping(value="/logout.do", method=RequestMethod.GET)
+	@RequestMapping(value="/logout", method=RequestMethod.GET)
 	public String logout(HttpSession session){
 		session.invalidate();
 		return "redirect:/";

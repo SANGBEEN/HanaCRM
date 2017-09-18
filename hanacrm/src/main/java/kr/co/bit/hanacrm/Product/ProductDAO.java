@@ -27,6 +27,17 @@ public class ProductDAO {
 		// TODO Auto-generated method stub
 		return sql.insert("option.OptionDAO.insertSavingsOption", option);
 	}
-	
-	
+	public String selectNameByNo(int type, int no) {
+		String name="";
+		switch(type){
+		case 1: 
+			name = sql.selectOne("deposit.DepositDAO.selectName", no);
+			break;
+		case 2:
+			name = sql.selectOne("savings.SavingsDAO.selectName", no);
+			break;
+			default:
+		}
+		return name;
+	}
 }

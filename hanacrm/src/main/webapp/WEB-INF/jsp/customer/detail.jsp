@@ -37,6 +37,9 @@ input.hidden {
 	border: solid 1px black !important;
 	
 }
+.profile{
+	margin-left : 20px;
+}
 
 </style>
 <!-- start: Meta -->
@@ -175,15 +178,16 @@ input.hidden {
 
 			<!-- start: Content -->
 			<div id="content" class="span10">
-				<ul class="breadcrumb">
-					<li><i class="icon-home"></i> <a href="index.html">Home</a> <i
-						class="icon-angle-right"></i></li>
-					<li><a href="#">Tables</a></li>
-				</ul>
+			<ul class="breadcrumb">
+					<li><i class="icon-home"></i> <a href="${pageContext.request.contextPath}/main">Home</a> 
+					<i class="icon-angle-right"></i></li>
+					<li><a href="${pageContext.request.contextPath}/customer">고객목록</a><i class="icon-angle-right"></i></li>
+					<li><a href="${pageContext.request.contextPath}/customer">고객정보</a></li>
+			</ul>
 				<div class="row-fluid">
-					<div class="span7">
+					<div class="span5">
 						<div class="row">
-							<div class="col-md-7 ">
+							<div class="col-md-7 profile">
 								<div class="panel panel-default">
 									<div class="panel-heading">
 										<h4> User Profile</h4>
@@ -280,7 +284,7 @@ input.hidden {
 						</div>
 					</div>
 
-					<div class="span5 noMarginLeft">
+					<div class="span7 noMarginLeft">
 
 						<div class="dark">
 
@@ -302,7 +306,7 @@ input.hidden {
 												<span class="details"> ${consult.content } </span> 
 												<span>  상담상품 
 													<c:forEach var="product" items="${consult.consultProduct}">
-														<span class="remaining"> ${product.productNo} </span>
+														<span class="remaining"> ${product.productName} </span>
 													</c:forEach>
 												</span>
 											</span>

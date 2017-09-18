@@ -83,6 +83,7 @@
 	</bean>
 	<aop:aspectj-autoproxy/>
 	<bean id="messageAdvice" class="kr.co.bit.hanacrm.Util.MessageAdvice" />
+	<bean id="loginAspect" class="kr.co.bit.hanacrm.Util.LoginAspect" />
 	<!-- 앞에 ~/jsp/ 까지 붙이겠다. -->
 	<mvc:view-resolvers>
 		<mvc:jsp prefix="/WEB-INF/jsp/" suffix=".jsp" />

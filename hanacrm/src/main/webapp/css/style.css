@@ -2830,8 +2830,9 @@ ul.messagesList li span.date {
 
 .timeline {
 	width: auto;
-	height: 100%;
+	height: 75vh;
 	margin: 20px auto; 
+	overflow: auto;
 	background: url(../img/timeline-bg.png) repeat-y center top; 
 }
 

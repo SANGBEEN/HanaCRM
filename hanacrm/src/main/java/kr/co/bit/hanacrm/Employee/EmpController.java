@@ -19,7 +19,7 @@ public class EmpController {
 	
 	//회원가입 
 	@RequestMapping(value="/join",method=RequestMethod.POST)
-	public String join(@RequestParam("uid") String id, EmpVO empVO, HttpSession session){
+	public String join(@RequestParam("uid") String id, EmpVO empVO){
 		empVO.setId(id);
 		//사원코드생성 
 		Random rnd =new Random();
@@ -44,7 +44,7 @@ public class EmpController {
 	}
 
 	//회원정보 
-	@RequestMapping(value="/detail", method=RequestMethod.GET)
+	@RequestMapping(value="/profile", method=RequestMethod.GET)
 	public String detail(HttpSession session){
 		System.out.println("detail");
 		return "redirect:/";
