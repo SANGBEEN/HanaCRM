@@ -29,7 +29,17 @@ public class ScheduleService {
 
 	// 일정 추가
 	public int insert(ScheduleVO schedule) {
-		return scheduleDAO.insert(schedule);
+		int scheduleNo = scheduleDAO.selectSeq();
+		
+		if(scheduleNo>0) {
+			schedule.setNo(scheduleNo);
+			scheduleDAO.insert(schedule);
+			System.out.println(schedule);
+		}else {
+			scheduleNo = 0;
+		}
+		
+		return scheduleNo;
 	}
 
 	// 일정 수정
@@ -55,6 +65,7 @@ public class ScheduleService {
 		return schedule;
 	}
 
+	// 타입별 일정 리스트
 	public List<ScheduleVO> selectListByType(ScheduleVO schedule) {
 		List<ScheduleVO> list = scheduleDAO.selectListByType(schedule);
 		for(int i=0; i<list.size(); i++) {

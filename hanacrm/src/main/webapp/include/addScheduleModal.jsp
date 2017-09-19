@@ -4,10 +4,11 @@
   <div class="modal-dialog">
    <div class="modal-content">
 	   <form id="addScheduleForm" class="no-margin">
-	 <div class="modal-body">
+	 <div id="temp2" class="modal-body">
 	   <button type="button" class="close" data-dismiss="modal" style="margin-top:-10px;">&times;</button>
 		  <label>Change event name &nbsp;</label>
-			<jsp:include page="addScheduleModalContent.jsp" />
+			<jsp:include page="/include/customerListModal.jsp"/>
+			<jsp:include page="/include/addScheduleModalContent.jsp" />
 	 </div>
 	 <div class="modal-footer">
 		 <button type="submit" class="btn btn-sm btn-success" ><i class="ace-icon fa fa-check"></i> Save</button>
