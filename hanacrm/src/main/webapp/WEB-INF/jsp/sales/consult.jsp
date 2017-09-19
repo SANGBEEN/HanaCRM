@@ -23,6 +23,14 @@
 	<link id="base-style" href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
 	<link id="base-style-responsive" href="${pageContext.request.contextPath}/css/style-responsive.css" rel="stylesheet">
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext' rel='stylesheet' type='text/css'>
+	
+	<style>		
+		@media (min-width: 992px) {
+		  .modal-lg {
+		    max-width: 800px;
+		  }
+		}
+	</style>
 	<!-- end: CSS -->
 	
 
@@ -393,52 +401,56 @@
 	</div>
 	
 	<!-- 일정 및 상품 선택 -->
-	<div class="modal hide fade" id="consultCustomerProductSelect">
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal">×</button>
-			<h3>일정 및 상품</h3>
-		</div>
-		<div class="modal-body">
-			<table class="table table-striped table-bordered bootstrap-datatable datatable">
-				<tr>
-					<td width="50%">
-					<div class="schedule-list">
-						<%-- <c:forEach items="scheduleList" var="scheduleVO">
-							<table class="table table-striped table-bordered bootstrap-datatable datatable">
-								<tr>
-									<td>
-										<div class="controls">											
-									  		<input type="radio" name="optionsRadios" value="${ scheduleVO.no }">
-									  	</div>
-									</td>
-									<td>
-										<div class="controls">
-										  	<span class="input-xlarge uneditable-input">${ scheduleVO }</span>
-										</div>
-									</td>
-									<td>
-										<div class="controls">
-										  	<span class="input-xlarge uneditable-input">${ scheduleVO }</span>
-										</div>
-									</td>
-								</tr>
-							</table>
-						</c:forEach> --%>
-					</div>
-					</td>
-					<td>
-					<div class="product-list">
-						<c:forEach items="productList" var="productVO">
-							
-						</c:forEach>
-					</div>
-					</td>
-				</tr>
-			</table>
-		</div>
-		<div class="modal-footer">
-			<a href="#" class="btn" data-dismiss="modal">취소</a>
-			<a href="#" class="btn btn-primary" data-dismiss="modal">확인</a>
+	<div class="modal hide fade" id="consultCustomerProductSelect" role="dialog" style="width: 1000px;">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">×</button>
+					<h3>일정 및 상품</h3>
+				</div>
+				<div class="modal-body">
+					<table class="table table-striped table-bordered bootstrap-datatable datatable">
+						<tr>
+							<td width="50%">
+							<div class="schedule-list">
+								<%-- <c:forEach items="scheduleList" var="scheduleVO">
+									<table class="table table-striped table-bordered bootstrap-datatable datatable">
+										<tr>
+											<td>
+												<div class="controls">											
+											  		<input type="radio" name="optionsRadios" value="${ scheduleVO.no }">
+											  	</div>
+											</td>
+											<td>
+												<div class="controls">
+												  	<span class="input-xlarge uneditable-input">${ scheduleVO }</span>
+												</div>
+											</td>
+											<td>
+												<div class="controls">
+												  	<span class="input-xlarge uneditable-input">${ scheduleVO }</span>
+												</div>
+											</td>
+										</tr>
+									</table>
+								</c:forEach> --%>
+							</div>
+							</td>
+							<td>
+							<div class="product-list">
+								<c:forEach items="productList" var="productVO">
+									
+								</c:forEach>
+							</div>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div class="modal-footer">
+					<a href="#" class="btn" data-dismiss="modal">취소</a>
+					<a href="#" class="btn btn-primary" data-dismiss="modal">확인</a>
+				</div>
+			</div>
 		</div>
 	</div>
 	
