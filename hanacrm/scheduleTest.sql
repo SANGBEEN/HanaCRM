@@ -14,3 +14,8 @@ select *
 from schedule s join customer c on (s.customer_no = c.no)
 where s.no = 22
 order by s.no desc
+
+select *
+from schedule
+where employee_no = 1
+	and '201709' between to_char(start_date, 'yyyymm') and to_char(end_date, 'yyyymm')

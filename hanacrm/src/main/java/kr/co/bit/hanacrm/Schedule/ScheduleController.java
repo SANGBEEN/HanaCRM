@@ -73,9 +73,10 @@ public class ScheduleController {
 	// 일정 추가
 	@ResponseBody
 	@RequestMapping(value="/schedule", method=RequestMethod.POST)
-	public int insert(ScheduleVO schedule) {
+	public int insert(HttpSession session, ScheduleVO schedule) {
+		EmpVO emp = (EmpVO) session.getAttribute("emp");
+		schedule.setEmployeeNo(1);  //emp.getNo());
 		System.out.println("일정 추가");
-		System.out.println(schedule);
 		return scheduleService.insert(schedule);
 	}
 	

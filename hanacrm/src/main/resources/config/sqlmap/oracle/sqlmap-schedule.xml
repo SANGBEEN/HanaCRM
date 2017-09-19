@@ -25,15 +25,15 @@
 		select *
 		from schedule
 		where employee_no = #{employeeNo}
-			and to_char(start_date, 'yyyymm')=#{date}
+			and #{date} between to_char(start_date, 'yyyymm') and to_char(end_date, 'yyyymm')
 	</select>
 	
-	<!-- 사원의 n월 일정 -->
+	<!-- 사원의 m월d일 Type 일정 -->
 	<select id="selectListByType" parameterType="schedule" resultMap="scheduleMap">
 		select *
 		from schedule
 		where employee_no = #{employeeNo}
-			and to_char(start_date, 'yyyymm')=#{date}
+			and to_date(#{date},'yyyy-mm-dd') between to_char(start_date, 'yyyy-mm-dd') and to_char(end_date, 'yyyy-mm-dd')
 			and type = #{type}
 	</select>
 	
@@ -48,7 +48,7 @@
 	<insert id="insert" parameterType="schedule">
 		insert into schedule (no, employee_no, customer_no, location, type, comments,
 							 start_date, end_date, reg_date, importance, repetition)
-		values (schedule_seq.nextval, #{employeeNo}, #{customerNo}, #{location}, #{type}, #{comments},
+		values (#{no}, #{employeeNo}, #{customerNo}, #{location}, #{type}, #{comments},
 				#{startDate}, #{endDate}, sysdate, #{importance}, #{repetition})
 	</insert>
 	
@@ -89,5 +89,10 @@
 		delete from schedule
 		where no = #{no}
 	</delete>
+	
+	<!-- 추가할 스케쥴 번호 받아오기 -->
+	<select id="selectSeq" resultType="int">
+		SELECT schedule_seq.nextval FROM DUAL
+	</select>
 	
 </mapper>

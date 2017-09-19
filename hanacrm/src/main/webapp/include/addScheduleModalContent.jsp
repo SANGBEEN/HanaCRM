@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="row-fluid sortable">
 <div class="box span12">
 	<div class="box-header" data-original-title>
@@ -28,16 +29,28 @@
 			  </div>
 			  
 			  <div class="control-group">
-				<label class="control-label">시작일</label>
+				<label class="control-label">시작일자</label>
 				<div class="controls">
 				  <span id="startDate" class="uneditable-input"></span>
+					<select id="startTime" for="selectError3">
+						<c:forEach begin="0" end="23" varStatus="status">
+							<option value="${status.index}:00">${status.index}:00</option>
+							<option value="${status.index}:30">${status.index}:30</option>
+						</c:forEach>
+					</select>
 				</div>
 			  </div>
 			  
 			  <div class="control-group">
-				<label class="control-label">종료일</label>
+				<label class="control-label">종료일자</label>
 				<div class="controls">
-				  <span id="endDate" class=""></span>
+				  <span id="endDate" class="focusedInput"> </span>
+				  <select id="endTime" for="selectError3">
+						<c:forEach begin="0" end="23" varStatus="status">
+							<option value="${status.index}:00">${status.index}:00</option>
+							<option value="${status.index}:30">${status.index}:30</option>
+						</c:forEach>
+					</select>
 				</div>
 			  </div>
 			  

@@ -48,26 +48,31 @@
 	<style>
 		.Meeting {
 			background-color : #00A300 !important;
+			border-color : #00A300 !important;
 			color: white
 		}
 		
 		.Task {
 			background-color : #2D89EF !important;
+			border-color : #2D89EF !important;
 			color: white
 		}
 		
 		.Call {
 			background-color : #FFC40D !important;
+			border-color : #FFC40D !important;
 			color: white
 		}
 		
 		.Event {
 			background-color : #999 !important;
+			border-color : #999 !important;
 			color: white
 		}
 		
 		.Other {
 			background-color : #333 !important;
+			border-color : #333 !important;
 			color: white
 		}
 		
@@ -254,8 +259,8 @@
 				var data = ${scheduleList};
 				for(var i=0; i<data.length; i++){
 				 	eventList.push({ title : data[i].comments,
-									start : new Date(data[i].startDate),
-									end: new Date(data[i].endDate),
+									start : moment(data[i].startDate).format('YYYY-MM-DD HH:mm'),
+									end:  moment(data[i].endDate).format('YYYY-MM-DD HH:mm'),
 									className: data[i].type,
 									id: data[i].no});
 				 	console.log(new Date(data[i].endDate));
@@ -275,6 +280,7 @@
 				// 기존 캘린더 지움
 				$('#calendar').fullCalendar('destroy');
 
+////////////////////////////////////////////////// calendar 시작
 				var calendar = $('#calendar').fullCalendar({
 					//isRTL: true,
 					//firstDay: 1,// >> change first day of week 
@@ -283,24 +289,29 @@
 						prev: '<button type="button" class="fc-prev-button fc-button fc-state-default fc-corner-left"><span class="fc-icon fc-icon-left-single-arrow"></span></button>',//'<i class="ace-icon fa fa-chevron-left"></i>',
 						next: '<i class="ace-icon fa fa-chevron-right"></i>'
 					},
-				
 					header: {
 						left: 'prev,next',
 						center: 'title',
 						right: 'month,agendaWeek,agendaDay'
 					},
+					allDayDefault: false,
+					nextDayThreshold:"00:01",
 					events:
-						eventList
+						 eventList
 						//테스트 데이터				
 					/*	[
-						  {
+						   {
 								title: '${scheduleList[0].comments}',
 								start: new Date('${scheduleList[0].startDate}'),
 								className: 'label-important'
-							  }
-					] */
+							  }, 
+						  {
+							  title: 'ddddddddd',
+							  start: '2017-09-18 00:00:00',
+							  end: '2017-09-20 00:00:00'
+						  }
+					]*/
 					,
-					
 					editable: true,
 					eventResize: function(event, delta, revertFunc){
 						resize(event, delta, revertFunc);
@@ -319,6 +330,34 @@
 
 					// 등록 폼 모달 띄움
 					modal.modal();
+					
+					
+					$.ajax({
+						url: "${pageContext.request.contextPath}/customer/listForModal",
+		        		type: "get",
+		        		success: function(data){
+		        			html = "";
+		        			 JSON.parse(data).forEach(function(element) {
+		        			    html += "<tr><td>" + element.name + "</td><td>"
+		        			    		+ element.regDate + "</td><td>"
+		        			    		+ element.phone + "</td><td>"
+		        			    		+ element.grade + "</td></tr>";
+		        			});
+		        			
+		        			console.log(html); 
+		        			
+		        			var te = $('#temp2').html();
+		        			console.log(te);
+		        			
+		        			//te.querySelector('.customerBody').innerHTML += html;
+		        			//console.log(te);
+		        		},
+		        		error: function(){
+		        			alert('error');
+		        		} 
+					});
+					
+
 				
 					// retrieve the dropped element's stored Event Object
 					var originalEventObject = $(this).data('eventObject');
@@ -330,7 +369,7 @@
 					// assign it the date that was reported
 					copiedEventObject.start = date;
 					copiedEventObject.end = date;
-					copiedEventObject.allDay = true;
+					copiedEventObject.allDay = false;
 					copiedEventObject.className = originalEventObject.title;
 					/* if($extraEventClass) 
 						copiedEventObject['className'] = [$extraEventClass]; */
@@ -374,7 +413,7 @@
 						
 						// 서버에 보낼 Data
 						var scheduleData = {
-			        			employeeNo: 1, //'${session.emp.no}',
+			        			/* employeeNo: 1, //'${session.emp.no}', */
 			        			comments: $('#comments').val(), //form.comments.value,
 			        			customerNo: 1,
 			        			type: $('#scheduleType').val(),
@@ -392,9 +431,10 @@
 			        		type: "post",
 			        		data: scheduleData, 
 			        		success: function(data){
-			        			alert('추가');
+			        			alert('추가'+data);
 			        			modal.modal("hide");
 								modal.remove();
+								copiedEventObject.id = data;
 								// render the event on the calendar
 								// the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
 								$('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
@@ -631,114 +671,9 @@
 		        	revertFunc();	
 		        }
 	        }
-
-		 	// 새로운 이벤트 추가
-		 	function drop(date, jsEvent){
-		 		/************************** 
-					달력에 새로운 이벤트 추가
-					모달 띄우기
-				***************************/
-
-				// 등록 폼 모달 띄움
-				$('#addModal').modal();
-			
-				// retrieve the dropped element's stored Event Object
-				var originalEventObject = $(this).data('eventObject');
-				var $extraEventClass = $(this).attr('data-class');
-				
-				// we need to copy it, so that multiple events don't have a reference to the same object
-				var copiedEventObject = $.extend({}, originalEventObject);
-				
-				// assign it the date that was reported
-				copiedEventObject.start = date;
-				copiedEventObject.end = date;
-				copiedEventObject.allDay = true;
-				copiedEventObject.className = originalEventObject.title;
-				/* if($extraEventClass) 
-					copiedEventObject['className'] = [$extraEventClass]; */
-			
-				console.log(copiedEventObject);
-				
-				/************************
-					기본 셋팅
-					1. type 설정 (어딨지)
-					2. 시작 날짜 설정 (date 이용)
-				**************************/
-				var form = document.addScheduleForm;
-				console.log('1: '+originalEventObject.title);
-			//	form.scheduleType.value = copiedEventObject.className;
-			//	$("#mScheduleType").val();
-				
-				console.log($("#scheduleType").val());
-		
-				// 등록 함수
-				modal.find('form').on('submit', function(ev){
-					// We don't want this to act as a link so cancel the link action
-					ev.preventDefault();
-					
-					// 캘린더에 쓰일 Data
-					copiedEventObject.title = $(this).find("input[id=comments]").val();
-			//		copiedEventObject.className = form.scheduleType.value;
-					
-					// 날짜 format							
-					// version 1.
-					// var fullDate = $.fullCalendar.formatDate(date,'yyyy-MM-dd')
-					//var fullDate = $.fullCalendar.moment(date).format();
-					
-					var start = getDate(event.start);
-					var end = getDate(event.end)!=''? getDate(event.end):start;
-					$('#startDate').text(start);
-					$('#endDate').text(end);
-					
-					console.log(copiedEventObject);
-					console.log(fullDate);
-					
-					// 서버에 보낼 Data
-					var scheduleData = {
-		        			employeeNo: 1, //'${session.emp.no}',
-		        			comments: form.comments.value,
-		        			customerNo: 1,
-		        			type: copiedEventObject.className,
-		        			location: 'abc', //form.location.value,
-		        			importance: 1,  // important
-		        			repetition: '한번', //form.repetition.value,
-		        			startDate: $('#startDate').text(),
-		        			endDate: $('#endDate').text()
-		        		};
-					
-					console.log(scheduleData);
-					
-					 $.ajax({
-		        		url: "${pageContext.request.contextPath}/schedule",
-		        		type: "post",
-		        		data: scheduleData, 
-		        		success: function(data){
-		        			alert('추가');
-		        			modal.modal("hide");
-							modal.remove();
-							// render the event on the calendar
-							// the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
-							$('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
-							modal.find('form').find('button[type=submit]').unbind('click');
-		        		},
-		        		error: function(){
-		        			alert('error');
-		        		}
-		        	});
-					
-					 $(".modal-body input").val("");
-				}); 
-					
-				$('#modalCancle').click(function(){
-					modal.remove();
-				});
-				
-				modal.modal('show').on('hidden', function(){
-					modal.remove();
-				});
-	 	}
 		 
 	</script>
-	<jsp:include page="/include/addScheduleModal.jsp"/>
+	<%@ include file="/include/addScheduleModal.jsp"%>
+	
 </body>
 </html>
