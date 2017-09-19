@@ -16,7 +16,6 @@ public class LoginAspect {
 
 	@Around("execution(* kr.co.bit.hanacrm..*Controller.*(..))")
 	public Object trace(ProceedingJoinPoint joinPoint) throws Throwable {
-		System.out.println("로그인");
 		HttpServletRequest request = null;
 //		for (Object o : joinPoint.getArgs()) {
 //			if (o instanceof HttpServletRequest) {

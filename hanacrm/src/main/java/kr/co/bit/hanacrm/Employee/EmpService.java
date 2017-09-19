@@ -16,4 +16,14 @@ public class EmpService {
 		// TODO Auto-generated method stub
 		return empDAO.login(emp);
 	}
+
+	public EmpVO profile(EmpVO emp) {
+		// TODO Auto-generated method stub
+		return empDAO.selectByNo(emp);
+	}
+
+	public int update(EmpVO emp) {
+		// TODO Auto-generated method stub
+		return empDAO.update(emp);
+	}
 }

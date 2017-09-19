@@ -1,14 +1,20 @@
 package kr.co.bit.hanacrm.Employee;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import kr.co.bit.hanacrm.Region.RegionService;
+import kr.co.bit.hanacrm.Region.RegionVO;
 
 @Controller
 @RequestMapping("/emp")
@@ -16,6 +22,8 @@ public class EmpController {
 	
 	@Autowired
 	private EmpService empService;
+	@Autowired
+	private RegionService regionService;
 	
 	//회원가입 
 	@RequestMapping(value="/join",method=RequestMethod.POST)
@@ -45,11 +53,31 @@ public class EmpController {
 
 	//회원정보 
 	@RequestMapping(value="/profile", method=RequestMethod.GET)
-	public String detail(HttpSession session){
-		System.out.println("detail");
-		return "redirect:/";
+	public String profile(HttpSession session, Model model){
+		EmpVO emp = (EmpVO) session.getAttribute("emp");
+		//List<RegionVO> regionList = new ArrayList<>();
+		System.out.println(emp);
+		emp = empService.profile(emp);
+		//regionList = regionService.list();
+		model.addAttribute("empProfile", emp);
+		//model.addAttribute("regionList", regionList);
+		
+		return "employee/profile";
 	}
 	//회원정보수정 
-
+	@RequestMapping(value="/profile", method=RequestMethod.POST)
+	public String update(HttpSession session, Model model, EmpVO emp){
+		System.out.println(emp);
+		if(empService.update(emp)==1){
+			session.removeAttribute("emp");
+			session.setAttribute("emp", emp);
+			//return "redirect:/main";
+		}
+		//regionList = regionService.list();
+		//model.addAttribute("empProfile", emp);
+		//model.addAttribute("regionList", regionList);
+		
+		return "redirect:/main";
+	}
 	
 }

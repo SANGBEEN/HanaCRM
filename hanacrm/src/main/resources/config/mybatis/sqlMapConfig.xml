@@ -17,6 +17,8 @@
         <typeAlias type="kr.co.bit.hanacrm.Product.SavingsVO" alias="savings"/>
         
         <typeAlias type="kr.co.bit.hanacrm.Memo.MemoVO" alias="memo"/>
+        <typeAlias type="kr.co.bit.hanacrm.Region.RegionVO" alias="region"/>
+        
         <!-- <typeAlias type="kr.co.bit.hanacrm.Report.ReportVO" alias="report"/> -->
     </typeAliases>
 </configuration>
