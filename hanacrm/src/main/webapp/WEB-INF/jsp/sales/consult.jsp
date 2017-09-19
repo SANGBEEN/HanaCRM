@@ -403,12 +403,12 @@
 				<tr>
 					<td width="50%">
 					<div class="schedule-list">
-						<c:forEach items="scheduleList" var="scheduleVO">
+						<%-- <c:forEach items="scheduleList" var="scheduleVO">
 							<table class="table table-striped table-bordered bootstrap-datatable datatable">
 								<tr>
 									<td>
 										<div class="controls">											
-									  		<input type="radio" name="optionsRadios" value="<%-- ${ scheduleVO.no } --%>">
+									  		<input type="radio" name="optionsRadios" value="${ scheduleVO.no }">
 									  	</div>
 									</td>
 									<td>
@@ -423,7 +423,7 @@
 									</td>
 								</tr>
 							</table>
-						</c:forEach>
+						</c:forEach> --%>
 					</div>
 					</td>
 					<td>
@@ -602,47 +602,32 @@
 	        				"date"	:	date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate() 
 	        		}, 
 	        		success: function(data){
-	        			console.dir(data);
-	        			var jsonData = JSON.parse(data);	        			
-	        	        console.log("jsonData: " + jsonData);
+	        			console.dir("data: " + data);
+	        			//var jsonData = JSON.parse(data);	        			
+	        	        //console.log("jsonData: " + jsonData);
 	        	        
 	        	        html = '<table class="table table-striped table-bordered bootstrap-datatable datatable">';
 	        	        html += '<tr><th>번호</th><th>고객 이름</th><th>일정</th></tr>';
 	        	        
-	        	        for (var i = 0; i < jsonData.length; i++) {
+	        	       /*  for (var i = 0; i < jsonData.length; i++) {
 	        	           // console.log("124");
 	        	            html += '<tr><td><input type="radio" name="optionsRadios" value="' + jsonData[i].no + '"></td>' 
 	        	            		+ '<td><span class="input-xlarge uneditable-input">' + jsonData[i].customer.name + '</span></td>' 
 	        	            		+ '<td><span class="input-xlarge uneditable-input">' + jsonData[i].comments + '</span></td></tr>';
-	        	        }
+	        	        } */
+	        	        
+	        	        for (var i = 0; i < data.length; i++) {
+		        	           // console.log("124");
+		        	            html += '<tr><td><input type="radio" name="optionsRadios" value="' + data[i].no + '"></td>' 
+		        	            		+ '<td><span class="input-xlarge uneditable-input">' + data[i].customer.name + '</span></td>' 
+		        	            		+ '<td><span class="input-xlarge uneditable-input">' + data[i].comments + '</span></td></tr>';
+		        	        }
 	        	        
 	        	        html += '</table>';
 	        	 
 	        	        document.querySelector('.schedule-list').innerHTML = html;
-	        	        console.log(html);
-	        	        
-	        	        <%-- <c:forEach items="scheduleList" var="scheduleVO">
-							<table class="table table-striped table-bordered bootstrap-datatable datatable">
-								<tr>
-									<td>
-										<div class="controls">											
-									  		<input type="radio" name="optionsRadios" value="${ scheduleVO.no }">
-									  	</div>
-									</td>
-									<td>
-										<div class="controls">
-										  	<span class="input-xlarge uneditable-input">${ scheduleVO }</span>
-										</div>
-									</td>
-									<td>
-										<div class="controls">
-										  	<span class="input-xlarge uneditable-input">${ scheduleVO }</span>
-										</div>
-									</td>
-								</tr>
-							</table>
-						</c:forEach> --%>
-	        		},
+	        	        console.log("html: " + html);
+	        	    },
 	        		error: function(e){
 	      				console.log(e);
 	        			alert('error');
