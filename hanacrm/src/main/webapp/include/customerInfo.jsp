@@ -22,7 +22,6 @@
 					</tr>
 				</thead>
 				<tbody id="table-data" class="customerBody">
-				
 				</tbody>
 			</table>
 		</div>

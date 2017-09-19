@@ -19,12 +19,22 @@ public class ScheduleService {
 
 	// 일정 전체 리스트
 	public List<ScheduleVO> selectListAll(int employeeNo) {
-		return scheduleDAO.selectListAll(employeeNo);
+		List<ScheduleVO> list = scheduleDAO.selectListAll(employeeNo);
+		for(int i=0; i<list.size(); i++) {
+			ScheduleVO s = list.get(i);
+			s.setCustomer(cusDAO.detail(s.getCustomerNo()));
+		}
+		return list;
 	}
 	
 	// n월 일정
 	public List<ScheduleVO> selectList(ScheduleVO schedule) {
-		return scheduleDAO.selectList(schedule);
+		List<ScheduleVO> list = scheduleDAO.selectList(schedule);
+		for(int i=0; i<list.size(); i++) {
+			ScheduleVO s = list.get(i);
+			s.setCustomer(cusDAO.detail(s.getCustomerNo()));
+		}
+		return list;
 	}
 	
 	// 일정 추가

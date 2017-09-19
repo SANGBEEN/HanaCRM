@@ -3,12 +3,12 @@
 <div id="addModal" class="modal fade">
   <div class="modal-dialog">
    <div class="modal-content">
-	   <form id="addScheduleForm" class="no-margin">
+	  <!--  <form id="addScheduleForm" class="no-margin"> -->
 	 <div id="temp2" class="modal-body">
 	   <button type="button" class="close" data-dismiss="modal" style="margin-top:-10px;">&times;</button>
 		  <label>Change event name &nbsp;</label>
-			<jsp:include page="/include/customerListModal.jsp"/>
-			<jsp:include page="/include/addScheduleModalContent.jsp" />
+			<jsp:include page="/include/customerInfo.jsp"/>
+			<jsp:include page="/include/scheduleInfo.jsp" />
 	 </div>
 	 <div class="modal-footer">
 		 <button type="submit" class="btn btn-sm btn-success" ><i class="ace-icon fa fa-check"></i> Save</button>
@@ -16,7 +16,7 @@
 		<button type="button" id="modalCancle" class="btn btn-sm" data-dismiss="modal"><i class="ace-icon fa fa-times"></i> Cancel</button>
 	 </div>
 	 
-	   </form>
+	  <!--  </form> -->
   </div>
  </div>
 </div>

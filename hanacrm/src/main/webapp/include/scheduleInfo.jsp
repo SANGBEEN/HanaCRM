@@ -30,29 +30,16 @@
 			  
 			  <div class="control-group">
 				<label class="control-label">시작일자</label>
-				<div class="controls">
-				  <span id="startDate" class="uneditable-input"></span>
-					<select id="startTime" for="selectError3">
-						<c:forEach begin="0" end="23" varStatus="status">
-							<option value="${status.index}:00">${status.index}:00</option>
-							<option value="${status.index}:30">${status.index}:30</option>
-						</c:forEach>
-					</select>
-				</div>
-			  </div>
-			  
-			  <div class="control-group">
 				<label class="control-label">종료일자</label>
-				<div class="controls">
-				  <span id="endDate" class="focusedInput"> </span>
-				  <select id="endTime" for="selectError3">
-						<c:forEach begin="0" end="23" varStatus="status">
-							<option value="${status.index}:00">${status.index}:00</option>
-							<option value="${status.index}:30">${status.index}:30</option>
-						</c:forEach>
-					</select>
-				</div>
+
+			<div class="controls">
+				<span class="col-sm-6 col-md-4" id="start-date-mtr-datepicker">
+				</span>
+			  
+				<span class="col-sm-6 col-md-4" id="end-date-mtr-datepicker">
+				</span>
 			  </div>
+			</div>
 			  
 			  <div class="control-group">
 				<label class="control-label" for="focusedInput">location</label>
@@ -197,10 +184,6 @@
 				  </select>
 				</div>
 			  </div>
-			  <!-- <div class="form-actions">
-				<button type="submit" class="btn btn-primary">Save</button>
-				<button class="btn">Cancel</button>
-			  </div> -->
 			</fieldset>
 		  </div>
 	
