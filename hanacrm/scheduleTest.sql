@@ -27,3 +27,7 @@ order by no
 
 update schedule set end_date = to_date('2017-09-20 10:00', 'YYYY-MM-DD hh:mi')
 where no=201
+
+select *
+from schedule
+where to_char(sysdate, 'yyyy-mm-dd') between to_char(start_date, 'yyyy-mm-dd') and  to_char(end_date, 'yyyy-mm-dd')

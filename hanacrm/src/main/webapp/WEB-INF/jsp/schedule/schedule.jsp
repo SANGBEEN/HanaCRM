@@ -496,7 +496,10 @@
 					},
 					
 					eventClick: function(calEvent, jsEvent, view) {
-						
+					
+						/******************
+							일정 상세보기
+						*******************/
 					//	alert(calEvent.title+"\n"+calEvent.start+"\n"+calEvent.end+"\n"+calEvent.className);
 						
 						addModal.remove();
@@ -515,13 +518,11 @@
 						//form.repetition.value = "매주";
 						
 						$('#scheduleType').val(calEvent.className);
+						var schedule 
 						var start = getDate(calEvent.start);
 						var end = getDate(calEvent.end)!=''? getDate(calEvent.end):start;
 
-						// 데이트피커
-						setDatepickerConfig(start, end);
-						
-						console.log(moment(calEvent.start).format('YYYY-MM-DD HH:mm'));
+						console.log(start+'~'+end);
 						
 						$.ajax({
 							url: "${pageContext.request.contextPath}/schedule/"+calEvent.id,
@@ -533,6 +534,7 @@
 								$('#comments').val(schedule.comments);
 								$('#repetition').val(schedule.repetition);
 								
+								// 데이트피커
 								var detailStartDatepicker = new MtrDatepicker(setDatepickerConfig('detail-start', start));
 								var detailEndDatepicker = new MtrDatepicker(setDatepickerConfig('detail-end', end));
 								
@@ -544,6 +546,59 @@
 							}
 						});
 						
+						
+						$('#modalSave').click(function(){
+							// 캘린더에 쓰일 Data (변경사항 저장 - type, end 날짜)						
+							 var startData = getDate(moment(startDatepicker.toString())); 
+							 var endData = getDate(moment(endDatepicker.toString()));
+							 var cNo = $("input[name='customerNo']:checked").val();
+							 var name = document.getElementById(cNo).innerText;
+							 console.log('datepicker start output : '+startData);
+							 console.log('datepicker end output : '+endData);
+							
+							copiedEventObject.title = name;
+							copiedEventObject.start = startData;
+							copiedEventObject.end = endData;
+	
+							console.log(copiedEventObject);
+		        			console.log(name);
+							
+							// 서버에 보낼 Data
+							var scheduleData = {
+				        			comments: $('#comments').val(),
+				        			customerNo: cNo,
+				        			type: $('#scheduleType').val(),
+				        			location: $('#location').val(),
+				        			importance: 1,  // important 설정
+				        			repetition: $('#repetition').val(),
+				        			startDate: startData,
+				        			endDate: endData
+				        		};
+							
+							console.log(scheduleData);
+							
+							  $.ajax({
+				        		url: "${pageContext.request.contextPath}/schedule/"+calEvent.id,
+				        		type: "put",
+				        		contentType: "application/json; charset=uft-8",
+				        		dataType: "json",
+				        		data: JSON.stringify(scheduleData), 
+				        		success: function(scheduleNo){
+				        			alert('추가'+scheduleNo);
+				        			addModal.modal("hide");
+									addModal.remove();
+									// 추가할 이벤트에 scheduleNo 저장
+									copiedEventObject.id = scheduleNo;
+									// render the event on the calendar
+									// the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
+									$('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
+				        		},
+				        		error: function(){
+				        			alert('error');
+				        		}
+				        	}); 
+							
+						});
 						
 						$('#modalDelete').click(function(){
 							

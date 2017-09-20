@@ -84,6 +84,6 @@
 	<div class="modal-footer">
 		<a href="#" class="btn" id="modalCancle" data-dismiss="modal">Close</a>
 		<a href="#" class="btn btn-danger" id="modalDelete" data-dismiss="modal">Delete Event</a>
-		<button type="submit" class="btn btn-primary" id="modalSave" data-dismiss="modal">Save changes</button>
+		<a href="#" id="modalSave" class="btn btn-primary" id="modalSave" data-dismiss="modal">Save changes</a>
 	</div>
 </div>

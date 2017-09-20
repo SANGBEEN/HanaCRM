@@ -32,9 +32,20 @@
 	<select id="selectListByType" parameterType="schedule" resultMap="scheduleMap">
 		select *
 		from schedule
-		where employee_no = #{employeeNo}
-			and to_date(#{date},'yyyy-mm-dd') between to_char(start_date, 'yyyy-mm-dd') and to_char(end_date, 'yyyy-mm-dd')
-			and type = #{type}
+		<where>
+			employee_no = #{employeeNo}
+			<choose >
+				<when test="#{date} != null">
+					and #{date} between to_char(start_date, 'yyyy-mm-dd') and to_char(end_date, 'yyyy-mm-dd')
+				</when>
+				<otherwise>
+					and to_char(sysdate, 'yyyy-mm-dd') between to_char(start_date, 'yyyy-mm-dd') and  to_char(end_date, 'yyyy-mm-dd')
+				</otherwise>
+			</choose>
+			<if test="#{type} != null">
+				and type = #{type}
+			</if> 
+		</where>
 	</select>
 	
 	<!-- 일정 상세 정보 -->
