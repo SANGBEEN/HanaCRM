@@ -1,7 +1,10 @@
 package kr.co.bit.hanacrm.Main;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.http.HttpSession;
 
@@ -46,9 +49,17 @@ public class MainController {
 	public String main(HttpSession session, Model model){
 		EmpVO emp = (EmpVO) session.getAttribute("emp");
 		List<ScheduleVO> scheduleList = new ArrayList<>();
-		
-		scheduleList = scheduleService.selectListAll(emp.getNo());
-		
+		ScheduleVO schedule = new ScheduleVO();
+		SimpleDateFormat formatter = new SimpleDateFormat ( "yyyy/MM/dd", Locale.KOREA );
+		Date currentTime = new Date();
+		String dTime = formatter.format(currentTime);
+		System.out.println(dTime);
+		schedule.setType(dTime);
+		schedule.setEmployeeNo(emp.getNo());
+		scheduleList = scheduleService.selectListByType(schedule);
+		for(ScheduleVO s : scheduleList)
+			System.out.println(s);
+		model.addAttribute("scheduleList",scheduleList);
 		return "/main/main";
 	}
 	//로그아웃 
