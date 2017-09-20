@@ -23,24 +23,24 @@ public class LoginAspect {
 //			}
 //		}
         request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
-
+        System.out.println("=============================================");
+        System.out.println("로그인 인터셉터");
+        System.out.println("=============================================");
 		// 로그인을 체크해야 하는 페이지
 		if (request != null) {
 			String strUrl = request.getRequestURL().toString();
+			// 세션체킹
+			HttpSession session = request.getSession();
+			EmpVO emp = (EmpVO) session.getAttribute("emp");
 			// 로그인 페이지 제외
 			if (!strUrl.endsWith("/index.jsp") && !strUrl.endsWith("/login")) {
-				// 세션체킹
-				HttpSession session = request.getSession();
-				EmpVO emp = (EmpVO) session.getAttribute("emp");
-				
 				if (emp == null || "".equals(emp.getId())) {
 					return "redirect:/";
 				}
-			}else{
-				System.out.println("로그인페이지접속");
+			}else if(emp!=null){
+				return "redirect:/main";
 			}
-		} // request가 null이 아니라면
-			// controller에서 httprequest가 없거나 /login페이지라면
+		} 
 		Object result = joinPoint.proceed();
 		return result;
 	}

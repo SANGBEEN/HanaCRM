@@ -36,7 +36,7 @@ public class CusDAO {
 
 	public List<CusVO> selectByEmpNo(int no) {
 		// TODO Auto-generated method stub
-		return sql.selectOne("cus.CusDAO.selectByEmpNo", no);
+		return sql.selectList("cus.CusDAO.selectByEmpNo", no);
 	}
 	
 }
