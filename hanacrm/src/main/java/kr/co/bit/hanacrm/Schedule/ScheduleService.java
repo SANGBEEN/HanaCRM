@@ -40,9 +40,15 @@ public class ScheduleService {
 	// 일정 추가
 	public int insert(ScheduleVO schedule) {
 		int scheduleNo = scheduleDAO.selectSeq();
+	//	ScheduleVO result = new ScheduleVO();
 		
 		if(scheduleNo>0) {
 			schedule.setNo(scheduleNo);
+			/*if(scheduleDAO.insert(schedule)==1) {
+				result.setNo(scheduleNo);
+				CusVO customer = cusDAO.detail(schedule.getCustomerNo());
+				result.setCustomer(customer);
+			}*/
 			scheduleDAO.insert(schedule);
 			System.out.println(schedule);
 		}else {

@@ -77,6 +77,7 @@ public class ScheduleController {
 		EmpVO emp = (EmpVO) session.getAttribute("emp");
 		schedule.setEmployeeNo(1);  //emp.getNo());
 		System.out.println("일정 추가");
+		System.out.println(schedule);
 		return scheduleService.insert(schedule);
 	}
 	

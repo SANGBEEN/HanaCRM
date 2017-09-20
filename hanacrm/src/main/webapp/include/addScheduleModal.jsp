@@ -1,19 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <div id="addModal" class="modal fade">
-  <div class="modal-dialog">
-   <div class="modal-content">
-	  <!--  <form id="addScheduleForm" class="no-margin"> -->
-	 <div id="temp2" class="modal-body">
-	   <button type="button" class="close" data-dismiss="modal" style="margin-top:-10px;">&times;</button>
+  <div class="modal-header">
+  	<button type="button" class="close" data-dismiss="modal">×</button>
+		Event Detail
+	</div>
+	 <div class="modal-body">
 		  <label>Change event name &nbsp;</label>
 			<jsp:include page="/include/customerInfo.jsp"/>
 			<jsp:include page="/include/scheduleInfo.jsp" />
 	 </div>
 	 <div class="modal-footer">
-		 <button type="submit" class="btn btn-sm btn-success" ><i class="ace-icon fa fa-check"></i> Save</button>
-		<!-- <button type="button" class="btn btn-sm btn-danger" data-action="delete" ><i class="ace-icon fa fa-trash-o"></i> Delete Event</button> -->
-		<button type="button" id="modalCancle" class="btn btn-sm" data-dismiss="modal"><i class="ace-icon fa fa-times"></i> Cancel</button>
+		 <button type="button" id="modalSave" class="btn btn-sm btn-success" data-dismiss="modal">Save</button>
+		<button type="button" id="modalCancle" class="btn btn-sm" data-dismiss="modal">Cancel</button>
 	 </div>
 	 
 	  <!--  </form> -->

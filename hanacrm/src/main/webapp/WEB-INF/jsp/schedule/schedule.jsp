@@ -228,8 +228,9 @@
 				 
 		 jQuery(function($) {
 				
-			 modal = $('#addModal');
-			 modal.remove();
+			addModal = $('#addModal');
+			detailModal = $('#detailModal');
+		//	 modal.remove();
 			 
 				/************************** initialize the external events
 				-----------------------------------------------------------------*/
@@ -260,12 +261,12 @@
 				var eventList = [];
 				var data = ${scheduleList};
 				for(var i=0; i<data.length; i++){
-				 	eventList.push({ title : data[i].comments,
+				 	eventList.push({ title : '('+data[i].customer.name+')',
 									start : moment(data[i].startDate).format('YYYY-MM-DD HH:mm'),
 									end:  moment(data[i].endDate).format('YYYY-MM-DD HH:mm'),
 									className: data[i].type,
 									id: data[i].no});
-				 	console.log(new Date(data[i].endDate));
+				 	console.log(new moment(data[i].endDate).format('YYYY-MM-DD HH:mm'));
 					
 				}
 				
@@ -292,7 +293,7 @@
 					},
 					
 					allDayDefault: false,
-					nextDayThreshold:"00:01",
+					nextDayThreshold:"00:00",
 					
 					events:
 						 eventList
@@ -327,7 +328,8 @@
 					***************************/
 
 						// 1. 등록 폼 모달 띄움
-						$('#addModal').modal();
+						detailModal.remove();
+						addModal.modal();
 						
 						// 2. 고객 정보 받아오기, 모달에 셋팅
 						$.ajax({
@@ -336,15 +338,16 @@
 			        		success: function(data){
 			        			html = "";
 			        			 JSON.parse(data).forEach(function(element) {
-			        			    html += "<tr><td>" + element.name + "</td><td>"
-			        			    		+ element.regDate + "</td><td>"
-			        			    		+ element.phone + "</td><td>"
-			        			    		+ element.grade + "</td></tr>";
+			        			    html += '<tr><td><input type="radio" name="customerNo" value="'+element.no+'"/></td><td id="'+element.no+'">'
+			        			    		+ element.name + '</td><td>'
+			        			    		+ element.phone + '</td><td>'
+			        			    		+ element.regDate + '</td><td>'
+			        			    		+ element.grade + '</td></tr>';
 			        			});
 			        			
 			        			console.log(html); 
 			        			
-			        			var te = $('#temp').html();
+			        			var te = $('#table-data').html(html);
 			        			console.dir(te);
 			        			
 			        			//te.querySelector('.customerBody').innerHTML += html;
@@ -369,7 +372,7 @@
 						copiedEventObject.end = date;
 						copiedEventObject.allDay = false;
 						copiedEventObject.className = originalEventObject.title;
-						copiedEventObject.title = originalEventObject.title+"(고객이름)";
+						copiedEventObject.title = "(고객이름)";
 					
 						console.log(copiedEventObject);
 						
@@ -379,75 +382,93 @@
 						**************************/
 						
 						console.log('1: '+copiedEventObject.className);
-											
+							
+		 				// 1) type 설정
 					//	form.scheduleType.value = copiedEventObject.className;
-					//	$("#scheduleType").val(originalEventObject.title);
+						$("#scheduleType").val(originalEventObject.title);
 					
+						// 2) 날짜 설정
 						var start = getDate(date);
 						var end = start;
-						$('#startDate').text(start);
-						$('#endDate').text(end);
+					/* 	$('#startDate').text(start);
+						$('#endDate').text(end); */
+						
+						// 데이트피커					
+						var startDatepicker = new MtrDatepicker(setDatepickerConfig('start', start));
+						var endDatepicker = new MtrDatepicker(setDatepickerConfig('end', end));
+						
+						startDatepicker.onChange('date', function(){
+							startDatepicket = new MtrDatepicker(setDatepickerConfig('start',startDatepicker.toString()));
+						});
 						
 						console.dir($("#scheduleType"));
 						console.log(start +"~"+end);
 				
 						
 						// 5. 등록 처리
-						modal.find('form').on('submit', function(ev){
+						$('#modalSave').click(function(ev){
 							// We don't want this to act as a link so cancel the link action
 							ev.preventDefault();
 							
 							// 캘린더에 쓰일 Data (변경사항 저장 - type, end 날짜)						
-							copiedEventObject.title = $('#scheduleType').val();
-							copiedEventObject.end = $('#endDate').text();
+							 var startData = getDate(moment(startDatepicker.toString())); 
+							 var endData = getDate(moment(endDatepicker.toString()));
+							 var cNo = $("input[name='customerNo']:checked").val();
+							 var name = document.getElementById(cNo).innerText;
+							 console.log('datepicker start output : '+startData);
+							 console.log('datepicker end output : '+endData);
+							
+							copiedEventObject.title = name;
+							copiedEventObject.start = startData;
+							copiedEventObject.end = endData;
 	
 							console.log(copiedEventObject);
+		        			console.log(name);
 							
 							// 서버에 보낼 Data
 							var scheduleData = {
 				        			/* employeeNo: 1, //'${session.emp.no}', */
 				        			comments: $('#comments').val(),
-				        			customerNo: 1,  ///////////// 고객 정보 가져오기
+				        			customerNo: cNo,
 				        			type: $('#scheduleType').val(),
 				        			location: $('#location').val(),
 				        			importance: 1,  // important 설정
 				        			repetition: $('#repetition').val(),
-				        			startDate: start, //$('#startDate').text(),
-				        			endDate: end //$('#endDate').text()
+				        			startDate: startData,
+				        			endDate: endData
 				        		};
 							
 							console.log(scheduleData);
 							
-							 $.ajax({
+							  $.ajax({
 				        		url: "${pageContext.request.contextPath}/schedule",
 				        		type: "post",
 				        		data: scheduleData, 
 				        		success: function(scheduleNo){
 				        			alert('추가'+scheduleNo);
-				        			modal.modal("hide");
-									modal.remove();
+				        			addModal.modal("hide");
+									addModal.remove();
 									// 추가할 이벤트에 scheduleNo 저장
 									copiedEventObject.id = scheduleNo;
 									// render the event on the calendar
 									// the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
 									$('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
-									modal.find('form').find('button[type=submit]').unbind('click');
 				        		},
 				        		error: function(){
 				        			alert('error');
 				        		}
-				        	});
+				        	}); 
 							 
 								
 								$('#modalCancle').click(function(){
-									modal.remove();
+									addModal.remove();
 								});
 								
-								$('#addModal').modal('show').on('hidden', function(){
-									modal.remove();
+								addModal.modal('show').on('hidden', function(){
+									addModal.remove();
 								});
 							
-							 $(".modal-body input").val("");
+						//	 $(".modal-body").val("");
 						}); 
 					},
 					
@@ -477,7 +498,8 @@
 						
 					//	alert(calEvent.title+"\n"+calEvent.start+"\n"+calEvent.end+"\n"+calEvent.className);
 						
-						$('#detailModal').modal();
+						addModal.remove();
+						detailModal.modal();
 						
 						/*
 						기본 셋팅
@@ -496,61 +518,7 @@
 						var end = getDate(calEvent.end)!=''? getDate(calEvent.end):start;
 
 						// 데이트피커
-						 var start_config = {
-							  target:     'start-date-mtr-datepicker',         // ID of HTML element
-							  timestamp:  start, // moment(calEvent.start).format('YYYY-MM-DD HH:mm'),    // Starting date
-							  future:     false,                // Only dates in the future,
-							  smartHours: true,                // Make a smart switch from AM to PM
-							  animations: true,                 // NOTE: thew version with disabled animations is not stable
-							
-							  months: {
-							    min: 0,
-							    max: 11,
-							    step: 1
-							  },
-							  minutes: {
-							    min: 0,
-							    max: 50,
-							    step: 10
-							  },
-							  years: {
-							    min: 2000,
-							    max: 2030,
-							    step: 1
-							  }
-						};
-						 
-						 var end_config = {
-								  target:     'end-date-mtr-datepicker',         // ID of HTML element
-								  timestamp:  end,    // Starting date
-								  future:     false,                // Only dates in the future,
-								  smartHours: true,                // Make a smart switch from AM to PM
-								  animations: true,                 // NOTE: thew version with disabled animations is not stable
-								
-								  months: {
-								    min: 0,
-								    max: 11,
-								    step: 1
-								  },
-								  minutes: {
-								    min: 0,
-								    max: 50,
-								    step: 10
-								  },
-								  years: {
-								    min: 2000,
-								    max: 2030,
-								    step: 1
-								  }
-							};
-						
-						var startDatepicker = new MtrDatepicker(start_config);
-						var endDatepicker = new MtrDatepicker(end_config);
-						
-						 var datepickerOutput = startDatepicker.toLocaleString();
-						 console.log(datepickerOutput);
-						
-						
+						setDatepickerConfig(start, end);
 						
 						console.log(moment(calEvent.start).format('YYYY-MM-DD HH:mm'));
 						
@@ -564,46 +532,44 @@
 								$('#comments').val(schedule.comments);
 								$('#repetition').val(schedule.repetition);
 								
-								 
+								var detailStartDatepicker = new MtrDatepicker(setDatepickerConfig('detail-start', start));
+								var detailEndDatepicker = new MtrDatepicker(setDatepickerConfig('detail-end', end));
+								
+								 var datepickerOutput = detailStartDatepicker.toLocaleString();
+								 console.log('datepicker output : '+detailEndDatepicker);
 							},
 							error: function(){
-
+								alert('error');
 							}
 						});
 						
-
-						//   원본 모달
-						//display a modal
-						/* var modal = 
-						'<div class="modal fade">\
-						  <div class="modal-dialog">\
-						   <div class="modal-content">\
-							 <div class="modal-body">\
-							   <button type="button" class="close" data-dismiss="modal" style="margin-top:-10px;">&times;</button>\
-							   <form class="no-margin">\
-								  <label>Change event name &nbsp;</label>\
-								  <input class="middle" autocomplete="off" type="text" value="' + calEvent.title + '" />\
-								 <button type="submit" class="btn btn-sm btn-success"><i class="ace-icon fa fa-check"></i> Save</button>\
-							   </form>\
-							 </div>\
-							 <div class="modal-footer">\
-								<button type="button" class="btn btn-sm btn-danger" data-action="delete"><i class="ace-icon fa fa-trash-o"></i> Delete Event</button>\
-								<button type="button" class="btn btn-sm" data-dismiss="modal"><i class="ace-icon fa fa-times"></i> Cancel</button>\
-							 </div>\
-						  </div>\
-						 </div>\
-						</div>'; */
 						
 						$('#modalDelete').click(function(){
-							calendar.fullCalendar('removeEvents' , function(ev){
-								return (ev._id == calEvent._id);
-							})
-							$('#detailModal').modal("hide");
-							$('#detailModal').remove();
+							
+							$.ajax({
+								url: '${pageContext.request.contextPath}/schedule/'+calEvent.id,
+								type: 'delete',
+								success: function(data){
+									if(data==1){										
+										calendar.fullCalendar('removeEvents' , function(ev){
+											return (ev._id == calEvent._id);
+										})
+										detailModal.modal("hide");
+										detailModal.remove();
+									}else {
+										console.log('디비에러');
+									}
+								},
+								error: function(e){
+									console.dir(e);
+									alert('error');
+								}
+							});
 						});
 						
 						$('#modalCancle').click(function(){
-							$('#detailModal').remove();
+							detailModal.modal("hide");
+							detailModal.remove();
 						});
 						
 						
@@ -615,17 +581,17 @@
 		 })
 		 	 
 		 
-		 // 날짜 변환
+		 // 날짜 변환 (moment -> moment/string)
 		 function getDate(date){
 			 
 			// console.log('getDate() first date is '+date);
 			 
 			 if(date!=null){
-				 date.stripTime();
+				// date.stripTime();
 				 date.stripZone();
 			//	 console.log('getDate() last date is '+date);
 				 console.log('getDate() last format date is '+$.fullCalendar.moment(date).format());
-				 return $.fullCalendar.moment(date).format();
+				 return $.fullCalendar.moment(date).format('YYYY-MM-DD HH:mm');  // 'YYYY-MM-DD HH:mm'
 			 } else { // null일 경우
 				 return '';
 			 }
@@ -748,6 +714,36 @@
 		        	revertFunc();	
 		        }
 	        }
+		 		
+		 		
+		 	function setDatepickerConfig(type, date){
+		 	// 데이트피커
+				 var config = {
+					  target:     type+'-date-mtr-datepicker',         // ID of HTML element
+					  timestamp:  date, // moment(calEvent.start).format('YYYY-MM-DD HH:mm'),    // Starting date
+					  future:     false,                // Only dates in the future,
+					  smartHours: true,                // Make a smart switch from AM to PM
+					  animations: true,                 // NOTE: thew version with disabled animations is not stable
+					
+					  months: {
+					    min: 0,
+					    max: 11,
+					    step: 1
+					  },
+					  minutes: {
+					    min: 0,
+					    max: 50,
+					    step: 10
+					  },
+					  years: {
+					    min: 2000,
+					    max: 2030,
+					    step: 1
+					  }
+				};
+				 
+				return config;
+		 	}
 		 
 	</script>
 	<%@ include file="/include/addScheduleModal.jsp"%>

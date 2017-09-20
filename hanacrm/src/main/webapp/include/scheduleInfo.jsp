@@ -92,6 +92,7 @@
 				  <span class="help-inline">Woohoo!</span>
 				</div>
 			  </div> -->
+			  
 			  <div class="control-group">
 				<label class="control-label" for="selectError3">반복</label>
 				<div class="controls">
@@ -104,6 +105,7 @@
 				  </select>
 				</div>
 			  </div>
+		<!-- 	  
 			  <div class="control-group">
 				<label class="control-label" for="selectError">Modern Select</label>
 				<div class="controls">
@@ -184,6 +186,7 @@
 				  </select>
 				</div>
 			  </div>
+			  -->
 			</fieldset>
 		  </div>
 	
