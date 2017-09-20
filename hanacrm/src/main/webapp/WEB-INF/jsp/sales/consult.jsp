@@ -372,7 +372,7 @@
 			<a href="#" class="btn btn-primary">Save changes</a>
 		</div>
 	</div>
-	
+
 	<!-- 추가 -->
 	<div class="modal hide fade" id="consultInsert">
 		<div class="modal-header">
@@ -381,13 +381,26 @@
 		</div>
 		<div class="modal-body">
 			<div class="control-group">
-				<label class="control-label" for="focusedInput">고객 이름</label>
+				<label class="control-label" for="focusedInput">상담 날짜</label>
+				<div class="controls" id="mtr-datepicker-hs">
+					<input class="input-xlarge focused" id="consultDate" type="text">
+					<a href="#" class="btn btn-warning date-select-hs" id="date-select-hs">선택</a>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="focusedInput">상담 일정</label>
+				<div class="controls">
+				  <input class="input-xlarge focused" id="consultSchedule" type="text" value="${ consultVO.title }">
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="focusedInput">상품 선택</label>
 				<div class="controls">
 				  <input class="input-xlarge focused" id="consultTitle" type="text" value="${ consultVO.title }">
 				</div>
 			</div>
 			<div class="control-group">
-			  <label class="control-label" for="date01">상담 날짜</label>
+			  <label class="control-label" for="date01">상담 내용</label>
 			  <div class="controls">
 				<input type="text" class="input-xlarge datepicker hasDatepicker" id="date01" value="02/16/12">
 			  </div>
@@ -395,60 +408,69 @@
 		</div>
 		<div class="modal-footer">
 			<a href="#" class="btn" data-dismiss="modal">취소</a>
-			<a href="#" class="btn btn-primary" data-dismiss="modal">확인</a>
-			<a href="#" class="btn btn-warning product-hs">상품</a>
+			<a href="#" class="btn btn-primary" data-dismiss="modal">확인</a>			
 		</div>
 	</div>
 	
-	<!-- 일정 및 상품 선택 -->
-	<div class="modal hide fade" id="consultCustomerProductSelect" role="dialog" style="width: 1000px;">
+	<!-- 일정  선택 -->
+	<div class="modal hide fade" id="consultCustomerSelect" role="dialog">
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">×</button>
-					<h3>일정 및 상품</h3>
+					<h3>일정 선택</h3>
 				</div>
-				<div class="modal-body">
-					<table class="table table-striped table-bordered bootstrap-datatable datatable">
-						<tr>
-							<td width="50%">
-							<div class="schedule-list">
-								<%-- <c:forEach items="scheduleList" var="scheduleVO">
-									<table class="table table-striped table-bordered bootstrap-datatable datatable">
-										<tr>
-											<td>
-												<div class="controls">											
-											  		<input type="radio" name="optionsRadios" value="${ scheduleVO.no }">
-											  	</div>
-											</td>
-											<td>
-												<div class="controls">
-												  	<span class="input-xlarge uneditable-input">${ scheduleVO }</span>
-												</div>
-											</td>
-											<td>
-												<div class="controls">
-												  	<span class="input-xlarge uneditable-input">${ scheduleVO }</span>
-												</div>
-											</td>
-										</tr>
-									</table>
-								</c:forEach> --%>
-							</div>
-							</td>
-							<td>
-							<div class="product-list">
-								<c:forEach items="productList" var="productVO">
-									
-								</c:forEach>
-							</div>
-							</td>
-						</tr>
-					</table>
+				<div class="modal-body">					
+					<div class="schedule-list">
+						<%-- <c:forEach items="scheduleList" var="scheduleVO">
+							<table class="table table-striped table-bordered bootstrap-datatable datatable">
+								<tr>
+									<td>
+										<div class="controls">											
+									  		<input type="radio" name="optionsRadios" value="${ scheduleVO.no }">
+									  	</div>
+									</td>
+									<td>
+										<div class="controls">
+										  	<span class="input-xlarge uneditable-input">${ scheduleVO }</span>
+										</div>
+									</td>
+									<td>
+										<div class="controls">
+										  	<span class="input-xlarge uneditable-input">${ scheduleVO }</span>
+										</div>
+									</td>
+								</tr>
+							</table>
+						</c:forEach> --%>
+					</div>							
 				</div>
 				<div class="modal-footer">
 					<a href="#" class="btn" data-dismiss="modal">취소</a>
-					<a href="#" class="btn btn-primary" data-dismiss="modal">확인</a>
+					<a href="#" class="btn btn-primary schedule-select-hs" id="schedule-select-hs" data-dismiss="modal">확인</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- 상품  선택 -->
+	<div class="modal hide fade" id="consultProductSelect" role="dialog">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">×</button>
+					<h3>상품 선택</h3>
+				</div>
+				<div class="modal-body">					
+					<div class="product-list">
+						<c:forEach items="productList" var="productVO">
+							
+						</c:forEach>
+					</div>			
+				</div>
+				<div class="modal-footer">
+					<a href="#" class="btn" data-dismiss="modal">취소</a>
+					<a href="#" class="btn btn-primary product-select-hs" id="product-select-hs" data-dismiss="modal">확인</a>
 				</div>
 			</div>
 		</div>
@@ -554,6 +576,7 @@
 
 		<script src="${pageContext.request.contextPath}/js/custom.js"></script>
 		
+		
 		<script>	
 		
 			/* 상세 보기 */
@@ -585,25 +608,36 @@
 			/* 추가 */
 			$('.consult-insert-hs').click(function(e){
 				e.preventDefault();
-				e.stopPropagation();
-				/* $(this).parent().next('.row-minimize-hs').empty();
-				$(this).parent().next('.row-detail-hs').empty(); */
+				e.stopPropagation();	
+				
+				var date = new Date();
+				var year = date.getFullYear();
+				var month = (date.getMonth() + 1).toString();
+				month = month.length == 1 ? "0" + month : month;
+				var date1 = date.getDate();
+				date1 = date1.length == 1 ? "0" + date1 : date1;
+				
+				$("#consultDate").val(month + "/" + date1 + "/" + year);
+				
+				$("#consultDate").datepicker();
+				
 				$("#consultInsert").modal();
 				console.log("추가");
-			});
+			});			
 			
-			/* 상품 선택 */
-			$('.product-hs').click(function(e){
+			/* 일정 선택 */
+			$('#date-select-hs').click(function(e){
 				e.preventDefault();
 				e.stopPropagation();
 				/* $(this).parent().next('.row-minimize-hs').empty();
 				$(this).parent().next('.row-detail-hs').empty(); */
 				
-				var date = new Date();
-				var year = date.getFullYear();
-				var month = date.getMonth();
-				var date1 = date.getDate();
+				var inputDate = $("#consultDate").val().substr(6, 4) + "-" 
+								+ $("#consultDate").val().substr(0, 2) + "-" 
+								+ $("#consultDate").val().substr(3, 2);
 				
+				console.log(inputDate);
+
 				$.ajax({
 	        		url: "${pageContext.request.contextPath}/schedule/listForConsult",
 	        		type: "get",
@@ -611,7 +645,7 @@
 	        		dataType: "json",
 	        		data: { 
 	        				"type"	:	"Meeting", 
-	        				"date"	:	date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate() 
+	        				"date"	:	inputDate
 	        		}, 
 	        		success: function(data){
 	        			console.dir("data: " + data);
@@ -619,7 +653,7 @@
 	        	        //console.log("jsonData: " + jsonData);
 	        	        
 	        	        html = '<table class="table table-striped table-bordered bootstrap-datatable datatable">';
-	        	        html += '<tr><th>번호</th><th>고객 이름</th><th>일정</th></tr>';
+	        	        html += '<tr><th>번호</th><th>고객 이름</th><th>장소</th><th>일정</th></tr>';
 	        	        
 	        	       /*  for (var i = 0; i < jsonData.length; i++) {
 	        	           // console.log("124");
@@ -632,6 +666,7 @@
 		        	           // console.log("124");
 		        	            html += '<tr><td><input type="radio" name="optionsRadios" value="' + data[i].no + '"></td>' 
 		        	            		+ '<td><span class="input-xlarge uneditable-input">' + data[i].customer.name + '</span></td>' 
+		        	            		+ '<td><span class="input-xlarge uneditable-input">' + data[i].location + '</span></td>' 
 		        	            		+ '<td><span class="input-xlarge uneditable-input">' + data[i].comments + '</span></td></tr>';
 		        	        }
 	        	        
@@ -646,11 +681,20 @@
 	        		}
 	        	});
 				
-				$("#consultCustomerProductSelect").modal();
-				console.log("상품");
+				$("#consultCustomerSelect").modal();
+				console.log("일정 선택");
 			});
 			
-			
+			/* 일정 선택 */
+			$('#schedule-select-hs').click(function(e){
+				e.preventDefault();
+				e.stopPropagation();
+				
+				var selectedScheduleNo = $('input[name="optionsRadios"]:checked').val();
+				
+				$("#consultProductSelect").modal();
+				console.log("상품 선택");
+			});
 			
 		</script>
 		
