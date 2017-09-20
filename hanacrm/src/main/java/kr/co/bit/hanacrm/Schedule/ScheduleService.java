@@ -75,8 +75,7 @@ public class ScheduleService {
 
 		// cusDAO 에서 고객 정보 받아오기
 		CusVO customer = new CusVO();
-		schedule.getCustomerNo();
-		
+		customer = cusDAO.detail(schedule.getCustomerNo());
 		schedule.setCustomer(customer);
 		return schedule;
 	}

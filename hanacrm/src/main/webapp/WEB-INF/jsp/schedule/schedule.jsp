@@ -83,6 +83,14 @@
 			border-color : #EB3C00 !important;
 			color: white
 		}
+		
+		.mtr-datepicker{
+		    width: 200px !important;
+		    display: inline-block !important;
+		    margin: 10px 20px !important;
+		}
+		
+
 	</style>
 </head>
 <body>
@@ -517,7 +525,7 @@
 						//form.repetition.value = "매주";
 						
 						$('#scheduleType').val(calEvent.className);
-						var schedule 
+						var s;
 						var start = getDate(calEvent.start);
 						var end = getDate(calEvent.end)!=''? getDate(calEvent.end):start;
 
@@ -528,16 +536,18 @@
 							type: "get",
 							success: function(data){
 								var schedule = JSON.parse(data);
+								s = schedule;
 								console.dir(schedule);
 								$('#location').val(schedule.location);
 								$('#comments').val(schedule.comments);
 								$('#repetition').val(schedule.repetition);
+								$('#customerName').text(schedule.customer.name);
 								
 								// 데이트피커
 								var detailStartDatepicker = new MtrDatepicker(setDatepickerConfig('detail-start', start));
 								var detailEndDatepicker = new MtrDatepicker(setDatepickerConfig('detail-end', end));
 								
-								 var datepickerOutput = detailStartDatepicker.toLocaleString();
+								 var datepickerOutput = detailStartDatepicker.toString();
 								 console.log('datepicker output : '+detailEndDatepicker);
 							},
 							error: function(){
@@ -548,24 +558,18 @@
 						
 						$('#modalSave').click(function(){
 							// 캘린더에 쓰일 Data (변경사항 저장 - type, end 날짜)						
-							 var startData = getDate(moment(startDatepicker.toString())); 
-							 var endData = getDate(moment(endDatepicker.toString()));
-							 var cNo = $("input[name='customerNo']:checked").val();
-							 var name = document.getElementById(cNo).innerText;
+							 var startData = getDate(moment(detailStartDatepicker.toString())); 
+							 var endData = getDate(moment(detailEndDatepicker.toString()));
 							 console.log('datepicker start output : '+startData);
 							 console.log('datepicker end output : '+endData);
-							
-							copiedEventObject.title = name;
-							copiedEventObject.start = startData;
-							copiedEventObject.end = endData;
 	
-							console.log(copiedEventObject);
+							console.log(calEvent);
 		        			console.log(name);
 							
 							// 서버에 보낼 Data
 							var scheduleData = {
 				        			comments: $('#comments').val(),
-				        			customerNo: cNo,
+				        			customerNo: s.customer.no,
 				        			type: $('#scheduleType').val(),
 				        			location: $('#location').val(),
 				        			importance: 1,  // important 설정
@@ -582,15 +586,15 @@
 				        		contentType: "application/json; charset=uft-8",
 				        		dataType: "json",
 				        		data: JSON.stringify(scheduleData), 
-				        		success: function(scheduleNo){
-				        			alert('추가'+scheduleNo);
-				        			addModal.modal("hide");
-									addModal.remove();
-									// 추가할 이벤트에 scheduleNo 저장
-									copiedEventObject.id = scheduleNo;
-									// render the event on the calendar
-									// the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
-									$('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
+				        		success: function(data){
+				        			alert('수정'+data);
+				        			detailModal.modal("hide");
+				        			detailModal.remove();
+									
+				        			// 달력 객체 정보 수정
+				        			calEvent.className = scheduleData.type;
+									calEvent.start = startData;
+									calEvent.end = endData;
 				        		},
 				        		error: function(){
 				        			alert('error');
