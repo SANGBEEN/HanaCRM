@@ -27,13 +27,13 @@ public class ScheduleVO {
 	private String comments;
 
 	// YYMMDDHH24MI
-	private Date startDate;
+	private String startDate;
 
 	// YYMMDDHH24MI
-	private Date endDate;
+	private String endDate;
 
 	// YYMMDD
-	private Date regDate;
+	private String regDate;
 
 	// 매우 중요 2
 	private Integer importance;
@@ -52,7 +52,7 @@ public class ScheduleVO {
 	}
 	
 	public ScheduleVO(Integer no, Integer employeeNo, Integer customerNo, String location, String type,
-			String comments, Date startDate, Date endDate, Date regDate, Integer importance, String repetition) {
+			String comments, String startDate, String endDate, String regDate, Integer importance, String repetition) {
 		super();
 		this.no = no;
 		this.employeeNo = employeeNo;
@@ -115,27 +115,27 @@ public class ScheduleVO {
 		this.comments = comments;
 	}
 
-	public Date getStartDate() {
+	public String getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(Date startDate) {
+	public void setStartDate(String startDate) {
 		this.startDate = startDate;
 	}
 
-	public Date getEndDate() {
+	public String getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(Date endDate) {
+	public void setEndDate(String endDate) {
 		this.endDate = endDate;
 	}
 
-	public Date getRegDate() {
+	public String getRegDate() {
 		return regDate;
 	}
 
-	public void setRegDate(Date regDate) {
+	public void setRegDate(String regDate) {
 		this.regDate = regDate;
 	}
 

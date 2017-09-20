@@ -48,4 +48,8 @@ public class ScheduleDAO {
 		return sqlSessionTemplate.selectList("schedule.ScheduleDAO.selectListByType",schedule);
 	}
 
+	// 추가할 스케쥴 번호 받아오기
+	public int selectSeq(){
+		return sqlSessionTemplate.selectOne("schedule.ScheduleDAO.selectSeq");
+	}
 }
