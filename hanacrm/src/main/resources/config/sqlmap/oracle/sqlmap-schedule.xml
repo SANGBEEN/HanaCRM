@@ -36,7 +36,7 @@
 			employee_no = #{employeeNo}
 			<choose >
 				<when test="#{date} != null">
-					and #{date} between to_char(start_date, 'yyyy-mm-dd hh24:mi') and to_char(end_date, 'yyyy-mm-dd hh24:mi')
+					and #{date} between to_char(start_date, 'yyyy-mm-dd') and to_char(end_date, 'yyyy-mm-dd')
 				</when>
 				<otherwise>
 					and to_char(sysdate, 'yyyy-mm-dd') between to_char(start_date, 'yyyy-mm-dd') and  to_char(end_date, 'yyyy-mm-dd')
