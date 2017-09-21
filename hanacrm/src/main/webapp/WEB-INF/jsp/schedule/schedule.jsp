@@ -393,11 +393,11 @@
 						var end = start;
 					/* 	$('#startDate').text(start);
 						$('#endDate').text(end); */
-						
+						console.log('start:'+start);
+						console.log('end:'+start);
 						// 데이트피커					
 						var startDatepicker = new MtrDatepicker(setDatepickerConfig('start', start));
 						var endDatepicker = new MtrDatepicker(setDatepickerConfig('end', end));
-						
 						startDatepicker.onChange('date', function(){
 							startDatepicket = new MtrDatepicker(setDatepickerConfig('start',startDatepicker.toString()));
 						});

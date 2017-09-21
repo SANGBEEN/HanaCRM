@@ -84,6 +84,7 @@ public class ScheduleService {
 	// 타입별 일정 리스트
 	public List<ScheduleVO> selectListByType(ScheduleVO schedule) {
 		List<ScheduleVO> list = scheduleDAO.selectListByType(schedule);
+		
 		for(int i=0; i<list.size(); i++) {
 			ScheduleVO s = list.get(i);
 			s.setCustomer(cusDAO.detail(s.getCustomerNo()));

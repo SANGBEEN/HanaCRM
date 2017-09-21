@@ -78,155 +78,65 @@
 				<div class="row-fluid">
 
 					<div class="span6" style="height: 65vh; overflow: auto;">
-						<h1>Tasks</h1>
+						<h1>오늘일정</h1>
+							<div class="priority high">
+										<span>high priority</span>
+							</div>
+							<div class="priority medium">
+										<span>medium priority</span>
+							</div>
+							<div class="priority low">
+										<span>low priority</span>
+							</div>	
+				<%-- 		<c:forEach var="schedule" items="${scheduleList }">
+							<c:choose>
+								<c:when
+									test="${schedule.importance == 1 || schedule.importance == 2 }">
+									<div class="priority high">
+										<span>high priority</span>
+									</div>
+									<div class="task high">
+										<div class="desc">
+											<div class="title">${schedule.type }</div>
+											<div>${schedule.comments}</div>
+										</div>
+										<div class="time">
+											<div>${schedule.endDate }</div>
+										</div>
+									</div>
+								</c:when>
+								<c:when test="${schedule.importance == 3} ">
+									<div class="priority medium">
+										<span>medium priority</span>
+									</div>
 
-						<div class="priority high">
-							<span>high priority</span>
-						</div>
+									<div class="task medium">
+										<div class="desc">
+											<div class="title">${schedule.type }</div>
+											<div>${schedule.comments}</div>
+										</div>
+										<div class="time">
+											<div>${schedule.endDate }</div>
+										</div>
+									</div>
+								</c:when>
+							</c:choose>
+						</c:forEach> --%>
 
-						<div class="task high">
-							<div class="desc">
-								<div class="title">Lorem Ipsum</div>
-								<div>Neque porro quisquam est qui dolorem ipsum quia dolor
-									sit amet, consectetur, adipisci velit</div>
-							</div>
-							<div class="time">
-								<div class="date">Jun 1, 2012</div>
-								<div>1 day</div>
-							</div>
-						</div>
-						<div class="task high">
-							<div class="desc">
-								<div class="title">Lorem Ipsum</div>
-								<div>Neque porro quisquam est qui dolorem ipsum quia dolor
-									sit amet, consectetur, adipisci velit</div>
-							</div>
-							<div class="time">
-								<div class="date">Jun 1, 2012</div>
-								<div>1 day</div>
-							</div>
-						</div>
-						<div class="task high">
-							<div class="desc">
-								<div class="title">Lorem Ipsum</div>
-								<div>Neque porro quisquam est qui dolorem ipsum quia dolor
-									sit amet, consectetur, adipisci velit</div>
-							</div>
-							<div class="time">
-								<div class="date">Jun 1, 2012</div>
-								<div>1 day</div>
-							</div>
-						</div>
-						<div class="task high last">
-							<div class="desc">
-								<div class="title">Lorem Ipsum</div>
-								<div>Neque porro quisquam est qui dolorem ipsum quia dolor
-									sit amet, consectetur, adipisci velit</div>
-							</div>
-							<div class="time">
-								<div class="date">Jun 1, 2012</div>
-								<div>1 day</div>
-							</div>
-						</div>
 
-						<div class="priority medium">
-							<span>medium priority</span>
-						</div>
+						<!-- 				<div class="task high last">
+							<div class="desc">
+								<div class="title">Lorem Ipsum</div>
+								<div>Neque porro quisquam est qui dolorem ipsum quia dolor
+									sit amet, consectetur, adipisci velit</div>
+							</div>
+							<div class="time">
+								<div class="date">Jun 1, 2012</div>
+								<div>1 day</div>
+							</div>
+						</div> -->
 
-						<div class="task medium">
-							<div class="desc">
-								<div class="title">Lorem Ipsum</div>
-								<div>Neque porro quisquam est qui dolorem ipsum quia dolor
-									sit amet, consectetur, adipisci velit</div>
-							</div>
-							<div class="time">
-								<div class="date">Jun 1, 2012</div>
-								<div>1 day</div>
-							</div>
-						</div>
-						<div class="task medium last">
-							<div class="desc">
-								<div class="title">Lorem Ipsum</div>
-								<div>Neque porro quisquam est qui dolorem ipsum quia dolor
-									sit amet, consectetur, adipisci velit</div>
-							</div>
-							<div class="time">
-								<div class="date">Jun 1, 2012</div>
-								<div>1 day</div>
-							</div>
-						</div>
-
-						<div class="priority low">
-							<span>low priority</span>
-						</div>
-
-						<div class="task low">
-							<div class="desc">
-								<div class="title">Lorem Ipsum</div>
-								<div>Neque porro quisquam est qui dolorem ipsum quia dolor
-									sit amet, consectetur, adipisci velit</div>
-							</div>
-							<div class="time">
-								<div class="date">Jun 1, 2012</div>
-								<div>1 day</div>
-							</div>
-						</div>
-						<div class="task low">
-							<div class="desc">
-								<div class="title">Lorem Ipsum</div>
-								<div>Neque porro quisquam est qui dolorem ipsum quia dolor
-									sit amet, consectetur, adipisci velit</div>
-							</div>
-							<div class="time">
-								<div class="date">Jun 1, 2012</div>
-								<div>1 day</div>
-							</div>
-						</div>
-						<div class="task low">
-							<div class="desc">
-								<div class="title">Lorem Ipsum</div>
-								<div>Neque porro quisquam est qui dolorem ipsum quia dolor
-									sit amet, consectetur, adipisci velit</div>
-							</div>
-							<div class="time">
-								<div class="date">Jun 1, 2012</div>
-								<div>1 day</div>
-							</div>
-						</div>
-						<div class="task low">
-							<div class="desc">
-								<div class="title">Lorem Ipsum</div>
-								<div>Neque porro quisquam est qui dolorem ipsum quia dolor
-									sit amet, consectetur, adipisci velit</div>
-							</div>
-							<div class="time">
-								<div class="date">Jun 1, 2012</div>
-								<div>1 day</div>
-							</div>
-						</div>
-						<div class="task low">
-							<div class="desc">
-								<div class="title">Lorem Ipsum</div>
-								<div>Neque porro quisquam est qui dolorem ipsum quia dolor
-									sit amet, consectetur, adipisci velit</div>
-							</div>
-							<div class="time">
-								<div class="date">Jun 1, 2012</div>
-								<div>1 day</div>
-							</div>
-						</div>
-						<div class="task low">
-							<div class="desc">
-								<div class="title">Lorem Ipsum</div>
-								<div>Neque porro quisquam est qui dolorem ipsum quia dolor
-									sit amet, consectetur, adipisci velit</div>
-							</div>
-							<div class="time">
-								<div class="date">Jun 1, 2012</div>
-								<div>1 day</div>
-							</div>
-						</div>
-
+						
 						<div class="clearfix"></div>
 
 						<!--/span-->
@@ -257,11 +167,12 @@
 
 					</div>
 					<!-- End .sparkStats -->
-					<div class="span3" style="height:40vh;">
+					<div class="span3" style="height: 40vh;">
 						<!--명함들어갈자리  -->
 					</div>
-					
-					<div class="span2 statbox green" style="height:20vh;" onTablet="span6" onDesktop="span2">
+
+					<div class="span2 statbox green" style="height: 20vh;"
+						onTablet="span6" onDesktop="span2">
 						<div class="boxchart">1,2,6,4,0,8,2,4,5,3,1,7,5</div>
 						<div class="number">
 							123<i class="icon-arrow-up"></i>
@@ -271,8 +182,8 @@
 							<a href="#"> read full report</a>
 						</div>
 					</div>
-					<div class="span2 statbox yellow" style="height:20vh;" onTablet="span6"
-						onDesktop="span2">
+					<div class="span2 statbox yellow" style="height: 20vh;"
+						onTablet="span6" onDesktop="span2">
 						<div class="boxchart">7,2,2,2,1,-4,-2,4,8,,0,3,3,5</div>
 						<div class="number">
 							678<i class="icon-arrow-down"></i>
@@ -282,8 +193,8 @@
 							<a href="#"> read full report</a>
 						</div>
 					</div>
-					<div class="span2 statbox yellow" style="height:20vh;" onTablet="span6"
-						onDesktop="span2">
+					<div class="span2 statbox yellow" style="height: 20vh;"
+						onTablet="span6" onDesktop="span2">
 						<div class="boxchart">7,2,2,2,1,-4,-2,4,8,,0,3,3,5</div>
 						<div class="number">
 							678<i class="icon-arrow-down"></i>
@@ -458,6 +369,7 @@
 	<script src="${pageContext.request.contextPath}/js/custom.js"></script>
 
 	<script>
+	
 		$().ready(function() {
 			$('#depositBtn').click(function() {
 				//var url = "http://finlife.fss.or.kr/finlifeapi/depositProductsSearch.json?callback=?&auth=49bb53dc3ef5b88bbe5eb3b85b8c3077&topFinGrpNo=020000&pageNo=1";
@@ -512,6 +424,53 @@
 					},
 
 				});
+			});
+			
+			//오늘할일
+			//일정 그리기
+			var schedule = ${scheduleList};
+			schedule.forEach(function(v){
+				var str = "";
+				switch(v.importance){
+				case 1:
+				case 2:
+					str += '<div class="task high">';
+					str += '	<div class="desc">';
+					str += 			'<div class="title">'+v.type+'</div>';
+					str += 			'<div>'+v.comments+'</div>';
+					str += '	</div>';
+					str += 		'<div class="time">';
+					str += 			'<div>'+v.endDate+'</div>';
+					str += 		'</div>';
+					str += '</div>';
+					console.log(1);
+					$('.priority.high').append(str);
+					break;
+				case 3:
+					str += '<div class="task medium">';
+					str += '	<div class="desc">';
+					str += 			'<div class="title">'+v.type+'</div>';
+					str += 			'<div>'+v.comments+'</div>';
+					str += '	</div>';
+					str += 		'<div class="time">';
+					str += 			'<div>'+v.endDate+'</div>';
+					str += 		'</div>';
+					str += '</div>';
+					$('.priority.medium').append(str);
+					break;
+				default:
+					str += '<div class="task low">';
+					str += '	<div class="desc">';
+					str += 			'<div class="title">'+v.type+'</div>';
+					str += 			'<div>'+v.comments+'</div>';
+					str += '	</div>';
+					str += 		'<div class="time">';
+					str += 			'<div>'+v.endDate+'</div>';
+					str += 		'</div>';
+					str += '</div>';
+					$('priority.low').append(str);
+				}
+					
 			});
 		});
 	</script>

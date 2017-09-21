@@ -50,16 +50,16 @@ public class MainController {
 		EmpVO emp = (EmpVO) session.getAttribute("emp");
 		List<ScheduleVO> scheduleList = new ArrayList<>();
 		ScheduleVO schedule = new ScheduleVO();
-		SimpleDateFormat formatter = new SimpleDateFormat ( "yyyy/MM/dd", Locale.KOREA );
+		SimpleDateFormat formatter = new SimpleDateFormat ( "yyyy-MM-dd", Locale.KOREA );
 		Date currentTime = new Date();
 		String dTime = formatter.format(currentTime);
 		System.out.println(dTime);
-		schedule.setType(dTime);
+		schedule.setDate(dTime);
 		schedule.setEmployeeNo(emp.getNo());
 		scheduleList = scheduleService.selectListByType(schedule);
-		for(ScheduleVO s : scheduleList)
-			System.out.println(s);
+
 		model.addAttribute("scheduleList",scheduleList);
+		
 		return "/main/main";
 	}
 	//로그아웃 
