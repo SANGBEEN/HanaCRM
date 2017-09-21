@@ -32,13 +32,13 @@
 				<label class="control-label">시작일자</label>
 				<label class="control-label">종료일자</label>
 
-			<div class="controls">
-				<span class="col-sm-6 col-md-4" id="start-date-mtr-datepicker">
-				</span>
+			<!-- <div class="controls"> -->
+				<div id="start-date-mtr-datepicker">
+				</div>
 			  
-				<span class="col-sm-6 col-md-4" id="end-date-mtr-datepicker">
-				</span>
-			  </div>
+				<div id="end-date-mtr-datepicker">
+				</div>
+			  <!-- </div> -->
 			</div>
 			  
 			  <div class="control-group">
@@ -102,6 +102,19 @@
 				  	<option value="매주">매주</option>
 				  	<option value="매달">매달</option>
 				  	<option value="매년">매년</option>	
+				  </select>
+				</div>
+			  </div>
+			  
+			  <div class="control-group">
+				<label class="control-label" for="selectError3">중요도</label>
+				<div class="controls">
+				  <select id="importance">
+				  	<option value="1">매우중요</option>
+				  	<option value="2">중요</option>
+				  	<option value="3">보통</option>
+				  	<option value="4">낮음</option>
+				  	<option value="5">매우낮음</option>	
 				  </select>
 				</div>
 			  </div>

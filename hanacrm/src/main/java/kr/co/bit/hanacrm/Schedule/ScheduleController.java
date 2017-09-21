@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kr.co.bit.hanacrm.Customer.CusService;
 import kr.co.bit.hanacrm.Employee.EmpVO;
 
 
@@ -24,6 +25,9 @@ public class ScheduleController {
 
 	@Autowired
 	private ScheduleService scheduleService;
+
+	@Autowired
+	private CusService cusService;
 		
 	// 일정 전체 리스트
 	@RequestMapping(value="/schedule/list", method=RequestMethod.GET)
@@ -31,6 +35,7 @@ public class ScheduleController {
 		EmpVO emp = (EmpVO) session.getAttribute("emp");
 		// emp.getNo()
 		model.addAttribute("scheduleList", scheduleService.selectListAll(1));
+		model.addAttribute("cusList", cusService.list());
 		return "/schedule/schedule";
 	}
 	

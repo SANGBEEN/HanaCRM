@@ -80,16 +80,28 @@
 							  </select>
 							</div>
 						  </div>
-			</fieldset>
-		  </div>
-		</div>
-	</div><!--/span-->
-	
-	</div><!--/row-->
+						  
+						   <div class="control-group">
+							<label class="control-label" for="selectError3">중요도</label>
+							<div class="controls">
+							  <select id="importance">
+							  	<option value="1">매우중요</option>
+							  	<option value="2">중요</option>
+							  	<option value="3">보통</option>
+							  	<option value="4">낮음</option>
+							  	<option value="5">매우낮음</option>	
+							  </select>
+							</div>
+						  </div>
+				</fieldset>
+				  </div>
+				</div>
+			</div><!--/span-->
+		</div><!--/row-->
 	</div>
 	<div class="modal-footer">
-		<a href="#" class="btn" id="modalCancle" data-dismiss="modal">Close</a>
-		<a href="#" class="btn btn-danger" id="modalDelete" data-dismiss="modal">Delete Event</a>
 		<a href="#" id="modalSave" class="btn btn-primary" id="modalSave" data-dismiss="modal">Save changes</a>
+		<a href="#" class="btn btn-danger" id="modalDelete" data-dismiss="modal">Delete Event</a>
+		<a href="#" class="btn" id="modalCancle" data-dismiss="modal">Close</a>
 	</div>
 </div>

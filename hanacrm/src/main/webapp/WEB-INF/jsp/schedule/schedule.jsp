@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- start: Meta -->
 	<meta charset="utf-8">
-	<title>Bootstrap Metro Dashboard by Dennis Ji for ARM demo</title>
+	<title>일정 관리</title>
 	<meta name="description" content="Bootstrap Metro Dashboard">
 	<meta name="author" content="Dennis Ji">
 	<meta name="keyword" content="Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
@@ -89,6 +89,7 @@
 		    display: inline-block !important;
 		    margin: 10px 20px !important;
 		}
+
 		
 
 	</style>
@@ -236,9 +237,8 @@
 				 
 		 jQuery(function($) {
 				
-			addModal = $('#addModal');
-			detailModal = $('#detailModal');
-		//	 modal.remove();
+			var addModal = $('#addModal');
+			var detailModal = $('#detailModal');
 			 
 				/************************** initialize the external events
 				-----------------------------------------------------------------*/
@@ -301,7 +301,7 @@
 					},
 					
 					allDayDefault: false,
-					nextDayThreshold:"00:00",
+					
 					
 					events:
 						 eventList
@@ -336,27 +336,27 @@
 					***************************/
 
 						// 1. 등록 폼 모달 띄움
-						detailModal.remove();
-						addModal.modal();
+					//	detailModal.remove();
+						addModal.modal('show');
 						
 						// 2. 고객 정보 받아오기, 모달에 셋팅
-						$.ajax({
+						/* $.ajax({
 							url: "${pageContext.request.contextPath}/customer/listForModal",
 			        		type: "get",
 			        		success: function(data){
-			        			html = "";
+			        			var table_head = '<table class="table table-striped table-bordered bootstrap-datatable datatable">'
+			        			+ '<thead><tr> <th>선택</th><th>Name</th><th>Reg_date</th><th>Phone</th><th>Grade</th> </tr></thead>'
+			        			var table_body = '<tbody id="table-data" class="customerBody">';
 			        			 JSON.parse(data).forEach(function(element) {
-			        			    html += '<tr><td><input type="radio" name="customerNo" value="'+element.no+'"/></td><td id="'+element.no+'">'
+			        				 table_body += '<tr><td><input type="radio" name="customerNo" value="'+element.no+'"/></td><td id="'+element.no+'">'
 			        			    		+ element.name + '</td><td>'
 			        			    		+ element.phone + '</td><td>'
 			        			    		+ element.regDate + '</td><td>'
 			        			    		+ element.grade + '</td></tr>';
 			        			});
+			        			 table_body += '</tbody></table>';
 			        			
-			        			console.log(html); 
-			        			
-			        			var te = $('#table-data').html(html);
-			        			console.dir(te);
+			        			$('#customerTable').html(table_head+table_body);
 			        			
 			        			//te.querySelector('.customerBody').innerHTML += html;
 			        			//console.log(te);
@@ -364,7 +364,7 @@
 			        		error: function(){
 			        			alert('error');
 			        		} 
-						});
+						}); */
 						
 					
 						// 3. 추가할 이벤트 타입, 날짜 저장
@@ -392,7 +392,6 @@
 						console.log('1: '+copiedEventObject.className);
 							
 		 				// 1) type 설정
-					//	form.scheduleType.value = copiedEventObject.className;
 						$("#scheduleType").val(originalEventObject.title);
 					
 						// 2) 날짜 설정
@@ -405,79 +404,97 @@
 						var startDatepicker = new MtrDatepicker(setDatepickerConfig('start', start));
 						var endDatepicker = new MtrDatepicker(setDatepickerConfig('end', end));
 						
-						startDatepicker.onChange('date', function(){
+					/* 	startDatepicker.onChange('date', function(){
 							startDatepicket = new MtrDatepicker(setDatepickerConfig('start',startDatepicker.toString()));
-						});
+						}); */
 						
 						console.dir($("#scheduleType"));
 						console.log(start +"~"+end);
 				
 						
 						// 5. 등록 처리
-						$('#modalSave').click(function(ev){
+					//	$('#modalSave').unbind("click");
+						addModal.find('button[id=modalSave]').click(function(ev){
 							// We don't want this to act as a link so cancel the link action
 							ev.preventDefault();
+							ev.stopPropagation();  // 이벤트버블링 방지
+							console.log("클릭 메서드");
+							var check = addCheck();
+														
+							if(check=='ok'){
 							
-							// 캘린더에 쓰일 Data (변경사항 저장 - type, end 날짜)						
-							 var startData = getDate(moment(startDatepicker.toString())); 
-							 var endData = getDate(moment(endDatepicker.toString()));
-							 var cNo = $("input[name='customerNo']:checked").val();
-							 var name = document.getElementById(cNo).innerText;
-							 console.log('datepicker start output : '+startData);
-							 console.log('datepicker end output : '+endData);
-							
-							copiedEventObject.title = name;
-							copiedEventObject.start = startData;
-							copiedEventObject.end = endData;
-	
-							console.log(copiedEventObject);
-		        			console.log(name);
-							
-							// 서버에 보낼 Data
-							var scheduleData = {
-				        			/* employeeNo: 1, //'${session.emp.no}', */
-				        			comments: $('#comments').val(),
-				        			customerNo: cNo,
-				        			type: $('#scheduleType').val(),
-				        			location: $('#location').val(),
-				        			importance: 1,  // important 설정
-				        			repetition: $('#repetition').val(),
-				        			startDate: startData,
-				        			endDate: endData
-				        		};
-							
-							console.log(scheduleData);
-							
-							  $.ajax({
-				        		url: "${pageContext.request.contextPath}/schedule",
-				        		type: "post",
-				        		data: scheduleData, 
-				        		success: function(scheduleNo){
-				        			alert('추가'+scheduleNo);
-				        			addModal.modal("hide");
-									addModal.remove();
-									// 추가할 이벤트에 scheduleNo 저장
-									copiedEventObject.id = scheduleNo;
-									// render the event on the calendar
-									// the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
-									$('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
-				        		},
-				        		error: function(){
-				        			alert('error');
-				        		}
-				        	}); 
-							 
+								// 캘린더에 쓰일 Data (변경사항 저장 - type, end 날짜)						
+								 var startData = getDate(moment(startDatepicker.toString())); 
+								 var endData = getDate(moment(endDatepicker.toString()));
+								 var cNo = $("input[name='customerNo']:checked").val();
+								 var name = document.getElementById(cNo).innerText;
+								 console.log('datepicker start output : '+startData);
+								 console.log('datepicker end output : '+endData);
 								
-								$('#modalCancle').click(function(){
-									addModal.remove();
-								});
+								copiedEventObject.title = name;
+								copiedEventObject.start = startData;
+								copiedEventObject.end = endData;
+		
+								console.log(copiedEventObject);
+			        			console.log(name);
 								
-								addModal.modal('show').on('hidden', function(){
-									addModal.remove();
-								});
+								// 서버에 보낼 Data
+								var scheduleData = {
+										comments: addModal.find('input[id=comments]').val(),
+					        			customerNo: cNo,
+					        			type: addModal.find('select[id=scheduleType]').val(),
+					        			location: addModal.find('input[id=location]').val(),
+					        			importance: addModal.find('select[id=importance]').val(),
+					        			repetition: addModal.find('select[id=repetition]').val(),
+					        			startDate: startData,
+					        			endDate: endData
+					        /* 
+					        			comments: $('#comments').val(),
+					        			customerNo: cNo,
+					        			type: $('#scheduleType').val(),
+					        			location: $('#location').val(),
+					        			importance: $('#importance').val(),
+					        			repetition: $('#repetition').val(),
+					        			startDate: startData,
+					        			endDate: endData */
+					        		};
+								
+								console.log(scheduleData);
+								
+								  $.ajax({
+					        		url: "${pageContext.request.contextPath}/schedule",
+					        		type: "post",
+					        		data: scheduleData, 
+					        		success: function(scheduleNo){
+					        			alert('추가'+scheduleNo);
+					        			addModal.modal("hide");
+										//addModal.remove();
+										// 추가할 이벤트에 scheduleNo 저장
+										copiedEventObject.id = scheduleNo;
+										// render the event on the calendar
+										// the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
+										$('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
+					        		},
+					        		error: function(){
+					        			alert('error');
+					        		}
+					        	});   // post ajax end 
+					        	
+							//	 $(".modal-body").val("");							
 							
-						//	 $(".modal-body").val("");
-						}); 
+							} else{
+								alert(check);
+							}  // check else end
+						}); // click end
+						
+						
+						addModal.modal('show').on('hidden', function(){
+							//addModal.remove();
+							addModal.modal("hide");
+						});						
+						
+							/* 	$('#start-date-mtr-datepicker').datepicker('destroy');
+								$('#end-date-mtr-datepicker').datepicker('destroy'); */
 					},
 					
 					selectable: true,
@@ -509,25 +526,18 @@
 						*******************/
 					//	alert(calEvent.title+"\n"+calEvent.start+"\n"+calEvent.end+"\n"+calEvent.className);
 						
-						addModal.remove();
-						detailModal.modal();
+						detailModal.modal('show');
 						
 						/*
 						기본 셋팅
 						1. type 설정 (어딨지)
 						2. 시작 날짜 설정 (date 이용)
 						*/
-						
-					//	var form = document.addScheduleForm;
-						//form.comments.value = calEvent.title;
-						//form.type.value = calEvent.className;
-						//form.location.value = 'test';
-						//form.repetition.value = "매주";
-						
-						$('#scheduleType').val(calEvent.className);
+			
 						var s;
 						var start = getDate(calEvent.start);
 						var end = getDate(calEvent.end)!=''? getDate(calEvent.end):start;
+						var detailStartDatepicker, detailEndDatepicker;
 
 						console.log(start+'~'+end);
 						
@@ -538,14 +548,23 @@
 								var schedule = JSON.parse(data);
 								s = schedule;
 								console.dir(schedule);
-								$('#location').val(schedule.location);
-								$('#comments').val(schedule.comments);
-								$('#repetition').val(schedule.repetition);
-								$('#customerName').text(schedule.customer.name);
+								detailModal.find('select[id=scheduleType]').val(schedule.type);
+								detailModal.find('input[id=location]').val(schedule.location);
+								detailModal.find('input[id=comments]').val(schedule.comments);
+								detailModal.find('input[id=repetition]').val(schedule.repetition);
+								detailModal.find('span[id=customerName]').text(schedule.customer.name);
+								detailModal.find('select[id=importance]').val(schedule.importance);
 								
 								// 데이트피커
-								var detailStartDatepicker = new MtrDatepicker(setDatepickerConfig('detail-start', start));
-								var detailEndDatepicker = new MtrDatepicker(setDatepickerConfig('detail-end', end));
+								detailStartDatepicker = new MtrDatepicker(setDatepickerConfig('detail-start', start));
+								detailEndDatepicker = new MtrDatepicker(setDatepickerConfig('detail-end', end));
+								
+								// 시작 날짜 바뀌면 종료 날짜도 셋팅
+/* 								detailStartDatepicker.onChange('date', function(){
+								});
+ */
+ 								detailStartDatepicker.find('.mtr-default-value-holder').val(10);
+ 								detailEndDatepicker.find('.months').val(3);
 								
 								 var datepickerOutput = detailStartDatepicker.toString();
 								 console.log('datepicker output : '+detailEndDatepicker);
@@ -556,7 +575,12 @@
 						});
 						
 						
-						$('#modalSave').click(function(){
+						// 수정 버튼
+						detailModal.find('a[id=modalSave]').click(function(ev){
+							
+							ev.preventDefault();
+							ev.stopPropagation();  // 이벤트버블링 방지
+							
 							// 캘린더에 쓰일 Data (변경사항 저장 - type, end 날짜)						
 							 var startData = getDate(moment(detailStartDatepicker.toString())); 
 							 var endData = getDate(moment(detailEndDatepicker.toString()));
@@ -565,15 +589,16 @@
 	
 							console.log(calEvent);
 		        			console.log(name);
-							
+		        			
 							// 서버에 보낼 Data
 							var scheduleData = {
-				        			comments: $('#comments').val(),
+									no: calEvent.id,
+				        			comments: detailModal.find('input[id=comments]').val(),
 				        			customerNo: s.customer.no,
-				        			type: $('#scheduleType').val(),
-				        			location: $('#location').val(),
-				        			importance: 1,  // important 설정
-				        			repetition: $('#repetition').val(),
+				        			type: detailModal.find('select[id=scheduleType]').val(),
+				        			location: detailModal.find('input[id=location]').val(),
+				        			importance: detailModal.find('select[id=importance]').val(),
+				        			repetition: detailModal.find('select[id=repetition]').val(),
 				        			startDate: startData,
 				        			endDate: endData
 				        		};
@@ -581,7 +606,7 @@
 							console.log(scheduleData);
 							
 							  $.ajax({
-				        		url: "${pageContext.request.contextPath}/schedule/"+calEvent.id,
+				        		url: "${pageContext.request.contextPath}/schedule/",
 				        		type: "put",
 				        		contentType: "application/json; charset=uft-8",
 				        		dataType: "json",
@@ -589,12 +614,13 @@
 				        		success: function(data){
 				        			alert('수정'+data);
 				        			detailModal.modal("hide");
-				        			detailModal.remove();
 									
 				        			// 달력 객체 정보 수정
 				        			calEvent.className = scheduleData.type;
 									calEvent.start = startData;
 									calEvent.end = endData;
+									
+									calendar.fullCalendar('updateEvent', calEvent);
 				        		},
 				        		error: function(){
 				        			alert('error');
@@ -603,7 +629,8 @@
 							
 						});
 						
-						$('#modalDelete').click(function(){
+						// 삭제 버튼
+						detailModal.find('a[id=modalDelete]').click(function(){
 							
 							$.ajax({
 								url: '${pageContext.request.contextPath}/schedule/'+calEvent.id,
@@ -614,7 +641,7 @@
 											return (ev._id == calEvent._id);
 										})
 										detailModal.modal("hide");
-										detailModal.remove();
+										alert('삭제 완료');
 									}else {
 										console.log('디비에러');
 									}
@@ -626,13 +653,6 @@
 							});
 						});
 						
-						$('#modalCancle').click(function(){
-							detailModal.modal("hide");
-							detailModal.remove();
-						});
-						
-						
-
 					}
 				});
 
@@ -776,6 +796,7 @@
 		 		
 		 		
 		 	function setDatepickerConfig(type, date){
+		 		
 		 	// 데이트피커
 				 var config = {
 					  target:     type+'-date-mtr-datepicker',         // ID of HTML element
@@ -783,6 +804,15 @@
 					  future:     false,                // Only dates in the future,
 					  smartHours: true,                // Make a smart switch from AM to PM
 					  animations: true,                 // NOTE: thew version with disabled animations is not stable
+					  
+					  defaultValues: {
+						  hours: 9,
+						  minutes: 0,
+						  dates: 10,
+						  months: 9,
+						  years: 2017
+					  },
+		 	
 					
 					  months: {
 					    min: 0,
@@ -802,6 +832,33 @@
 				};
 				 
 				return config;
+		 	}
+		 	
+		 	function addCheck(){
+
+		 		var msg = 'ok';
+		 		
+		 		if($("input[name='customerNo']:checked").val()==null){
+		 			return 'customer is not checked';
+		 		}
+		 		
+		 		if($('#location').val()==''){
+		 			return 'location is empty';
+		 		}
+
+		 		if($('#comments').val()=='' || $('#comments').val()==null){
+		 			return 'comments is empty';
+		 		}
+		 		
+		 		if($('#repetition').val()==''){
+		 			return 'repetition is empty';
+		 		}
+		 		
+		 		if($('#importance').val()==''){
+		 			return 'importance is empty';
+		 		}
+
+    			return msg;
 		 	}
 		 
 	</script>
