@@ -2,6 +2,9 @@ package kr.co.bit.hanacrm.Contract;
 
 import java.sql.Date;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 //  계약내역
 public class ContractVO {
 
@@ -107,12 +110,23 @@ public class ContractVO {
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("ContractVO [no=").append(no).append(", customerNo=").append(customerNo).append(", employeeNo=")
-				.append(employeeNo).append(", savingsNo=").append(savingsNo).append(", regDate=").append(regDate)
-				.append(", comments=").append(comments).append(", type=").append(type).append(", productNo=")
-				.append(productNo).append("]");
-		return builder.toString();
+		String json = "";
+		//VO to JSON
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			json = mapper.writeValueAsString(this);
+			//System.out.println(json);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+
+//		StringBuilder builder = new StringBuilder();
+//		builder.append("ContractVO [no=").append(no).append(", customerNo=").append(customerNo).append(", employeeNo=")
+//				.append(employeeNo).append(", savingsNo=").append(savingsNo).append(", regDate=").append(regDate)
+//				.append(", comments=").append(comments).append(", type=").append(type).append(", productNo=")
+//				.append(productNo).append("]");
+//		return builder.toString();
+		return json;
 	}
     
     

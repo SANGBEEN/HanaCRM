@@ -1174,14 +1174,24 @@ function charts() {
 	/* ---------- Chart with points ---------- */
 	if($("#facebookChart").length)
 	{	
-		var likes = [[1, 5+randNumFB()], [2, 10+randNumFB()], [3, 15+randNumFB()], [4, 20+randNumFB()],[5, 25+randNumFB()],[6, 30+randNumFB()],[7, 35+randNumFB()],[8, 40+randNumFB()],[9, 45+randNumFB()],[10, 50+randNumFB()],[11, 55+randNumFB()],[12, 60+randNumFB()],[13, 65+randNumFB()],[14, 70+randNumFB()],[15, 75+randNumFB()],[16, 80+randNumFB()],[17, 85+randNumFB()],[18, 90+randNumFB()],[19, 85+randNumFB()],[20, 80+randNumFB()],[21, 75+randNumFB()],[22, 80+randNumFB()],[23, 75+randNumFB()],[24, 70+randNumFB()],[25, 65+randNumFB()],[26, 75+randNumFB()],[27,80+randNumFB()],[28, 85+randNumFB()],[29, 90+randNumFB()], [30, 95+randNumFB()]];
+		console.log('chart'); 
+		console.log(contract);
+		var likes = [];
+		for(var i = 0;i<contract.length;i++){
+			var temp = [];
+			temp.push(contract[i].MONTH);
+			temp.push(contract[i].CNT);
+			likes.push(temp);
+		}
+		//console.log('numdber : '+contract[0].CNT);
+		//var likes = [[1, 10], [2, 10+randNumFB()], [3, 15+randNumFB()], [4, 20+randNumFB()],[5, 25+randNumFB()],[6, 30+randNumFB()],[7, 35+randNumFB()],[8, 40+randNumFB()],[9, 45+randNumFB()],[10, 50+randNumFB()],[11, 55+randNumFB()],[12, 60+randNumFB()]];
 
 		var plot = $.plot($("#facebookChart"),
-			   [ { data: likes, label: "Fans"} ], {
+			   [ { data: likes, label: "건수"} ], {
 				   series: {
 					   lines: { show: true,
 								lineWidth: 2,
-								fill: true, fillColor: { colors: [ { opacity: 0.5 }, { opacity: 0.2 } ] }
+								fill: false, fillColor: { colors: [ { opacity: 0.5 }, { opacity: 0.2 } ] }
 							 },
 					   points: { show: true, 
 								 lineWidth: 2 
@@ -1221,11 +1231,11 @@ function charts() {
 						previousPoint = item.dataIndex;
 
 						$("#tooltip").remove();
-						var x = item.datapoint[0].toFixed(2),
-							y = item.datapoint[1].toFixed(2);
+						var x = item.datapoint[0],
+							y = item.datapoint[1];
 
 						showTooltip(item.pageX, item.pageY,
-									item.series.label + " of " + x + " = " + y);
+									y+"건");
 					}
 				}
 				else {

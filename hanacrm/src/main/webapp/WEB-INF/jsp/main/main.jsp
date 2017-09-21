@@ -214,7 +214,7 @@
 				<div class="row-fluid hideInIE8 circleStats">
 					<div class="widget span6" onTablet="span6" onDesktop="span6">
 						<h2>
-							<span class="glyphicons facebook"><i></i></span>Facebook Fans
+							<span class="glyphicons facebook"><i></i></span>월별 실적
 						</h2>
 						<hr>
 						<div class="content">
@@ -369,7 +369,8 @@
 	<script src="${pageContext.request.contextPath}/js/custom.js"></script>
 
 	<script>
-	
+		var contract = ${contractList};
+		console.dir(contract);
 		$().ready(function() {
 			$('#depositBtn').click(function() {
 				//var url = "http://finlife.fss.or.kr/finlifeapi/depositProductsSearch.json?callback=?&auth=49bb53dc3ef5b88bbe5eb3b85b8c3077&topFinGrpNo=020000&pageNo=1";
