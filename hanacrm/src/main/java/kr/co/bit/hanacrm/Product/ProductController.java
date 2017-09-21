@@ -26,7 +26,6 @@ import org.springframework.web.servlet.ModelAndView;
 import kr.co.bit.hanacrm.Util.Util;
 
 @Controller
-@RequestMapping("/product")
 public class ProductController {
 	
 	private final String AUTH = Util.jsonParse("auth");
@@ -34,18 +33,18 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 	
-	@RequestMapping(value="/sales/product", method=RequestMethod.GET)
-	public ModelAndView selectList(){
-		return new ModelAndView("/sales/product/list", "productList", productService.selectList());
+	@RequestMapping(value="/sales/product/{type}", method=RequestMethod.GET)
+	public ModelAndView selectList(@PathVariable int type){
+		return new ModelAndView("/sales/product/list", "productList", productService.selectList(type));
 	}
 	
-	@RequestMapping(value="/sales/product/{no}", method=RequestMethod.GET)
-	public ModelAndView selectByNo(@PathVariable int no){
-		return new ModelAndView("/sales/product/detail", "productDetail", productService.selectByNo(no));
+	@RequestMapping(value="/sales/product/{type}/{no}", method=RequestMethod.GET)
+	public ModelAndView selectByNo(@PathVariable int type, @PathVariable int no){
+		return new ModelAndView("/sales/product/detail", "productDetail", productService.selectByNo(type, no));
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="/deposit", method=RequestMethod.GET)
+	@RequestMapping(value="/product/deposit", method=RequestMethod.GET)
 	public Map<String, Object> depositInfo(HttpServletRequest req, HttpServletResponse res) throws IOException, ParseException{
 		System.out.println("예금저장");
 		//PrintWriter out = res.getWriter();
@@ -124,7 +123,7 @@ public class ProductController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="/savings", method=RequestMethod.GET)
+	@RequestMapping(value="/product/savings", method=RequestMethod.GET)
 	public Map<String, Object> savingsInfo(HttpServletRequest req, HttpServletResponse res) throws IOException, ParseException{
 		System.out.println("적금저장");
 		//PrintWriter out = res.getWriter();

@@ -90,9 +90,9 @@
 						<h2><i class="halflings-icon user"></i><span class="break"></span>상담 내역</h2>
 						<div class="box-icon">
 							<a href="#" class="consult-insert-hs"><i class="halflings-icon plus"></i></a>
-							<a href="#" class="btn-setting"><i class="halflings-icon wrench"></i></a>
+							<!-- <a href="#" class="btn-setting"><i class="halflings-icon wrench"></i></a>
 							<a href="#" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
-							<a href="#" class="btn-close"><i class="halflings-icon remove"></i></a>
+							<a href="#" class="btn-close"><i class="halflings-icon remove"></i></a> -->
 						</div>
 					</div>
 					<div class="box-content">
@@ -109,7 +109,7 @@
 							  </tr>
 						</thead>   
 						<tbody>
-							<tr class="row-minimize-hs">
+							<tr id="row-minimize-hs">
 								<td>0</td>
 								<td>Dennis Ji</td>								
 								
@@ -284,7 +284,7 @@
 							
 						<c:forEach items="${ consultList }" var="consultVO">						
 												
-							<tr class="row-minimize-hs">
+							<tr id="row-minimize-hs">
 								<td>${ consultVO.no }</td>
 								<td>${ consultVO.customerVO.name }</td>
 								<td>${ consultVO.title }</td>
@@ -398,6 +398,12 @@
 				<div class="controls">
 				  <input class="input-xlarge focused" id="consultTitle" type="text" value="${ consultVO.title }">
 				</div>
+			</div>
+			<div class="control-group">
+			  <label class="control-label" for="date01">상담 요약</label>
+			  <div class="controls">
+				<input type="text" class="input-xlarge datepicker hasDatepicker" id="date01" value="02/16/12">
+			  </div>
 			</div>
 			<div class="control-group">
 			  <label class="control-label" for="date01">상담 내용</label>
@@ -580,7 +586,7 @@
 		<script>	
 		
 			/* 상세 보기 */
-			$('.row-minimize-hs').click(function(e){
+			$('#row-minimize-hs').click(function(e){
 				e.preventDefault();
 				$(this).next('.row-detail-hs').slideToggle();
 				console.log("상세");

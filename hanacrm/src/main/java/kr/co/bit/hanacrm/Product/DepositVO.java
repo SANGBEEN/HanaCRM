@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 //  상품정보(예금)
 @Component
-public class DepositVO {
+public class DepositVO implements ProductVO {
 
     private Integer no;
 
@@ -221,6 +221,31 @@ public class DepositVO {
 		this.dclsStrtDay = dclsStrtDay;
 		this.dclsEndDay = dclsEndDay;
 		this.finCoSubmDay = finCoSubmDay;
+	}
+	
+	
+
+	public DepositVO(Integer no, String dclsMonth, String finCoNo, String korCoNm, String finPrdtCd, String finPrdtNm,
+			String joinWay, String mtrtInt, String spclCnd, Integer joinDeny, String joinMember, String etcNote,
+			Integer maxLimit, String dclsStrtDay, String dclsEndDay, String finCoSubmDay, List<OptionVO> optionList) {
+		super();
+		this.no = no;
+		this.dclsMonth = dclsMonth;
+		this.finCoNo = finCoNo;
+		this.korCoNm = korCoNm;
+		this.finPrdtCd = finPrdtCd;
+		this.finPrdtNm = finPrdtNm;
+		this.joinWay = joinWay;
+		this.mtrtInt = mtrtInt;
+		this.spclCnd = spclCnd;
+		this.joinDeny = joinDeny;
+		this.joinMember = joinMember;
+		this.etcNote = etcNote;
+		this.maxLimit = maxLimit;
+		this.dclsStrtDay = dclsStrtDay;
+		this.dclsEndDay = dclsEndDay;
+		this.finCoSubmDay = finCoSubmDay;
+		this.optionList = optionList;
 	}
 
 	@Override
