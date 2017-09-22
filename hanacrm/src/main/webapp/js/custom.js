@@ -1172,40 +1172,46 @@ function charts() {
 	}
 	
 	/* ---------- Chart with points ---------- */
-	if($("#facebookChart").length)
+	if($("#salesChart").length)
 	{	
 		console.log('chart'); 
-		console.log(contract);
+		console.log(contract); 
 		var likes = [];
 		for(var i = 0;i<contract.length;i++){
 			var temp = [];
 			temp.push(contract[i].MONTH);
 			temp.push(contract[i].CNT);
 			likes.push(temp);
-		}
+		} 
 		//console.log('numdber : '+contract[0].CNT);
-		//var likes = [[1, 10], [2, 10+randNumFB()], [3, 15+randNumFB()], [4, 20+randNumFB()],[5, 25+randNumFB()],[6, 30+randNumFB()],[7, 35+randNumFB()],[8, 40+randNumFB()],[9, 45+randNumFB()],[10, 50+randNumFB()],[11, 55+randNumFB()],[12, 60+randNumFB()]];
-
-		var plot = $.plot($("#facebookChart"),
+		if(likes.length==0){
+			likes = [[1, 0], [2, 0], [3, 0], [4, 0],[5, 0],[6, 0],[7, 0],[8, 0],[9, 0],[10, 0],[11, 0],[12, 0]];
+			
+		}
+		 
+		//plot api doc
+		//https://github.com/flot/flot/blob/master/API.md
+		var plot = $.plot($("#salesChart"),
 			   [ { data: likes, label: "건수"} ], {
 				   series: {
 					   lines: { show: true,
-								lineWidth: 2,
-								fill: false, fillColor: { colors: [ { opacity: 0.5 }, { opacity: 0.2 } ] }
+								lineWidth: 3,
+								fill: true, fillColor: { colors: [ { opacity: 0.5 }, { opacity: 0.2 } ] }
 							 },
 					   points: { show: true, 
-								 lineWidth: 2 
+								 lineWidth: 3 
 							 },
 					   shadowSize: 0
 				   },
 				   grid: { hoverable: true, 
 						   clickable: true, 
-						   tickColor: "#f9f9f9",
-						   borderWidth: 0
+						   tickColor: "#a9a9a9",
+						   borderWidth: 2,
+						   borderColor: "#3B5998"
 						 },
 				   colors: ["#3B5998"],
-					xaxis: {ticks:6, tickDecimals: 0},
-					yaxis: {ticks:3, tickDecimals: 0},
+					xaxis: {ticks:12, tickDecimals: 0},
+					yaxis: {ticks:10, tickDecimals: 0},
 				 });
 
 		function showTooltip(x, y, contents) {
@@ -1222,7 +1228,7 @@ function charts() {
 		}
 
 		var previousPoint = null;
-		$("#facebookChart").bind("plothover", function (event, pos, item) {
+		$("#salesChart").bind("plothover", function (event, pos, item) {
 			$("#x").text(pos.x.toFixed(2));
 			$("#y").text(pos.y.toFixed(2));
 

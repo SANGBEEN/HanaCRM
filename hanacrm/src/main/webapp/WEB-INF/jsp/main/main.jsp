@@ -214,11 +214,11 @@
 				<div class="row-fluid hideInIE8 circleStats">
 					<div class="widget span6" onTablet="span6" onDesktop="span6">
 						<h2>
-							<span class="glyphicons facebook"><i></i></span>월별 실적
+							월별 실적
 						</h2>
 						<hr>
 						<div class="content">
-							<div id="facebookChart" style="height: 300px"></div>
+							<div id="salesChart" style="height: 300px"></div>
 						</div>
 					</div>
 					<!--/span-->
