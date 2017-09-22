@@ -3,6 +3,36 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="deposit.DepositDAO">
+
+<!-- resultMap 설정 시작 -->
+	<resultMap type="deposit" id="depositMap">
+		<result column="dcls_month" property="dclsMonth"/>
+		<result column="fin_co_no" property="finCoNo"/>
+		<result column="kor_co_nm" property="korCoNm"/>
+		<result column="fin_prdt_cd" property="finPrdtCd"/>
+		<result column="fin_prdt_nm" property="finPrdtNm"/>
+		<result column="join_way" property="joinWay"/>
+		<result column="mtrt_int" property="mtrtInt"/>
+		<result column="spcl_cnd" property="spclCnd"/>
+		<result column="join_deny" property="joinDeny"/>
+		<result column="join_member" property="joinMember"/>
+		<result column="etc_note" property="etcNote"/>
+		<result column="max_limit" property="maxLimit"/>
+		<result column="dcls_strt_day" property="dclsStrtDay"/>
+		<result column="dcls_end_day" property="dclsEndDay"/>
+		<result column="fin_co_subm_day" property="finCoSubmDay"/>
+	</resultMap>		
+<!-- resultMap 설정 끝 -->
+
+<!-- 쿼리 -->	
+	<select id="selectList" resultMap="depositMap">
+		select * from deposit_info
+	</select>
+	
+	<select id="selectByNo" parameterType="int" resultMap="depositMap">
+		select * from deposit_info where no=#{no}
+	</select>
+	
 	<insert id="insert" parameterType="deposit">
 		insert into deposit_info values(deposit_info_seq.nextval, to_date(#{dclsMonth},'YYYY/MM'),#{finCoNo},#{korCoNm},#{finPrdtCd},#{finPrdtNm},#{joinWay},#{mtrtInt, jdbcType=VARCHAR},#{spclCnd, jdbcType=VARCHAR},#{joinDeny, jdbcType=NUMERIC},#{joinMember, jdbcType=VARCHAR},#{etcNote, jdbcType=VARCHAR},#{maxLimit, jdbcType=NUMERIC},to_date(#{dclsStrtDay, jdbcType=DATE},'YYYY/MM/DD'),to_date(#{dclsEndDay},'YYYY/MM/DD'),to_date(#{finCoSubmDay},'YYYY/MM/DD HH24:MI:SS'))
 	</insert>

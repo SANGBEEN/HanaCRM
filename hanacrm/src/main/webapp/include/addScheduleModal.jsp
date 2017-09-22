@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<div id="addModal" class="modal fade">
+<div id="addModal" class="modal hide fade" aria-hidden="true" data-keyboard="true">
   <div class="modal-header">
   	<button type="button" class="close" data-dismiss="modal">×</button>
 		Event Detail
 	</div>
 	 <div class="modal-body">
-		  <label>Change event name &nbsp;</label>
 			<jsp:include page="/include/customerInfo.jsp"/>
 			<jsp:include page="/include/scheduleInfo.jsp" />
 	 </div>
