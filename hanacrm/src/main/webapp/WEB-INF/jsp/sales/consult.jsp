@@ -102,7 +102,7 @@
 						<tbody>
 							<c:forEach items="${ consultList }" var="consultVO">						
 												
-							<tr class="row-minimize-hs">
+							<tr> <!-- class="row-minimize-hs"> -->
 								<td id="row-no-hs">${ consultVO.no }</td>
 								<td>${ consultVO.customerVO.name }</td>
 								<td>${ consultVO.title }</td>
@@ -135,7 +135,22 @@
 			<!-- end: Content -->
 		</div><!--/#content.span10-->
 		</div><!--/fluid-row-->
-		
+	
+	<!-- 상세 -->
+	<div class="modal hide fade" id="consultDetail">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">×</button>
+			<h3>상담 내역 상세</h3>
+		</div>
+		<div class="modal-body">
+			<p>Here settings can be configured...</p>
+		</div>
+		<div class="modal-footer">
+			<a href="#" class="btn" data-dismiss="modal">Close</a>
+			<a href="#" class="btn btn-primary" data-dismiss="modal">Save changes</a>
+		</div>
+	</div>
+	
 	<!-- 추가 -->
 	<div class="modal hide fade" id="consultInsert">
 		<div class="modal-header">
@@ -191,27 +206,7 @@
 				</div>
 				<div class="modal-body">					
 					<div class="schedule-list">
-						<%-- <c:forEach items="scheduleList" var="scheduleVO">
-							<table class="table table-striped table-bordered bootstrap-datatable datatable">
-								<tr>
-									<td>
-										<div class="controls">											
-									  		<input type="radio" name="optionsRadios" value="${ scheduleVO.no }">
-									  	</div>
-									</td>
-									<td>
-										<div class="controls">
-										  	<span class="input-xlarge uneditable-input">${ scheduleVO }</span>
-										</div>
-									</td>
-									<td>
-										<div class="controls">
-										  	<span class="input-xlarge uneditable-input">${ scheduleVO }</span>
-										</div>
-									</td>
-								</tr>
-							</table>
-						</c:forEach> --%>
+						
 					</div>							
 				</div>
 				<div class="modal-footer">
@@ -224,7 +219,7 @@
 	
 	<!-- 상품  선택 -->
 	<div class="modal hide fade" id="consultProductSelect" role="dialog">
-		<div class="modal-dialog modal-lg">
+		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">×</button>
@@ -357,6 +352,16 @@
 			
 			$('a[id=consult-detail-hs]').click(function(e){
 				e.preventDefault();
+				e.stopPropagation();
+				
+				var consultVONo = $(this).parent().parent().children('td[id=row-no-hs]').text();
+				console.log(consultVONo);
+				
+				var consultList = '${ consultList }';
+				
+				console.dir(consultList);
+				
+				$("#consultDetail").modal();
 				console.log("상세");
 			});			
 		
