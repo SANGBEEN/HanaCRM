@@ -269,12 +269,23 @@
 				var eventList = [];
 				var data = ${scheduleList};
 				for(var i=0; i<data.length; i++){
+					var startDate = data[i].startDate;
+					var endDate = data[i].endDate;
+					var newEndDate = new Date(endDate);
+					
+					// 마지막 날짜 계산
+					if(new Date(startDate).toDateString() != new Date(endDate).toDateString()){
+						console.dir(endDate);
+						endDate = new Date(newEndDate.setDate(newEndDate.getDate()+1));
+						console.dir(endDate);
+					}
+					
 				 	eventList.push({ title : '('+data[i].customer.name+')',
-									start : moment(data[i].startDate).format('YYYY-MM-DD HH:mm'),
-									end:  moment(data[i].endDate).format('YYYY-MM-DD HH:mm'),
+									start : moment(startDate).format('YYYY-MM-DD HH:mm'),
+									end:  moment(endDate).format('YYYY-MM-DD HH:mm'),
 									className: data[i].type,
 									id: data[i].no});
-				 	console.log(new moment(data[i].endDate).format('YYYY-MM-DD HH:mm'));
+				 //	console.log(endDate+"\n"+new Date(endDate)); //new moment(data[i].endDate).format('YYYY-MM-DD HH:mm'));
 					
 				}
 				
