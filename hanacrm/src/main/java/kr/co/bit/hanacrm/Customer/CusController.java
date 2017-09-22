@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,11 +13,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import kr.co.bit.hanacrm.Consult.ConsultService;
 import kr.co.bit.hanacrm.Consult.ConsultVO;
+import kr.co.bit.hanacrm.Employee.EmpVO;
 
 @Controller
 @RequestMapping("/customer")
@@ -28,10 +32,10 @@ public class CusController {
 	
 	//전체조회
 	@RequestMapping(method=RequestMethod.GET)
-	public String list(Model model, HttpServletRequest req){
-//		int page = (int)req.getAttribute("page");
+	public String list(Model model, HttpSession session){
+		EmpVO emp = (EmpVO) session.getAttribute("emp");
 	    List<CusVO> cusList = new ArrayList<>();
-	    cusList = cusService.list();
+	    cusList = cusService.list(emp.getNo());
 	    for(CusVO cus : cusList){
 	    	System.out.println(cus);
 	    }
@@ -47,6 +51,32 @@ public class CusController {
 //		}
 	    model.addAttribute("cusList", cusList);
 		return "customer/list";	
+	}
+	
+	//전체조회
+	@ResponseBody
+	@RequestMapping(value="/listForModal", method=RequestMethod.GET)
+	public String listForModal(Model model, HttpServletRequest req, HttpSession session){
+//		int page = (int)req.getAttribute("page");
+		
+		EmpVO emp = (EmpVO) session.getAttribute("emp");
+		// emp.getNo();
+		
+		List<CusVO> cusList = new ArrayList<>();
+		cusList = cusService.list(emp.getNo());
+		for(CusVO cus : cusList){
+			System.out.println(cus);
+		}
+		
+		//VO to JSON
+		String json = "";
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			json = mapper.writeValueAsString(cusList);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		return json;	
 	}
 	
 	//상세조회
@@ -90,19 +120,7 @@ public class CusController {
 	//고객수정
 	@ResponseBody
 	@RequestMapping(method=RequestMethod.PUT)
-	public String update(CusVO cus){
-		System.out.println("풋풋");
-//		if(cusService.update(cus)==1)
-//			return "redirect:/customer/"+cus.getNo();
-		//return "redirect:/customer";
-		System.out.println(cus);
-		return "success";
-	}
-	//고객수정테스트 
-
-	@RequestMapping(value="/test", method=RequestMethod.POST)
-	public String update2(CusVO cus){
-		System.out.println("풋풋");
+	public String update(@RequestBody CusVO cus){
 //		if(cusService.update(cus)==1)
 //			return "redirect:/customer/"+cus.getNo();
 		//return "redirect:/customer";

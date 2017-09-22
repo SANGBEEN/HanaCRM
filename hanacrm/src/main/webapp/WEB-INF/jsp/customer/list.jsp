@@ -67,9 +67,9 @@
 
 
 				<ul class="breadcrumb">
-					<li><i class="icon-home"></i> <a href="index.html">Home</a> <i
+					<li><i class="icon-home"></i> <a href="${pageContext.request.contextPath}/main">Home</a> <i
 						class="icon-angle-right"></i></li>
-					<li><a href="#">Tables</a></li>
+					<li><a href="${pageContext.request.contextPath}/customer">고객목록</a></li>
 				</ul>
 
 				<div class="row-fluid sortable">
@@ -300,7 +300,7 @@
 	<script src="js/bootstrap.min.js"></script>
 
 	<script src="js/jquery.cookie.js"></script>
-
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
 	<script src='js/fullcalendar.min.js'></script>
 
 	<script src='js/jquery.dataTables.min.js'></script>

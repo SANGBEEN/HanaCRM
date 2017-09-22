@@ -17,4 +17,14 @@ public class EmpDAO {
 		// TODO Auto-generated method stub
 		return sql.selectOne("emp.EmpDAO.empLogin",emp);
 	}
+
+	public EmpVO selectByNo(EmpVO emp) {
+		// TODO Auto-generated method stub
+		return sql.selectOne("emp.EmpDAO.selectByNo", emp.getNo());
+	}
+
+	public int update(EmpVO emp) {
+		// TODO Auto-generated method stub
+		return sql.insert("emp.EmpDAO.update", emp);
+	}
 }

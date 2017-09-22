@@ -37,6 +37,9 @@ input.hidden {
 	border: solid 1px black !important;
 	
 }
+.profile{
+	margin-left : 20px;
+}
 
 </style>
 <!-- start: Meta -->
@@ -72,7 +75,79 @@ input.hidden {
 	href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext'
 	rel='stylesheet' type='text/css'>
 <!-- end: CSS -->
+<!-- start: JavaScript-->
 
+	<script src="${pageContext.request.contextPath}/js/jquery-1.9.1.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/js/jquery-migrate-1.0.0.min.js"></script>
+
+	<script
+		src="${pageContext.request.contextPath}/js/jquery-ui-1.10.0.custom.min.js"></script>
+
+	<script
+		src="${pageContext.request.contextPath}/js/jquery.ui.touch-punch.js"></script>
+
+	<script src="${pageContext.request.contextPath}/js/modernizr.js"></script>
+
+	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+
+	<script src="${pageContext.request.contextPath}/js/jquery.cookie.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
+	<script src='${pageContext.request.contextPath}/js/fullcalendar.min.js'></script>
+
+	<script
+		src='${pageContext.request.contextPath}/js/jquery.dataTables.min.js'></script>
+
+	<script src="${pageContext.request.contextPath}/js/excanvas.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.flot.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.flot.pie.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/js/jquery.flot.stack.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/js/jquery.flot.resize.min.js"></script>
+
+	<script
+		src="${pageContext.request.contextPath}/js/jquery.chosen.min.js"></script>
+
+	<script
+		src="${pageContext.request.contextPath}/js/jquery.uniform.min.js"></script>
+
+	<script
+		src="${pageContext.request.contextPath}/js/jquery.cleditor.min.js"></script>
+
+	<script src="${pageContext.request.contextPath}/js/jquery.noty.js"></script>
+
+	<script
+		src="${pageContext.request.contextPath}/js/jquery.elfinder.min.js"></script>
+
+	<script src="${pageContext.request.contextPath}/js/jquery.raty.min.js"></script>
+
+	<script
+		src="${pageContext.request.contextPath}/js/jquery.iphone.toggle.js"></script>
+
+	<script
+		src="${pageContext.request.contextPath}/js/jquery.uploadify-3.1.min.js"></script>
+
+	<script
+		src="${pageContext.request.contextPath}/js/jquery.gritter.min.js"></script>
+
+	<script
+		src="${pageContext.request.contextPath}/js/jquery.imagesloaded.js"></script>
+
+	<script
+		src="${pageContext.request.contextPath}/js/jquery.masonry.min.js"></script>
+
+	<script
+		src="${pageContext.request.contextPath}/js/jquery.knob.modified.js"></script>
+
+	<script
+		src="${pageContext.request.contextPath}/js/jquery.sparkline.min.js"></script>
+
+	<script src="${pageContext.request.contextPath}/js/counter.js"></script>
+
+	<script src="${pageContext.request.contextPath}/js/retina.js"></script>
+
+	<script src="${pageContext.request.contextPath}/js/custom.js"></script>
 
 <!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
@@ -103,15 +178,16 @@ input.hidden {
 
 			<!-- start: Content -->
 			<div id="content" class="span10">
-				<ul class="breadcrumb">
-					<li><i class="icon-home"></i> <a href="index.html">Home</a> <i
-						class="icon-angle-right"></i></li>
-					<li><a href="#">Tables</a></li>
-				</ul>
+			<ul class="breadcrumb">
+					<li><i class="icon-home"></i> <a href="${pageContext.request.contextPath}/main">Home</a> 
+					<i class="icon-angle-right"></i></li>
+					<li><a href="${pageContext.request.contextPath}/customer">고객목록</a><i class="icon-angle-right"></i></li>
+					<li><a href="${pageContext.request.contextPath}/customer">고객정보</a></li>
+			</ul>
 				<div class="row-fluid">
-					<div class="span7">
+					<div class="span5">
 						<div class="row">
-							<div class="col-md-7 ">
+							<div class="col-md-7 profile">
 								<div class="panel panel-default">
 									<div class="panel-heading">
 										<h4> User Profile</h4>
@@ -208,7 +284,7 @@ input.hidden {
 						</div>
 					</div>
 
-					<div class="span5 noMarginLeft">
+					<div class="span7 noMarginLeft">
 
 						<div class="dark">
 
@@ -230,7 +306,7 @@ input.hidden {
 												<span class="details"> ${consult.content } </span> 
 												<span>  상담상품 
 													<c:forEach var="product" items="${consult.consultProduct}">
-														<span class="remaining"> ${product.productNo} </span>
+														<span class="remaining"> ${product.productName} </span>
 													</c:forEach>
 												</span>
 											</span>
@@ -281,77 +357,7 @@ input.hidden {
 
 	<!-- start: JavaScript-->
 
-	<script src="${pageContext.request.contextPath}/js/jquery-1.9.1.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/js/jquery-migrate-1.0.0.min.js"></script>
-
-	<script
-		src="${pageContext.request.contextPath}/js/jquery-ui-1.10.0.custom.min.js"></script>
-
-	<script
-		src="${pageContext.request.contextPath}/js/jquery.ui.touch-punch.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/modernizr.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/jquery.cookie.js"></script>
-
-	<script src='${pageContext.request.contextPath}/js/fullcalendar.min.js'></script>
-
-	<script
-		src='${pageContext.request.contextPath}/js/jquery.dataTables.min.js'></script>
-
-	<script src="${pageContext.request.contextPath}/js/excanvas.js"></script>
-	<script src="${pageContext.request.contextPath}/js/jquery.flot.js"></script>
-	<script src="${pageContext.request.contextPath}/js/jquery.flot.pie.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/js/jquery.flot.stack.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/js/jquery.flot.resize.min.js"></script>
-
-	<script
-		src="${pageContext.request.contextPath}/js/jquery.chosen.min.js"></script>
-
-	<script
-		src="${pageContext.request.contextPath}/js/jquery.uniform.min.js"></script>
-
-	<script
-		src="${pageContext.request.contextPath}/js/jquery.cleditor.min.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/jquery.noty.js"></script>
-
-	<script
-		src="${pageContext.request.contextPath}/js/jquery.elfinder.min.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/jquery.raty.min.js"></script>
-
-	<script
-		src="${pageContext.request.contextPath}/js/jquery.iphone.toggle.js"></script>
-
-	<script
-		src="${pageContext.request.contextPath}/js/jquery.uploadify-3.1.min.js"></script>
-
-	<script
-		src="${pageContext.request.contextPath}/js/jquery.gritter.min.js"></script>
-
-	<script
-		src="${pageContext.request.contextPath}/js/jquery.imagesloaded.js"></script>
-
-	<script
-		src="${pageContext.request.contextPath}/js/jquery.masonry.min.js"></script>
-
-	<script
-		src="${pageContext.request.contextPath}/js/jquery.knob.modified.js"></script>
-
-	<script
-		src="${pageContext.request.contextPath}/js/jquery.sparkline.min.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/counter.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/retina.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/custom.js"></script>
+	
 	<script>
 		function modifyForm(){
 			//readonly속성가져와서 readonly면 클래스가져와서 속성변경, 아니면 수정한 폼 전송 
@@ -379,13 +385,26 @@ input.hidden {
 					$('.myInput').addClass('modifyInput');
 					console.log("readonly");
 				}else{
-					var queryString = $('form[name="modifyForm"]').serialize();
-					console.log(queryString);
+					//var data = JSON.stringify($('form[name="modifyForm"]').serializeArray());
+					var data={};
+					$('form[name="modifyForm"]').serializeArray().map(function(item){
+						if(data[item.name]){
+							if(typeof(data[item.name])==="string"){
+								data[item.name]=[data[item.name]];
+							}
+							data[item.name].push(item.value);
+						}else{
+							data[item.name] = item.value;
+						}
+					});
+					console.dir(JSON.stringify(data));
+					
 					//json을 문자열로 바꿔서 컨트롤러에서 RequestBody로 받음 
 					$.ajax({
 							type:'PUT',
 							url:'${pageContext.request.contextPath}/customer',
-							data:queryString,
+							data:JSON.stringify(data),
+							contentType: "application/json; charset=UTF-8",
 							dataType:'json',
 							error:function(xhr, status, error){
 								console.log(error);
@@ -397,7 +416,7 @@ input.hidden {
 				}
 			});
 			
-		})
+		});
 	</script>
 
 </body>

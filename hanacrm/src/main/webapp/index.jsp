@@ -27,9 +27,28 @@ html {
 <title>crm</title>
 <script src="js/loginModal.js"></script>
 <script>
-	window.onload = function() {
-		$('div.modal').modal();
-	};
+	var emp = "${sessionScope.emp}";
+	if(emp!=""){
+		console.log(emp);
+		location.href="${pageContext.request.contextPath}/main";
+	}else{
+		console.log('세션 없음');
+	}
+
+	$(document).ready(function(){
+/* 		var emp = "${sessionScope.emp}";
+		if(emp!=""){
+			console.log(emp);
+			location.href="${pageContext.request.contextPath}/main";
+		}else{
+			console.log('세션 없음');
+		} */
+		setTimeout(function(){
+			$('div.modal').modal();
+		}, 500);
+		
+		
+	});
 	
 	
 	

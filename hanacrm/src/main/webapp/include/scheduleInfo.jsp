@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="row-fluid sortable">
 <div class="box span12">
 	<div class="box-header" data-original-title>
@@ -28,18 +29,17 @@
 			  </div>
 			  
 			  <div class="control-group">
-				<label class="control-label">시작일</label>
-				<div class="controls">
-				  <span id="startDate" class="uneditable-input"></span>
+				<label class="control-label">시작일자</label>
+				<label class="control-label">종료일자</label>
+
+			<!-- <div class="controls"> -->
+				<div id="start-date-mtr-datepicker">
 				</div>
-			  </div>
 			  
-			  <div class="control-group">
-				<label class="control-label">종료일</label>
-				<div class="controls">
-				  <span id="endDate" class=""></span>
+				<div id="end-date-mtr-datepicker">
 				</div>
-			  </div>
+			  <!-- </div> -->
+			</div>
 			  
 			  <div class="control-group">
 				<label class="control-label" for="focusedInput">location</label>
@@ -92,6 +92,7 @@
 				  <span class="help-inline">Woohoo!</span>
 				</div>
 			  </div> -->
+			  
 			  <div class="control-group">
 				<label class="control-label" for="selectError3">반복</label>
 				<div class="controls">
@@ -104,6 +105,20 @@
 				  </select>
 				</div>
 			  </div>
+			  
+			  <div class="control-group">
+				<label class="control-label" for="selectError3">중요도</label>
+				<div class="controls">
+				  <select id="importance">
+				  	<option value="1">매우중요</option>
+				  	<option value="2">중요</option>
+				  	<option value="3">보통</option>
+				  	<option value="4">낮음</option>
+				  	<option value="5">매우낮음</option>	
+				  </select>
+				</div>
+			  </div>
+		<!-- 	  
 			  <div class="control-group">
 				<label class="control-label" for="selectError">Modern Select</label>
 				<div class="controls">
@@ -184,10 +199,7 @@
 				  </select>
 				</div>
 			  </div>
-			  <!-- <div class="form-actions">
-				<button type="submit" class="btn btn-primary">Save</button>
-				<button class="btn">Cancel</button>
-			  </div> -->
+			  -->
 			</fieldset>
 		  </div>
 	

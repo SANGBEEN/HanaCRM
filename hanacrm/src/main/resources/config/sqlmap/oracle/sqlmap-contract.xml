@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="contract.ContractDAO">
+	<select id="selectCount" parameterType="int" resultType="hashmap">
+		select
+		count(*) as cnt , to_char(reg_date,'MM') as month
+		from contract
+		where employee_no=#{no}
+		group by to_char(reg_date,'MM')
+		order by 2 asc
+	</select>
+</mapper>

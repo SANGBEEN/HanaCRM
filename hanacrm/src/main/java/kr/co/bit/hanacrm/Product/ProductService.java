@@ -10,50 +10,66 @@ import org.springframework.transaction.annotation.Transactional;
 public class ProductService {
 
 	@Autowired
-	private ProductDAO pDao;
-	
-	public List selectList() {
-		return null;
+	private ProductDAO productDAO;
+
+	public List<ProductVO> selectList(int type) {
+		System.out.println("productService");
+		switch (type) {
+		case 1:
+			System.out.println("selectDepositList");
+			return productDAO.selectDepositList();
+		case 2:
+			System.out.println("selectSavingsList");
+			return productDAO.selectSavingsList();	
+		case 3:
+			System.out.println("selectCardList");
+			return productDAO.selectCardList();
+		default:
+			return null;
+		}		
 	}
 
-	public Object selectByNo(int no) {
-		return null;
+	public ProductVO selectByNo(int type, int no) {
+		return productDAO.selectByNo(type, no);
 	}
-	
-	
+
+
 	public int insertDeposit(List<DepositVO> depositList, List<OptionVO> optionList) {
 		int result=0;
-		
+
 		for(int i=0;i<depositList.size();i++){
-			pDao.insertDeposit(depositList.get(i));
+			productDAO.insertDeposit(depositList.get(i));
 			result++;
 			System.out.println(result);
 		}
-		
+
 		for(int i=0;i<optionList.size();i++){
-			pDao.insertDepositOption(optionList.get(i));
+			productDAO.insertDepositOption(optionList.get(i));
 			result++;
 			System.out.println(result);
 		}
-		
+
 		return result;
 	}
 
 	public int insertSavings(List<SavingsVO> savingsList, List<OptionVO> optionList) {
 		int result=0;
-		
-//		for(int i=0;i<savingsList.size();i++){
-//			pDao.insertSavings(savingsList.get(i));
-//			result++;
-//			System.out.println(result);
-//		}
-		
-		for(int i=0;i<optionList.size();i++){
-			pDao.insertSavingsOption(optionList.get(i));
+		for(int i=0;i<savingsList.size();i++){
+			productDAO.insertSavings(savingsList.get(i));
 			result++;
 			System.out.println(result);
 		}
-		
+		//		for(int i=0;i<savingsList.size();i++){
+		//			pDao.insertSavings(savingsList.get(i));
+		//			result++;
+		//			System.out.println(result);
+		//		}
+		for(int i=0;i<optionList.size();i++){
+			productDAO.insertSavingsOption(optionList.get(i));
+			result++;
+			System.out.println(result);
+		}
+
 		return result;
 	}
 

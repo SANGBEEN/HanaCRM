@@ -1,6 +1,10 @@
 package hanacrm;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,7 +31,7 @@ public class DBTestMain {
 //		System.out.println(sqlSessionTemplate);
 //			
 //	}
-	@Test
+//	@Test
 	@Transactional
 	public void 고객CRUD() throws SQLException{
 		//List<BoardVO> list = sqlSessionTemplate.selectList("board.dao.BoardDAO.selectAllBoard");
@@ -68,4 +72,28 @@ public class DBTestMain {
 //			System.out.println(consultList.get(i));
 //		}
 //	}
+	@Test
+	public void 실적조회(){
+		int no = 1;
+		List<Map<String, String>> list = new ArrayList<>();
+		list = sqlSessionTemplate.selectList("contract.ContractDAO.selectCount", no);
+		for(Map<String,String> map : list){
+			Iterator<String> iterator = map.keySet().iterator();
+			String cnt="",month="";
+			iterator.hasNext();
+		    String key = (String) iterator.next();
+		    System.out.print("key="+key);
+		    System.out.println(" value="+map.get(key));
+		    cnt = map.get(key);
+		        
+		    iterator.hasNext();
+		    key = (String) iterator.next();
+		    System.out.print("key="+key);
+		    
+		    System.out.println("value= "+String.valueOf(map.get(key)));
+		    month = String.valueOf(map.get(key));
+		    System.out.println(map);
+		    
+		}
+	}
 }

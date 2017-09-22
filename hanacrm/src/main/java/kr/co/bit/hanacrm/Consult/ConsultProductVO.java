@@ -5,16 +5,34 @@ public class ConsultProductVO {
 	private Integer consultNo;
 	private Integer type;
 	private Integer productNo;
+	//상품정보 표시하기 위한 이름. 디비테이블에는 없음 
+	private String productName;
 	
 	public ConsultProductVO() {
 	}
 
-	public ConsultProductVO(Integer no, Integer consultNo, Integer type, Integer productNo) {
+	
+
+	public ConsultProductVO(Integer no, Integer consultNo, Integer type, Integer productNo, String productName) {
+		super();
 		this.no = no;
 		this.consultNo = consultNo;
 		this.type = type;
 		this.productNo = productNo;
+		this.productName = productName;
 	}
+
+	public String getProductName() {
+		return productName;
+	}
+
+
+
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+
+
 
 	public Integer getNo() {
 		return no;
@@ -52,7 +70,10 @@ public class ConsultProductVO {
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("ConsultProductVO [no=").append(no).append(", consultNo=").append(consultNo).append(", type=")
-				.append(type).append(", productNo=").append(productNo).append("]");
+				.append(type).append(", productNo=").append(productNo).append(", productName=").append(productName)
+				.append("]");
 		return builder.toString();
-	}	
+	}
+
+	
 }
