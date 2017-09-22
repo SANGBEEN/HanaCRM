@@ -574,8 +574,8 @@
 /* 								detailStartDatepicker.onChange('date', function(){
 								});
  */
- 								detailStartDatepicker.find('.mtr-default-value-holder').val(10);
- 								detailEndDatepicker.find('.months').val(3);
+ 							//	detailStartDatepicker.find('.mtr-default-value-holder').val(10);
+ 							//	detailEndDatepicker.find('.months').val(3);
 								
 								 var datepickerOutput = detailStartDatepicker.toString();
 								 console.log('datepicker output : '+detailEndDatepicker);
