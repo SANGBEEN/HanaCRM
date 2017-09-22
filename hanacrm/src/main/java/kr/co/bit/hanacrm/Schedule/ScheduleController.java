@@ -1,7 +1,5 @@
 package kr.co.bit.hanacrm.Schedule;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -33,9 +31,8 @@ public class ScheduleController {
 	@RequestMapping(value="/schedule/list", method=RequestMethod.GET)
 	public String selectList(Model model, HttpSession session){
 		EmpVO emp = (EmpVO) session.getAttribute("emp");
-		// emp.getNo()
 		model.addAttribute("scheduleList", scheduleService.selectListAll(1));
-		model.addAttribute("cusList", cusService.list());
+		model.addAttribute("cusList", cusService.list(emp.getNo()));
 		return "/schedule/schedule";
 	}
 	
@@ -57,7 +54,7 @@ public class ScheduleController {
 	public List<ScheduleVO> selectListByDate(Model model, HttpSession session, @PathVariable String date){
 		EmpVO emp = (EmpVO) session.getAttribute("emp");
 		ScheduleVO schedule = new ScheduleVO();
-		schedule.setEmployeeNo(1); //emp.getNo());
+		schedule.setEmployeeNo(emp.getNo());
 		schedule.setDate(date);
 	//	model.addAttribute("scheduleList", scheduleService.selectList(schedule));
 	//	System.out.println(schedule);
@@ -69,7 +66,7 @@ public class ScheduleController {
 	@RequestMapping(value="/schedule/listForConsult", method=RequestMethod.GET)
 	public List<ScheduleVO> selectListByType(Model model, HttpSession session, ScheduleVO schedule){
 		EmpVO emp = (EmpVO) session.getAttribute("emp");
-		schedule.setEmployeeNo(1); //emp.getNo());
+		schedule.setEmployeeNo(emp.getNo());
 	//	model.addAttribute("scheduleList", scheduleService.selectListByType(schedule));
 			System.out.println(schedule);
 			List<ScheduleVO> list = scheduleService.selectListByType(schedule);
@@ -82,7 +79,7 @@ public class ScheduleController {
 	@RequestMapping(value="/schedule", method=RequestMethod.POST)
 	public int insert(HttpSession session, ScheduleVO schedule) {
 		EmpVO emp = (EmpVO) session.getAttribute("emp");
-		schedule.setEmployeeNo(1);  //emp.getNo());
+		schedule.setEmployeeNo(emp.getNo());
 		System.out.println("일정 추가");
 		System.out.println(schedule);
 		return scheduleService.insert(schedule);
@@ -93,7 +90,6 @@ public class ScheduleController {
 	@RequestMapping(value="/schedule", method=RequestMethod.PUT)
 	public int update(@RequestBody ScheduleVO schedule){
 		System.out.println("일정 수정");
-		//System.out.println(request.getParameter("no"));
 		System.out.println("aaa - "+schedule);
 		return scheduleService.update(schedule);
 	}
