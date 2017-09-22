@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 //  상품정보(적금)
 @Component
-public class SavingsVO {
+public class SavingsVO implements ProductVO {
 
     private Integer no;
 

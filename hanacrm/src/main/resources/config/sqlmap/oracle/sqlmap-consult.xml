@@ -18,13 +18,6 @@
 		<result column="product_no" property="productNo"/>
 		<result column="reg_date" property="regDate"/>
 	</resultMap>
-	
-	<resultMap type="cus" id="customerMap">
-		<result column="birth_date" property="birthDate"/>
-		<result column="employee_no" property="employeeNo"/>
-		<result column="reg_date" property="regDate"/>
-	</resultMap>
-		
 <!-- resultMap 설정 끝 -->
 
 <!-- 쿼리 -->
