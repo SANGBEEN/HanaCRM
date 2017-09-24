@@ -31,5 +31,10 @@ public class MemoDAO {
 	public Integer selectByNo(int no) {
 		return sqlSessionTemplate.selectOne("memo.MemoDAO.selectByNo", no);
 	}
+	
+	// 추가할 메모 번호 받아오기
+	public int selectSeq(){
+		return sqlSessionTemplate.selectOne("memo.MemoDAO.selectSeq");
+	}
 
 }

@@ -16,7 +16,17 @@ public class MemoService {
 	}
 
 	public Integer insert(MemoVO memoVO) {
-		return memoDAO.insert(memoVO);
+		int memoNo = memoDAO.selectSeq();
+		
+		if(memoNo>0) {
+			memoVO.setNo(memoNo);
+			memoDAO.insert(memoVO);
+			System.out.println(memoVO);
+		}else {
+			memoNo = 0;
+		}
+		
+		return memoNo;
 	}
 
 	public Integer update(MemoVO memoVO) {

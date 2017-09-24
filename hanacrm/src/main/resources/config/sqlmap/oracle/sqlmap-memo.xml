@@ -20,7 +20,7 @@
 	
 	<insert id="insert" parameterType="memo">
 		insert into memo(no, content, employee_no, reg_date) 
-		values(MEMO_SEQ.nextVal, #{content}, #{employeeNo}, sysdate)
+		values(#{no}, #{content}, #{employeeNo}, sysdate)
 	</insert>
 	
 	<update id="update" parameterType="memo">
@@ -30,6 +30,10 @@
 	<delete id="delete" parameterType="int">
 		delete from memo where no=#{no}
 	</delete>
+	
+	<select id="selectSeq" resultType="int">
+		SELECT memo_seq.nextval FROM DUAL
+	</select>
 	
 	<!-- <select id="selectByNo" parameterType="int">
 		select * from memo where no=#{no}

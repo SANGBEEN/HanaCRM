@@ -53,7 +53,7 @@
 				<div class="span7">
 					<h1>Inbox</h1>
 					
-					<a class="btn btn-info memo-insert" id="memo-insert" href="#">
+					<a class="btn btn-info consult-update-hs" id="consult-update-hs" href="#">
 						<i class="halflings-icon white edit"></i>  
 					</a>
 					
@@ -62,7 +62,7 @@
 						<c:forEach items="${ memoList }" var="memoVO" varStatus="status">
 							<li>
 							<span class="from">뭐쓰징</span>
-								<span class="title" onclick="clickTitle('${memoVO.content}','${memoVO.regDate}' )">${ memoVO.content }</span>
+								<span class="title" onclick="clickTitle(${status.index})">${ memoVO.content }</span>
 								<span class="date">${ memoVO.regDate }</span>
 							</li>
 						</c:forEach>
@@ -105,7 +105,7 @@
 							<div class="header">
 								<h1>동적으로 뿌리기 제목1</h1>
 								<div class="from"><i class="halflings-icon user"></i> <b>Dennis Ji</b> / jiguofei@msn.com</div>
-								<span id="date" class="date"><i class="halflings-icon time"></i> Today, <b>3:47 PM</b></span>
+								<div class="date"><i class="halflings-icon time"></i> Today, <b>3:47 PM</b></div>
 								
 								<div class="menu"></div>
 								
@@ -227,58 +227,11 @@
 
 	<script>
 	
-		function clickTitle(content,date){
-			$('#message').val(content);
-			$('#date').text(date);
+		function clickTitle(no){
+			
+			$('#message').text('${memoList['+no+'].content}');
 		}
 		
-		$('#memo-insert').on('click', function(){
-			$('#message').val('');
-			
-			$('#message').on('keyup', function(){
-				
-				$.ajax({
-					url: '${pageContext.request.contextPath}/sales/memo',
-					type: 'post',
-					data: {
-						
-					},
-					success: function(data){
-						var memoData = {
-							employeeNo: '$(session.emp.no)',
-							content: $('#message').val()
-						}
-					},
-					error: function(){
-						alert('error');
-					}
-				})
-			});
-		});
-		
-		$('#message').on('keyup', function(e){
-			
-			$('#message').on('keyup', null);
-			
-			console.dir(e);
-			
-			/* $.ajax({
-				url: '${pageContext.request.contextPath}/sales/memo',
-				type: 'put',
-				data: {
-					
-				},
-				success: function(data){
-					var memoData = {
-						employeeNo: '$(session.emp.no)',
-						content: $('#message').val()
-					}
-				},
-				error: function(){
-					alert('error');
-				}
-			}) */
-		});
 	</script>
 </body>
 </html>
