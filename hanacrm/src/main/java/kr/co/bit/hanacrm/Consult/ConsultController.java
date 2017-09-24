@@ -1,5 +1,7 @@
 package kr.co.bit.hanacrm.Consult;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,11 +21,11 @@ public class ConsultController {
 		return new ModelAndView("/sales/consult", "consultList", consultService.selectList());
 	}
 	
-	/*@RequestMapping(value="/sales/consult/{no}", method=RequestMethod.GET)
-	public String selectByNo(HttpServletRequest request, @PathVariable int no){
-		request.setAttribute("consultCustomer", consultService.selectByNo(no));
-		return null;
-	}*/
+	@ResponseBody
+	@RequestMapping(value="/sales/consult/{no}", method=RequestMethod.GET, produces="application/json")
+	public ConsultVO selectByNo(@PathVariable int no){		
+		return consultService.selectByNo(no);
+	}
 	
 	@ResponseBody
 	@RequestMapping(value="/sales/consult", method=RequestMethod.POST)

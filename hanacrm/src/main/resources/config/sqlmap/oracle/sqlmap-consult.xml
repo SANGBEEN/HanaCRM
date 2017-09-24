@@ -33,6 +33,10 @@
 		select * from customer where no=#{customerNo}
 	</select> -->
 	
+	<select id="selectByNo" parameterType="int" resultMap="consultMap">
+		select * from consult where no=#{consultNo}
+	</select>
+	
 	<select id="select" parameterType="int" resultMap="consultMap">
 		select * from consult where customer_no=#{no}
 	</select>
