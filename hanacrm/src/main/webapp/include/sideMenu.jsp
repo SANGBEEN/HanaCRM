@@ -11,7 +11,7 @@
 				<ul>
 					<li><a class="submenu" href="${pageContext.request.contextPath}/sales/consult"><i class="icon-file-alt"></i><span class="hidden-tablet"> 상담 내역</span></a></li>
 					<li><a class="submenu" href="${pageContext.request.contextPath}/sales/memo"><i class="icon-file-alt"></i><span class="hidden-tablet"> 메모</span></a></li>
-					<li><a class="submenu" href="${pageContext.request.contextPath}/sales/product/1"><i class="icon-file-alt"></i><span class="hidden-tablet"> 상품 정보</span></a></li>
+					<li><a class="submenu" href="${pageContext.request.contextPath}/sales/product"><i class="icon-file-alt"></i><span class="hidden-tablet"> 상품 정보</span></a></li>
 				</ul>	
 			</li>
 

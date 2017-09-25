@@ -37,7 +37,7 @@
 		
 	<!-- start: Favicon -->
 	<link rel="shortcut icon" href="img/favicon.ico">
-	<!-- end: Favicon -->
+	<!-- end: Favicon -->	
 </head>
 <body>
 <!-- 헤더 -->
