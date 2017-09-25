@@ -30,9 +30,20 @@ public class ProductService {
 	}
 
 	public ProductVO selectByNo(int type, int no) {
-		return productDAO.selectByNo(type, no);
+		switch (type) {
+		case 1:
+			System.out.println("selectDepositList");
+			return productDAO.selectDepositByNo(no);
+		case 2:
+			System.out.println("selectSavingsList");
+			return productDAO.selectSavingsByNo(no);	
+		case 3:
+			System.out.println("selectCardList");
+			return productDAO.selectCardByNo(no);
+		default:
+			return null;
+		}		
 	}
-
 
 	public int insertDeposit(List<DepositVO> depositList, List<OptionVO> optionList) {
 		int result=0;
