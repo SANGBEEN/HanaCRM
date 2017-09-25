@@ -16,6 +16,7 @@
 <!-- 쿼리 -->
 	<select id="selectList" parameterType="int" resultMap="memoMap">
 		select * from memo where employee_no=#{employeeNo}
+		order by reg_date desc
 	</select>
 	
 	<insert id="insert" parameterType="memo">

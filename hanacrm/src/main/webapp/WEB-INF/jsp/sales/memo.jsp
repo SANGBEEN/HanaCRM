@@ -50,20 +50,19 @@
 				
 				<div class="row-fluid">
 				
-				<div class="span7">
-					<h1>Inbox</h1>
-					
-					<a class="btn btn-info memo-insert" id="memo-insert" href="#">
-						<i class="halflings-icon white edit"></i>  
-					</a>
+				<h1>메모</h1>
+				<div class="span7">					
+					<div align="right">
+						<a class="btn btn-info memo-insert" id="memo-insert" href="#" style="align:right">
+							<i class="halflings-icon white edit"></i>  
+						</a>
+					</div>
 					
 					<ul class="messagesList">
 					
 						<c:forEach items="${ memoList }" var="memoVO" varStatus="status">
-							<li>
-							<span class="from">뭐쓰징</span>
-								<span class="title" onclick="clickTitle('${memoVO.content}','${memoVO.regDate}' )">${ memoVO.content }</span>
-								<span class="date">${ memoVO.regDate }</span>
+							<li onclick="clickTitle('${memoVO.no}','${memoVO.regDate}')">
+								<span class="from">뭐쓰징</span><span id="memo${memoVO.no}" class="title">${memoVO.content}</span><span class="date">${memoVO.regDate}</span>
 							</li>
 						</c:forEach>
 						
@@ -82,11 +81,8 @@
 						
 						<li>
 							<span class="from">
-								<span class="glyphicons dislikes"><i></i></span>
-								Dennis Ji
-							</span>
-							<span class="title">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..</span>
-							<span class="date">Today, <b>3:47 PM</b></span>
+							<span class="glyphicons dislikes"><i></i></span>
+							Dennis Ji</span><span class="title">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..</span><span class="date">Today, <b>3:47 PM</b></span>
 						</li>
 						
 						<li>
@@ -98,21 +94,21 @@
 					</ul>
 						
 					</div>
-					<div class="span5 noMarginLeft">
-						
-						<div class="message dark">
-							
+					
+					<div id="thisMemo" class="span5 noMarginLeft" style="visibility:hidden" >
+						<div class="message dark" style="top:0px">
+
 							<div class="header">
-								<h1>동적으로 뿌리기 제목1</h1>
+								<h1 id="thisTitle" class="title"> </h1>
 								<div class="from"><i class="halflings-icon user"></i> <b>Dennis Ji</b> / jiguofei@msn.com</div>
-								<span id="date" class="date"><i class="halflings-icon time"></i> Today, <b>3:47 PM</b></span>
+								<span class="date"><i class="halflings-icon time"></i><span id="thisDate" ></span> Today, <b>3:47 PM</b></span>
 								
 								<div class="menu"></div>
 								
 							</div>
 							
 							<div class="content">
-								<textarea tabindex="3" class="input-xlarge span12" id="message" name="body" rows="12" placeholder="내용 가져오기"></textarea>
+								<textarea tabindex="3" class="input-xlarge span12" id="thisMessage" name="body" rows="12" placeholder="메모를 입력하세요."></textarea>
 								<!-- <blockquote>
 									Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 								</blockquote> -->
@@ -227,58 +223,123 @@
 
 	<script>
 	
-		function clickTitle(content,date){
-			$('#message').val(content);
-			$('#date').text(date);
+		var firstCheck = false;
+		var memoNo = 0;
+		
+		// 기본 셋팅 - 클릭 이벤트
+		 function clickTitle(no, date){
+			 
+			 $('#thisMemo').css('visibility','visible');
+			 
+			$('#thisMessage').val($('#memo'+no).text());
+			$('#thisDate').text(date);
+			$('#thisTitle').text(subString($('#memo'+no).text()));
+			memoNo = no;
+		//	console.log(memoNo);
 		}
 		
 		$('#memo-insert').on('click', function(){
-			$('#message').val('');
 			
-			$('#message').on('keyup', function(){
-				
+			firstCheck = true;
+			$('#thisMemo').css('visibility','visible');
+			$('#thisTitle').text(' ');
+			$('#thisMessage').val('');
+	
 				$.ajax({
-					url: '${pageContext.request.contextPath}/sales/memo',
-					type: 'post',
-					data: {
-						
-					},
-					success: function(data){
-						var memoData = {
-							employeeNo: '$(session.emp.no)',
-							content: $('#message').val()
-						}
+					url: '${pageContext.request.contextPath}/sales/memoSeq',
+					type: 'get',
+					success: function(no){
+						console.log(no);
+						memoNo = no;
+					//	firstCheck = false;
+					//	console.log(memoNo);
+					//	console.log(firstCheck);
 					},
 					error: function(){
 						alert('error');
 					}
-				})
-			});
+				});
 		});
 		
-		$('#message').on('keyup', function(e){
-			
-			$('#message').on('keyup', null);
+		
+		$('#thisMessage').on('keyup', function(e){
 			
 			console.dir(e);
+			console.log(memoNo);
+			if(firstCheck) console.log(firstCheck);
 			
-			/* $.ajax({
-				url: '${pageContext.request.contextPath}/sales/memo',
-				type: 'put',
-				data: {
-					
-				},
-				success: function(data){
-					var memoData = {
-						employeeNo: '$(session.emp.no)',
-						content: $('#message').val()
+			if(!firstCheck){
+				// 첫 작성이 아니면 수정 요청
+				  $.ajax({
+					url: '${pageContext.request.contextPath}/sales/memo',
+					type: 'put',
+					contentType: "application/json; charset=uft-8",
+					data: JSON.stringify({
+						employeeNo: 0,
+						no: memoNo,
+						content: $('#thisMessage').val(),
+						regDate: null
+					}),
+					success: function(data){
+						console.log('put: '+data);
+						$('#memo'+memoNo).text($('#thisMessage').val());
+						$('#thisTitle').text(subString($('#memo'+memoNo).text()));
+					},
+					error: function(){
+						alert('put error');
 					}
-				},
-				error: function(){
-					alert('error');
-				}
-			}) */
+				});
+				
+			} else {
+				// 첫 작성일 경우
+				var d = new Date();
+				var today = d.getFullYear()+"-"+(d.getMonth()<9?'0'+(d.getMonth()+1):d.getMonth())+"-"+d.getDate();
+				var memoData = {
+						no: memoNo,
+						content: $('#thisMessage').val(),
+					}
+				 $.ajax({
+					url: '${pageContext.request.contextPath}/sales/memo',
+					type: 'post',
+					data: memoData,
+					success: function(data){
+						console.log('post: '+data);
+						firstCheck = false;
+						
+						// 메모리스트에 동적 추가
+						// 1. append 추가하기 테스트
+						addHtml = '<li id=""><span class="from">뉴메모</span><span id="memo'
+									+ memoData.no + '" class="title">'
+									+ memoData.content + '</span><span class="date">'+today+'</span></li>';
+						$('.messagesList').prepend(addHtml);
+
+					//	var element = document.getElementById(""+memoData.no);
+						document.getElementById("memo"+memoData.no).addEventListener('click', function(){
+							console.log(this.innerText);
+							$('#thisMessage').val(this.innerText);
+							$('#thisTitle').text(subString(this.innerText));
+							$('#thisDate').text(today);
+							memoNo = memoData.no;
+						});
+						
+					 },
+					error: function(e){
+						alert('post error');
+						console.dir(e);
+					}
+				});
+			}
 		});
+		
+		function subString(text){
+			
+			if(text.length>15){
+				text = text.substring(0,15)+"...";
+			}
+			
+			return text;
+		}
+		
 	</script>
 </body>
 </html>

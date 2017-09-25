@@ -15,18 +15,8 @@ public class MemoService {
 		return memoDAO.selectList(employeeNo);
 	}
 
-	public Integer insert(MemoVO memoVO) {
-		int memoNo = memoDAO.selectSeq();
-		
-		if(memoNo>0) {
-			memoVO.setNo(memoNo);
-			memoDAO.insert(memoVO);
-			System.out.println(memoVO);
-		}else {
-			memoNo = 0;
-		}
-		
-		return memoNo;
+	public Integer insert(MemoVO memoVO) {		
+		return memoDAO.insert(memoVO);
 	}
 
 	public Integer update(MemoVO memoVO) {
@@ -39,6 +29,10 @@ public class MemoService {
 
 	public Integer selectByNo(int no) {
 		return memoDAO.selectByNo(no);
+	}
+
+	public Integer selectSeq() {
+		return memoDAO.selectSeq();
 	}	
 
 }

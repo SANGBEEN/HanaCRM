@@ -413,10 +413,11 @@
 						$('#endDate').text(end); */
 						console.log('start:'+start);
 						console.log('end:'+start);
-						// 데이트피커					
+						// 데이트피커
+						
 						var startDatepicker = new MtrDatepicker(setDatepickerConfig('start', start));
 						var endDatepicker = new MtrDatepicker(setDatepickerConfig('end', end));
-
+						
 						
 					/* 	startDatepicker.onChange('date', function(){
 							startDatepicket = new MtrDatepicker(setDatepickerConfig('start',startDatepicker.toString()));
@@ -553,7 +554,7 @@
 						var end = getDate(calEvent.end)!=''? getDate(calEvent.end):start;
 						var detailStartDatepicker, detailEndDatepicker;
 
-						console.log(start+'~'+end);
+						
 						
 						$.ajax({
 							url: "${pageContext.request.contextPath}/schedule/"+calEvent.id,
@@ -810,43 +811,41 @@
 		 		
 		 		
 		 	function setDatepickerConfig(type, date){
-		 		
-		 	// 데이트피커
-				 var config = {
-					  target:     type+'-date-mtr-datepicker',         // ID of HTML element
-					  timestamp:  date, // moment(calEvent.start).format('YYYY-MM-DD HH:mm'),    // Starting date
-					  future:     false,                // Only dates in the future,
-					  smartHours: true,                // Make a smart switch from AM to PM
-					  animations: true,                 // NOTE: thew version with disabled animations is not stable
-					  
-					  defaultValues: {
-						  hours: 9,
-						  minutes: 0,
-						  dates: 10,
-						  months: 9,
-						  years: 2017
-					  },
-		 	
-					
-					  months: {
-					    min: 0,
-					    max: 11,
-					    step: 1
-					  },
-					  minutes: {
-					    min: 0,
-					    max: 50,
-					    step: 10
-					  },
-					  years: {
-					    min: 2000,
-					    max: 2030,
-					    step: 1
-					  }
-				};
-				 
-				return config;
-		 	}
+			 	// 데이트피커
+					 var config = {
+						  target:     type+'-date-mtr-datepicker',         // ID of HTML element
+						  timestamp:  date, // moment(calEvent.start).format('YYYY-MM-DD HH:mm'),    // Starting date
+						  future:     false,                // Only dates in the future,
+						  smartHours: true,                // Make a smart switch from AM to PM
+						  animations: true,                 // NOTE: thew version with disabled animations is not stable
+						  
+						  defaultValues: {
+							  hours: 9,
+							  minutes: 0,
+							  dates: 10,
+							  months: 9,
+							  years: 2017
+						  },
+			 	
+						  months: {
+						    min: 0,
+						    max: 11,
+						    step: 1
+						  },
+						  minutes: {
+						    min: 0,
+						    max: 50,
+						    step: 10
+						  },
+						  years: {
+						    min: 2000,
+						    max: 2030,
+						    step: 1
+						  }
+					};
+					 
+					return config;
+			 	}
 		 	
 		 	function addCheck(){
 
