@@ -51,7 +51,7 @@
 				<div class="row-fluid">
 				
 				<h1>메모</h1>
-				<div class="span7">					
+				<div class="span7" style="padding-right:20px">					
 					<div align="right">
 						<a class="btn btn-info memo-insert" id="memo-insert" href="#" style="align:right">
 							<i class="halflings-icon white edit"></i>  
@@ -95,8 +95,8 @@
 						
 					</div>
 					
-					<div id="thisMemo" class="span5 noMarginLeft" style="visibility:hidden" >
-						<div class="message dark" style="top:0px">
+					<div id="thisMemo" class="span5 noMarginLeft" style="visibility:hidden; padding-right:10px" >
+						<div class="message dark" style="top:0px; right:5px">
 
 							<div class="header">
 								<h1 id="thisTitle" class="title"> </h1>
@@ -308,7 +308,7 @@
 						
 						// 메모리스트에 동적 추가
 						// 1. append 추가하기 테스트
-						addHtml = '<li id=""><span class="from">뉴메모</span><span id="memo'
+						addHtml = '<li><span class="from">뉴메모</span><span id="memo'
 									+ memoData.no + '" class="title">'
 									+ memoData.content + '</span><span class="date">'+today+'</span></li>';
 						$('.messagesList').prepend(addHtml);
