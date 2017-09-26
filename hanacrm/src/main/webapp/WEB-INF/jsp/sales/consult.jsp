@@ -317,6 +317,7 @@
 	
 		<script src="${pageContext.request.contextPath}/js/jquery.cookie.js"></script>
 	
+		<script src='${pageContext.request.contextPath}/js/moment.min.js'></script>
 		<script src='${pageContext.request.contextPath}/js/fullcalendar.min.js'></script>
 	
 		<script src='${pageContext.request.contextPath}/js/jquery.dataTables.min.js'></script>
