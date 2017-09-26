@@ -222,7 +222,8 @@
 						</div>
 					</div>
 					<!--/span-->
-					<div class="span2 noMargin" onTablet="span4" onDesktop="span2">
+					
+<!--				<div class="span2 noMargin" onTablet="span4" onDesktop="span2">
 						<div class="circleStatsItemBox pink">
 							<div class="header">잠재고객</div>
 							<div class="circleStat">
@@ -231,7 +232,7 @@
 						</div>
 					</div>
 
-					<div class="span2" onTablet="span4" onDesktop="span2">
+ 					<div class="span2" onTablet="span4" onDesktop="span2">
 						<div class="circleStatsItemBox orange">
 							<div class="header">Memory</div>
 							<span class="percent">percent</span>
@@ -245,10 +246,42 @@
 								</span>
 							</div>
 						</div>
-					</div>
-
-					<div class="span2" onTablet="span4" onDesktop="span2">
-						<div class="circleStatsItemBox greenLight">
+					</div> -->
+					
+						<div class="row-fluid sortable">
+							<div class="box span6">
+								<div class="box-header">
+									<h2><i class="halflings-icon list-alt"></i><span class="break"></span>Pie</h2>
+									<div class="box-icon">
+										<a href="#" class="btn-setting"><i class="halflings-icon wrench"></i></a>
+										<a href="#" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
+										<a href="#" class="btn-close"><i class="halflings-icon remove"></i></a>
+									</div>
+								</div>
+								<div class="box-content">
+										<div id="piechart" style="height:300px"></div>
+								</div>
+							</div>
+					
+							<div class="box span6">
+								<div class="box-header" data-original-title>
+									<h2><i class="halflings-icon list-alt"></i><span class="break"></span>Donut</h2>
+									<div class="box-icon">
+										<a href="#" class="btn-setting"><i class="halflings-icon wrench"></i></a>
+										<a href="#" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
+										<a href="#" class="btn-close"><i class="halflings-icon remove"></i></a>
+									</div>
+								</div>
+								<div class="box-content">
+									 <div id="donutchart" style="height: 300px;"></div>
+								</div>
+							</div>
+					
+						</div><!--/row-->
+					
+						<!--
+						<div class="span2" onTablet="span4" onDesktop="span2">
+						 <div class="circleStatsItemBox greenLight">
 							<div class="header">Memory</div>
 							<span class="percent">percent</span>
 							<div class="circleStat">
@@ -261,8 +294,8 @@
 									class="number">64</span> <span class="unit">GB</span>
 								</span>
 							</div>
-						</div>
-					</div>
+						</div> 
+					</div>-->
 				</div>
 
 
@@ -370,6 +403,17 @@
 
 	<script>
 		var contract = ${contractList};
+		
+		// 상품 Top3
+		var productData = [
+			{ label: "Internet Explorer",  data: 12},
+			{ label: "Mobile",  data: 27},
+			{ label: "Safari",  data: 85},
+			{ label: "Firefox",  data: 90},
+			{ label: "Chrome",  data: 112}
+			];
+			
+		
 		console.dir(contract);
 		$().ready(function() {
 			$('#depositBtn').click(function() {
@@ -469,10 +513,11 @@
 					str += 			'<div>'+v.endDate+'</div>';
 					str += 		'</div>';
 					str += '</div>';
-					$('priority.low').append(str);
+					$('.priority.low').append(str);
 				}
 					
 			});
+			
 		});
 	</script>
 	<!-- end: JavaScript-->

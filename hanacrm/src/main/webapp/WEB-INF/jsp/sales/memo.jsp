@@ -72,7 +72,7 @@
 								Dennis Ji
 								<span class="glyphicons paperclip"><i></i></span>
 							</span>
-							<span class="title">
+							<span id="memo0"class="title">
 								<span class="label label-warning">problem</span>
 								Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..
 							</span>
@@ -108,7 +108,7 @@
 							</div>
 							
 							<div class="content">
-								<textarea tabindex="3" class="input-xlarge span12" id="thisMessage" name="body" rows="12" placeholder="메모를 입력하세요."></textarea>
+								<textarea tabindex="3" class="input-xlarge span12" id="thisMessage" name="body" rows="20" placeholder="메모를 입력하세요."></textarea>
 								<!-- <blockquote>
 									Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 								</blockquote> -->
@@ -178,6 +178,7 @@
 	
 		<script src="${pageContext.request.contextPath}/js/jquery.cookie.js"></script>
 	
+		<script src='${pageContext.request.contextPath}/js/moment.min.js'></script> <!-- for calendar -->
 		<script src='${pageContext.request.contextPath}/js/fullcalendar.min.js'></script>
 	
 		<script src='${pageContext.request.contextPath}/js/jquery.dataTables.min.js'></script>
@@ -245,22 +246,21 @@
 			$('#thisTitle').text(' ');
 			$('#thisMessage').val('');
 	
-				$.ajax({
+				/*  $.ajax({
 					url: '${pageContext.request.contextPath}/sales/memoSeq',
 					type: 'get',
 					success: function(no){
 						console.log(no);
 						memoNo = no;
-					//	firstCheck = false;
 					//	console.log(memoNo);
 					//	console.log(firstCheck);
 					},
 					error: function(){
 						alert('error');
 					}
-				});
+				});  */
+				
 		});
-		
 		
 		$('#thisMessage').on('keyup', function(e){
 			
@@ -268,9 +268,9 @@
 			console.log(memoNo);
 			if(firstCheck) console.log(firstCheck);
 			
-			if(!firstCheck){
+		/*	if(!firstCheck){
 				// 첫 작성이 아니면 수정 요청
-				  $.ajax({
+				/*   $.ajax({
 					url: '${pageContext.request.contextPath}/sales/memo',
 					type: 'put',
 					contentType: "application/json; charset=uft-8",
@@ -288,7 +288,10 @@
 					error: function(){
 						alert('put error');
 					}
-				});
+				}); 
+				
+				$('#memo'+memoNo).text($('#thisMessage').val());
+				$('#thisTitle').text(subString($('#memo'+memoNo).text()));
 				
 			} else {
 				// 첫 작성일 경우
@@ -298,7 +301,99 @@
 						no: memoNo,
 						content: $('#thisMessage').val(),
 					}
-				 $.ajax({
+				  $.ajax({
+					url: '${pageContext.request.contextPath}/sales/memo',
+					type: 'post',
+					data: memoData,
+					success: function(data){
+						console.log('post: '+data);
+						firstCheck = false;
+						
+						// 메모리스트에 동적 추가
+						// 1. append 추가하기 테스트
+						addHtml = '<li><span class="from">뉴메모</span><span id="memo'
+									+ memoData.no + '" class="title">'
+									+ memoData.content + '</span><span class="date">'+today+'</span></li>';
+						$('.messagesList').prepend(addHtml);
+
+					//	var element = document.getElementById(""+memoData.no);
+						document.getElementById("memo"+memoData.no).addEventListener('click', function(){
+							console.log(this.innerText);
+							$('#thisMessage').val(this.innerText);
+							$('#thisTitle').text(subString(this.innerText));
+							$('#thisDate').text(today);
+							memoNo = memoData.no;
+						});
+						
+					 },
+					error: function(e){
+						alert('post error');
+						console.dir(e);
+					}
+				}); */
+				
+				var d = new Date();
+				var today = d.getFullYear()+"-"+(d.getMonth()<9?'0'+(d.getMonth()+1):d.getMonth())+"-"+d.getDate();
+	
+				
+				if(firstCheck){
+					 $.ajax({
+							url: '${pageContext.request.contextPath}/sales/memoSeq',
+							type: 'get',
+							success: function(no){
+								console.log(no);
+								memoNo = no;
+							//	console.log(memoNo);
+							//	console.log(firstCheck);
+							},
+							error: function(){
+								alert('error');
+							}
+						}); 
+				}
+				
+				
+				$('#memo'+memoNo).text($('#thisMessage').val());
+				$('#thisTitle').text(subString($('#memo'+memoNo).text()));
+				$('#thisDate').text(today);
+				
+			//}
+		});
+		
+		$('#thisMessage').blur(function(){
+			if(!firstCheck){
+				// 첫 작성이 아니면 수정 요청
+				   $.ajax({
+					url: '${pageContext.request.contextPath}/sales/memo',
+					type: 'put',
+					contentType: "application/json; charset=uft-8",
+					data: JSON.stringify({
+						employeeNo: 0,
+						no: memoNo,
+						content: $('#thisMessage').val(),
+						regDate: null
+					}),
+					success: function(data){
+						console.log('put: '+data);
+						$('#memo'+memoNo).text($('#thisMessage').val());
+						$('#thisTitle').text(subString($('#memo'+memoNo).text()));
+					},
+					error: function(){
+						alert('put error');
+					}
+				}); 
+				
+				console.log('수정요청');
+				
+			} else {
+				// 첫 작성일 경우
+				var d = new Date();
+				var today = d.getFullYear()+"-"+(d.getMonth()<9?'0'+(d.getMonth()+1):d.getMonth())+"-"+d.getDate();
+				var memoData = {
+						no: memoNo,
+						content: $('#thisMessage').val(),
+					}
+				  $.ajax({
 					url: '${pageContext.request.contextPath}/sales/memo',
 					type: 'post',
 					data: memoData,
@@ -328,6 +423,8 @@
 						console.dir(e);
 					}
 				});
+
+				console.log('등록요청');
 			}
 		});
 		
