@@ -267,7 +267,7 @@
 	        	            html += '<tr><td>' + product[i].finPrdtCd + 
 	        	            '</td><td>' + product[i].finPrdtNm + 
 	        	            '</td><td>' + product[i].joinMember + 
-	        	            '</td><td><a href="#" class="btn btn-primary" id="productDetail" data-product_no="' + product[i].no + '">상세보기</a></td></tr>';
+	        	            '</td><td><a href="/sales/product/' + type + '/' + product[i].no + '" class="btn btn-primary">상세보기</a></td></tr>';
 	        	            		/* + '<td><span class="input-xlarge uneditable-input">' + product[i].comments + '</span></td></tr>'; */
         	        }
         	        
@@ -284,6 +284,7 @@
 			
 			console.log("탭 선택");
 		}		
+		
 		</script>
 	<!-- end: JavaScript-->
 </body>
