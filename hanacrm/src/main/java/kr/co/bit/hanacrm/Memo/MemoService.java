@@ -15,7 +15,7 @@ public class MemoService {
 		return memoDAO.selectList(employeeNo);
 	}
 
-	public Integer insert(MemoVO memoVO) {
+	public Integer insert(MemoVO memoVO) {		
 		return memoDAO.insert(memoVO);
 	}
 
@@ -29,6 +29,10 @@ public class MemoService {
 
 	public Integer selectByNo(int no) {
 		return memoDAO.selectByNo(no);
+	}
+
+	public Integer selectSeq() {
+		return memoDAO.selectSeq();
 	}	
 
 }

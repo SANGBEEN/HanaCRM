@@ -4,7 +4,7 @@
 <div class="row-fluid sortable">
 <div class="box span12">
 	<div class="box-header" data-original-title>
-		<h2><i class="halflings-icon edit"></i><span class="break"></span>Form Elements</h2>
+		<h2><i class="halflings-icon edit"></i><span class="break"></span>Schedule Info</h2>
 		<div class="box-icon">
 			
 		</div>

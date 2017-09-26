@@ -44,8 +44,8 @@
 	
 	<!-- start: javascript -->
 	<script src='${pageContext.request.contextPath}/js/jquery.min.js'></script> <!-- for calendar -->
-	<%-- <script src='${pageContext.request.contextPath}/js/moment.min.js'></script> <!-- for calendar --> --%>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
+	<script src='${pageContext.request.contextPath}/js/moment.min.js'></script> <!-- for calendar -->
+	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script> -->
 	<!-- end: javascript -->
 	
 	<style>
@@ -186,7 +186,6 @@
 	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 
 	<script src="${pageContext.request.contextPath}/js/jquery.cookie.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/locale/af.js"></script>
 	<script src='${pageContext.request.contextPath}/js/fullcalendar.js'></script>
 	<%-- <script src='${pageContext.request.contextPath}/js/fullcalendar.min.js'></script> --%>
 
@@ -413,10 +412,11 @@
 						$('#endDate').text(end); */
 						console.log('start:'+start);
 						console.log('end:'+start);
-						// 데이트피커					
+						// 데이트피커
+						
 						var startDatepicker = new MtrDatepicker(setDatepickerConfig('start', start));
 						var endDatepicker = new MtrDatepicker(setDatepickerConfig('end', end));
-
+						
 						
 					/* 	startDatepicker.onChange('date', function(){
 							startDatepicket = new MtrDatepicker(setDatepickerConfig('start',startDatepicker.toString()));
@@ -553,7 +553,7 @@
 						var end = getDate(calEvent.end)!=''? getDate(calEvent.end):start;
 						var detailStartDatepicker, detailEndDatepicker;
 
-						console.log(start+'~'+end);
+						
 						
 						$.ajax({
 							url: "${pageContext.request.contextPath}/schedule/"+calEvent.id,
@@ -653,7 +653,7 @@
 									if(data==1){										
 										calendar.fullCalendar('removeEvents' , function(ev){
 											return (ev._id == calEvent._id);
-										})
+										});
 										detailModal.modal("hide");
 										alert('삭제 완료');
 									}else {
@@ -810,43 +810,41 @@
 		 		
 		 		
 		 	function setDatepickerConfig(type, date){
-		 		
-		 	// 데이트피커
-				 var config = {
-					  target:     type+'-date-mtr-datepicker',         // ID of HTML element
-					  timestamp:  date, // moment(calEvent.start).format('YYYY-MM-DD HH:mm'),    // Starting date
-					  future:     false,                // Only dates in the future,
-					  smartHours: true,                // Make a smart switch from AM to PM
-					  animations: true,                 // NOTE: thew version with disabled animations is not stable
-					  
-					  defaultValues: {
-						  hours: 9,
-						  minutes: 0,
-						  dates: 10,
-						  months: 9,
-						  years: 2017
-					  },
-		 	
-					
-					  months: {
-					    min: 0,
-					    max: 11,
-					    step: 1
-					  },
-					  minutes: {
-					    min: 0,
-					    max: 50,
-					    step: 10
-					  },
-					  years: {
-					    min: 2000,
-					    max: 2030,
-					    step: 1
-					  }
-				};
-				 
-				return config;
-		 	}
+			 	// 데이트피커
+					 var config = {
+						  target:     type+'-date-mtr-datepicker',         // ID of HTML element
+						  timestamp:  date, // moment(calEvent.start).format('YYYY-MM-DD HH:mm'),    // Starting date
+						  future:     false,                // Only dates in the future,
+						  smartHours: true,                // Make a smart switch from AM to PM
+						  animations: true,                 // NOTE: thew version with disabled animations is not stable
+						  
+						  defaultValues: {
+							  hours: 9,
+							  minutes: 0,
+							  dates: 10,
+							  months: 9,
+							  years: 2017
+						  },
+			 	
+						  months: {
+						    min: 0,
+						    max: 11,
+						    step: 1
+						  },
+						  minutes: {
+						    min: 0,
+						    max: 50,
+						    step: 10
+						  },
+						  years: {
+						    min: 2000,
+						    max: 2030,
+						    step: 1
+						  }
+					};
+					 
+					return config;
+			 	}
 		 	
 		 	function addCheck(){
 

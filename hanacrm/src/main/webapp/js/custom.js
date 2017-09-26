@@ -110,7 +110,7 @@ $(document).ready(function(){
 	init_masonry();
 	sparkline_charts();
 	charts();
-	calendars();
+	//calendars();
 	growlLikeNotifications();
 	widthFunctions();
 	
@@ -1641,7 +1641,7 @@ function charts() {
 	}
 
 	/* ---------- Pie chart ---------- */
-	var data = [
+/*	var data = [
 	{ label: "Internet Explorer",  data: 12},
 	{ label: "Mobile",  data: 27},
 	{ label: "Safari",  data: 85},
@@ -1649,10 +1649,10 @@ function charts() {
 	{ label: "Firefox",  data: 90},
 	{ label: "Chrome",  data: 112}
 	];
-	
+	*/
 	if($("#piechart").length)
 	{
-		$.plot($("#piechart"), data,
+		$.plot($("#piechart"), productData,
 		{
 			series: {
 					pie: {
