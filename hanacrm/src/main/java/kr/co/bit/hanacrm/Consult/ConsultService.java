@@ -36,6 +36,10 @@ public class ConsultService {
 		
 		return consultList;
 	}
+	
+	public ConsultVO selectByNo(int no) {
+		return consultDAO.selectByNo(no);
+	} 
 
 	public Integer insert(ConsultVO consultVO) {
 		return consultDAO.insert(consultVO);
@@ -65,5 +69,6 @@ public class ConsultService {
 		}	
 		
 		return consultList;
-	} 
+	}
+	
 }

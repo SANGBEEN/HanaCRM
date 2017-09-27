@@ -33,13 +33,20 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 	
-	@RequestMapping(value="/sales/product/{type}", method=RequestMethod.GET)
-	public ModelAndView selectList(@PathVariable int type){
-		return new ModelAndView("/sales/product/list", "productList", productService.selectList(type));
+	@RequestMapping(value="/sales/product", method=RequestMethod.GET)
+	public String selectList(){
+		return "/sales/product/list";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/sales/product/{type}", method=RequestMethod.GET, produces="application/json")
+	public List<ProductVO> selectList(@PathVariable int type){
+		return productService.selectList(type);
 	}
 	
 	@RequestMapping(value="/sales/product/{type}/{no}", method=RequestMethod.GET)
 	public ModelAndView selectByNo(@PathVariable int type, @PathVariable int no){
+		System.out.println("productSelectByNo");
 		return new ModelAndView("/sales/product/detail", "productDetail", productService.selectByNo(type, no));
 	}
 	

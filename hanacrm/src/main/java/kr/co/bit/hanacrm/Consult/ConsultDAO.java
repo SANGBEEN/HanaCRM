@@ -25,6 +25,10 @@ public class ConsultDAO {
 	/*public CusVO selectCustomer(Integer customerNo) {
 		return sqlSessionTemplate.selectOne("consult.ConsultDAO.selectCustomer", customerNo);
 	}*/
+	
+	public ConsultVO selectByNo(int consultNo) {
+		return sqlSessionTemplate.selectOne("consult.ConsultDAO.selectByNo", consultNo);
+	}
 
 	public Integer insert(ConsultVO consultVO) {
 		return sqlSessionTemplate.insert("consult.ConsultDAO.insert", consultVO);

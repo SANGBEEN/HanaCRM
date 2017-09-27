@@ -102,7 +102,7 @@
 						<tbody>
 							<c:forEach items="${ consultList }" var="consultVO">						
 												
-							<tr class="row-minimize-hs">
+							<tr> <!-- class="row-minimize-hs"> -->
 								<td id="row-no-hs">${ consultVO.no }</td>
 								<td>${ consultVO.customerVO.name }</td>
 								<td>${ consultVO.title }</td>
@@ -112,7 +112,7 @@
 									<span class="label label-success">Active</span>
 								</td>
 								<td class="center">
-									<a class="btn btn-success" id="consult-detail-hs" href="#">
+									<a class="btn btn-success" id="consult-detail-hs" href="#" data-consult_no="${ consultVO.no }">
 										<i class="halflings-icon white zoom-in"></i>  
 									</a>
 									<a class="btn btn-info consult-update-hs" id="consult-update-hs" href="#">
@@ -136,6 +136,38 @@
 		</div><!--/#content.span10-->
 		</div><!--/fluid-row-->
 		
+	<!-- 상세 -->
+	<c:forEach items="${ consultList }" var="consultVO">
+		<div class="modal hide fade" id="consultDetail${ consultVO.no }">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">×</button>
+				<h3>상담 내역 상세</h3>
+			</div>
+			<div class="modal-body">
+				<div>
+					<strong>이름:</strong> <a href="#">${ consultVO.customerVO.name }</a><br>
+					<strong>생년월일:</strong> ${ consultVO.customerVO.birthDate }<br>
+					<strong>연락처:</strong> ${ consultVO.customerVO.phone }<br>
+					<strong>우편번호:</strong> ${ consultVO.customerVO.post }<br>
+					<strong>주소:</strong> ${ consultVO.customerVO.address }<br>
+					<strong>분류:</strong> ${ consultVO.customerVO.grade }<br>
+					<strong>비고:</strong> ${ consultVO.customerVO.comments }<br>
+					
+						<c:forEach items="${ consultVO.consultProduct }" var="consultProductVO">
+							<strong>상품 종류 임시:</strong> ${ consultProductVO.type }<br>
+							<strong>상품 번호 임시:</strong> ${ consultProductVO.productNo }<br>
+						</c:forEach>
+					
+					<strong>상담 내용:</strong> ${ consultVO.content }<br>
+				</div>			
+			</div>
+			<div class="modal-footer">
+				<a href="#" class="btn" data-dismiss="modal">Close</a>
+				<a href="#" class="btn btn-primary" data-dismiss="modal">Save changes</a>
+			</div>
+		</div>
+	</c:forEach>
+	
 	<!-- 추가 -->
 	<div class="modal hide fade" id="consultInsert">
 		<div class="modal-header">
@@ -147,7 +179,7 @@
 				<label class="control-label" for="focusedInput">상담 날짜</label>
 				<div class="controls" id="mtr-datepicker-hs">
 					<input class="input-xlarge focused" id="consultDate" type="text">
-					<a href="#" class="btn btn-warning date-select-hs" id="date-select-hs">선택</a>
+					<a href="#" class="btn btn-warning" id="date-select-hs">선택</a>
 				</div>
 			</div>
 			<div class="control-group">
@@ -177,12 +209,12 @@
 		</div>
 		<div class="modal-footer">
 			<a href="#" class="btn" data-dismiss="modal">취소</a>
-			<a href="#" class="btn btn-primary" data-dismiss="modal">확인</a>			
+			<a href="#" class="btn btn-primary" id="consult-insert-complete-hs" data-dismiss="modal">확인</a>			
 		</div>
 	</div>
 	
 	<!-- 일정  선택 -->
-	<div class="modal hide fade" id="consultCustomerSelect" role="dialog">
+	<div class="modal hide fade" id="consultScheduleSelect" role="dialog">
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -191,32 +223,12 @@
 				</div>
 				<div class="modal-body">					
 					<div class="schedule-list">
-						<%-- <c:forEach items="scheduleList" var="scheduleVO">
-							<table class="table table-striped table-bordered bootstrap-datatable datatable">
-								<tr>
-									<td>
-										<div class="controls">											
-									  		<input type="radio" name="optionsRadios" value="${ scheduleVO.no }">
-									  	</div>
-									</td>
-									<td>
-										<div class="controls">
-										  	<span class="input-xlarge uneditable-input">${ scheduleVO }</span>
-										</div>
-									</td>
-									<td>
-										<div class="controls">
-										  	<span class="input-xlarge uneditable-input">${ scheduleVO }</span>
-										</div>
-									</td>
-								</tr>
-							</table>
-						</c:forEach> --%>
+						
 					</div>							
 				</div>
 				<div class="modal-footer">
 					<a href="#" class="btn" data-dismiss="modal">취소</a>
-					<a href="#" class="btn btn-primary schedule-select-hs" id="schedule-select-hs" data-dismiss="modal">확인</a>
+					<a href="#" class="btn btn-primary" id="schedule-select-hs" data-dismiss="modal">확인</a>
 				</div>
 			</div>
 		</div>
@@ -224,7 +236,7 @@
 	
 	<!-- 상품  선택 -->
 	<div class="modal hide fade" id="consultProductSelect" role="dialog">
-		<div class="modal-dialog modal-lg">
+		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">×</button>
@@ -239,7 +251,7 @@
 				</div>
 				<div class="modal-footer">
 					<a href="#" class="btn" data-dismiss="modal">취소</a>
-					<a href="#" class="btn btn-primary product-select-hs" id="product-select-hs" data-dismiss="modal">확인</a>
+					<a href="#" class="btn btn-primary" id="product-select-hs" data-dismiss="modal">확인</a>
 				</div>
 			</div>
 		</div>
@@ -267,7 +279,7 @@
 		</div>
 		<div class="modal-footer">
 			<a href="#" class="btn" data-dismiss="modal">취소</a>
-			<a href="#" class="btn btn-primary" data-dismiss="modal">확인</a>
+			<a href="#" class="btn btn-primary" id="consult-update-complete-hs" data-dismiss="modal">확인</a>
 		</div>
 	</div>
 	
@@ -282,7 +294,7 @@
 		</div>
 		<div class="modal-footer">
 			<a href="#" class="btn" data-dismiss="modal">취소</a>
-			<a href="#" class="btn btn-primary" data-dismiss="modal">확인</a>
+			<a href="#" class="btn btn-primary" id="consult-delete-complete-hs" data-dismiss="modal">확인</a>
 		</div>
 	</div>
 	
@@ -305,6 +317,7 @@
 	
 		<script src="${pageContext.request.contextPath}/js/jquery.cookie.js"></script>
 	
+		<script src='${pageContext.request.contextPath}/js/moment.min.js'></script>
 		<script src='${pageContext.request.contextPath}/js/fullcalendar.min.js'></script>
 	
 		<script src='${pageContext.request.contextPath}/js/jquery.dataTables.min.js'></script>
@@ -357,28 +370,23 @@
 			
 			$('a[id=consult-detail-hs]').click(function(e){
 				e.preventDefault();
+				e.stopPropagation();
+				
+				//var consultVO = JSON.parse($(this).val());
+				
+				var consultDetailNo = $(this).data('consult_no');
+				//console.log($(this).data('consultVO'));
+				
+				//var consultVONo = $(this).parent().parent().children('td[id=row-no-hs]').text();
+				//console.log(consultVONo);
+				
+				//var consultList = '${ consultList }';
+				
+				//console.dir(consultList);
+				console.log(consultDetailNo);
+				$("#consultDetail"+consultDetailNo).modal();
 				console.log("상세");
-			});			
-		
-			/* 수정 */
-			$('a[id=consult-update-hs]').click(function(e){
-				e.preventDefault();
-				e.stopPropagation();
-				/* $(this).parent().next('.row-detail-hs').empty(); */
-				//console.log($(this).parent().parent().find('td[id=row-no-hs]'));
-				$("#consultUpdate").modal();
-				console.log("수정");
-			});
-			
-			/* 삭제 */
-			$('a[id=consult-delete-hs]').click(function(e){
-				e.preventDefault();
-				e.stopPropagation();
-				/* $(this).parent().next('.row-minimize-hs').empty();
-				$(this).parent().next('.row-detail-hs').empty(); */
-				$("#consultDelete").modal();
-				console.log("삭제");
-			});
+			});	
 			
 			/* 추가 */
 			$('a[id=consult-insert-hs]').click(function(e){
@@ -398,7 +406,27 @@
 				
 				$("#consultInsert").modal();
 				console.log("추가");
-			});			
+			});
+			
+			/* 추가 완료 */
+			$('a[id=consult-insert-complete-hs]').click(function(e){
+				e.preventDefault();
+				e.stopPropagation();	
+				
+				var date = new Date();
+				var year = date.getFullYear();
+				var month = (date.getMonth() + 1).toString();
+				month = month.length == 1 ? "0" + month : month;
+				var date1 = date.getDate();
+				date1 = date1.length == 1 ? "0" + date1 : date1;
+				
+				$("#consultDate").val(month + "/" + date1 + "/" + year);
+				
+				$("#consultDate").datepicker();
+				
+				$("#consultInsert").modal();
+				console.log("추가");
+			});
 			
 			/* 일정 선택 */
 			$('a[id=date-select-hs]').click(function(e){
@@ -416,34 +444,24 @@
 				$.ajax({
 	        		url: "${pageContext.request.contextPath}/schedule/listForConsult",
 	        		type: "get",
-	        		contentType: "application/json; charset=uft-8",
+	        		/* contentType: "application/json; charset=uft-8", */
 	        		dataType: "json",
 	        		data: { 
 	        				"type"	:	"Meeting", 
 	        				"date"	:	inputDate
 	        		}, 
-	        		success: function(data){
+	        		success: function(data) {
 	        			console.dir("data: " + data);
-	        			//var jsonData = JSON.parse(data);	        			
-	        	        //console.log("jsonData: " + jsonData);
-	        	        
+	        				        	        
 	        	        html = '<table class="table table-striped table-bordered bootstrap-datatable datatable">';
 	        	        html += '<tr><th>번호</th><th>고객 이름</th><th>장소</th><th>일정</th></tr>';
 	        	        
-	        	       /*  for (var i = 0; i < jsonData.length; i++) {
-	        	           // console.log("124");
-	        	            html += '<tr><td><input type="radio" name="optionsRadios" value="' + jsonData[i].no + '"></td>' 
-	        	            		+ '<td><span class="input-xlarge uneditable-input">' + jsonData[i].customer.name + '</span></td>' 
-	        	            		+ '<td><span class="input-xlarge uneditable-input">' + jsonData[i].comments + '</span></td></tr>';
-	        	        } */
-	        	        
 	        	        for (var i = 0; i < data.length; i++) {
-		        	           // console.log("124");
 		        	            html += '<tr><td><input type="radio" name="optionsRadios" value="' + data[i].no + '"></td>' 
 		        	            		+ '<td><span class="input-xlarge uneditable-input">' + data[i].customer.name + '</span></td>' 
 		        	            		+ '<td><span class="input-xlarge uneditable-input">' + data[i].location + '</span></td>' 
 		        	            		+ '<td><span class="input-xlarge uneditable-input">' + data[i].comments + '</span></td></tr>';
-		        	        }
+	        	        }
 	        	        
 	        	        html += '</table>';
 	        	 
@@ -456,20 +474,75 @@
 	        		}
 	        	});
 				
-				$("#consultCustomerSelect").modal();
+				$("#consultInsert").modal("hide");
+				$("#consultScheduleSelect").modal();
 				console.log("일정 선택");
 			});
 			
-			/* 일정 선택 */
+			/* 상품 선택 */
 			$('a[id=schedule-select-hs]').click(function(e){
 				e.preventDefault();
 				e.stopPropagation();
 				
 				var selectedScheduleNo = $('input[name="optionsRadios"]:checked').val();
 				
+				$("#consultScheduleSelect").modal("hide");
 				$("#consultProductSelect").modal();
 				console.log("상품 선택");
+			});			
+		
+			/* 수정 */
+			$('a[id=consult-update-hs]').click(function(e){
+				e.preventDefault();
+				e.stopPropagation();
+				/* $(this).parent().next('.row-detail-hs').empty(); */
+				//console.log($(this).parent().parent().find('td[id=row-no-hs]'));
+				$("#consultUpdate").modal();
+				console.log("수정");
 			});
+			
+			/* 수정 확인 */
+			$('a[id=consult-update-complete-hs]').click(function(e){
+				e.preventDefault();
+				e.stopPropagation();
+				/* $(this).parent().next('.row-detail-hs').empty(); */
+				//console.log($(this).parent().parent().find('td[id=row-no-hs]'));
+				$("#consultUpdate").modal();
+				console.log("수정 완료");
+			});
+			
+			/* 삭제 */
+			$('a[id=consult-delete-hs]').click(function(e){
+				e.preventDefault();
+				e.stopPropagation();
+				/* $(this).parent().next('.row-minimize-hs').empty();
+				$(this).parent().next('.row-detail-hs').empty(); */
+				$("#consultDelete").modal();
+				console.log("삭제");
+			});
+			
+			/* 삭제 확인 */
+			$('a[id=consult-delete-complete-hs]').click(function(e){
+				e.preventDefault();
+				e.stopPropagation();
+				
+				var consultVONo = $(this).parent().parent().children('td[id=row-no-hs]').text();
+				
+				$.ajax({
+	        		url: "${pageContext.request.contextPath}/sales/consult/" + consultVONo,
+	        		type: "delete",
+	        		success: function(data){
+	        			console.dir("data: " + data);
+	        	        console.log("삭제 완료");
+	        	    },
+	        		error: function(e){
+	      				console.log(e);
+	        			alert('error');
+	        		}
+	        	});
+				
+				console.log("삭제 완료");
+			});						
 			
 		</script>
 	<!-- end: JavaScript-->

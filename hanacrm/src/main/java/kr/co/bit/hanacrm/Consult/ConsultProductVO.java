@@ -1,5 +1,8 @@
 package kr.co.bit.hanacrm.Consult;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 public class ConsultProductVO {
 	private Integer no;
 	private Integer consultNo;
@@ -11,10 +14,7 @@ public class ConsultProductVO {
 	public ConsultProductVO() {
 	}
 
-	
-
 	public ConsultProductVO(Integer no, Integer consultNo, Integer type, Integer productNo, String productName) {
-		super();
 		this.no = no;
 		this.consultNo = consultNo;
 		this.type = type;
@@ -26,13 +26,9 @@ public class ConsultProductVO {
 		return productName;
 	}
 
-
-
 	public void setProductName(String productName) {
 		this.productName = productName;
 	}
-
-
 
 	public Integer getNo() {
 		return no;
@@ -68,12 +64,22 @@ public class ConsultProductVO {
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
+		/*StringBuilder builder = new StringBuilder();
 		builder.append("ConsultProductVO [no=").append(no).append(", consultNo=").append(consultNo).append(", type=")
 				.append(type).append(", productNo=").append(productNo).append(", productName=").append(productName)
 				.append("]");
-		return builder.toString();
+		return builder.toString();*/
+		
+		ObjectMapper mapper = new ObjectMapper();
+		
+		String VoToJson = null;
+		
+		try {
+			VoToJson = mapper.writeValueAsString(this);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		return VoToJson;
 	}
-
 	
 }

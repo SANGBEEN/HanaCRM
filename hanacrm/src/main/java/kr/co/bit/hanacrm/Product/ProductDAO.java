@@ -26,7 +26,15 @@ public class ProductDAO {
 		return null;
 	}
 	
-	public ProductVO selectByNo(int type, int no) {
+	public ProductVO selectDepositByNo(int no) {
+		return sqlSessionTemplate.selectOne("deposit.DepositDAO.selectByNo", no);
+	}
+
+	public ProductVO selectSavingsByNo(int no) {
+		return sqlSessionTemplate.selectOne("savings.SavingsDAO.selectByNo", no);
+	}
+
+	public ProductVO selectCardByNo(int no) {
 		return null;
 	}
 
@@ -73,4 +81,5 @@ public class ProductDAO {
 	public List<MainVO> selectTopSavings() {
 		return sqlSessionTemplate.selectList("savings.SavingsDAO.selectTop");
 	}
+
 }
