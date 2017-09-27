@@ -32,7 +32,7 @@ select *
 from schedule
 where to_char(sysdate, 'yyyy-mm-dd') between to_char(start_date, 'yyyy-mm-dd') and  to_char(end_date, 'yyyy-mm-dd')
 
-select di.no as no, di.fin_prdt_nm as name, count
+select di.no as no, replace(di.fin_prdt_nm, '\r'||chr(13)||chr(10), 'a') as name, count
 from (
 	select product_no, count(*) as count
 	from CONSULT_PRODUCT

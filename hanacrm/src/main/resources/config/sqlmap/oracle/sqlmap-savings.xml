@@ -43,7 +43,7 @@
 		
 	<!-- type별 상담 많은 상품 3 -->
 	<select id="selectTop" resultType="main">
-		select si.no as no, si.fin_prdt_nm as name, count
+		select si.no as no, replace(si.fin_prdt_nm, chr(13)||chr(10), ' ') as name, count
 		from (select product_no, count(*) as count
 				from consult_product
 				group by type, product_no

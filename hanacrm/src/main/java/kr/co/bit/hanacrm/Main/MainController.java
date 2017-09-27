@@ -88,15 +88,29 @@ public class MainController {
 		//상담 많은 예금 상품
 		List<MainVO> savingsList = new ArrayList<>();
 		savingsList = productService.selectTopSavings();
+		String jsonSavingsList = "";
+		//VO to JSON
+		mapper = new ObjectMapper();
+		try {
+			jsonSavingsList = mapper.writeValueAsString(savingsList);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
 		
 		//상담 많은 적금 상품
 		List<MainVO> depositList = new ArrayList<>();
 		depositList = productService.selectTopDeposit();
+		String jsonDepositList = "";
+		//VO to JSON
+		mapper = new ObjectMapper();
+		try {
+			jsonDepositList = mapper.writeValueAsString(depositList);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
 		
-		System.out.println(savingsList);
-
-		model.addAttribute("savingsList", savingsList);
-		model.addAttribute("depositList", depositList);
+		model.addAttribute("savingsList", jsonSavingsList);
+		model.addAttribute("depositList", jsonDepositList);
 		model.addAttribute("scheduleList",scheduleList);
 		model.addAttribute("contractList", json);
 		return "/main/main";

@@ -251,7 +251,7 @@
 						<div class="row-fluid sortable">
 							<div class="box span6">
 								<div class="box-header">
-									<h2><i class="halflings-icon list-alt"></i><span class="break"></span>Pie</h2>
+									<h2><i class="halflings-icon list-alt"></i><span class="break"></span>Deposit</h2>
 									<div class="box-icon">
 										<a href="#" class="btn-setting"><i class="halflings-icon wrench"></i></a>
 										<a href="#" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
@@ -259,7 +259,21 @@
 									</div>
 								</div>
 								<div class="box-content">
-										<div id="piechart" style="height:300px"></div>
+										<div id="piechart_deposit" style="height:300px"></div>
+								</div>
+							</div>
+
+							<div class="box span6">
+								<div class="box-header">
+									<h2><i class="halflings-icon list-alt"></i><span class="break"></span>Savings</h2>
+									<div class="box-icon">
+										<a href="#" class="btn-setting"><i class="halflings-icon wrench"></i></a>
+										<a href="#" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
+										<a href="#" class="btn-close"><i class="halflings-icon remove"></i></a>
+									</div>
+								</div>
+								<div class="box-content">
+										<div id="piechart_savings" style="height:300px"></div>
 								</div>
 							</div>
 					
@@ -404,31 +418,33 @@
 
 	<script>
 		var contract = ${contractList};
-		var savingsList = '${savingList}';
-		console.log('${depositList[0].name}');
+		var savingsList = ${savingsList};
+		var depositList = ${depositList};
 	
 		// 상품 Top3
 		var savingsData = [];
 		var depositData = [];
-		var size = '${savingsList}';
+		var size = savingsList.length;
 		console.log(size);
 		
 		 for(var i=0; i<3 ; i++){
-			savingsData.put({
-				label: '${savingsList[0].name}',
-				data: '${savingsList[0].count}'
+			savingsData.push({
+				label: savingsList[i].name,
+				data: savingsList[i].count
 			});
 		}
 		
 		for(var i=0; i<3; i++){
-			depositData.put({
-				label: '${depositList[i].name}',
-				data: '${depositList[i].count}'
+			depositData.push({
+				label: depositList[i].name,
+				data: depositList[i].count
 			});
-		}
-			 
+		}		 
 		
 		console.dir(contract);
+		console.dir(savingsData);
+		console.dir(depositData);
+		
 		$().ready(function() {
 			$('#depositBtn').click(function() {
 				//var url = "http://finlife.fss.or.kr/finlifeapi/depositProductsSearch.json?callback=?&auth=49bb53dc3ef5b88bbe5eb3b85b8c3077&topFinGrpNo=020000&pageNo=1";
