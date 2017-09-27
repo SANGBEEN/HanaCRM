@@ -400,19 +400,33 @@
 	<script src="${pageContext.request.contextPath}/js/retina.js"></script>
 
 	<script src="${pageContext.request.contextPath}/js/custom.js"></script>
+	
 
 	<script>
 		var contract = ${contractList};
-		
+		var savingsList = '${savingList}';
+		console.log('${depositList[0].name}');
+	
 		// 상품 Top3
-		var productData = [
-			{ label: "Internet Explorer",  data: 12},
-			{ label: "Mobile",  data: 27},
-			{ label: "Safari",  data: 85},
-			{ label: "Firefox",  data: 90},
-			{ label: "Chrome",  data: 112}
-			];
-			
+		var savingsData = [];
+		var depositData = [];
+		var size = '${savingsList}';
+		console.log(size);
+		
+		 for(var i=0; i<3 ; i++){
+			savingsData.put({
+				label: '${savingsList[0].name}',
+				data: '${savingsList[0].count}'
+			});
+		}
+		
+		for(var i=0; i<3; i++){
+			depositData.put({
+				label: '${depositList[i].name}',
+				data: '${depositList[i].count}'
+			});
+		}
+			 
 		
 		console.dir(contract);
 		$().ready(function() {
@@ -521,6 +535,5 @@
 		});
 	</script>
 	<!-- end: JavaScript-->
-
 </body>
 </html>

@@ -1652,7 +1652,7 @@ function charts() {
 	*/
 	if($("#piechart").length)
 	{
-		$.plot($("#piechart"), productData,
+		$.plot($("#piechart"), savingsData,
 		{
 			series: {
 					pie: {

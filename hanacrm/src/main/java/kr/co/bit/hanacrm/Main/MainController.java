@@ -22,6 +22,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import kr.co.bit.hanacrm.Contract.ContractService;
 import kr.co.bit.hanacrm.Employee.EmpService;
 import kr.co.bit.hanacrm.Employee.EmpVO;
+import kr.co.bit.hanacrm.Product.ProductService;
 import kr.co.bit.hanacrm.Schedule.ScheduleService;
 import kr.co.bit.hanacrm.Schedule.ScheduleVO;
 
@@ -34,6 +35,8 @@ public class MainController {
 	private ScheduleService scheduleService;
 	@Autowired
 	private ContractService contractService;
+	@Autowired
+	private ProductService productService;
 	
 	// 로그인
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -81,7 +84,19 @@ public class MainController {
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
+		
+		//상담 많은 예금 상품
+		List<MainVO> savingsList = new ArrayList<>();
+		savingsList = productService.selectTopSavings();
+		
+		//상담 많은 적금 상품
+		List<MainVO> depositList = new ArrayList<>();
+		depositList = productService.selectTopDeposit();
+		
+		System.out.println(savingsList);
 
+		model.addAttribute("savingsList", savingsList);
+		model.addAttribute("depositList", depositList);
 		model.addAttribute("scheduleList",scheduleList);
 		model.addAttribute("contractList", json);
 		return "/main/main";

@@ -37,5 +37,4 @@
 		select * from consult where customer_no=#{no}
 	</select>
 	
-	
 </mapper>

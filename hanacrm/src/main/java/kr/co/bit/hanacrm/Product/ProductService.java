@@ -4,7 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+
+import kr.co.bit.hanacrm.Main.MainVO;
 
 @Service
 public class ProductService {
@@ -73,4 +74,11 @@ public class ProductService {
 		return result;
 	}
 
+	public List<MainVO> selectTopDeposit() {
+		return productDAO.selectTopDeposit();
+	}
+
+	public List<MainVO> selectTopSavings() {
+		return productDAO.selectTopSavings();
+	}
 }

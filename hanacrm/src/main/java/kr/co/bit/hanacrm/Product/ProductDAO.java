@@ -2,10 +2,11 @@ package kr.co.bit.hanacrm.Product;
 
 import java.util.List;
 
-import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import kr.co.bit.hanacrm.Main.MainVO;
 
 @Repository
 public class ProductDAO {
@@ -63,5 +64,13 @@ public class ProductDAO {
 			default:
 		}
 		return name;
+	}
+
+	public List<MainVO> selectTopDeposit() {
+		return sqlSessionTemplate.selectList("deposit.DepositDAO.selectTop");
+	}
+	
+	public List<MainVO> selectTopSavings() {
+		return sqlSessionTemplate.selectList("savings.SavingsDAO.selectTop");
 	}
 }

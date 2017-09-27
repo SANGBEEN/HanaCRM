@@ -39,4 +39,16 @@
 	<select id="selectName" parameterType="int" resultType="string">
 		select FIN_PRDT_NM from deposit_info where no=#{no}
 	</select>
+	
+	<!-- deposit 상담 많은 상품 3 -->
+	<select id="selectTop" resultType="main">
+		select di.no as no, di.fin_prdt_nm as name, count
+		from (select product_no, count(*) as count
+				from consult_product
+				group by type, product_no
+				having type = 1
+				order by count desc, product_no desc)
+			 join deposit_info di on (di.no = product_no)
+		where rownum <![CDATA[ <= ]]> 3
+	</select>
 </mapper>
