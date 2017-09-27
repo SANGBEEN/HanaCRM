@@ -30,6 +30,7 @@ public class ProductService {
 	}
 
 	public ProductVO selectByNo(int type, int no) {
+		System.out.println("productSelectByNo - Service");
 		switch (type) {
 		case 1:
 			System.out.println("selectDepositList");

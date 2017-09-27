@@ -46,6 +46,7 @@ public class ProductController {
 	
 	@RequestMapping(value="/sales/product/{type}/{no}", method=RequestMethod.GET)
 	public ModelAndView selectByNo(@PathVariable int type, @PathVariable int no){
+		System.out.println("productSelectByNo");
 		return new ModelAndView("/sales/product/detail", "productDetail", productService.selectByNo(type, no));
 	}
 	

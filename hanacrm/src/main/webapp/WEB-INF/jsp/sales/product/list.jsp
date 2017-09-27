@@ -100,13 +100,13 @@
 							</a>
 						</li>						
 					</ul> -->
-					<ul class="nav nav-tabs">
-						<li class="active"><a data-toggle="tab" href="#home">Home</a></li>
-						<li><a data-toggle="tab" href="#menu1">Menu 1</a></li>
-						<li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
-						<li><a data-toggle="tab" href="#menu3">Menu 3</a></li>
-					</ul>
-					
+					<div class="container">
+						<ul class="nav nav-tabs">
+							<li class="active"><a data-toggle="tab" id="type-select-hs" data-product_type="1" href="#home">예금</a></li>
+							<li><a data-toggle="tab" id="type-select-hs" data-product_type="2" href="#menu1">적금</a></li>
+							<li><a data-toggle="tab" id="type-select-hs" data-product_type="3" href="#menu2">카드</a></li>
+						</ul>
+					</div>
 					<div class="box-header" data-original-title>
 						<i class="halflings-icon book"></i><span class="break"></span><h2 id="tab-name-hs"></h2>
 						<div class="box-icon">
@@ -259,6 +259,7 @@
         		success: function(product) {
         			/* console.log($(this).data('product_name'));
         			$('h2[id=tab-name-hs]').text($(this).data('product_name')); */
+        			$('h2[id=tab-name-hs]').text($('ul[class=nav-tabs]').find('li[class=active]').text());
         				        	        
         	        html = '<table class="table table-striped table-bordered bootstrap-datatable datatable">';
         	        html += '<thead><tr><th>금융상품코드</th><th>금융상품명</th><th>가입대상</th><th>상세보기</th></tr></thead><tbody>'; /* <th>적립유형명</th></tr></thead><tbody>'; */
@@ -267,14 +268,14 @@
 	        	            html += '<tr><td>' + product[i].finPrdtCd + 
 	        	            '</td><td>' + product[i].finPrdtNm + 
 	        	            '</td><td>' + product[i].joinMember + 
-	        	            '</td><td><a href="/sales/product/' + type + '/' + product[i].no + '" class="btn btn-primary">상세보기</a></td></tr>';
+	        	            '</td><td><a href="${pageContext.request.contextPath}/sales/product/' + type + '/' + product[i].no + '" class="btn btn-primary">상세보기</a></td></tr>';
 	        	            		/* + '<td><span class="input-xlarge uneditable-input">' + product[i].comments + '</span></td></tr>'; */
         	        }
         	        
         	        html += '</tbody></table>';
         	 
         	        document.querySelector('#product-list').innerHTML = html;
-        	        //console.log("html: " + html);
+        	        console.log("html: " + html);
         	    },
         		error: function(e){
       				console.log(e);
