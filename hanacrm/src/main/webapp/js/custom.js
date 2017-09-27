@@ -1650,9 +1650,9 @@ function charts() {
 	{ label: "Chrome",  data: 112}
 	];
 	*/
-	if($("#piechart").length)
+	if($("#piechart_deposit").length)
 	{
-		$.plot($("#piechart"), productData,
+		$.plot($("#piechart_deposit"), depositData,
 		{
 			series: {
 					pie: {
@@ -1676,7 +1676,37 @@ function charts() {
 			percent = parseFloat(obj.series.percent).toFixed(2);
 			$("#hover").html('<span style="font-weight: bold; color: '+obj.series.color+'">'+obj.series.label+' ('+percent+'%)</span>');
 		}
-		$("#piechart").bind("plothover", pieHover);
+		$("#piechart_deposit").bind("plothover", pieHover);
+	}
+	
+	
+	if($("#piechart_savings").length)
+	{
+		$.plot($("#piechart_savings"), savingsData,
+				{
+			series: {
+				pie: {
+					show: true
+				}
+			},
+			grid: {
+				hoverable: true,
+				clickable: true
+			},
+			legend: {
+				show: false
+			},
+			colors: ["#FA5833", "#2FABE9", "#FABB3D", "#78CD51"]
+				});
+		
+		function pieHover(event, pos, obj)
+		{
+			if (!obj)
+				return;
+			percent = parseFloat(obj.series.percent).toFixed(2);
+			$("#hover").html('<span style="font-weight: bold; color: '+obj.series.color+'">'+obj.series.label+' ('+percent+'%)</span>');
+		}
+		$("#piechart_savings").bind("plothover", pieHover);
 	}
 	
 	/* ---------- Donut chart ---------- */

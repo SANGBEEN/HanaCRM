@@ -18,6 +18,8 @@
         
         <typeAlias type="kr.co.bit.hanacrm.Memo.MemoVO" alias="memo"/>
         <typeAlias type="kr.co.bit.hanacrm.Region.RegionVO" alias="region"/>
+
+        <typeAlias type="kr.co.bit.hanacrm.Main.MainVO" alias="main"/>
         
         <!-- <typeAlias type="kr.co.bit.hanacrm.Report.ReportVO" alias="report"/> -->
     </typeAliases>
