@@ -9,7 +9,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</a>
-				<a class="brand" href="{pageContext.request.contextPath}/main"><span>HANA CRM</span></a>
+				<a class="brand" href="${pageContext.request.contextPath}/main"><span>HANA CRM</span></a>
 								
 				<!-- start: Header Menu -->
 				<div class="nav-no-collapse header-nav">
