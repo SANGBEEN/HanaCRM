@@ -93,92 +93,77 @@
 							<fieldset>
 								<div id="base-info">
 								  <ul>
-								  	<li>공시제출월</li>
-								  	<li>
+								  	<li>공시제출월
 								  		<ul>
 								  			<li>${ productDetail.dclsMonth }</li>
 								  		</ul>
 								  	</li>
-								  	<li>금융회사코드</li>
-								  	<li>
+								  	<li>금융회사코드
 								  		<ul>
 								  			<li>${ productDetail.finCoNo }</li>
 								  		</ul>
 								  	</li>
-								  	<li>금융회사명</li>
-								  	<li>
+								  	<li>금융회사명
 								  		<ul>
 								  			<li>${ productDetail.korCoNm }</li>
 								  		</ul>
 								  	</li>
-								  	<li>금융상품코드</li>
-								  	<li>
+								  	<li>금융상품코드
 								  		<ul>
 								  			<li>${ productDetail.finPrdtCd }</li>
 								  		</ul>
 								  	</li>
-								  	<li>금융상품명</li>
-								  	<li>
+								  	<li>금융상품명
 								  		<ul>
 								  			<li>${ productDetail.finPrdtNm }</li>
 								  		</ul>
 								  	</li>
-								  	<li>가입 방법</li>
-								  	<li>
+								  	<li>가입 방법
 								  		<ul>
 								  			<li>${ productDetail.joinWay }</li>
 								  		</ul>
 								  	</li>
-								  	<li>만기 후 이자율</li>
-								  	<li>
+								  	<li>만기 후 이자율
 								  		<ul>
 								  			<li>${ productDetail.mtrtInt }</li>
 								  		</ul>
 								  	</li>
-								  	<li>우대조건</li>
-								  	<li>
+								  	<li>우대조건
 								  		<ul>
 								  			<li>${ productDetail.spclCnd }</li>
 								  		</ul>
 								  	</li>
-								  	<li>가입제한</li>
-								  	<li>
+								  	<li>가입제한
 								  		<ul>
 								  			<li>${ productDetail.joinDeny }</li>
 								  		</ul>
 								  	</li>
-								  	<li>가입대상</li>
-								  	<li>
+								  	<li>가입대상
 								  		<ul>
 								  			<li>${ productDetail.joinMember }</li>
 								  		</ul>
 								  	</li>
-								  	<li>기타 유의사항</li>
-								  	<li>
+								  	<li>기타 유의사항
 								  		<ul>
 								  			<li>${ productDetail.etcNote }</li>
 								  		</ul>
 								  	</li>
-								  	<li>최고한도</li>
-								  	<li>
+								  	<li>최고한도
 								  		<ul>
 								  			<li>${ productDetail.maxLimit }</li>
 								  		</ul>
 								  	</li>
-								  	<li>공시 시작일</li>
-								  	<li>
+								  	<li>공시 시작일
 								  		<ul>
 								  			<li>${ productDetail.dclsStrtDay }</li>
 								  		</ul>
 								  	</li>
-								  	<li>공시 종료일</li>
-								  	<li>
+								  	<li>공시 종료일
 								  		<ul>
 								  			<li>${ productDetail.dclsEndDay }</li>
 								  		</ul>
 								  	</li>
-								  	<li>금융회사 제출일</li>
-								  	<li>
+								  	<li>금융회사 제출일
 								  		<ul>
 								  			<li>${ productDetail.finCoSubmDay }</li>
 								  		</ul>
@@ -197,50 +182,42 @@
 								  </select>
 								  
 								  <ul>
-								  	<li>공시제출월</li>
-								  	<li>
+								  	<li>공시제출월
 								  		<ul>
 								  			<li>${ productDetail.dclsMonth }</li>
 								  		</ul>
 								  	</li>
-								  	<li>금융회사코드</li>
-								  	<li>
+								  	<li>금융회사코드
 								  		<ul>
 								  			<li>${ productDetail.finCoNo }</li>
 								  		</ul>
 								  	</li>
-								  	<li>금융상품코드</li>
-								  	<li>
+								  	<li>금융상품코드
 								  		<ul>
 								  			<li>${ productDetail.finPrdtCd }</li>
 								  		</ul>
 								  	</li>
-								  	<li>저축금리유형</li>
-								  	<li>
+								  	<li>저축금리유형
 								  		<ul>
 								  			<li>${ productDetail.intrRateType }</li>
 								  		</ul>
 								  	</li>
-								  	<li>저축금리유형명</li>
-								  	<li>
+								  	<li>저축금리유형명
 								  		<ul>
 								  			<li>${ productDetail.intrRateTypeNm }</li>
 								  		</ul>
 								  	</li>
-								  	<li>저축 기간(개월)</li>
-								  	<li>
+								  	<li>저축 기간(개월)
 								  		<ul>
 								  			<li>${ productDetail.saveTrm }</li>
 								  		</ul>
 								  	</li>
-								  	<li>저축 금리</li>
-								  	<li>
+								  	<li>저축 금리
 								  		<ul>
 								  			<li>${ productDetail. }</li>
 								  		</ul>
 								  	</li>
-								  	<li>최고 우대 금리</li>
-								  	<li>
+								  	<li>최고 우대 금리
 								  		<ul>
 								  			<li>${ productDetail. }</li>
 								  		</ul>
@@ -396,6 +373,10 @@
 		<script src="${pageContext.request.contextPath}/js/retina.js"></script>
 
 		<script src="${pageContext.request.contextPath}/js/custom.js"></script>
+		
+		<script type="text/javascript">
+			
+		</script>
 	<!-- end: JavaScript-->
 </body>
 </html>
