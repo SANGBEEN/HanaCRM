@@ -101,11 +101,14 @@ public class CusController {
 	
 	//고객등록
 	@RequestMapping(method=RequestMethod.POST)
-	public String create(CusVO cus, Model model){
+	public String create(CusVO cus, Model model, HttpSession session){
 		System.out.println("고객등록");
 		System.out.println(cus.toString());
+		
+		EmpVO emp = (EmpVO) session.getAttribute("emp");
+		
 		//임시사원번호
-		cus.setEmployeeNo(21);
+		cus.setEmployeeNo(emp.getNo());
 		
 		//Map<String, Object> res = new HashMap<>();
 		

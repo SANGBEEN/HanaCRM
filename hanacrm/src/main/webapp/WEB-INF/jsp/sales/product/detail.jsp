@@ -181,7 +181,7 @@
 									<option>Option 5</option>
 								  </select>
 								  
-								  <ul>
+								  <%-- <ul>
 								  	<li>공시제출월
 								  		<ul>
 								  			<li>${ productDetail.dclsMonth }</li>
@@ -222,7 +222,7 @@
 								  			<li>${ productDetail. }</li>
 								  		</ul>
 								  	</li>
-								  </ul>
+								  </ul> --%>
 								</div>
 							  </div>
 							  <div class="control-group">
@@ -331,7 +331,7 @@
 		<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 	
 		<script src="${pageContext.request.contextPath}/js/jquery.cookie.js"></script>
-	
+		<script src='${pageContext.request.contextPath}/js/moment.min.js'></script>
 		<script src='${pageContext.request.contextPath}/js/fullcalendar.min.js'></script>
 	
 		<script src='${pageContext.request.contextPath}/js/jquery.dataTables.min.js'></script>
@@ -375,7 +375,31 @@
 		<script src="${pageContext.request.contextPath}/js/custom.js"></script>
 		
 		<script type="text/javascript">
-			
+		$(document).ready(function(){
+			var url = location.pathname;		
+	    	var urlArray = url.split("/");
+	    	var productType = urlArray[4];
+	    	console.log(productType);
+	    	
+	    	var productHeader;
+	    	
+	    	switch (productType) {
+			case 1:
+				productHeader = ["공시제출월", "금융회사코드", "금융회사명", "금융상품코드", "금융상품명", "가입 방법", "만기 후 이자율", "우대조건", "가입제한", "가입대상", "기타 유의사항", "최고한도", "공시 시작일", "공시 종료일", "금융회사 제출일"];
+				break;
+			case 2:
+				productHeader = ["공시제출월", "금융회사코드", "금융회사명", "금융상품코드", "금융상품명", "가입 방법", "만기 후 이자율", "우대조건", "가입제한", "가입대상", "기타 유의사항", "최고한도", "공시 시작일", "공시 종료일", "금융회사 제출일"];
+				break;
+			case 3:
+				
+				break;
+			}
+	    	
+	    	headerHtml = 
+	    	for(var i = 0; i < productHeader.length; i++) {
+	    		productHeader[i];
+	    	}
+		});    	
 		</script>
 	<!-- end: JavaScript-->
 </body>
