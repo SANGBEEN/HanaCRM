@@ -58,11 +58,49 @@ public class DepositVO implements ProductVO {
     // 옵션내용
     private List<OptionVO> optionList;
     
-    public List<OptionVO> getOptionList() {
-		return optionList;
+    public DepositVO() {
 	}
 
-	public void setOptionList(List<OptionVO> optionList) {
+	public DepositVO(Integer no, String dclsMonth, String finCoNo, String korCoNm, String finPrdtCd, String finPrdtNm,
+			String joinWay, String mtrtInt, String spclCnd, Integer joinDeny, String joinMember, String etcNote,
+			Integer maxLimit, String dclsStrtDay, String dclsEndDay, String finCoSubmDay) {
+		this.no = no;
+		this.dclsMonth = dclsMonth;
+		this.finCoNo = finCoNo;
+		this.korCoNm = korCoNm;
+		this.finPrdtCd = finPrdtCd;
+		this.finPrdtNm = finPrdtNm;
+		this.joinWay = joinWay;
+		this.mtrtInt = mtrtInt;
+		this.spclCnd = spclCnd;
+		this.joinDeny = joinDeny;
+		this.joinMember = joinMember;
+		this.etcNote = etcNote;
+		this.maxLimit = maxLimit;
+		this.dclsStrtDay = dclsStrtDay;
+		this.dclsEndDay = dclsEndDay;
+		this.finCoSubmDay = finCoSubmDay;
+	}
+	
+	public DepositVO(Integer no, String dclsMonth, String finCoNo, String korCoNm, String finPrdtCd, String finPrdtNm,
+			String joinWay, String mtrtInt, String spclCnd, Integer joinDeny, String joinMember, String etcNote,
+			Integer maxLimit, String dclsStrtDay, String dclsEndDay, String finCoSubmDay, List<OptionVO> optionList) {
+		this.no = no;
+		this.dclsMonth = dclsMonth;
+		this.finCoNo = finCoNo;
+		this.korCoNm = korCoNm;
+		this.finPrdtCd = finPrdtCd;
+		this.finPrdtNm = finPrdtNm;
+		this.joinWay = joinWay;
+		this.mtrtInt = mtrtInt;
+		this.spclCnd = spclCnd;
+		this.joinDeny = joinDeny;
+		this.joinMember = joinMember;
+		this.etcNote = etcNote;
+		this.maxLimit = maxLimit;
+		this.dclsStrtDay = dclsStrtDay;
+		this.dclsEndDay = dclsEndDay;
+		this.finCoSubmDay = finCoSubmDay;
 		this.optionList = optionList;
 	}
 
@@ -193,60 +231,14 @@ public class DepositVO implements ProductVO {
     public void setFinCoSubmDay(String finCoSubmDay) {
         this.finCoSubmDay = finCoSubmDay;
     }
-
-   
-
-	public DepositVO() {
-		super();
-		// TODO Auto-generated constructor stub
+    
+    public List<OptionVO> getOptionList() {
+		return optionList;
 	}
 
-	public DepositVO(Integer no, String dclsMonth, String finCoNo, String korCoNm, String finPrdtCd, String finPrdtNm,
-			String joinWay, String mtrtInt, String spclCnd, Integer joinDeny, String joinMember, String etcNote,
-			Integer maxLimit, String dclsStrtDay, String dclsEndDay, String finCoSubmDay) {
-		super();
-		this.no = no;
-		this.dclsMonth = dclsMonth;
-		this.finCoNo = finCoNo;
-		this.korCoNm = korCoNm;
-		this.finPrdtCd = finPrdtCd;
-		this.finPrdtNm = finPrdtNm;
-		this.joinWay = joinWay;
-		this.mtrtInt = mtrtInt;
-		this.spclCnd = spclCnd;
-		this.joinDeny = joinDeny;
-		this.joinMember = joinMember;
-		this.etcNote = etcNote;
-		this.maxLimit = maxLimit;
-		this.dclsStrtDay = dclsStrtDay;
-		this.dclsEndDay = dclsEndDay;
-		this.finCoSubmDay = finCoSubmDay;
-	}
-	
-	
-
-	public DepositVO(Integer no, String dclsMonth, String finCoNo, String korCoNm, String finPrdtCd, String finPrdtNm,
-			String joinWay, String mtrtInt, String spclCnd, Integer joinDeny, String joinMember, String etcNote,
-			Integer maxLimit, String dclsStrtDay, String dclsEndDay, String finCoSubmDay, List<OptionVO> optionList) {
-		super();
-		this.no = no;
-		this.dclsMonth = dclsMonth;
-		this.finCoNo = finCoNo;
-		this.korCoNm = korCoNm;
-		this.finPrdtCd = finPrdtCd;
-		this.finPrdtNm = finPrdtNm;
-		this.joinWay = joinWay;
-		this.mtrtInt = mtrtInt;
-		this.spclCnd = spclCnd;
-		this.joinDeny = joinDeny;
-		this.joinMember = joinMember;
-		this.etcNote = etcNote;
-		this.maxLimit = maxLimit;
-		this.dclsStrtDay = dclsStrtDay;
-		this.dclsEndDay = dclsEndDay;
-		this.finCoSubmDay = finCoSubmDay;
+	public void setOptionList(List<OptionVO> optionList) {
 		this.optionList = optionList;
-	}
+	}    
 
 	@Override
 	public String toString() {
@@ -261,9 +253,5 @@ public class DepositVO implements ProductVO {
 				.append(optionList).append("]");
 		return builder.toString();
 	}
-
-
-
-    
 
 }

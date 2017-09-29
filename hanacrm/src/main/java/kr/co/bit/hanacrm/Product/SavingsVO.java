@@ -1,6 +1,6 @@
 package kr.co.bit.hanacrm.Product;
 
-import java.sql.Date;
+import java.util.List;
 
 import org.springframework.stereotype.Component;
 
@@ -54,16 +54,16 @@ public class SavingsVO implements ProductVO {
 
     //  금융회사 제출일 YYYYMMDDHH24MI
     private String finCoSubmDay;
+    
+    // 옵션내용
+    private List<OptionVO> optionList;
 
 	public SavingsVO() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	}	
 
 	public SavingsVO(Integer no, String dclsMonth, String finCoNo, String korCoNm, String finPrdtCd, String finPrdtNm,
 			String joinWay, String mtrtInt, String spclCnd, Integer joinDeny, String joinMember, String etcNote,
 			Integer maxLimit, String dclsStrtDay, String dclsEndDay, String finCoSubmDay) {
-		super();
 		this.no = no;
 		this.dclsMonth = dclsMonth;
 		this.finCoNo = finCoNo;
@@ -209,6 +209,14 @@ public class SavingsVO implements ProductVO {
 	public void setFinCoSubmDay(String finCoSubmDay) {
 		this.finCoSubmDay = finCoSubmDay;
 	}
+	
+	public List<OptionVO> getOptionList() {
+		return optionList;
+	}
+
+	public void setOptionList(List<OptionVO> optionList) {
+		this.optionList = optionList;
+	}
 
 	@Override
 	public String toString() {
@@ -222,6 +230,5 @@ public class SavingsVO implements ProductVO {
 				.append(dclsEndDay).append(", finCoSubmDay=").append(finCoSubmDay).append("]");
 		return builder.toString();
 	}
-
-    
+	
 }

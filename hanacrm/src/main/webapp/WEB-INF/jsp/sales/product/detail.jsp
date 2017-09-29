@@ -74,14 +74,14 @@
 					<i class="icon-angle-right"></i>
 				</li>
 				<li>
-					<a href="#">${ productDetail.finPrdtNm }</a>
+					<%-- <a href="#">'${ productDetail.finPrdtNm }'</a> --%>
 				</li>
 			</ul>
 			
 			<div class="row-fluid sortable">
 				<div class="box span12">
 					<div class="box-header" data-original-title>
-						<h2><i class="halflings-icon book"></i><span class="break"></span>${ productDetail.finPrdtNm }</h2>
+						<h2><i class="halflings-icon book"></i><span class="break"></span><%-- ${ productDetail.finPrdtNm } --%></h2>
 						<div class="box-icon">
 							<a href="#" class="btn-setting"><i class="halflings-icon wrench"></i></a>
 							<a href="#" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
@@ -92,85 +92,9 @@
 						<form class="form-horizontal">
 							<fieldset>
 								<div id="base-info">
-								  <ul>
-								  	<li>공시제출월
-								  		<ul>
-								  			<li>${ productDetail.dclsMonth }</li>
-								  		</ul>
-								  	</li>
-								  	<li>금융회사코드
-								  		<ul>
-								  			<li>${ productDetail.finCoNo }</li>
-								  		</ul>
-								  	</li>
-								  	<li>금융회사명
-								  		<ul>
-								  			<li>${ productDetail.korCoNm }</li>
-								  		</ul>
-								  	</li>
-								  	<li>금융상품코드
-								  		<ul>
-								  			<li>${ productDetail.finPrdtCd }</li>
-								  		</ul>
-								  	</li>
-								  	<li>금융상품명
-								  		<ul>
-								  			<li>${ productDetail.finPrdtNm }</li>
-								  		</ul>
-								  	</li>
-								  	<li>가입 방법
-								  		<ul>
-								  			<li>${ productDetail.joinWay }</li>
-								  		</ul>
-								  	</li>
-								  	<li>만기 후 이자율
-								  		<ul>
-								  			<li>${ productDetail.mtrtInt }</li>
-								  		</ul>
-								  	</li>
-								  	<li>우대조건
-								  		<ul>
-								  			<li>${ productDetail.spclCnd }</li>
-								  		</ul>
-								  	</li>
-								  	<li>가입제한
-								  		<ul>
-								  			<li>${ productDetail.joinDeny }</li>
-								  		</ul>
-								  	</li>
-								  	<li>가입대상
-								  		<ul>
-								  			<li>${ productDetail.joinMember }</li>
-								  		</ul>
-								  	</li>
-								  	<li>기타 유의사항
-								  		<ul>
-								  			<li>${ productDetail.etcNote }</li>
-								  		</ul>
-								  	</li>
-								  	<li>최고한도
-								  		<ul>
-								  			<li>${ productDetail.maxLimit }</li>
-								  		</ul>
-								  	</li>
-								  	<li>공시 시작일
-								  		<ul>
-								  			<li>${ productDetail.dclsStrtDay }</li>
-								  		</ul>
-								  	</li>
-								  	<li>공시 종료일
-								  		<ul>
-								  			<li>${ productDetail.dclsEndDay }</li>
-								  		</ul>
-								  	</li>
-								  	<li>금융회사 제출일
-								  		<ul>
-								  			<li>${ productDetail.finCoSubmDay }</li>
-								  		</ul>
-								  	</li>
-								  </ul>
-							  </div>
-							  <div class="control-group" id="optionp-info">
+								  
+							  	</div>
+							  <div class="control-group" id="option-info">
 								<label class="control-label" for="productOption">옵션</label>
 								<div class="controls">
 								  <select id="productOption">
@@ -381,26 +305,180 @@
 	    	var productType = urlArray[4];
 	    	console.log(productType);
 	    	
-	    	var productHeader;
+	    	var productDetail = ${ productDetail };
+	    	var productHeader = new Array();
+	    	var productBody;
 	    	
-	    	switch (productType) {
+	    	switch (Number(productType)) {
 			case 1:
-				productHeader = ["공시제출월", "금융회사코드", "금융회사명", "금융상품코드", "금융상품명", "가입 방법", "만기 후 이자율", "우대조건", "가입제한", "가입대상", "기타 유의사항", "최고한도", "공시 시작일", "공시 종료일", "금융회사 제출일"];
+				productHeader = productHeader.concat(["공시제출월", 
+					"금융회사코드", 
+					"금융회사명", 
+					"금융상품코드", 
+					"금융상품명", 
+					"가입 방법", 
+					"만기 후 이자율", 
+					"우대조건", 
+					"가입제한", 
+					"가입대상", 
+					"기타 유의사항", 
+					"최고한도", 
+					"공시 시작일", 
+					"공시 종료일", 
+					"금융회사 제출일"]);
+				
+				console.log(productHeader);
+				
+				productBody = [productDetail.dclsMonth, 
+					productDetail.finCoNo, 
+					productDetail.korCoNm, 
+					productDetail.finPrdtCd, 
+					productDetail.finPrdtNm, 
+					productDetail.joinWay, 
+					productDetail.mtrtInt, 
+					productDetail.spclCnd, 
+					productDetail.joinDeny, 
+					productDetail.joinMember, 
+					productDetail.etcNote, 
+					productDetail.maxLimit, 
+					productDetail.dclsStrtDay, 
+					productDetail.dclsEndDay, 
+					productDetail.finCoSubmDay
+					];		  		
 				break;
 			case 2:
-				productHeader = ["공시제출월", "금융회사코드", "금융회사명", "금융상품코드", "금융상품명", "가입 방법", "만기 후 이자율", "우대조건", "가입제한", "가입대상", "기타 유의사항", "최고한도", "공시 시작일", "공시 종료일", "금융회사 제출일"];
+				productHeader = productHeader.concat(["공시제출월", 
+					"금융회사코드", 
+					"금융회사명", 
+					"금융상품코드", 
+					"금융상품명", 
+					"가입 방법", 
+					"만기 후 이자율", 
+					"우대조건", 
+					"가입제한", 
+					"가입대상", 
+					"기타 유의사항", 
+					"최고한도", 
+					"공시 시작일", 
+					"공시 종료일", 
+					"금융회사 제출일"]);
+				
+				console.log(productHeader);
+				
+				productBody = [productDetail.dclsMonth, 
+					productDetail.finCoNo, 
+					productDetail.korCoNm, 
+					productDetail.finPrdtCd, 
+					productDetail.finPrdtNm, 
+					productDetail.joinWay, 
+					productDetail.mtrtInt, 
+					productDetail.spclCnd, 
+					productDetail.joinDeny, 
+					productDetail.joinMember, 
+					productDetail.etcNote, 
+					productDetail.maxLimit, 
+					productDetail.dclsStrtDay, 
+					productDetail.dclsEndDay, 
+					productDetail.finCoSubmDay
+					];
+				
 				break;
 			case 3:
 				
 				break;
 			}
 	    	
-	    	headerHtml = 
+	    	console.log(productHeader.length);
+	    	
+	    	var html = '<ul>';
+	    	
 	    	for(var i = 0; i < productHeader.length; i++) {
-	    		productHeader[i];
+	    		html += '<li>' + productHeader[i] + '<ul><li>' + 
+	    		productBody[i] + '</li></ul></li>';
 	    	}
+	    	
+	    	html += '</ul>';
+	    	console.log(html);
+	    	document.querySelector('#base-info').innerHTML = html;
 		});    	
 		</script>
 	<!-- end: JavaScript-->
+<%-- <ul>
+  	<li>공시제출월
+  		<ul>
+  			<li>${ productDetail.dclsMonth }</li>
+  		</ul>
+  	</li>
+  	<li>금융회사코드
+  		<ul>
+  			<li>${ productDetail.finCoNo }</li>
+  		</ul>
+  	</li>
+  	<li>금융회사명
+  		<ul>
+  			<li>${ productDetail.korCoNm }</li>
+  		</ul>
+  	</li>
+  	<li>금융상품코드
+  		<ul>
+  			<li>${ productDetail.finPrdtCd }</li>
+  		</ul>
+  	</li>
+  	<li>금융상품명
+  		<ul>
+  			<li>${ productDetail.finPrdtNm }</li>
+  		</ul>
+  	</li>
+  	<li>가입 방법
+  		<ul>
+  			<li>${ productDetail.joinWay }</li>
+  		</ul>
+  	</li>
+  	<li>만기 후 이자율
+  		<ul>
+  			<li>${ productDetail.mtrtInt }</li>
+  		</ul>
+  	</li>
+  	<li>우대조건
+  		<ul>
+  			<li>${ productDetail.spclCnd }</li>
+  		</ul>
+  	</li>
+  	<li>가입제한
+  		<ul>
+  			<li>${ productDetail.joinDeny }</li>
+  		</ul>
+  	</li>
+  	<li>가입대상
+  		<ul>
+  			<li>${ productDetail.joinMember }</li>
+  		</ul>
+  	</li>
+  	<li>기타 유의사항
+  		<ul>
+  			<li>${ productDetail.etcNote }</li>
+  		</ul>
+  	</li>
+  	<li>최고한도
+  		<ul>
+  			<li>${ productDetail.maxLimit }</li>
+  		</ul>
+  	</li>
+  	<li>공시 시작일
+  		<ul>
+  			<li>${ productDetail.dclsStrtDay }</li>
+  		</ul>
+  	</li>
+  	<li>공시 종료일
+  		<ul>
+  			<li>${ productDetail.dclsEndDay }</li>
+  		</ul>
+  	</li>
+  	<li>금융회사 제출일
+  		<ul>
+  			<li>${ productDetail.finCoSubmDay }</li>
+  		</ul>
+  	</li>
+  </ul> --%>
 </body>
 </html>

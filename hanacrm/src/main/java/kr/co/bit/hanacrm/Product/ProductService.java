@@ -34,13 +34,17 @@ public class ProductService {
 		System.out.println("productSelectByNo - Service");
 		switch (type) {
 		case 1:
-			System.out.println("selectDepositList");
-			return productDAO.selectDepositByNo(no);
+			System.out.println("selectDepositByNo");
+			DepositVO depositVO = productDAO.selectDepositByNo(no);
+			depositVO.setOptionList(productDAO.selectDepositOption(depositVO.getFinPrdtCd()));
+			return depositVO;
 		case 2:
-			System.out.println("selectSavingsList");
-			return productDAO.selectSavingsByNo(no);	
+			System.out.println("selectSavingsByNo");
+			SavingsVO savingsVO = productDAO.selectSavingsByNo(no);
+			savingsVO.setOptionList(productDAO.selectDepositOption(savingsVO.getFinPrdtCd()));
+			return savingsVO;
 		case 3:
-			System.out.println("selectCardList");
+			System.out.println("selectCardByNo");
 			return productDAO.selectCardByNo(no);
 		default:
 			return null;

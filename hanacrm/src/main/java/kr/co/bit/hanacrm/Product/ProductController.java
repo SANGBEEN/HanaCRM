@@ -23,6 +23,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import kr.co.bit.hanacrm.Util.Util;
 
 @Controller
@@ -45,9 +48,12 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value="/sales/product/{type}/{no}", method=RequestMethod.GET)
-	public ModelAndView selectByNo(@PathVariable int type, @PathVariable int no){
+	public ModelAndView selectByNo(@PathVariable int type, @PathVariable int no) throws JsonProcessingException{
 		System.out.println("productSelectByNo");
-		return new ModelAndView("/sales/product/detail", "productDetail", productService.selectByNo(type, no));
+		
+		ObjectMapper mapper = new ObjectMapper();	
+		
+		return new ModelAndView("/sales/product/detail", "productDetail", mapper.writeValueAsString(productService.selectByNo(type, no)));
 	}
 	
 	@ResponseBody

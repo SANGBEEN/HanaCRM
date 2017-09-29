@@ -26,12 +26,20 @@ public class ProductDAO {
 		return null;
 	}
 	
-	public ProductVO selectDepositByNo(int no) {
+	public DepositVO selectDepositByNo(int no) {
 		return sqlSessionTemplate.selectOne("deposit.DepositDAO.selectByNo", no);
 	}
+	
+	public List<OptionVO> selectDepositOption(String finPrdtCd) {
+		return sqlSessionTemplate.selectList("option.OptionDAO.selectDepositOption", finPrdtCd);
+	}
 
-	public ProductVO selectSavingsByNo(int no) {
+	public SavingsVO selectSavingsByNo(int no) {
 		return sqlSessionTemplate.selectOne("savings.SavingsDAO.selectByNo", no);
+	}
+	
+	public List<OptionVO> selectSavingsOption(String finPrdtCd) {
+		return sqlSessionTemplate.selectList("option.OptionDAO.selectSavingsOption", finPrdtCd);
 	}
 
 	public ProductVO selectCardByNo(int no) {
