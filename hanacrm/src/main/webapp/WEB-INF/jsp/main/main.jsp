@@ -424,17 +424,15 @@
 		// 상품 Top3
 		var savingsData = [];
 		var depositData = [];
-		var size = savingsList.length;
-		console.log(size);
 		
-		 for(var i=0; i<3 ; i++){
+		 for(var i=0; i<savingsList.length ; i++){
 			savingsData.push({
 				label: savingsList[i].name,
 				data: savingsList[i].count
 			});
 		}
 		
-		for(var i=0; i<3; i++){
+		for(var i=0; i<depositList.length; i++){
 			depositData.push({
 				label: depositList[i].name,
 				data: depositList[i].count

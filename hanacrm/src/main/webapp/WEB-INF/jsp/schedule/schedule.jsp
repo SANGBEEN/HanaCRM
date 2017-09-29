@@ -91,7 +91,15 @@
 		    margin: 10px 20px !important;
 		}
 
+		.fc-sat {
+			background-color: #e3ecf4;
+			color: blue;
+		}
 		
+		.fc-sun {
+			background-color: #f9e0df;
+			color: red;
+		}
 
 	</style>
 </head>
@@ -123,7 +131,7 @@
 					<a href="${pageContext.request.contextPath}/main">Home</a> 
 					<i class="icon-angle-right"></i>
 				</li>
-				<li><a href="#">Calendar</a></li>
+				<li><a href="#">일정 관리</a></li>
 			</ul>
 
 			<div class="row-fluid sortable">
@@ -417,11 +425,6 @@
 						var startDatepicker = new MtrDatepicker(setDatepickerConfig('start', start));
 						var endDatepicker = new MtrDatepicker(setDatepickerConfig('end', end));
 						
-						
-					/* 	startDatepicker.onChange('date', function(){
-							startDatepicket = new MtrDatepicker(setDatepickerConfig('start',startDatepicker.toString()));
-						}); */
-						
 						console.dir($("#scheduleType"));
 						console.log(start +"~"+end);
 				
@@ -671,8 +674,7 @@
 				});
 
 				
-		 })
-		 	 
+		 });
 		 
 		 // 날짜 변환 (moment -> moment/string)
 		 function getDate(date){
@@ -830,14 +832,14 @@
 						    min: 0,
 						    max: 11,
 						    step: 1
-						  },
+						  },						  
 						  minutes: {
 						    min: 0,
 						    max: 50,
 						    step: 10
 						  },
 						  years: {
-						    min: 2000,
+						    min: 2017,
 						    max: 2030,
 						    step: 1
 						  }

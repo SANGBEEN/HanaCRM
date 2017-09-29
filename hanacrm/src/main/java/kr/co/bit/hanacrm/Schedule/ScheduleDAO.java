@@ -52,4 +52,9 @@ public class ScheduleDAO {
 	public int selectSeq(){
 		return sqlSessionTemplate.selectOne("schedule.ScheduleDAO.selectSeq");
 	}
+
+	// n일 스케줄 시간 리스트
+	public List<ScheduleVO> selectTimeList(ScheduleVO schedule) {
+		return sqlSessionTemplate.selectList("schedule.ScheduleDAO.selectTimeList", schedule);
+	}
 }

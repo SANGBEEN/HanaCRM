@@ -106,4 +106,12 @@
 		SELECT schedule_seq.nextval FROM DUAL
 	</select>
 	
+	<select id="selectTimeList" resultType="schedule">
+		select location, type, comments, to_char(start_date, 'hh24:mi') as startDate, to_char(end_date, 'hh24:mi') as endDate
+		from schedule
+		where employee_no = #{employeeNo}
+			and (to_char(#{date}, 'yyyy-mm-dd') between to_char(start_date, 'yyyy-mm-dd') and  to_char(end_date, 'yyyy-mm-dd'))
+		order by start_date, end_date
+	</select>
+	
 </mapper>

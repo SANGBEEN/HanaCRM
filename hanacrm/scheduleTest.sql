@@ -2,10 +2,11 @@ insert into schedule (no, employee_no, customer_no, location, type, comments,
 							 start_date, end_date, reg_date, importance, repetition)
 		values (schedule_seq.nextval, 1, 46, '주소1', 'Meeting', 'comment1', '2017-09-20 11:10:00', '2017-09-20 12:10:00', sysdate, 2, '한번')
 		
-select *
+select location, type, comments, to_char(start_date, 'hh24:mi'), to_char(end_date, 'hh24:mi')
 from schedule
 where employee_no = 1
-	and to_char(start_date, 'yyyymm')='201709'
+	and to_char(start_date, 'yyyymmdd')='20170928'
+order by start_date, end_date
 		
 select * from user_tables
 select * from user_tab_columns

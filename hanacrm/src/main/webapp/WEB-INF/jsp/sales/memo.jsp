@@ -45,7 +45,7 @@
 						<a href="index.html">Home</a> 
 						<i class="icon-angle-right"></i>
 					</li>
-					<li><a href="#">Messages</a></li>
+					<li><a href="#">메모</a></li>
 				</ul>
 				
 				<div class="row-fluid">
@@ -61,8 +61,9 @@
 					<ul class="messagesList">
 					
 						<c:forEach items="${ memoList }" var="memoVO" varStatus="status">
-							<li onclick="clickTitle('${memoVO.no}','${memoVO.regDate}')">
-								<span class="from">뭐쓰징</span><span id="memo${memoVO.no}" class="title">${memoVO.content}</span><span class="date">${memoVO.regDate}</span>
+							<li id="li${memoVO.no}">
+								<span class="from">뭐쓰징</span><span id="memo${memoVO.no}" class="title"  onclick="clickTitle('${memoVO.no}','${memoVO.regDate}')">${memoVO.content}</span><span class="date">${memoVO.regDate}<a id="memo-delete" href="#" style="margin-left:10px" onclick="clickDelete('${memoVO.no}')"><i class="halflings-icon remove-sign"></i></a></span>
+								<%-- <span id="memo${memoVO.no}" class="title">${memoVO.content}</span><span class="from">${memoVO.regDate}</span><span class="date"><a class="btn memo-delete" id="memo-delete" href="#" style="align:right"><i class="halflings-icon remove-sign"></i></a></span> --%>
 							</li>
 						</c:forEach>
 						
@@ -239,6 +240,21 @@
 		//	console.log(memoNo);
 		}
 		
+		// 메모 삭제
+		function clickDelete(no){
+			$.ajax({
+				url: '${pageContext.request.contextPath}/sales/memo/'+no,
+				type: 'delete',
+				success: function(data){
+					alert('삭제되었습니다.');
+					$('#li'+no).remove();
+					$('#thisMessage').val('');
+					$('#thisDate').text('');
+					$('#thisTitle').text('');
+				}
+			});
+		}
+		
 		$('#memo-insert').on('click', function(){
 			
 			firstCheck = true;
@@ -403,9 +419,9 @@
 						
 						// 메모리스트에 동적 추가
 						// 1. append 추가하기 테스트
-						addHtml = '<li><span class="from">뉴메모</span><span id="memo'
+						addHtml = '<li id="li'+memoData.no+'"><span class="from">뉴메모</span><span id="memo'
 									+ memoData.no + '" class="title">'
-									+ memoData.content + '</span><span class="date">'+today+'</span></li>';
+									+ memoData.content + '</span><span class="date">'+today+'<a id="memo-delete" href="#" style="margin-left:10px" onclick="clickDelete(\''+memoData.no+'\')"><i class="halflings-icon remove-sign"></i></a></span></li>';
 						$('.messagesList').prepend(addHtml);
 
 					//	var element = document.getElementById(""+memoData.no);
