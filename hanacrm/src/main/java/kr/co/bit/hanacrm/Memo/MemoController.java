@@ -22,8 +22,8 @@ public class MemoController {
 	@RequestMapping(value="/sales/memo", method=RequestMethod.GET)
 	public String selectList(HttpServletRequest request)
 	{
-		//request.setAttribute("memoList", memoService.selectList(((EmpVO)request.getSession().getAttribute("emp")).getNo()));
-		request.setAttribute("memoList", memoService.selectList(1));
+		request.setAttribute("memoList", memoService.selectList(((EmpVO)request.getSession().getAttribute("emp")).getNo()));
+		//request.setAttribute("memoList", memoService.selectList(1));
 		return "/sales/memo";
 	}
 	
@@ -49,6 +49,7 @@ public class MemoController {
 	@RequestMapping(value="/sales/memo/{no}", method=RequestMethod.DELETE)
 	public Integer delete(@PathVariable int no)
 	{
+		System.out.println("메모 삭제 "+no);
 		return memoService.delete(no);
 	}
 	

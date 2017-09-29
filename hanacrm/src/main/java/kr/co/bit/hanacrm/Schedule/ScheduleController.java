@@ -1,5 +1,6 @@
 package kr.co.bit.hanacrm.Schedule;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -107,5 +108,14 @@ public class ScheduleController {
 	@RequestMapping(value="/schedule/{no}", method=RequestMethod.GET)
 	public ScheduleVO selectByNo(HttpServletRequest request, @PathVariable int no){
 		return scheduleService.selectByNo(no);
+	}
+	
+	// 일정 조회
+	@ResponseBody
+	@RequestMapping(value="/schedule/timeList", method=RequestMethod.GET)
+	public List<String> selectTimeList(HttpSession session, ScheduleVO schedule) {
+		EmpVO emp = (EmpVO) session.getAttribute("emp");
+		schedule.setNo(emp.getNo());
+		return scheduleService.selectTimeList(schedule);
 	}
 }

@@ -1,5 +1,6 @@
 package kr.co.bit.hanacrm.Schedule;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -89,6 +90,18 @@ public class ScheduleService {
 			s.setCustomer(cusDAO.detail(s.getCustomerNo()));
 		}
 		return list;
+	}
+
+	// 날짜별 일정 가능한 시간대
+	public List<String> selectTimeList(ScheduleVO schedule) {
+		List<String> timeList = new ArrayList<>();
+		List<ScheduleVO> list = scheduleDAO.selectTimeList(schedule);
+		
+		for(ScheduleVO vo : list) {
+			vo.getStartDate();
+		}
+		
+		return timeList;
 	}
 
 }
