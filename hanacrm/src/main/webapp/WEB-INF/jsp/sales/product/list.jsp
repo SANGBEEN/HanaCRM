@@ -106,15 +106,14 @@
 						<li><a data-toggle="tab" id="type-select-hs" data-product_type="3" href="#product-list">카드</a></li>
 					</ul>				
 					<div class="box-header" data-original-title>
-						<i class="halflings-icon book"></i><span class="break"></span><h2 id="tab-name-hs"></h2>
-						<div class="box-icon">
+						<h2 id="tab-name-hs"></h2>
+						<!-- <div class="box-icon">
 							<a href="#" class="btn-setting"><i class="halflings-icon wrench"></i></a>
 							<a href="#" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
 							<a href="#" class="btn-close"><i class="halflings-icon remove"></i></a>
-						</div>
+						</div> -->
 					</div>
 					<div class="box-content" id="product-list">
-						<!-- <div id="product-list"> -->
 						<!-- <table class="table table-striped table-bordered bootstrap-datatable datatable">
 						  <thead>
 							  <tr>
@@ -123,30 +122,11 @@
 								  <th>가입대상</th>
 								  <th>적립유형명</th>					 
 							  </tr>
-						  </thead>   
+						  </thead>
 						  <tbody id="product-list">
-							<tr>
-								<td>Dennis Ji</td>
-								<td class="center">2012/01/01</td>
-								<td class="center">Member</td>
-								<td class="center">
-									<span class="label label-success">Active</span>
-								</td>
-								<td class="center">
-									<a class="btn btn-success" href="#">
-										<i class="halflings-icon white zoom-in"></i>  
-									</a>
-									<a class="btn btn-info" href="#">
-										<i class="halflings-icon white edit"></i>  
-									</a>
-									<a class="btn btn-danger" href="#">
-										<i class="halflings-icon white trash"></i> 
-									</a>
-								</td>
-							</tr>
+							
 						  </tbody>
-					  </table>  -->           
-					  <!-- </div> -->
+					  </table>--> 
 					</div>
 				</div><!--/span-->
 			
@@ -174,7 +154,7 @@
 	
 	<div class="clearfix"></div>
 	
-	<jsp:include page="/include/footer.jsp"/>
+	<jsp:include page="/include/footer.jsp"/>	
 	
 	<!-- start: JavaScript-->
 
@@ -234,10 +214,12 @@
 
 		<script src="${pageContext.request.contextPath}/js/custom.js"></script>
 		
-		<!-- inline scripts related to this page -->
+	<!-- inline scripts related to this page -->
 		<script>
-		$(document).ready(function(){			
+		$(document).ready(function(e){			
 			console.log('페이지 로드');
+			
+			console.log(e.target);			
 			getList(1);
 		});
 		
@@ -248,9 +230,12 @@
 			getList($(this).data('product_type'));
 		}); */
 		
-		$(document).on('click.tab.data-api', '[data-toggle="tab"]', function (e) {
+		$(document).on('click.tab.data-api', '[data-toggle="tab"]', function(e) {
 		    e.preventDefault()
 		    //$(this).tab('show');
+		    
+		    /* console.log(e.target);   // newly activated tab
+		    e.relatedTarget  // previous active tab */
 		    
 		    getList($(this).data('product_type'));
 		  });
@@ -262,17 +247,15 @@
         		/* contentType: "application/json; charset=uft-8", */
         		dataType: "json",
         		success: function(product) {
-        			/* console.log($(this).data('product_name'));
-        			$('h2[id=tab-name-hs]').text($(this).data('product_name')); */
-        			       			
-        			$('h2[id=tab-name-hs]').text($('ul[class=nav-tabs]').find('li[class=active]').text());
-        				        	        
+        			        			
+        			$('h2[id=tab-name-hs]').html('<i class="halflings-icon book"></i><span class="break"></span>' + $('li[class=active]').find('a[id=type-select-hs]').text());
+        			
         	        html = '<table class="table table-striped table-bordered bootstrap-datatable datatable">';
         	        html += '<thead><tr><th>금융상품코드</th><th>금융상품명</th><th>가입대상</th><th>상세보기</th></tr></thead><tbody>'; /* <th>적립유형명</th></tr></thead><tbody>'; */
         	        
         	        for (var i = 0; i < product.length; i++) {
         	        	
-        	        	console.log(product[i].finPrdtNm + " : ");
+        	        	//console.log(product[i].finPrdtNm + " : ");
         	            html += '<tr><td>' + product[i].finPrdtCd + 
         	            '</td><td>' + product[i].finPrdtNm + 
         	            '</td><td>' + product[i].joinMember + 
@@ -283,7 +266,15 @@
         	        html += '</tbody></table>';
         	 
         	        document.querySelector('#product-list').innerHTML = html;
-        	        console.log("html: " + html);
+        	        //console.log("html: " + html);
+        	        
+        	        $('.datatable').dataTable({
+        				"sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span12'i><'span12 center'p>>",
+        				"sPaginationType": "bootstrap",
+        				"oLanguage": {
+        				"sLengthMenu": "_MENU_ records per page"
+        				}
+        			} );
         	    },
         		error: function(e){
       				console.log(e);
