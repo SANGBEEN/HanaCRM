@@ -1,5 +1,7 @@
 package kr.co.bit.hanacrm.Consult;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -8,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.co.bit.hanacrm.Employee.EmpVO;
+
 @Controller
 public class ConsultController {
 	
@@ -15,8 +19,8 @@ public class ConsultController {
 	private ConsultService consultService;
 	
 	@RequestMapping(value="/sales/consult", method=RequestMethod.GET)
-	public ModelAndView selectList(){
-		return new ModelAndView("/sales/consult", "consultList", consultService.selectList());
+	public ModelAndView selectList(HttpSession session){
+		return new ModelAndView("/sales/consult", "consultList", consultService.selectListByEmployeeNo(((EmpVO) session.getAttribute("emp")).getNo()));
 	}
 	
 	@ResponseBody

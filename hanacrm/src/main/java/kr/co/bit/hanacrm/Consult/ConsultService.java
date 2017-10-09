@@ -21,8 +21,8 @@ public class ConsultService {
 	@Autowired
 	private ProductDAO productDAO;
 
-	public List<ConsultVO> selectList() {
-		List<ConsultVO> consultList = consultDAO.selectList();
+	public List<ConsultVO> selectListByEmployeeNo(int employeeNo) {
+		List<ConsultVO> consultList = consultDAO.selectListByEmployeeNo(employeeNo);
 		
 		for(int i = 0; i < consultList.size(); i++)
 		{

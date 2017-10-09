@@ -14,11 +14,11 @@ public class ConsultDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 
-	public List<ConsultVO> selectList() {
-		return sqlSessionTemplate.selectList("consult.ConsultDAO.selectList");
+	public List<ConsultVO> selectListByEmployeeNo(int employeeNo) {
+		return sqlSessionTemplate.selectList("consult.ConsultDAO.selectListByEmployeeNo", employeeNo);
 	}
 
-	public List<ConsultProductVO> selectProductList(Integer consultNo) {
+	public List<ConsultProductVO> selectProductList(int consultNo) {
 		return sqlSessionTemplate.selectList("consult.ConsultDAO.selectProductList", consultNo);
 	}
 

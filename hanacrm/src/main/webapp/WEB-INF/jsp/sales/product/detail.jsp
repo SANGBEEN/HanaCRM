@@ -74,14 +74,14 @@
 					<i class="icon-angle-right"></i>
 				</li>
 				<li>
-					<a href="#" id="product-name-hs"></a>
+					<a href="#" id="product-name-a-hs"></a>
 				</li>
 			</ul>
 			
 			<div class="row-fluid sortable">
 				<div class="box span12">
 					<div class="box-header" data-original-title>
-						<h2><i class="halflings-icon book"></i><span class="break"></span><a id="product-name-hs"></a><%-- ${ productDetail.finPrdtNm } --%></h2>
+						<h2 id="product-name-hs"></h2>
 						<!-- <div class="box-icon">
 							<a href="#" class="btn-setting"><i class="halflings-icon wrench"></i></a>
 							<a href="#" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
@@ -94,7 +94,7 @@
 								<div id="base-info">
 								  
 							  	</div>
-							  <div class="control-group" id="option-info">
+							  <div class="control-group">
 								<label class="control-label" for="productOption">옵션</label>
 								<div class="controls">
 								  <select id="productOption">
@@ -103,9 +103,13 @@
 									<option>Option 3</option>
 									<option>Option 4</option>
 									<option>Option 5</option>
-								  </select>
-								  
-								  <%-- <ul>
+								  </select>								  
+								</div>
+							  </div>
+							  <div id="option-info">
+							  	
+							  </div>
+							  <%-- <ul>
 								  	<li>공시제출월
 								  		<ul>
 								  			<li>${ productDetail.dclsMonth }</li>
@@ -147,8 +151,6 @@
 								  		</ul>
 								  	</li>
 								  </ul> --%>
-								</div>
-							  </div>
 							  <div class="control-group">
 								<label class="control-label" for="selectError2">Group Select</label>
 								<div class="controls">
@@ -329,7 +331,8 @@
 				
 				console.log(productHeader);
 				
-				$('#product-name-hs').text(productDetail.finPrdtNm);
+				$('h2[id=product-name-hs]').html('<i class="halflings-icon book"></i><span class="break"></span>' + productDetail.finPrdtNm);
+				$('a[id=product-name-a-hs]').text(productDetail.finPrdtNm);
 				
 				productBody = [productDetail.dclsMonth, 
 					productDetail.finCoNo, 
@@ -366,6 +369,9 @@
 					"금융회사 제출일"]);
 				
 				console.log(productHeader);
+				
+				$('h2[id=product-name-hs]').html('<i class="halflings-icon book"></i><span class="break"></span>' + productDetail.finPrdtNm);
+				$('a[id=product-name-a-hs]').text(productDetail.finPrdtNm);
 				
 				productBody = [productDetail.dclsMonth, 
 					productDetail.finCoNo, 

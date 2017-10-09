@@ -21,8 +21,8 @@
 <!-- resultMap 설정 끝 -->
 
 <!-- 쿼리 -->
-	<select id="selectList" resultMap="consultMap">
-		select * from consult
+	<select id="selectListByEmployeeNo" parameterType="int" resultMap="consultMap">
+		select no, customer_no, employee_no, content, to_char(reg_date, 'yyyy-mm-dd') as reg_date, title from consult where employee_no=#{employeeNo}
 	</select>
 	
 	<select id="selectProductList" parameterType="int" resultMap="consultProductMap">

@@ -231,7 +231,7 @@
 		}); */
 		
 		$(document).on('click.tab.data-api', '[data-toggle="tab"]', function(e) {
-		    e.preventDefault()
+		    e.preventDefault();
 		    //$(this).tab('show');
 		    
 		    /* console.log(e.target);   // newly activated tab
