@@ -152,7 +152,7 @@
 		
 	<!-- 상세 -->
 	<c:forEach items="${ consultList }" var="consultVO">
-		<div class="modal hide fade" id="consultDetail${ consultVO.no }">
+		<div class="modal hide fade" id="consult-detail-${ consultVO.no }">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">×</button>
 				<h3>상담 내역 상세</h3>
@@ -183,7 +183,7 @@
 	</c:forEach>
 	
 	<!-- 상담 날짜 선택 -->
-	<div class="modal hide fade" id="consultDateSelect">
+	<div class="modal hide fade" id="consult-date-select-hs">
 		<div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal">×</button>
 			<h3>상담 날짜 선택</h3>
@@ -192,7 +192,7 @@
 			<div class="control-group">
 				<label class="control-label" for="focusedInput">상담 날짜</label>
 				<div class="controls">
-					<input class="input-xlarge focused" id="consultDate" type="date">					
+					<input class="input-xlarge focused" id="consult-date-hs" type="date">					
 				</div>
 			</div>
 		</div>		
@@ -204,7 +204,7 @@
 	</div>
 	
 	<!-- 일정  선택 -->
-	<div class="modal hide fade" id="consultScheduleSelect">
+	<div class="modal hide fade" id="consult-schedule-select-hs">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -222,42 +222,15 @@
 				</div>
 			</div>
 		</div>
-	</div>	
-	
-	
-			<%-- <div class="control-group">
-				<label class="control-label" for="focusedInput">상담 일정</label>
-				<div class="controls">
-				  <input class="input-xlarge focused" id="consultSchedule" type="text" value="${ consultVO.title }" required>
-				</div>
-			</div>
-			<div class="control-group">
-				<label class="control-label" for="focusedInput">상품 선택</label>
-				<div class="controls">
-				  <input class="input-xlarge focused" id="consultTitle" type="text" value="${ consultVO.title }" required>
-				</div>
-			</div>
-			<div class="control-group">
-			  <label class="control-label" for="date01">상담 요약</label>
-			  <div class="controls">
-				<input type="text" class="input-xlarge datepicker hasDatepicker" id="date01" value="02/16/12" required>
-			  </div>
-			</div>
-			<div class="control-group">
-			  <label class="control-label" for="date01">상담 내용</label>
-			  <div class="controls">
-				<input type="text" class="input-xlarge datepicker hasDatepicker" id="date01" value="02/16/12" required>
-			  </div>
-			</div> --%>
-		
+	</div>		
 	
 	<!-- 상품  선택 -->
-	<div class="modal hide fade" id="consultProductSelect" role="dialog">
+	<div class="modal hide fade" id="consult-product-select-hs" role="dialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">×</button>
-					<h3>상품 선택</h3>
+					<h3 id="product-count">상품 선택</h3>					
 				</div>
 				<div class="modal-body">				
 					<div class="row-fluid sortable">		
@@ -283,6 +256,46 @@
 			</div>
 		</div>
 	</div>
+	
+	<!-- 상담 내용 입력 -->
+	<div class="modal hide fade" id="consultContentInsert">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">×</button>
+			<h3>상담 내용 입력</h3>
+		</div>
+		<div class="modal-body">
+			<div class="control-group">
+				<label class="control-label" for="focusedInput">상담 일정</label>
+				<div class="controls">
+				  <input class="input-xlarge focused" id="consultSchedule" type="text" value="${ consultVO.title }" required>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="focusedInput">상품 선택</label>
+				<div class="controls">
+				  <input class="input-xlarge focused" id="consultTitle" type="text" value="${ consultVO.title }" required>
+				</div>
+			</div>
+			<div class="control-group">
+			  <label class="control-label" for="date01">상담 요약</label>
+			  <div class="controls">
+				<input type="text" class="input-xlarge datepicker hasDatepicker" id="date01" value="02/16/12" required>
+			  </div>
+			</div>
+			<div class="control-group">
+			  <label class="control-label" for="date01">상담 내용</label>
+			  <div class="controls">
+				<input type="text" class="input-xlarge datepicker hasDatepicker" id="date01" value="02/16/12" required>
+			  </div>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<a href="#" class="btn" data-dismiss="modal">Close</a>
+			<a href="#" class="btn btn-primary">Save changes</a>
+		</div>
+	</div>
+	
+	
 	
 	<!-- 수정 -->
 	<div class="modal hide fade" id="consultUpdate">
@@ -407,11 +420,9 @@
 				//var consultVONo = $(this).parent().parent().children('td[id=row-no-hs]').text();
 				//console.log(consultVONo);
 				
-				//var consultList = '${ consultList }';
-				
 				//console.dir(consultList);
 				console.log(consultDetailNo);
-				$("#consultDetail"+consultDetailNo).modal();
+				$("#consult-detail-"+consultDetailNo).modal();
 				console.log("상세");
 			});	
 			
@@ -420,9 +431,9 @@
 				e.preventDefault();
 				e.stopPropagation();	
 				
-				document.getElementById('consultDate').valueAsDate = new Date();
+				document.getElementById('consult-date-hs').valueAsDate = new Date();
 				
-				$("#consultDateSelect").modal();
+				$("#consult-date-select-hs").modal();
 				console.log("추가");
 			});			
 			
@@ -433,7 +444,7 @@
 				/* $(this).parent().next('.row-minimize-hs').empty();
 				$(this).parent().next('.row-detail-hs').empty(); */
 				
-				var inputDate = $("#consultDate").val();
+				var inputDate = $("#consult-date-hs").val();
 				
 				console.log(inputDate);
 
@@ -446,15 +457,15 @@
 	        				"type"	:	"Meeting", 
 	        				"date"	:	inputDate
 	        		}, 
-	        		success: function(data) {
+	        		success: function(schedule) {
 	        	        html = '<table class="table table-striped table-bordered bootstrap-datatable datatable">';
 	        	        html += '<thead><tr><th>번호</th><th>고객 이름</th><th>장소</th><th>일정</th></tr></thead><tbody>';
 	        	        
-	        	        for (var i = 0; i < data.length; i++) {
-		        	            html += '<tr><td><input type="radio" name="optionsRadios" data-schedule_no="' + data[i].no + '" data-customer_no="' + data[i].customer.no + '"></td>' 
-		        	            		+ '<td><span class="input-xlarge uneditable-input">' + data[i].customer.name + '</span></td>' 
-		        	            		+ '<td><span class="input-xlarge uneditable-input">' + data[i].location + '</span></td>' 
-		        	            		+ '<td><span class="input-xlarge uneditable-input">' + data[i].comments + '</span></td></tr>';
+	        	        for (var i = 0; i < schedule.length; i++) {
+		        	            html += '<tr><td><input type="radio" name="optionsRadios" data-schedule_no="' + schedule[i].no + '" data-customer_no="' + schedule[i].customer.no + '"></td>' 
+		        	            		+ '<td><span class="input-xlarge uneditable-input">' + schedule[i].customer.name + '</span></td>' 
+		        	            		+ '<td><span class="input-xlarge uneditable-input">' + schedule[i].location + '</span></td>' 
+		        	            		+ '<td><span class="input-xlarge uneditable-input">' + schedule[i].comments + '</span></td></tr>';
 	        	        }
 	        	        
 	        	        html += '</tbody></table>';
@@ -478,8 +489,8 @@
 	        		}
 	        	});
 				
-				$("#consultDateSelect").modal("hide");
-				$("#consultScheduleSelect").modal();
+				$("#consult-date-select-hs").modal("hide");
+				$("#consult-schedule-select-hs").modal();
 				console.log("일정 선택");
 			});
 			
@@ -497,8 +508,8 @@
 				
 				getList(1);
 				
-				$("#consultScheduleSelect").modal("hide");
-				$("#consultProductSelect").modal();
+				$("#consult-schedule-select-hs").modal("hide");
+				$("#consult-product-select-hs").modal();
 				console.log("상품 선택");
 			});
 			
@@ -521,7 +532,7 @@
 	        	        html += '<thead><tr><th>선택</th><th>금융상품코드</th><th>금융상품명</th></tr></thead><tbody>'; /* <th>적립유형명</th></tr></thead><tbody>'; */
 	        	        
 	        	        for (var i = 0; i < product.length; i++) {		        	        	
-	        	            html += '<tr><td><input type="checkbox" data-product_type="' + type + '" data-product_no="' + product[i].no + '">' + 
+	        	            html += '<tr><td><input type="checkbox" id="product-checkbox" data-product_type="' + type + '" data-product_no="' + product[i].no + '">' + 
 	        	            '</td><td>' + product[i].finPrdtCd + 
 	        	            '</td><td>' + product[i].finPrdtNm + 
 	        	            '</td></tr>';
@@ -530,7 +541,7 @@
 	        	        
 	        	        html += '</tbody></table>';
 	        	        
-	        	        console.log(html);
+	        	        //console.log(html);
 	        	 
 	        	        document.querySelector('#product-list').innerHTML = html;
 	        	        
@@ -553,12 +564,53 @@
 				console.log("탭 선택");
 			}
 			
+			var selectedProduct = [];
+			
+			$(document).on('change', 'input[id=product-checkbox]', function(){
+			//$('input:checkbox[id="product-checkbox"]').on('click', function(){
+				
+				
+				if ($(this).prop("checked")) {
+					$('#product-count').html('상품 선택 <span class="label label-important"> ' + 
+							selectedProduct.push({
+								type : $('li[class=active]').find('a[id=type-select-hs]').data('product_type'),
+								productNo : $(this).data('product_no')
+							})					
+							+ ' </span>');					
+				} else {		
+					console.log($(this).data('product_no'));
+					
+					for(var i = 0; i < selectedProduct.length; i++){
+						var shiftProduct = selectedProduct.shift();
+						console.log(shiftProduct);
+						if (shiftProduct['productNo'] == $(this).data('product_no') && shiftProduct['type'] == $('li[class=active]').find('a[id=type-select-hs]').data('product_type')){
+							$('#product-count').html('상품 선택 <span class="label label-important"> ' + selectedProduct.length + ' </span>');
+							break;
+						} else {
+							selectedProduct.push(shiftProduct);
+						}
+					}					
+				}				
+				//$('#product-count').html('상품 선택 <span class="label label-important"> ' + selectedProduct.length + ' </span>');								
+			});			
+			
+			/* $('input[id=product-checkbox]').on({  
+		        change: function(){
+		            //$(this).css("background-color", "lightblue");
+		        	console.log("change 이벤트");
+		        }, 
+		        click: function(){
+		            //$(this).css("background-color", "yellow");
+		            console.log("click 이벤트");
+		        }  
+		    }); */
+			
 			/* 추가 완료 */
 			$('a[id=consult-insert-complete-hs]').click(function(e){
 				e.preventDefault();
 				e.stopPropagation();	
 								
-				$("#consultDate").val();
+				$("#consult-date-hs").val();
 				
 				console.log("추가 완료");
 			});
