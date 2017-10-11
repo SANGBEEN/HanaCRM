@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -115,6 +116,17 @@ public class MainController {
 		model.addAttribute("contractList", json);
 		return "/main/main";
 	}
+	
+	@ResponseBody
+	@RequestMapping(value="/visits", method=RequestMethod.GET)
+	public List<String> selectVisitsList() {
+		List<String> result = productService.selectVisitsList();
+		
+		System.out.println(result.size());
+		
+		return result;
+	}
+	
 	//로그아웃 
 	@RequestMapping(value="/logout", method=RequestMethod.GET)
 	public String logout(HttpSession session){

@@ -1,6 +1,9 @@
 package kr.co.bit.hanacrm.Product;
 
+import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -50,6 +53,17 @@ public class ProductService {
 			return null;
 		}		
 	}
+	
+	public List<String> selectVisitsList() {
+		Set<String> visitsList = new HashSet<>();
+		
+		visitsList.addAll(productDAO.depositVisits());
+		System.out.println(visitsList.size());
+		visitsList.addAll(productDAO.savingsVisits());
+		System.out.println(visitsList.size());
+		
+		return new LinkedList<>(visitsList);
+	}
 
 	public int insertDeposit(List<DepositVO> depositList, List<OptionVO> optionList) {
 		int result=0;
@@ -97,4 +111,5 @@ public class ProductService {
 	public List<MainVO> selectTopSavings() {
 		return productDAO.selectTopSavings();
 	}
+	
 }

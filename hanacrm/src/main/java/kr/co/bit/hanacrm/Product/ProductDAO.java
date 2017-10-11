@@ -1,6 +1,8 @@
 package kr.co.bit.hanacrm.Product;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +47,8 @@ public class ProductDAO {
 	public ProductVO selectCardByNo(int no) {
 		return null;
 	}
+	
+	
 
 	public int insertDeposit(DepositVO depositVO) {
 		// TODO Auto-generated method stub
@@ -88,6 +92,14 @@ public class ProductDAO {
 	
 	public List<MainVO> selectTopSavings() {
 		return sqlSessionTemplate.selectList("savings.SavingsDAO.selectTop");
+	}
+
+	public List<String> depositVisits() {
+		return sqlSessionTemplate.selectList("deposit.DepositDAO.selectLog");
+	}
+
+	public List<String> savingsVisits() {
+		return sqlSessionTemplate.selectList("savings.SavingsDAO.selectLog");
 	}
 
 }

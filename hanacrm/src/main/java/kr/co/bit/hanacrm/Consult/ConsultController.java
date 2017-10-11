@@ -31,19 +31,19 @@ public class ConsultController {
 	
 	@ResponseBody
 	@RequestMapping(value="/sales/consult", method=RequestMethod.POST)
-	public Integer insert(ConsultVO consultVO){
+	public int insert(ConsultVO consultVO){
 		return consultService.insert(consultVO);
 	}
 	
 	@ResponseBody
 	@RequestMapping(value="/sales/consult", method=RequestMethod.PUT)
-	public Integer update(ConsultVO consultVO){
+	public int update(ConsultVO consultVO){
 		return consultService.update(consultVO);
 	}
 	
 	@ResponseBody
 	@RequestMapping(value="/sales/consult/{no}", method=RequestMethod.DELETE)
-	public Integer delete(@PathVariable int no){
+	public int delete(@PathVariable int no){
 		return consultService.delete(no);
 	}	
 	
