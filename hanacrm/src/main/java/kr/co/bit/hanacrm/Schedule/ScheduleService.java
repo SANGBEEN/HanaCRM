@@ -23,7 +23,11 @@ public class ScheduleService {
 		List<ScheduleVO> list = scheduleDAO.selectListAll(employeeNo);
 		for(int i=0; i<list.size(); i++) {
 			ScheduleVO s = list.get(i);
-			s.setCustomer(cusDAO.detail(s.getCustomerNo()));
+			if(s.getCustomerNo()!=null) {
+				s.setCustomer(cusDAO.detail(s.getCustomerNo()));
+			} else {
+				s.setCustomer(new CusVO());
+			}
 		}
 		return list;
 	}
@@ -33,7 +37,11 @@ public class ScheduleService {
 		List<ScheduleVO> list = scheduleDAO.selectList(schedule);
 		for(int i=0; i<list.size(); i++) {
 			ScheduleVO s = list.get(i);
-			s.setCustomer(cusDAO.detail(s.getCustomerNo()));
+			if(s.getCustomerNo()!=null) {
+				s.setCustomer(cusDAO.detail(s.getCustomerNo()));
+			} else {
+				s.setCustomer(new CusVO());
+			}
 		}
 		return list;
 	}
@@ -74,10 +82,14 @@ public class ScheduleService {
 
 		ScheduleVO schedule = scheduleDAO.selectByNo(no);
 
-		// cusDAO 에서 고객 정보 받아오기
-		CusVO customer = new CusVO();
-		customer = cusDAO.detail(schedule.getCustomerNo());
-		schedule.setCustomer(customer);
+		if(schedule.getCustomerNo()!=null) {
+			// cusDAO 에서 고객 정보 받아오기
+			CusVO customer = new CusVO();
+			customer = cusDAO.detail(schedule.getCustomerNo());
+			schedule.setCustomer(customer);
+		} else {
+			schedule.setCustomer(new CusVO());
+		}
 		return schedule;
 	}
 
@@ -87,7 +99,11 @@ public class ScheduleService {
 		
 		for(int i=0; i<list.size(); i++) {
 			ScheduleVO s = list.get(i);
-			s.setCustomer(cusDAO.detail(s.getCustomerNo()));
+			if(s.getCustomerNo()!=null) {
+				s.setCustomer(cusDAO.detail(s.getCustomerNo()));
+			} else {
+				s.setCustomer(new CusVO());
+			}
 		}
 		return list;
 	}
@@ -102,6 +118,48 @@ public class ScheduleService {
 		}
 		
 		return timeList;
+	}
+
+	// 예약 신청 내역 조회
+	public List<ScheduleVO> selectReservation(Integer no) {
+		List<ScheduleVO> list = scheduleDAO.selectReservation(no);
+		
+		for(int i=0; i<list.size(); i++) {
+			ScheduleVO s = list.get(i);
+			if(s.getCustomerNo()!=null) {
+				s.setCustomer(cusDAO.detail(s.getCustomerNo()));
+			} else {
+				s.setCustomer(new CusVO());
+			}
+		}
+		
+		return list;
+	}
+
+	// 신청 수락/거절
+	public int updateReservation(ScheduleVO reservation) {
+		// 1. 상태 변경
+		int result = scheduleDAO.updateReservation(reservation);
+		
+		// 2. 수락 시 일정 추가
+		if(result==1 && reservation.getStatus().equals("Y")) {
+			int scheduleNo = scheduleDAO.selectSeq();
+			
+			if(scheduleNo>0) {
+				reservation.setStartDate("2017-10-11 11:00");
+				reservation.setEndDate("2017-10-11 13:00");
+				reservation.setNo(scheduleNo);
+				reservation.setImportance(3);
+				reservation.setRepetition("한번");
+				result = scheduleDAO.insert(reservation);
+			}else {
+				System.out.println("예약 신청 수락 시 일정 추가 에러");
+			}
+		}else {
+			System.out.println("예약 신청 수락 처리 에러");
+		}
+		
+		return result;
 	}
 
 }

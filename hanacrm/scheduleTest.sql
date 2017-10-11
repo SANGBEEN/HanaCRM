@@ -42,3 +42,11 @@ from (
 	order by count desc, product_no desc
 ) join deposit_info di on (di.no = product_no)
 where rownum<=3
+
+
+select *
+from reservation
+where employee_no = 1
+
+select sysdate, to_date('2017-10-11 07:42:45', 'yyyy-mm-dd hh24:mi')
+from dual

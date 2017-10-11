@@ -11,7 +11,7 @@ import kr.co.bit.hanacrm.Customer.CusVO;
 
 //할일, 예약, 생일, 기념일, 명절, 진행상황등등
 @Component
-public class ScheduleVO {
+public class ScheduleVO{
 
 	private Integer no;
 
@@ -46,6 +46,15 @@ public class ScheduleVO {
 	
 	// 고객 정보
 	private CusVO customer;
+	
+	/////////////////////////////////// Reservation
+	private String name;
+
+	private String phone;
+
+	private String status;
+
+	private String msg;
 	
 	public ScheduleVO() {
 		super();
@@ -171,6 +180,42 @@ public class ScheduleVO {
 		this.customer = customer;
 	}
 	
+	////////////////////////// Reservation 변수 get, set
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getMsg() {
+		return msg;
+	}
+
+	public void setMsg(String msg) {
+		this.msg = msg;
+	}	
+	
+	
+	
 	/*
 	// type - typeName 매칭
 	public String typeName() {
@@ -249,6 +294,7 @@ public class ScheduleVO {
 				.append(", repetition=").append(repetition).append(", date=").append(date).append("]");
 		 */
 		return json; //builder.toString();
-	}	
+	}
+
 
 }

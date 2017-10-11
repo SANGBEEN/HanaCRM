@@ -57,4 +57,14 @@ public class ScheduleDAO {
 	public List<ScheduleVO> selectTimeList(ScheduleVO schedule) {
 		return sqlSessionTemplate.selectList("schedule.ScheduleDAO.selectTimeList", schedule);
 	}
+
+	// 예약 신청 조회
+	public List<ScheduleVO> selectReservation(Integer no) {
+		return sqlSessionTemplate.selectList("schedule.ScheduleDAO.selectReservation", no);
+	}
+
+	// 예약 처리
+	public int updateReservation(ScheduleVO reservation) {
+		return sqlSessionTemplate.update("schedule.ScheduleDAO.updateReservation", reservation);
+	}
 }

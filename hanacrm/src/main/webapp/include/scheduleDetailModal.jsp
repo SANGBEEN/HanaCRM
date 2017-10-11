@@ -19,7 +19,7 @@
 					<div class="form-horizontal">
 						<fieldset>
 						
-						<div class="control-group">
+						<div class="control-group" id="div_customerName">
 							<label class="control-label">고객명</label>
 							<div class="controls">
 								<span id="customerName"></span>

@@ -11,6 +11,14 @@
 		<result column="end_date" property="endDate"/>
 		<result column="reg_date" property="regDate"/>
 	</resultMap>
+
+	<resultMap type="reservation" id="reservationMap">
+		<result column="employee_no" property="employeeNo"/>
+		<result column="customer_no" property="customerNo"/>
+		<result column="start_date" property="startDate"/>
+		<result column="end_date" property="endDate"/>
+		<result column="reg_date" property="regDate"/>
+	</resultMap>
 	
 	
 	<!-- 사원의 일정 전체 리스트 -->
@@ -59,7 +67,7 @@
 	<insert id="insert" parameterType="schedule">
 		insert into schedule (no, employee_no, customer_no, location, type, comments,
 							 start_date, end_date, reg_date, importance, repetition)
-		values (#{no}, #{employeeNo}, #{customerNo}, #{location}, #{type}, #{comments},
+		values (#{no}, #{employeeNo}, #{customerNo,jdbcType=NUMERIC}, #{location}, #{type}, #{comments},
 				to_date(#{startDate},'YYYY-MM-DD hh24:mi'), to_date(#{endDate},'YYYY-MM-DD hh24:mi'), sysdate, #{importance}, #{repetition})
 	</insert>
 	
@@ -106,6 +114,7 @@
 		SELECT schedule_seq.nextval FROM DUAL
 	</select>
 	
+	<!-- 
 	<select id="selectTimeList" resultType="schedule">
 		select location, type, comments, to_char(start_date, 'hh24:mi') as startDate, to_char(end_date, 'hh24:mi') as endDate
 		from schedule
@@ -113,5 +122,19 @@
 			and (to_char(#{date}, 'yyyy-mm-dd') between to_char(start_date, 'yyyy-mm-dd') and  to_char(end_date, 'yyyy-mm-dd'))
 		order by start_date, end_date
 	</select>
+	 -->
+	
+	<!-- 예약 신청 조회 -->
+	<select id="selectReservation" parameterType="int" resultMap="scheduleMap">
+		select *
+		from reservation
+		where employee_no = #{no} and status!='Y'
+	</select>
+	
+	<!-- 예약 처리 -->
+	<update id="updateReservation" parameterType="schedule">
+		update reservation set status = #{status}, comments = #{comments}
+		where no = #{no}
+	</update>
 	
 </mapper>

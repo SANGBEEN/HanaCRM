@@ -3,7 +3,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<div class="row-fluid sortable">
+<div class="row-fluid sortable" id="customerInfo">
 	<div class="box span12">
 		<div class="box-header" data-original-title>
 			<h2>

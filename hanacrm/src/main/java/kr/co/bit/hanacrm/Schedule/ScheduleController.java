@@ -1,6 +1,5 @@
 package kr.co.bit.hanacrm.Schedule;
 
-import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -118,4 +118,22 @@ public class ScheduleController {
 		schedule.setNo(emp.getNo());
 		return scheduleService.selectTimeList(schedule);
 	}
+	
+	// 예약 신청 조회
+	@RequestMapping(value="/schedule/reservation", method=RequestMethod.GET)
+	public String selectReservation(Model model, HttpSession session){
+		EmpVO emp = (EmpVO) session.getAttribute("emp");
+		model.addAttribute("reservationList", scheduleService.selectReservation(emp.getNo()));
+		return "/schedule/reservation";
+	}
+	
+	// 예약 처리
+	@ResponseBody
+	@RequestMapping(value="/schedule/reservation", method=RequestMethod.PUT)
+	public int updateReservation(HttpSession session, @RequestBody ScheduleVO reservation) {
+		//System.out.println(reservation);
+		//return 0;
+		return scheduleService.updateReservation(reservation);
+	}
+	
 }

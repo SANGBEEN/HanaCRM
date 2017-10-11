@@ -30,14 +30,32 @@
 			  
 			  <div class="control-group">
 				<label class="control-label">시작일자</label>
-				<label class="control-label">종료일자</label>
-
+				<label class="control-label">소요시간</label>
+			</div>
 			<!-- <div class="controls"> -->
-				<div id="start-date-mtr-datepicker">
+		  	<div>
+		  		<a class="quick-button-small span1">
+					<i class="icon-dashboard"></i>
+						<p id="1">1</p>
+				</a>
+				<a class="quick-button-small span1">
+					<i class="icon-dashboard"></i>
+						<p id="2">2</p>
+				</a>
+				<a class="quick-button-small span1">
+					<i class="icon-dashboard"></i>
+						<p id="3">3</p>
+				</a>
+				<a class="quick-button-small span1">
+					<i class="icon-dashboard"></i>
+						<p id="4">4</p>
+				</a>
+				
+			  	<div id="start-date-mtr-datepicker">
 				</div>
-			  
-				<div id="end-date-mtr-datepicker">
-				</div>
+			  	
+				<!-- <div id="end-date-mtr-datepicker">
+				</div> -->
 			  <!-- </div> -->
 			</div>
 			  

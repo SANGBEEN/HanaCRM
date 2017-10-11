@@ -5,7 +5,12 @@
 	<div class="nav-collapse sidebar-nav">
 		<ul class="nav nav-tabs nav-stacked main-menu">
 			<li><a href="${pageContext.request.contextPath}/main"><i class="icon-bar-chart"></i><span class="hidden-tablet"> Dashboard</span></a></li>	
-			<li><a href="${pageContext.request.contextPath}/schedule/list"><i class="icon-calendar"></i><span class="hidden-tablet"> 일정 관리</span></a></li>
+			<li><a class="dropmenu" href="#"><i class="icon-calendar"></i><span class="hidden-tablet"> 일정 관리</span></a>
+				<ul>
+					<li><a class="submenu" href="${pageContext.request.contextPath}/schedule/list"><i class="icon-file-alt"></i><span class="hidden-tablet">일정</span></a></li>
+					<li><a class="submenu" href="${pageContext.request.contextPath}/schedule/reservation"><i class="icon-file-alt"></i><span class="hidden-tablet">예약 내역</span></a></li>
+				</ul>
+			</li>
 			<li><a href="${pageContext.request.contextPath}/customer"><i class="icon-list-alt"></i><span class="hidden-tablet"> 고객 관리</span></a></li>
 			<li><a class="dropmenu" href="#"><i class="icon-tasks"></i><span class="hidden-tablet"> 영업 관리</span></a>
 				<ul>

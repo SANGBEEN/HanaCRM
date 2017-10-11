@@ -242,11 +242,25 @@
 	
 	<script> 
 		 console.dir('${scheduleList}');
+		 
+			
+		 	$('[data-dismiss=modal]').on('hidden.bs.modal', function (e) {
+		 		console.log('dismiss');
+		 		 $(this)
+		 	    .find("input,textarea,select")
+		 	       .val('')
+		 	       .end()
+		 	    .find("input[type=checkbox], input[type=radio]")
+		 	       .prop("checked", "")
+		 	       .end();
+		 	});
 				 
 		 jQuery(function($) {
 				
 			var addModal = $('#addModal');
 			var detailModal = $('#detailModal');
+			
+	
 			 
 				/************************** initialize the external events
 				-----------------------------------------------------------------*/
@@ -288,7 +302,7 @@
 						console.dir(endDate);
 					}
 					
-				 	eventList.push({ title : '('+data[i].customer.name+')',
+				 	eventList.push({ title : data[i].customer.name,
 									start : moment(startDate).format('YYYY-MM-DD HH:mm'),
 									end:  moment(endDate).format('YYYY-MM-DD HH:mm'),
 									className: data[i].type,
@@ -353,44 +367,49 @@
 						달력에 새로운 이벤트 추가
 						모달 띄우기
 					***************************/
-
-						// 1. 등록 폼 모달 띄움
-					//	detailModal.remove();
-						addModal.modal('show');
-						
-						// 2. 고객 정보 받아오기, 모달에 셋팅
-						/* $.ajax({
-							url: "${pageContext.request.contextPath}/customer/listForModal",
-			        		type: "get",
-			        		success: function(data){
-			        			var table_head = '<table class="table table-striped table-bordered bootstrap-datatable datatable">'
-			        			+ '<thead><tr> <th>선택</th><th>Name</th><th>Reg_date</th><th>Phone</th><th>Grade</th> </tr></thead>'
-			        			var table_body = '<tbody id="table-data" class="customerBody">';
-			        			 JSON.parse(data).forEach(function(element) {
-			        				 table_body += '<tr><td><input type="radio" name="customerNo" value="'+element.no+'"/></td><td id="'+element.no+'">'
-			        			    		+ element.name + '</td><td>'
-			        			    		+ element.phone + '</td><td>'
-			        			    		+ element.regDate + '</td><td>'
-			        			    		+ element.grade + '</td></tr>';
-			        			});
-			        			 table_body += '</tbody></table>';
-			        			
-			        			$('#customerTable').html(table_head+table_body);
-			        			
-			        			//te.querySelector('.customerBody').innerHTML += html;
-			        			//console.log(te);
-			        		},
-			        		error: function(){
-			        			alert('error');
-			        		} 
-						}); */
-						
 					
-						// 3. 추가할 이벤트 타입, 날짜 저장
-						// retrieve the dropped element's stored Event Object
-						var originalEventObject = $(this).data('eventObject');
-						var $extraEventClass = $(this).attr('data-class');
+					// 0. 추가할 이벤트 타입, 날짜 받아오기
+					// retrieve the dropped element's stored Event Object
+					var originalEventObject = $(this).data('eventObject');
+					var $extraEventClass = $(this).attr('data-class');
+
+					// 1. 등록 폼 모달 띄움 (타입 별 모달 처리)
+					addModal.modal('show');							
+
+						if(originalEventObject.title=='Task'){
+							$('#customerInfo').hide();
+						}else {
+							$('#customerInfo').show();
+							//	detailModal.remove();
+							// 1-1. 고객 정보 받아오기, 모달에 셋팅
+							/* $.ajax({
+								url: "${pageContext.request.contextPath}/customer/listForModal",
+				        		type: "get",
+				        		success: function(data){
+				        			var table_head = '<table class="table table-striped table-bordered bootstrap-datatable datatable">'
+				        			+ '<thead><tr> <th>선택</th><th>Name</th><th>Reg_date</th><th>Phone</th><th>Grade</th> </tr></thead>'
+				        			var table_body = '<tbody id="table-data" class="customerBody">';
+				        			 JSON.parse(data).forEach(function(element) {
+				        				 table_body += '<tr><td><input type="radio" name="customerNo" value="'+element.no+'"/></td><td id="'+element.no+'">'
+				        			    		+ element.name + '</td><td>'
+				        			    		+ element.phone + '</td><td>'
+				        			    		+ element.regDate + '</td><td>'
+				        			    		+ element.grade + '</td></tr>';
+				        			});
+				        			 table_body += '</tbody></table>';
+				        			
+				        			$('#customerTable').html(table_head+table_body);
+				        			
+				        			//te.querySelector('.customerBody').innerHTML += html;
+				        			//console.log(te);
+				        		},
+				        		error: function(){
+				        			alert('error');
+				        		} 
+							}); */
+						}
 						
+						// 2.추가할 이벤트 저장
 						// we need to copy it, so that multiple events don't have a reference to the same object
 						var copiedEventObject = $.extend({}, originalEventObject);
 						
@@ -399,11 +418,11 @@
 						copiedEventObject.end = date;
 						copiedEventObject.allDay = false;
 						copiedEventObject.className = originalEventObject.title;
-						copiedEventObject.title = "(고객이름)";
+						copiedEventObject.title = "Title";
 					
 						console.log(copiedEventObject);
 						
-						/* 4. 추가할 이벤트 정보 모달에 셋팅
+						/* 3. 추가할 이벤트 정보 모달에 셋팅
 							1) type 설정 (originalEventObject.title)
 							2) 시작 날짜 설정 (date 이용)
 						**************************/
@@ -412,6 +431,13 @@
 							
 		 				// 1) type 설정
 						$("#scheduleType").val(originalEventObject.title);
+						$("#scheduleType").change(function(){
+							if($("#scheduleType").val()=='Task'){
+								$('#customerInfo').hide();
+							}else {
+								$('#customerInfo').show();
+							}
+						});
 					
 						// 2) 날짜 설정
 						var start = getDate(date);
@@ -443,8 +469,8 @@
 								// 캘린더에 쓰일 Data (변경사항 저장 - type, end 날짜)						
 								 var startData = getDate(moment(startDatepicker.toString())); 
 								 var endData = getDate(moment(endDatepicker.toString()));
-								 var cNo = $("input[name='customerNo']:checked").val();
-								 var name = document.getElementById(cNo).innerText;
+								 var cNo = $("input[name='customerNo']:checked").val()!=null?$("input[name='customerNo']:checked").val():null;
+								 var name = cNo!=null?document.getElementById(cNo).innerText:addModal.find('input[id=location]').val();
 								 console.log('datepicker start output : '+startData);
 								 console.log('datepicker end output : '+endData);
 								
@@ -454,6 +480,7 @@
 		
 								console.log(copiedEventObject);
 			        			console.log(name);
+			        			console.log(cNo);
 								
 								// 서버에 보낼 Data
 								var scheduleData = {
@@ -484,7 +511,7 @@
 					        		data: scheduleData, 
 					        		success: function(scheduleNo){
 					        			alert('추가'+scheduleNo);
-					        			addModal.modal("hide");
+					        		//	addModal.modal("hide");
 										//addModal.remove();
 										// 추가할 이벤트에 scheduleNo 저장
 										copiedEventObject.id = scheduleNo;
@@ -504,11 +531,6 @@
 							}  // check else end
 						}); // click end
 						
-						
-						addModal.modal('show').on('hidden', function(){
-							//addModal.remove();
-							addModal.modal("hide");
-						});						
 						
 							/* 	$('#start-date-mtr-datepicker').datepicker('destroy');
 								$('#end-date-mtr-datepicker').datepicker('destroy'); */
@@ -569,7 +591,12 @@
 								detailModal.find('input[id=location]').val(schedule.location);
 								detailModal.find('input[id=comments]').val(schedule.comments);
 								detailModal.find('input[id=repetition]').val(schedule.repetition);
-								detailModal.find('span[id=customerName]').text(schedule.customer.name);
+								if(schedule.customerNo!=""){
+									detailModal.find('span[id=customerName]').text(schedule.customer.name);									
+									detailModal.find('div[id=div_customerName]').show();
+								}else {
+									detailModal.find('div[id=div_customerName]').hide();
+								}
 								detailModal.find('select[id=importance]').val(schedule.importance);
 								
 								// 데이트피커
@@ -630,7 +657,7 @@
 				        		data: JSON.stringify(scheduleData), 
 				        		success: function(data){
 				        			alert('수정'+data);
-				        			detailModal.modal("hide");
+				        		//	detailModal.modal("hide");
 									
 				        			// 달력 객체 정보 수정
 				        			calEvent.className = scheduleData.type;
@@ -657,7 +684,7 @@
 										calendar.fullCalendar('removeEvents' , function(ev){
 											return (ev._id == calEvent._id);
 										});
-										detailModal.modal("hide");
+								//		detailModal.modal("hide");
 										alert('삭제 완료');
 									}else {
 										console.log('디비에러');
@@ -835,8 +862,8 @@
 						  },						  
 						  minutes: {
 						    min: 0,
-						    max: 50,
-						    step: 10
+						    max: 30,
+						    step: 30
 						  },
 						  years: {
 						    min: 2017,
@@ -852,7 +879,7 @@
 
 		 		var msg = 'ok';
 		 		
-		 		if($("input[name='customerNo']:checked").val()==null){
+		 		if($("#scheduleType").val()!='Task' && $("input[name='customerNo']:checked").val()==null){
 		 			return 'customer is not checked';
 		 		}
 		 		
@@ -874,6 +901,7 @@
 
     			return msg;
 		 	}
+		 
 		 
 	</script>
 	<%@ include file="/include/addScheduleModal.jsp"%>

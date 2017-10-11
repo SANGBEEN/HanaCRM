@@ -8,6 +8,7 @@
         <typeAlias type="kr.co.bit.hanacrm.Customer.CusVO" alias="cus"/>
         <typeAlias type="kr.co.bit.hanacrm.Employee.EmpVO" alias="emp"/>        
         <typeAlias type="kr.co.bit.hanacrm.Schedule.ScheduleVO" alias="schedule"/>
+        <typeAlias type="kr.co.bit.hanacrm.Schedule.ReservationVO" alias="reservation"/>
         <typeAlias type="kr.co.bit.hanacrm.Contract.ContractVO" alias="contract"/>
          
         <typeAlias type="kr.co.bit.hanacrm.Consult.ConsultVO" alias="consult"/>
