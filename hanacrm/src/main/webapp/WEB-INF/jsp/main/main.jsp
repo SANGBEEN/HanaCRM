@@ -171,8 +171,8 @@
 						<!--명함들어갈자리  -->
 					</div>
 
-					<div class="span2 statbox green" style="height: 20vh;"
-						onTablet="span6" onDesktop="span2">
+
+					<div class="span2 statbox green" style="height: 20vh;" onTablet="span6" onDesktop="span2">
 						<div class="boxchart">1,2,6,4,0,8,2,4,5,3,1,7,5</div>
 						<div class="number">
 							123<i class="icon-arrow-up"></i>
@@ -182,28 +182,20 @@
 							<a href="#"> read full report</a>
 						</div>
 					</div>
-					<div class="span2 statbox yellow" style="height: 20vh;"
-						onTablet="span6" onDesktop="span2">
-						<div class="boxchart">7,2,2,2,1,-4,-2,4,8,,0,3,3,5</div>
-						<div class="number">
-							678<i class="icon-arrow-down"></i>
+					
+					<!-- 방문자 수 시작 -->					
+					<div class="span2 statbox yellow" style="height: 20vh;" onTablet="span6" onDesktop="span2" id="refresh-visits-hs">
+						<!-- <div class="boxchart">7,2,2,2,1,-4,-2,4,8,,0,3,3,5</div> -->
+						<div class="number" id="number-of-visits-hs">
+							
 						</div>
-						<div class="title">visits</div>
+						<div class="title">오늘 방문</div>
 						<div class="footer">
-							<a href="#"> read full report</a>
+							<a href="#" id="visits-modal-hs"> 자세히 보기</a>
 						</div>
 					</div>
-					<div class="span2 statbox yellow" style="height: 20vh;"
-						onTablet="span6" onDesktop="span2">
-						<div class="boxchart">7,2,2,2,1,-4,-2,4,8,,0,3,3,5</div>
-						<div class="number">
-							678<i class="icon-arrow-down"></i>
-						</div>
-						<div class="title">visits</div>
-						<div class="footer">
-							<a href="#"> read full report</a>
-						</div>
-					</div>
+					<!-- 방문자 수 끝 -->
+					
 					<!--예금, 적금 api 요청
  				<div class="span3 statbox purple" onTablet="span6" onDesktop="span3">
 					<button id="depositBtn">예금 api 요청</button>
@@ -321,7 +313,7 @@
 		<!--/#content.span10-->
 	</div>
 	<!--/fluid-row-->
-
+	
 	<div class="modal hide fade" id="myModal">
 		<div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal">×</button>
@@ -331,11 +323,26 @@
 			<p>Here settings can be configured...</p>
 		</div>
 		<div class="modal-footer">
-			<a href="#" class="btn" data-dismiss="modal">Close</a> <a href="#"
-				class="btn btn-primary">Save changes</a>
+			<a href="#" class="btn" data-dismiss="modal">Close</a>
+			<a href="#" class="btn btn-primary">Save changes</a>
 		</div>
 	</div>
 
+	<div class="modal hide fade" id="visits-detail-hs">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">×</button>
+			<h3>방문자 주소 목록</h3>
+		</div>
+		<div class="modal-body">
+			<div id="visits-IP-list-hs">
+			
+			</div>
+		</div>
+		<div class="modal-footer">
+			<a href="#" class="btn" data-dismiss="modal">Close</a> 
+		</div>
+	</div>	
+	
 	<div class="clearfix"></div>
 
 	<jsp:include page="/include/footer.jsp" />
@@ -547,6 +554,37 @@
 			});
 			
 		});
+		
+		$(document).ready(function() {
+			getVisitsList();
+		});
+		
+		$('div[id=refresh-visits-hs]').click(function() {
+			getVisitsList();
+		});
+		
+		$('a[id=visits-modal-hs]').click(function() {
+			getVisitsList();
+			$('#visits-detail-hs').modal();
+		})
+		
+		function getVisitsList() {
+			$.ajax({
+        		url: "${pageContext.request.contextPath}/visits",
+        		type: "get",
+        		dataType: "json",
+        		success: function(visitsList){
+        			console.log(visitsList);
+        			$('div[id=number-of-visits-hs]').text(visitsList.length);
+        			
+        			$('div[id=visits-IP-list-hs]').html(visitsList);
+        	    },
+        		error: function(e){
+      				console.log(e);
+        			alert('error');
+        		}
+        	});
+		}
 	</script>
 	<!-- end: JavaScript-->
 </body>

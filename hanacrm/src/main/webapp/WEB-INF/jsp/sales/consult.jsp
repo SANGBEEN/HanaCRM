@@ -180,28 +180,7 @@
 				<a href="#" class="btn btn-primary" data-dismiss="modal">Save changes</a>
 			</div>
 		</div>
-	</c:forEach>
-	
-	<!-- 상담 날짜 선택 -->
-	<div class="modal hide fade" id="consult-date-select-hs">
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal">×</button>
-			<h3>상담 날짜 선택</h3>
-		</div>
-		<div class="modal-body">
-			<div class="control-group">
-				<label class="control-label" for="focusedInput">상담 날짜</label>
-				<div class="controls">
-					<input class="input-xlarge focused" id="consult-date-hs" type="date">					
-				</div>
-			</div>
-		</div>		
-		<div class="modal-footer">
-			<a href="#" class="btn btn-primary" id="date-select-hs">선택</a>
-			<a href="#" class="btn" data-dismiss="modal">취소</a>
-			<!-- <a href="#" class="btn btn-primary" id="consult-insert-complete-hs" data-dismiss="modal">확인</a> -->			
-		</div>
-	</div>
+	</c:forEach>	
 	
 	<!-- 일정  선택 -->
 	<div class="modal hide fade" id="consult-schedule-select-hs">
@@ -211,7 +190,14 @@
 					<button type="button" class="close" data-dismiss="modal">×</button>
 					<h3>일정 선택</h3>
 				</div>
-				<div class="modal-body">					
+				<div class="modal-body">
+					<div class="control-group">
+						<label class="control-label" for="focusedInput">상담 날짜</label>
+						<div class="controls">
+							<input class="input-xlarge focused" id="consult-date-hs" type="date">
+							<a href="#" class="btn yellow" id="date-select-hs">선택</a>					
+						</div>
+					</div>				
 					<div class="schedule-list">
 						
 					</div>							
@@ -433,7 +419,9 @@
 				
 				document.getElementById('consult-date-hs').valueAsDate = new Date();
 				
-				$("#consult-date-select-hs").modal();
+				selectDate();
+				
+				$("#consult-schedule-select-hs").modal();
 				console.log("추가");
 			});			
 			
@@ -444,6 +432,12 @@
 				/* $(this).parent().next('.row-minimize-hs').empty();
 				$(this).parent().next('.row-detail-hs').empty(); */
 				
+				selectDate();
+				
+				console.log("일정 선택");
+			});
+			
+			function selectDate(){
 				var inputDate = $("#consult-date-hs").val();
 				
 				console.log(inputDate);
@@ -488,11 +482,7 @@
 	        			alert('error');
 	        		}
 	        	});
-				
-				$("#consult-date-select-hs").modal("hide");
-				$("#consult-schedule-select-hs").modal();
-				console.log("일정 선택");
-			});
+			}
 			
 			/* 상품 선택 */
 			$('a[id=schedule-select-hs]').click(function(e){

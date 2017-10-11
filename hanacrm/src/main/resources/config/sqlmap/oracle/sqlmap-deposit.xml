@@ -33,13 +33,17 @@
 		select * from deposit_info where no=#{no}
 	</select>
 	
+	<select id="selectLog" resultType="String">
+		select ipv6 from deposit_log where to_char(reg_date, 'yyyy-mm-dd')=to_char(sysdate, 'yyyy-mm-dd')
+	</select>
+	
 	<insert id="insert" parameterType="deposit">
 		insert into deposit_info values(deposit_info_seq.nextval, to_date(#{dclsMonth},'YYYY/MM'),#{finCoNo},#{korCoNm},#{finPrdtCd},#{finPrdtNm},#{joinWay},#{mtrtInt, jdbcType=VARCHAR},#{spclCnd, jdbcType=VARCHAR},#{joinDeny, jdbcType=NUMERIC},#{joinMember, jdbcType=VARCHAR},#{etcNote, jdbcType=VARCHAR},#{maxLimit, jdbcType=NUMERIC},to_date(#{dclsStrtDay, jdbcType=DATE},'YYYY/MM/DD'),to_date(#{dclsEndDay},'YYYY/MM/DD'),to_date(#{finCoSubmDay},'YYYY/MM/DD HH24:MI:SS'))
 	</insert>
 	
 	<select id="selectName" parameterType="int" resultType="string">
 		select FIN_PRDT_NM from deposit_info where no=#{no}
-	</select>
+	</select>	
 	
 	<!-- deposit 상담 많은 상품 3 -->
 	<select id="selectTop" resultType="main">
