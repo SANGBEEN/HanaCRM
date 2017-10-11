@@ -14,7 +14,7 @@ public class ReservationVO extends ScheduleVO {
 
 	private String phone;
 
-	private char status;
+	private String status;
 
 	private String msg;
 
@@ -25,7 +25,7 @@ public class ReservationVO extends ScheduleVO {
 	
 	public ReservationVO(Integer no, Integer employeeNo, Integer customerNo, String location, String type,
 			String comments, String startDate, String endDate, String regDate, Integer importance, String repetition,
-			String name, String phone, char status, String msg) {
+			String name, String phone, String status, String msg) {
 		super(no, employeeNo, customerNo, location, type, comments, startDate, endDate, regDate, importance,
 				repetition);
 		this.name = name;
@@ -35,11 +35,11 @@ public class ReservationVO extends ScheduleVO {
 	}
 
 
-	public char getStatus() {
+	public String getStatus() {
 		return status;
 	}
 
-	public void setStatus(char status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 
