@@ -140,6 +140,7 @@ public class ScheduleService {
 	public int updateReservation(ScheduleVO reservation) {
 		// 1. 상태 변경
 		int result = scheduleDAO.updateReservation(reservation);
+		System.out.println("예약 신청 상태 변경 확인: "+result);
 		
 		// 2. 수락 시 일정 추가
 		if(result==1 && reservation.getStatus().equals("Y")) {
@@ -152,6 +153,7 @@ public class ScheduleService {
 				reservation.setImportance(3);
 				reservation.setRepetition("한번");
 				result = scheduleDAO.insert(reservation);
+				System.out.println("예약 신청 일정 추가 확인: "+result);
 			}else {
 				System.out.println("예약 신청 수락 시 일정 추가 에러");
 			}
