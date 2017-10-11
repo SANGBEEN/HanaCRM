@@ -150,7 +150,7 @@
 		</div>
 	</div>
 		
-	<!-- 상세 -->
+	<!-- 상담 내역 상세 -->
 	<c:forEach items="${ consultList }" var="consultVO">
 		<div class="modal hide fade" id="consult-detail-${ consultVO.no }">
 			<div class="modal-header">
@@ -211,7 +211,7 @@
 	</div>		
 	
 	<!-- 상품  선택 -->
-	<div class="modal hide fade" id="consult-product-select-hs" role="dialog">
+	<div class="modal hide fade" id="consult-product-select-hs">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -243,8 +243,23 @@
 		</div>
 	</div>
 	
+	<div class="modal hide fade" id="selected-product-hs">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">×</button>
+			<h3>선택한 상품</h3>
+		</div>
+		<div class="modal-body">
+			<div id="selected-product-list-hs">
+			
+			</div>
+		</div>
+		<div class="modal-footer">
+			<a href="#" class="btn" data-dismiss="modal">닫기</a>
+		</div>
+	</div>
+	
 	<!-- 상담 내용 입력 -->
-	<div class="modal hide fade" id="consultContentInsert">
+	<div class="modal hide fade" id="consult-content-insert-hs">
 		<div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal">×</button>
 			<h3>상담 내용 입력</h3>
@@ -284,7 +299,7 @@
 	
 	
 	<!-- 수정 -->
-	<div class="modal hide fade" id="consultUpdate">
+	<div class="modal hide fade" id="consult-update-hs">
 		<div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal">×</button>
 			<h3>수정</h3>
@@ -515,14 +530,15 @@
 	        		type: "get",
 	        		dataType: "json",
 	        		success: function(product) {
-	        			        			
+	        			
+	        			product
 	        			$('h2[id=tab-name-hs]').html('<i class="halflings-icon book"></i><span class="break"></span>' + $('li[class=active]').find('a[id=type-select-hs]').text());
 	        			
 	        	        html = '<table class="table table-striped table-bordered bootstrap-datatable datatable">';
 	        	        html += '<thead><tr><th>선택</th><th>금융상품코드</th><th>금융상품명</th></tr></thead><tbody>'; /* <th>적립유형명</th></tr></thead><tbody>'; */
 	        	        
 	        	        for (var i = 0; i < product.length; i++) {		        	        	
-	        	            html += '<tr><td><input type="checkbox" id="product-checkbox" data-product_type="' + type + '" data-product_no="' + product[i].no + '">' + 
+	        	            html += '<tr><td><input type="checkbox" id="product-checkbox" data-product_type="' + type + '" data-product_json=\'' + JSON.stringify(product[i]) + '\'>' + 
 	        	            '</td><td>' + product[i].finPrdtCd + 
 	        	            '</td><td>' + product[i].finPrdtNm + 
 	        	            '</td></tr>';
@@ -556,33 +572,47 @@
 			
 			var selectedProduct = [];
 			
-			$(document).on('change', 'input[id=product-checkbox]', function(){
+			$(document).on('change', 'input[id=product-checkbox]', function() {
 			//$('input:checkbox[id="product-checkbox"]').on('click', function(){
-				
-				
 				if ($(this).prop("checked")) {
-					$('#product-count').html('상품 선택 <span class="label label-important"> ' + 
+					$('#product-count').html('상품 선택 <span class="label label-important" id="selected-product-detail-hs"> ' + 
 							selectedProduct.push({
 								type : $('li[class=active]').find('a[id=type-select-hs]').data('product_type'),
-								productNo : $(this).data('product_no')
+								productJson : $(this).data('product_json')
 							})					
-							+ ' </span>');					
+							+ ' </span>');				
 				} else {		
-					console.log($(this).data('product_no'));
+					console.dir($(this).data('product_json'));
 					
-					for(var i = 0; i < selectedProduct.length; i++){
+					var selectedLength = selectedProduct.length;
+					
+					for(var i = 0; i < selectedLength; i++){
 						var shiftProduct = selectedProduct.shift();
-						console.log(shiftProduct);
-						if (shiftProduct['productNo'] == $(this).data('product_no') && shiftProduct['type'] == $('li[class=active]').find('a[id=type-select-hs]').data('product_type')){
-							$('#product-count').html('상품 선택 <span class="label label-important"> ' + selectedProduct.length + ' </span>');
-							break;
+						var selectedProductJson = $(this).data('product_json');
+						console.log(shiftProduct['productJson']['no']);
+						if (shiftProduct['productJson']['no'] == selectedProductJson['no'] && shiftProduct['type'] == $('li[class=active]').find('a[id=type-select-hs]').data('product_type')){
+							$('#product-count').html(selectedProduct.length == 0 ? '상품 선택 <span class="label label-important" id="selected-product-detail-hs"></span>' : '상품 선택 <span class="label label-important" id="selected-product-detail-hs"> ' + selectedProduct.length + ' </span>');
+							console.log("selectedProductJson['no'] : " + selectedProductJson['no']);
+							//break;
 						} else {
 							selectedProduct.push(shiftProduct);
 						}
 					}					
 				}				
 				//$('#product-count').html('상품 선택 <span class="label label-important"> ' + selectedProduct.length + ' </span>');								
-			});			
+			});
+			
+			$(document).on('click', 'span[id=selected-product-detail-hs]', function() {
+				var html = "선택한 상품들 <br>";
+				
+				for (var i = 0; i < selectedProduct.length; i++) {
+					html += (selectedProduct[i]['productJson']['finPrdtNm'] + "<br>");					
+				}
+				
+				$('div[id=selected-product-list-hs]').html(html);
+				
+				$('#selected-product-hs').modal();
+			});
 			
 			/* $('input[id=product-checkbox]').on({  
 		        change: function(){
