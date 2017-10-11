@@ -68,7 +68,21 @@
 		insert into schedule (no, employee_no, customer_no, location, type, comments,
 							 start_date, end_date, reg_date, importance, repetition)
 		values (#{no}, #{employeeNo}, #{customerNo,jdbcType=NUMERIC}, #{location}, #{type}, #{comments},
-				to_date(#{startDate},'YYYY-MM-DD hh24:mi'), to_date(#{endDate},'YYYY-MM-DD hh24:mi'), sysdate, #{importance}, #{repetition})
+				to_date(#{startDate},'YYYY-MM-DD hh24:mi'),
+				<!-- <choose>
+					<when test="endDate == null">
+						<if test="type == 'Meeting'">
+							to_date(#{startDate},'YYYY-MM-DD hh24:mi')+(1/24)
+						</if>
+						<if test="type == 'Call'">
+							to_date(#{startDate},'YYYY-MM-DD hh24:mi')+(30/(24*60))
+						</if>
+					</when>
+					<otherwise>
+						to_date(#{endDate},'YYYY-MM-DD hh24:mi')
+					</otherwise>
+				</choose> -->
+				to_date(#{endDate},'YYYY-MM-DD hh24:mi'), sysdate, #{importance}, #{repetition})
 	</insert>
 	
 	<!-- 일정 수정 -->
@@ -126,7 +140,10 @@
 	
 	<!-- 예약 신청 조회 -->
 	<select id="selectReservation" parameterType="int" resultMap="scheduleMap">
-		select *
+		select no, employee_no, customer_no, name, phone, location, type, msg,
+				to_char(start_date, 'yyyy-mm-dd hh24:mi') as start_date,
+				to_char(end_date, 'yyyy-mm-dd hh24:mi') as end_date,
+				status, reg_date, comments
 		from reservation
 		where employee_no = #{no} and status!='Y'
 	</select>

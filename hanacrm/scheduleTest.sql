@@ -44,9 +44,18 @@ from (
 where rownum<=3
 
 
-select *
+select no, employee_no, customer_no, name, phone, location, type, msg,
+				to_char(start_date, 'yyyy-mm-dd hh24:mi') as startDate, to_char(end_date, 'yyyy-mm-dd hh24:mi') as endDate,
+				status, reg_date, comments
 from reservation
 where employee_no = 1
 
-select sysdate, to_date('2017-10-11 07:42:45', 'yyyy-mm-dd hh24:mi')
+select sysdate, to_date('2017-10-11 07:42', 'yyyy-mm-dd hh24:mi')+(1/24)
 from dual
+
+insert into reservation
+values (0, 1, 1, '하얀탑', '11111111111', '테스트', 'Call', 'msg', to_date('2017-10-11 18:00', 'yyyy-mm-dd hh24:mi'), to_date('2017-10-11 18:30', 'yyyy-mm-dd hh24:mi'), 'D', sysdate, null)
+
+update reservation
+set	status = 'D'
+where no = 0

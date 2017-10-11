@@ -147,8 +147,8 @@ public class ScheduleService {
 			int scheduleNo = scheduleDAO.selectSeq();
 			
 			if(scheduleNo>0) {
-				reservation.setStartDate("2017-10-11 11:00");
-				reservation.setEndDate("2017-10-11 13:00");
+				/*reservation.setStartDate("2017-10-11 11:00");
+				reservation.setEndDate("2017-10-11 12:00");*/
 				reservation.setNo(scheduleNo);
 				reservation.setImportance(3);
 				reservation.setRepetition("한번");
