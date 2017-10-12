@@ -17,17 +17,17 @@
 	<!-- end: Mobile Specific -->
 	
 	<!-- start: CSS -->
+	<!-- ace styles -->
+		<%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" /> --%>
 	<link id="bootstrap-style" href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 	<link href="${pageContext.request.contextPath}/css/bootstrap-responsive.min.css" rel="stylesheet">
 	<link id="base-style" href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
 	<link id="base-style-responsive" href="${pageContext.request.contextPath}/css/style-responsive.css" rel="stylesheet">
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/mtr-datepicker.min.css">
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/mtr-datepicker.default-theme.min.css">
-	
+
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/jquery.datetimepicker.css"/>	
 	<!-- end: CSS -->
 	
-
 	<!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
 	<!--[if lt IE 9]>
 	  	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -85,12 +85,6 @@
 			color: white
 		}
 		
-		.mtr-datepicker{
-		    width: 200px !important;
-		    display: inline-block !important;
-		    margin: 10px 20px !important;
-		}
-
 		.fc-sat {
 			background-color: #e3ecf4;
 			color: blue;
@@ -99,6 +93,11 @@
 		.fc-sun {
 			background-color: #f9e0df;
 			color: red;
+		}
+		
+		.btn-group.btn-corner>.btn {
+		    border-bottom-left-radius: 8px;
+		    border-top-left-radius: 8px;
 		}
 
 	</style>
@@ -167,22 +166,23 @@
 			</div><!--/row-->
 		
 
-	</div><!--/.fluid-container-->
+			</div><!--/.fluid-container-->
 	
 			<!-- end: Content -->
 		</div><!--/#content.span10-->
-		</div><!--/fluid-row-->
+	</div><!--/fluid-row-->
 
 	<div class="clearfix"></div>
 	
 	<!-- 푸터 -->
 	<jsp:include page="/include/footer.jsp"/>
 	
-	
-	
+
 	<!-- start: JavaScript-->
 
 	<script src="${pageContext.request.contextPath}/js/jquery-1.9.1.min.js"></script>
+	
+	<%-- <script src="${pageContext.request.contextPath}/js/jquery-2.1.4.min.js"></script> --%>
 	<script src="${pageContext.request.contextPath}/js/jquery-migrate-1.0.0.min.js"></script>
 
 	<script src="${pageContext.request.contextPath}/js/jquery-ui-1.10.0.custom.min.js"></script>
@@ -237,13 +237,16 @@
 
 	<script src="${pageContext.request.contextPath}/js/custom.js"></script>
 
-	<script type="text/javascript" src="${pageContext.request.contextPath}/js/mtr-datepicker.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.datetimepicker.full.js"></script>
+	
 	<!-- end: JavaScript-->
 	
 	<script> 
 		 console.dir('${scheduleList}');
 		 
-			
+		 start = new Date(2010, 10, 21).getTime();
+		console.log(start);
+		 
 		 	$('[data-dismiss=modal]').on('hidden.bs.modal', function (e) {
 		 		console.log('dismiss');
 		 		 $(this)
@@ -260,6 +263,8 @@
 			var addModal = $('#addModal');
 			var detailModal = $('#detailModal');
 			
+			var datetimepicker = $('#datetimepicker');
+			var detail_datetimepicker = $('#detail_datetimepicker');
 	
 			 
 				/************************** initialize the external events
@@ -374,12 +379,35 @@
 					var $extraEventClass = $(this).attr('data-class');
 
 					// 1. 등록 폼 모달 띄움 (타입 별 모달 처리)
-					addModal.modal('show');							
-
+					addModal.modal('show');	
+					
+					// 초기 시간 셋팅
+					date.time('10:00');
+				 	
+				 	/*  https://xdsoft.net/jqplugins/datetimepicker/ */
+				 		datetimepicker.datetimepicker({
+					 		defaultDate: getDate(date),
+					 		defaultTime: '10:00',
+					 		 allowTimes:[
+					 			'10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00', '13:30',
+					 			'14:00', '14:30', '15:00', '15:30', '16:00', '16:30', '17:00', '17:30',
+					 			'18:00', '18:30', '19:00', '19:30', '20:00', '20:30', '21:00', '21:30', '22:00'
+				 			],
+				 			yearStart: '2017',
+				 			/* minTime: '10:00',
+				 			maxTime: '22:00',
+				 			step: 30, */
+					 		value: getDate(date),
+					 		format:'y-m-d H:i'
+				 	});
+					
 						if(originalEventObject.title=='Task'){
 							$('#customerInfo').hide();
 						}else {
 							$('#customerInfo').show();
+							var a = moment(datetimepicker.datetimepicker('getValue'));
+							a.add(3,'hours');
+							console.log(getDate(a));
 							//	detailModal.remove();
 							// 1-1. 고객 정보 받아오기, 모달에 셋팅
 							/* $.ajax({
@@ -442,14 +470,8 @@
 						// 2) 날짜 설정
 						var start = getDate(date);
 						var end = start;
-					/* 	$('#startDate').text(start);
-						$('#endDate').text(end); */
 						console.log('start:'+start);
 						console.log('end:'+start);
-						// 데이트피커
-						
-						var startDatepicker = new MtrDatepicker(setDatepickerConfig('start', start));
-						var endDatepicker = new MtrDatepicker(setDatepickerConfig('end', end));
 						
 						console.dir($("#scheduleType"));
 						console.log(start +"~"+end);
@@ -466,13 +488,16 @@
 														
 							if(check=='ok'){
 							
-								// 캘린더에 쓰일 Data (변경사항 저장 - type, end 날짜)						
-								 var startData = getDate(moment(startDatepicker.toString())); 
-								 var endData = getDate(moment(endDatepicker.toString()));
+								// 캘린더에 쓰일 Data (변경사항 저장 - type, end 날짜)	
+								var selectedDate_s = moment(datetimepicker.datetimepicker('getValue'));
+								var selectedDate_e = selectedDate_s.add(1,'hours');
+								
+								 var startData = getDate(selectedDate_s); 
+								 var endData = getDate(selectedDate_e); // getDate(moment(endDatepicker.toString()));
 								 var cNo = $("input[name='customerNo']:checked").val()!=null?$("input[name='customerNo']:checked").val():null;
 								 var name = cNo!=null?document.getElementById(cNo).innerText:addModal.find('input[id=location]').val();
-								 console.log('datepicker start output : '+startData);
-								 console.log('datepicker end output : '+endData);
+								 console.log('modalSave start output : '+startData);
+								 console.log('modalSave end output : '+endData);
 								
 								copiedEventObject.title = name;
 								copiedEventObject.start = startData;
@@ -511,7 +536,7 @@
 					        		data: scheduleData, 
 					        		success: function(scheduleNo){
 					        			alert('추가'+scheduleNo);
-					        		//	addModal.modal("hide");
+					        			addModal.modal("hide");
 										//addModal.remove();
 										// 추가할 이벤트에 scheduleNo 저장
 										copiedEventObject.id = scheduleNo;
@@ -531,9 +556,6 @@
 							}  // check else end
 						}); // click end
 						
-						
-							/* 	$('#start-date-mtr-datepicker').datepicker('destroy');
-								$('#end-date-mtr-datepicker').datepicker('destroy'); */
 					},
 					
 					selectable: true,
@@ -565,7 +587,7 @@
 						*******************/
 					//	alert(calEvent.title+"\n"+calEvent.start+"\n"+calEvent.end+"\n"+calEvent.className);
 						
-						detailModal.modal('show');
+					//	detailModal.modal('show');
 						
 						/*
 						기본 셋팅
@@ -576,13 +598,11 @@
 						var s;
 						var start = getDate(calEvent.start);
 						var end = getDate(calEvent.end)!=''? getDate(calEvent.end):start;
-						var detailStartDatepicker, detailEndDatepicker;
-
-						
 						
 						$.ajax({
 							url: "${pageContext.request.contextPath}/schedule/"+calEvent.id,
 							type: "get",
+							async: false,
 							success: function(data){
 								var schedule = JSON.parse(data);
 								s = schedule;
@@ -599,19 +619,25 @@
 								}
 								detailModal.find('select[id=importance]').val(schedule.importance);
 								
+								detailModal.modal('show');
+								
 								// 데이트피커
-								detailStartDatepicker = new MtrDatepicker(setDatepickerConfig('detail-start', start));
-								detailEndDatepicker = new MtrDatepicker(setDatepickerConfig('detail-end', end));
-								
-								// 시작 날짜 바뀌면 종료 날짜도 셋팅
-/* 								detailStartDatepicker.onChange('date', function(){
-								});
- */
- 							//	detailStartDatepicker.find('.mtr-default-value-holder').val(10);
- 							//	detailEndDatepicker.find('.months').val(3);
-								
-								 var datepickerOutput = detailStartDatepicker.toString();
-								 console.log('datepicker output : '+detailEndDatepicker);
+								/*  https://xdsoft.net/jqplugins/datetimepicker/ */
+							 	detail_datetimepicker.datetimepicker({
+							 		defaultDate: start,
+							 		 allowTimes:[
+							 			'10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00', '13:30',
+							 			'14:00', '14:30', '15:00', '15:30', '16:00', '16:30', '17:00', '17:30',
+							 			'18:00', '18:30', '19:00', '19:30', '20:00', '20:30', '21:00', '21:30', '22:00'
+						 			],
+						 			yearStart: '2017',
+						 			/* minTime: '10:00',
+						 			maxTime: '22:00',
+						 			step: 30, */
+							 		value: start,
+							 		format:'y-m-d H:i'
+							 	});
+
 							},
 							error: function(){
 								alert('error');
@@ -626,11 +652,12 @@
 							ev.stopPropagation();  // 이벤트버블링 방지
 							
 							// 캘린더에 쓰일 Data (변경사항 저장 - type, end 날짜)						
-							 var startData = getDate(moment(detailStartDatepicker.toString())); 
-							 var endData = getDate(moment(detailEndDatepicker.toString()));
-							 console.log('datepicker start output : '+startData);
-							 console.log('datepicker end output : '+endData);
+							 var selectedDate_s = moment(detail_datetimepicker.datetimepicker('getValue'));
+							var selectedDate_e = selectedDate_s.add(1,'hours');
 	
+							 var startData = getDate(selectedDate_s);
+							 var endData = getDate(selectedDate_e);
+							 
 							console.log(calEvent);
 		        			console.log(name);
 		        			
@@ -657,7 +684,7 @@
 				        		data: JSON.stringify(scheduleData), 
 				        		success: function(data){
 				        			alert('수정'+data);
-				        		//	detailModal.modal("hide");
+				        			detailModal.modal("hide");
 									
 				        			// 달력 객체 정보 수정
 				        			calEvent.className = scheduleData.type;
@@ -837,44 +864,6 @@
 		        }
 	        }
 		 		
-		 		
-		 	function setDatepickerConfig(type, date){
-			 	// 데이트피커
-					 var config = {
-						  target:     type+'-date-mtr-datepicker',         // ID of HTML element
-						  timestamp:  date, // moment(calEvent.start).format('YYYY-MM-DD HH:mm'),    // Starting date
-						  future:     false,                // Only dates in the future,
-						  smartHours: true,                // Make a smart switch from AM to PM
-						  animations: true,                 // NOTE: thew version with disabled animations is not stable
-						  
-						  defaultValues: {
-							  hours: 9,
-							  minutes: 0,
-							  dates: 10,
-							  months: 9,
-							  years: 2017
-						  },
-			 	
-						  months: {
-						    min: 0,
-						    max: 11,
-						    step: 1
-						  },						  
-						  minutes: {
-						    min: 0,
-						    max: 30,
-						    step: 30
-						  },
-						  years: {
-						    min: 2017,
-						    max: 2030,
-						    step: 1
-						  }
-					};
-					 
-					return config;
-			 	}
-		 	
 		 	function addCheck(){
 
 		 		var msg = 'ok';

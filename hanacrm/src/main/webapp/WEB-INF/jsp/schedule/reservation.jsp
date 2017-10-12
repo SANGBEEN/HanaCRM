@@ -131,23 +131,22 @@
 											<td class="center">${reservation.endDate}</td>
 											<td class="center">${reservation.msg}</td>
 											<td class="center">${reservation.regDate}</td>
-											 <c:choose>
-												<c:when test="${reservation.status=='N'}">
-													<td class="center">취소됨</td>
-												</c:when>
-												<c:otherwise>
-													<td class="center">
-														<a class="btn btn-info" id="agree" href="#" data-reservation='${reservation}' onclick='clickAgree(${reservation})'>
-																<i class="halflings-icon check"></i>
-														</a> 
-														
-													    <a class="btn yellow" id="disagree" href="#" data-reservation='${reservation}' onclick="clickDisagree('${reservation.no}')">
-													    		<i class="halflings-icon remove-circle"></i>
-											    		</a>
-													</td>
-												</c:otherwise>
-											</c:choose>
-											
+											<td class="center" id="actionColum${reservation.no}">
+												 <c:choose>
+													<c:when test="${reservation.status=='N'}">
+														취소됨
+													</c:when>
+													<c:otherwise>
+															<a class="btn btn-info" id="agree" href="#" data-reservation='${reservation}' <%-- onclick='clickAgree(${reservation})' --%>>
+																	<i class="halflings-icon check"></i>
+															</a> 
+															
+														    <a class="btn yellow" id="disagree" href="#" data-reservation='${reservation}' <%-- onclick="clickDisagree('${reservation.no}')" --%>>
+														    		<i class="halflings-icon remove-circle"></i>
+												    		</a>
+													</c:otherwise>
+												</c:choose>
+											</td>
 										</tr>
 									</c:forEach>
 								</tbody>
@@ -359,8 +358,10 @@
 						if(data==1){
 							if(reservationData.status=='N'){
 								$('#commentsModal').modal('hide');
+								$('#actionColum'+reservationData.no).empty();
+								$('#actionColum'+reservationData.no).text('취소됨');
 							}else {
-								$('#'+reservationData.no).remove();								
+								$('#'+reservationData.no).remove();						
 							}
 						}
 						console.log(reservationData);
