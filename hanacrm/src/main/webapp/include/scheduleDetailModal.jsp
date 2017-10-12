@@ -41,16 +41,10 @@
 						  </div>
 						  
 						  <div class="control-group">
-							<label class="control-label">시작일자</label>
-							<label class="control-label">종료일자</label>
-			
-					<!-- 	<div class="controls"> -->
-							<div id="detail-start-date-mtr-datepicker">
-							</div>
-						  
-							<div id="detail-end-date-mtr-datepicker">
-							</div>
-						  <!-- </div> -->
+						  	<label class="control-label" for="focusedInput">Start Date</label>
+						  	<div class="controls">
+								<input id="detail_datetimepicker" type="text" >
+							</div>	
 						</div>
 						  
 						  <div class="control-group">

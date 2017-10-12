@@ -59,3 +59,5 @@ values (0, 1, 1, '하얀탑', '11111111111', '테스트', 'Call', 'msg', to_date
 update reservation
 set	status = 'D'
 where no = 0
+
+delete from schedule where no=333

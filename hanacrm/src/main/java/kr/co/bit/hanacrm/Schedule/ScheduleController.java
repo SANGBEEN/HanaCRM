@@ -136,4 +136,11 @@ public class ScheduleController {
 		return scheduleService.updateReservation(reservation);
 	}
 	
+	
+	// 테스트
+	@RequestMapping("/test")
+	public String test() {
+		return "/schedule/datetimepicker";
+	}
+	
 }
