@@ -4,17 +4,17 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class ConsultProductVO {
-	private Integer no;
-	private Integer consultNo;
-	private Integer type;
-	private Integer productNo;
+	private int no;
+	private int consultNo;
+	private int type;
+	private int productNo;
 	//상품정보 표시하기 위한 이름. 디비테이블에는 없음 
 	private String productName;
 	
 	public ConsultProductVO() {
 	}
 
-	public ConsultProductVO(Integer no, Integer consultNo, Integer type, Integer productNo, String productName) {
+	public ConsultProductVO(int no, int consultNo, int type, int productNo, String productName) {
 		this.no = no;
 		this.consultNo = consultNo;
 		this.type = type;
@@ -30,35 +30,35 @@ public class ConsultProductVO {
 		this.productName = productName;
 	}
 
-	public Integer getNo() {
+	public int getNo() {
 		return no;
 	}
 
-	public void setNo(Integer no) {
+	public void setNo(int no) {
 		this.no = no;
 	}
 
-	public Integer getConsultNo() {
+	public int getConsultNo() {
 		return consultNo;
 	}
 
-	public void setConsultNo(Integer consultNo) {
+	public void setConsultNo(int consultNo) {
 		this.consultNo = consultNo;
 	}
 
-	public Integer getType() {
+	public int getType() {
 		return type;
 	}
 
-	public void setType(Integer type) {
+	public void setType(int type) {
 		this.type = type;
 	}
 
-	public Integer getProductNo() {
+	public int getProductNo() {
 		return productNo;
 	}
 
-	public void setProductNo(Integer productNo) {
+	public void setProductNo(int productNo) {
 		this.productNo = productNo;
 	}
 

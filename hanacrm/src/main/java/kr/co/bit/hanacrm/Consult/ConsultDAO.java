@@ -29,21 +29,28 @@ public class ConsultDAO {
 	public ConsultVO selectByNo(int consultNo) {
 		return sqlSessionTemplate.selectOne("consult.ConsultDAO.selectByNo", consultNo);
 	}
-
-	public Integer insert(ConsultVO consultVO) {
-		return sqlSessionTemplate.insert("consult.ConsultDAO.insert", consultVO);
+	
+	public int selectSequence() {
+		return sqlSessionTemplate.selectOne("consult.ConsultDAO.selectSeq");
 	}
 
-	public Integer update(ConsultVO consultVO) {
+	public int insert(ConsultVO consultVO) {
+		return sqlSessionTemplate.insert("consult.ConsultDAO.insert", consultVO);
+	}
+	
+	public int insertProduct(ConsultProductVO consultProductVO) {
+		return sqlSessionTemplate.insert("consult.ConsultDAO.insertProduct", consultProductVO);
+	}
+
+	public int update(ConsultVO consultVO) {
 		return sqlSessionTemplate.update("consult.ConsultDAO.update", consultVO);
 	}
 
-	public Integer delete(int no) {
+	public int delete(int no) {
 		return sqlSessionTemplate.delete("consult.ConsultDAO.delete", no);
 	}
 
 	public List<ConsultVO> selectByCusNo(int customerNo) {
-		// TODO Auto-generated method stub
 		return sqlSessionTemplate.selectList("consult.ConsultDAO.select", customerNo);
 	}
 

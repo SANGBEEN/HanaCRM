@@ -50,10 +50,14 @@
 	</select>
 	
 	<!-- 상담 내역 추가하기 -->
-	<insert id="insert">
-		insert into schedule (no, employee_no, customer_no, location, type, comments, start_date, end_date, reg_date, importance, repetition)
-		values (#{no}, #{employeeNo}, #{customerNo}, #{location}, #{type}, #{comments},
-				to_date(#{startDate},'YYYY-MM-DD hh24:mi'), to_date(#{endDate},'YYYY-MM-DD hh24:mi'), sysdate, #{importance}, #{repetition})
+	<insert id="insert" parameterType="consult">
+		insert into consult(no, customer_no, employee_no, content, reg_date, title) 
+		values(#{no}, #{customerNo}, #{employeeNo}, #{content}, to_date(#{regDate},'YYYY-MM-DD hh24:mi'), #{title})
+	</insert>
+	
+	<insert id="insertProduct" parameterType="consultProduct">
+		insert into consult_product(no, consult_no, type, product_no) 
+		values(consult_product_seq.nextval, #{consultNo}, #{type}, #{productNo})
 	</insert>
 		
 </mapper>

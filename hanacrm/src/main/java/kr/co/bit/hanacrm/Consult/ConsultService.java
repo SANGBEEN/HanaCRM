@@ -41,15 +41,42 @@ public class ConsultService {
 		return consultDAO.selectByNo(no);
 	} 
 
-	public Integer insert(ConsultVO consultVO) {
-		return consultDAO.insert(consultVO);
+	public int insert(ConsultVO consultVO) {
+		int consultNo = consultDAO.selectSequence();
+		
+		consultVO.setNo(consultNo);
+		
+		if(consultDAO.insert(consultVO) == 1)
+		{
+			System.out.println(consultVO.getNo() + "번 상담 성공");
+		}
+		else
+		{
+			System.out.println(consultVO.getNo() + "번 상담 실패");
+		}
+		
+		List<ConsultProductVO> consultProductList = consultVO.getConsultProduct();
+		
+		for (ConsultProductVO consultProductVO : consultProductList) {
+			consultProductVO.setConsultNo(consultNo);
+			if(consultDAO.insertProduct(consultProductVO) == 1)
+			{
+				System.out.println(consultProductVO.getNo() + "번 상담 상품 성공");
+			}
+			else
+			{
+				System.out.println(consultProductVO.getNo() + "번 상담 상품 실패");
+			}
+		}	
+		
+		return consultNo;
 	}
 
-	public Integer update(ConsultVO consultVO) {
+	public int update(ConsultVO consultVO) {
 		return consultDAO.update(consultVO);
 	}
 
-	public Integer delete(int no) {
+	public int delete(int no) {
 		return consultDAO.delete(no);
 	}
 	
