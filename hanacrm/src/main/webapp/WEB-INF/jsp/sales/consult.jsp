@@ -20,6 +20,7 @@
 	<link id="base-style-responsive" href="${pageContext.request.contextPath}/css/style-responsive.css" rel="stylesheet">
 	<link href='http://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
 	<link href='https://fonts.googleapis.com/css?family=Bungee+Inline' rel='stylesheet' type='text/css'>
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 	<link rel="shortcut icon" href="img/favicon.ico">
 </head>
 <body>
@@ -70,27 +71,27 @@
 						<table class="table table-striped table-bordered bootstrap-datatable datatable">
 						  <thead>
 							  <tr>
-								<th>번호</th>	
-								<th>고객 이름</th>
-								<th>요약</th>
-								<th>상담 날짜</th>
-								<th>고객 타입</th>
-								<th>상태</th>
-								<th>기능</th>
+								<th style="width:5%; text-align:center">번호</th>	
+								<th style="width:15%; text-align:center">고객 이름</th>
+								<th style="width:30%; text-align:center">요약</th>
+								<th style="width:15%; text-align:center">상담 날짜</th>
+								<th style="width:10%; text-align:center">타입</th>
+								<th style="width:10%; text-align:center">상태</th>
+								<th style="width:15%; text-align:center">기능</th>
 							  </tr>
 						  </thead>   
 						<tbody>
 							<c:forEach items="${ consultList }" var="consultVO">						
 							<tr id="tr${ consultVO.no }"> <!-- class="row-minimize-hs"> -->
-								<td id="row-no-hs">${ consultVO.no }</td>
-								<td>${ consultVO.customerVO.name }</td>
+								<td id="row-no-hs" style="text-align:center">${ consultVO.no }</td>
+								<td style="text-align:center">${ consultVO.customerVO.name }</td>
 								<td>${ consultVO.title }</td>
-								<td class="center">${ consultVO.regDate }</td>
-								<td class="center">${ consultVO.customerVO.grade }</td>
-								<td class="center">
+								<td style="text-align:center">${ consultVO.regDate }</td>
+								<td style="text-align:center">${ consultVO.customerVO.grade }</td>
+								<td style="text-align:center">
 									<span class="label label-success">Active</span>
 								</td>
-								<td class="center">
+								<td style="text-align:center">
 									<a class="btn btn-success" id="consult-detail-hs" href="#" data-consult_no="${ consultVO.no }">
 										<i class="halflings-icon white zoom-in"></i>  
 									</a>
@@ -400,7 +401,7 @@
 			});
 						
 			/* 상담 날짜 선택 */
-			$('a[id=consult-insert-hs]').click(function(e){
+			$('div[id=consult-insert-hs]').click(function(e){
 				e.preventDefault();
 				e.stopPropagation();	
 				
@@ -444,10 +445,10 @@
 	        	        
 	        	        for (var i = 0; i < schedule.length; i++) {
 		        	            html += '<tr><td><input type="radio" name="optionsRadios" data-schedule_no="' + schedule[i].no + '" data-customer_no="' + schedule[i].customer.no + '" data-reg_date="' + schedule[i].startDate + '"></td>' 
-		        	            		+ '<td><span class="input-xlarge uneditable-input">' + schedule[i].customer.name + '</span></td>' 
-		        	            		+ '<td><span class="input-xlarge uneditable-input">' + schedule[i].location + '</span></td>' 
-		        	            		+ '<td><span class="input-xlarge uneditable-input">' + schedule[i].comments + '</span></td>'
-		        	            		+ '<td><span class="input-xlarge uneditable-input">' + schedule[i].startDate + '</span></td></tr>';
+		        	            		+ '<td>' + schedule[i].customer.name + '</td>' 
+		        	            		+ '<td>' + schedule[i].location + '</td>' 
+		        	            		+ '<td>' + schedule[i].comments + '</td>'
+		        	            		+ '<td>' + schedule[i].startDate + '</td></tr>';
 	        	        }
 	        	        
 	        	        html += '</tbody></table>';

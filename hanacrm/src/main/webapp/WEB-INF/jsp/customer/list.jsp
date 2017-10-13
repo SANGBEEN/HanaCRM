@@ -90,7 +90,7 @@
 				<div class="row-fluid">
 					<div class="box span12">
 						<div class="box-header" style="background-color:white; padding:0; height:40px;">
-							<div id="addModal"><i class="fa fa-user-plus" aria-hidden="true" style="color: white"></i></div>
+							<div id="addModal"><i class="fa fa-plus" aria-hidden="true" style="color: white"></i></div>
 							<div style="float: right; font-size: 1rem; line-height: 40px; padding-right: 20px;"></div>
 						</div>
 						<div class="box-content">
