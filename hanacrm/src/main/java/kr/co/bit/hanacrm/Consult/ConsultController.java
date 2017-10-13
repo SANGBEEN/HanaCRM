@@ -46,9 +46,7 @@ public class ConsultController {
 	@ResponseBody
 	@RequestMapping(value="/sales/consult/{no}", method=RequestMethod.DELETE)
 	public int delete(@PathVariable int no){
-		System.out.println("no : " + no);
-		return no;
-		//return consultService.delete(no);
+		return consultService.delete(no);
 	}	
 	
 }

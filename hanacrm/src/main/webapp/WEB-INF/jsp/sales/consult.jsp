@@ -648,6 +648,10 @@
 	        		data: JSON.stringify(consultJson),
 	        		success: function(consultNo) {
 	        			console.log(consultNo + "번 추가 완료");
+	        			
+	        			consultJson = null;
+	        			selectedProduct = [];
+	        			
 	        			$('#consultContentInsert').modal('hide');
 					},
 	        		error: function(e) {
@@ -657,7 +661,7 @@
 				});									
 			});
 			
-			var consultUpdateNo;
+			var consultUpdateNo = null;
 		
 			/* 수정 */
 			$('a[id=consult-update-hs]').click(function(e){
@@ -681,9 +685,10 @@
 	        		url: "${pageContext.request.contextPath}/sales/consult",
 	        		type: "put",
 	        		contentType: "application/json; charset=utf-8",
-	        		data: JSON.stringify(consultJson),
+	        		//data: JSON.stringify(consultJson),
 	        		success: function(consultNo) {
 	        			console.log(consultNo + "번 추가 완료");
+	        			consultUpdateNo = null;
 	        			$('#consultContentInsert').modal('hide');
 					},
 	        		error: function(e) {
@@ -693,7 +698,7 @@
 				});			
 			});
 			
-			var consultDeleteNo;
+			var consultDeleteNo = null;
 			
 			/* 삭제 */
 			$('a[id=consult-delete-hs]').click(function(e){
@@ -712,13 +717,13 @@
 				e.stopPropagation();
 				
 				$.ajax({	
-	        		url: "${pageContext.request.contextPath}/sales/consult/" + consultNo,
+	        		url: "${pageContext.request.contextPath}/sales/consult/" + consultDeleteNo,
 	        		type: "delete",
-	        		data: consultDeleteNo,
 	        		success: function(result) {
 	        			//console.log(consultNo + "번 추가 완료");
 	        			console.log(result + "번 삭제 완료");
-	        			$('#tr' + consultNo).remove();
+	        			$('#tr' + consultDeleteNo).remove();
+	        			consultDeleteNo = null;
 	        			$('#consultDelete').modal('hide');
 					},
 	        		error: function(e) {
