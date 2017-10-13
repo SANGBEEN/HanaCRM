@@ -156,8 +156,7 @@
 				</div>			
 			</div>
 			<div class="modal-footer">
-				<a href="#" class="btn" data-dismiss="modal">Close</a>
-				<a href="#" class="btn btn-primary" data-dismiss="modal">Save changes</a>
+				<a href="#" class="btn" data-dismiss="modal">닫기</a>
 			</div>
 		</div>
 	</c:forEach>	
@@ -184,7 +183,7 @@
 				</div>
 				<div class="modal-footer">
 					<a href="#" class="btn btn-primary" id="schedule-select-hs">확인</a>
-					<a href="#" class="btn" data-dismiss="modal">취소</a>					
+					<a href="#" class="btn" id="consult-insert-cancel-hs" data-dismiss="modal">취소</a>					
 				</div>
 			</div>
 		</div>
@@ -217,7 +216,7 @@
 				</div>
 				<div class="modal-footer">
 					<a href="#" class="btn btn-primary" id="product-select-hs" data-dismiss="modal">확인</a>
-					<a href="#" class="btn" data-dismiss="modal">취소</a>					
+					<a href="#" class="btn" id="consult-insert-cancel-hs" data-dismiss="modal">취소</a>					
 				</div>
 			</div>
 		</div>
@@ -267,7 +266,7 @@
 		</div>
 		<div class="modal-footer">
 			<a href="#" class="btn btn-primary" id="consult-insert-complete-hs">확인</a>
-			<a href="#" class="btn" data-dismiss="modal">취소</a>			
+			<a href="#" class="btn" id="consult-insert-cancel-hs" data-dismiss="modal">취소</a>			
 		</div>
 	</div>	
 	
@@ -291,9 +290,9 @@
 				</div>
 			</div>
 		</div>
-		<div class="modal-footer">
-			<a href="#" class="btn" data-dismiss="modal">취소</a>
+		<div class="modal-footer">			
 			<a href="#" class="btn btn-primary" id="consult-update-complete-hs" data-dismiss="modal">확인</a>
+			<a href="#" class="btn" id="consult-insert-cancel-hs" data-dismiss="modal">취소</a>
 		</div>
 	</div>
 	
@@ -382,7 +381,11 @@
 				console.log("상세");
 			});	 */
 			
-			$('a[id=consult-detail-hs]').click(function(e){
+			$('#myModal').on('hidden.bs.modal', function() {
+				$(this).removeData();
+			});
+			
+			$('a[id=consult-detail-hs]').click(function(e) {
 				e.preventDefault();
 				e.stopPropagation();
 				
@@ -401,7 +404,7 @@
 			});
 						
 			/* 상담 날짜 선택 */
-			$('div[id=consult-insert-hs]').click(function(e){
+			$('a[id=consult-insert-hs]').click(function(e) {
 				e.preventDefault();
 				e.stopPropagation();	
 				
@@ -414,7 +417,7 @@
 			});			
 			
 			/* 일정 선택 */
-			$('a[id=date-select-hs]').click(function(e){
+			$('a[id=date-select-hs]').click(function(e) {
 				e.preventDefault();
 				e.stopPropagation();
 				/* $(this).parent().next('.row-minimize-hs').empty();
@@ -425,7 +428,7 @@
 				console.log("일정 선택");
 			});
 			
-			function selectDate(){
+			function selectDate() {
 				var inputDate = $('#consult-date-hs').val();
 				
 				console.log(inputDate);
@@ -466,7 +469,7 @@
 	        				}
 	        			} );
 	        	    },
-	        		error: function(e){
+	        		error: function(e) {
 	      				console.log(e);
 	        			alert('error');
 	        		}
@@ -476,7 +479,7 @@
 			var consultJson;
 			
 			/* 상품 선택 */
-			$('a[id=schedule-select-hs]').click(function(e){
+			$('a[id=schedule-select-hs]').click(function(e) {
 				e.preventDefault();
 				e.stopPropagation();
 				
@@ -545,7 +548,7 @@
 	        				}
 	        			} );
 	        	    },
-	        		error: function(e){
+	        		error: function(e) {
 	      				console.log(e);
 	        			alert('error');
 	        		}
@@ -602,7 +605,7 @@
 			});
 			
 			/* 상품 선택 완료 및 내용 입력 */
-			$('a[id=product-select-hs]').click(function(e){
+			$('a[id=product-select-hs]').click(function(e) {
 				e.preventDefault();
 				e.stopPropagation();
 				
@@ -617,7 +620,7 @@
 			});			
 			
 			/* 추가 완료 */
-			$('a[id=consult-insert-complete-hs]').click(function(e){
+			$('a[id=consult-insert-complete-hs]').click(function(e) {
 				e.preventDefault();
 				e.stopPropagation();
 				
@@ -660,7 +663,7 @@
 			var consultUpdateNo = null;
 		
 			/* 수정 */
-			$('a[id=consult-update-hs]').click(function(e){
+			$('a[id=consult-update-hs]').click(function(e) {
 				e.preventDefault();
 				e.stopPropagation();
 				
@@ -671,7 +674,7 @@
 			});
 			
 			/* 수정 확인 */
-			$('a[id=consult-update-complete-hs]').click(function(e){
+			$('a[id=consult-update-complete-hs]').click(function(e) {
 				e.preventDefault();
 				e.stopPropagation();
 				
@@ -697,7 +700,7 @@
 			var consultDeleteNo = null;
 			
 			/* 삭제 */
-			$('a[id=consult-delete-hs]').click(function(e){
+			$('a[id=consult-delete-hs]').click(function(e) {
 				e.preventDefault();
 				e.stopPropagation();
 				
@@ -708,7 +711,7 @@
 			});
 			
 			/* 삭제 확인 */
-			$('a[id=consult-delete-complete-hs]').click(function(e){
+			$('a[id=consult-delete-complete-hs]').click(function(e) {
 				e.preventDefault();
 				e.stopPropagation();
 				
