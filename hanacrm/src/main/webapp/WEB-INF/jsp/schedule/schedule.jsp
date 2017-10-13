@@ -429,10 +429,15 @@
 		 				// 1) type 설정
 						$("#scheduleType").val(originalEventObject.title);
 						$("#scheduleType").change(function(){
-							if($("#scheduleType").val()=='Task'){
+							if($(this).val()=='Task'){
 								$('#customerInfo').hide();
 							}else {
 								$('#customerInfo').show();
+								if($(this).val()=='Event'){
+									addModal.find('#div_duration').hide();
+								}else {
+									addModal.find('#div_duration').show();
+								}
 							}
 						});
 					
