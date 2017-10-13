@@ -51,7 +51,6 @@
 <script src="${pageContext.request.contextPath}/js/custom.js"></script>
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/favicon.ico">
 
-
 <style>
 input.hidden {
 	position: absolute;
@@ -73,7 +72,6 @@ input.hidden {
 .profile{
 	margin-left : 20px;
 }
-
 
 .division-tital{
     height: 30px;
@@ -103,7 +101,7 @@ input.hidden {
 .tital > label > span{
     display: inline-block;
     padding-left: 10px;
-    color: #3c4379;
+    color: #2e335d;
 }
 
 .myInput{
@@ -120,7 +118,7 @@ input.hidden {
 }
 
 .modifyInput{
-	border: solid 1px black !important;
+	border: 1px solid black !important;
 }
 
 .modify-submit-div{
@@ -154,6 +152,7 @@ input.hidden {
 						</div>
 						<div style="height:20px; background-color:white"></div>
 						<div class="box box-info">
+						
 							<!-- 
 							<div class="col-sm-4">
 								<div align="center">
@@ -168,6 +167,7 @@ input.hidden {
 								</div>
 							</div>
 							 -->
+							 
 							 <!-- 
 							<div class="col-sm-6">
 								<h4 style="color: #00b1b1;">Prasad Shankar Huddedar</h4>
@@ -239,38 +239,62 @@ input.hidden {
 							</div>
 						</div>
 					</div>
-					<div class="span1"></div>
-					<div class="span6">
+					
+					
+					
+					<div class="span7 noMarginLeft">
+						<div class="dark" style="margin-right: 0;">
 						<h1>고객 상담내역</h1>
-						<div class="timeline">
-							<c:forEach var="consult" items="${consultList}" varStatus="status">
-								<c:choose>
-									<c:when test="${status.index%2==0}">
-										<div class="timeslot">
-									</c:when>
-									<c:otherwise>
-										<div class="timeslot alt">
-									</c:otherwise>
-								</c:choose>
-									<div class="task">
-										<span> 
-											<span class="type">${consult.title }</span>
-											<span class="details"> ${consult.content } </span> 
-											<span>  상담상품 
-												<c:forEach var="product" items="${consult.consultProduct}">
-													<span class="remaining"> ${product.productName} </span>
-												</c:forEach>
-											</span>
-										</span>
-										<div class="arrow"></div>
-									</div>
-									<div class="icon">
-										<i class="icon-map-marker"></i>
-									</div>
-									<div class="time">${consult.regDate }</div>
-								</div>
-							</c:forEach>
+							<div class="timeline">
+								<c:forEach var="consult" items="${consultList}" varStatus="status">
+									<c:choose>
+										<c:when test="${status.index%2==0}">
+											<div class="timeslot">
+												<div class="task">
+													<span> 
+														<span class="type">${consult.title }</span>
+														<span class="details"> ${consult.content } </span> 
+														<span> 상담상품 
+															<c:forEach var="product" items="${consult.consultProduct}">
+																<span class="remaining"> ${product.productName} </span>
+															</c:forEach>
+														</span>
+													</span>
+													<div class="arrow"></div>
+												</div>
+												<div class="icon">
+													<i class="icon-map-marker"></i>
+												</div>
+												<div class="time">${consult.regDate }</div>
+											</div>
+											<div class="clearfix"></div>
+										</c:when>
+										
+										<c:otherwise>
+											<div class="timeslot alt">
+												<div class="task">
+													<span> 
+														<span class="type">${consult.title }</span>
+														<span class="details"> ${consult.content } </span> 
+														<span>  상담상품 
+															<c:forEach var="product" items="${consult.consultProduct}">
+																<span class="remaining"> ${product.productName} </span>
+															</c:forEach>
+														</span>
+													</span>
+													<div class="arrow"></div>
+												</div>
+												<div class="icon">
+													<i class="icon-map-marker"></i>
+												</div>
+												<div class="time">${consult.regDate }</div>
+											</div>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
+							</div>
 						</div>
+					<!--  -->
 					</div>
 				</div>
 			</div>

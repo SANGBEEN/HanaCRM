@@ -2894,10 +2894,12 @@ ul.messagesList li span.date {
 }
 
 .timeline {
+	padding: 0 5px;
 	width: auto;
 	height: 85vh;
     margin: 30px auto;
-	overflow: auto;
+	overflow-x: hidden;
+	overflow-y: auto;
 	background: url(../img/timeline-bg.png) repeat-y center top; 
 }
 

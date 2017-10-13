@@ -5,9 +5,9 @@ Version: 1.0
 By: dave-cheon
 
 */
-@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+/* @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 * { font-family: 'Nanum Gothic', sans-serif; }
-
+ */
 .spaceLeft {
   margin-left: 10px;
 }

@@ -9,9 +9,7 @@
 <title>영업지원 시스템 - 고객관리</title>
 <meta name="description" content="Bootstrap Metro Dashboard">
 <meta name="author" content="Dennis Ji">
-<meta name="keyword"
-	content="Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid,
-        Retina">
+<meta name="keyword" content="Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link id="bootstrap-style" href="css/bootstrap.css" rel="stylesheet">
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -34,18 +32,45 @@
 }
 
 .form-group{
-    margin: 10px auto;
+    margin: 15px auto;
 }
 
 .form-group input{
     width: 350px !important;
-    padding-left: 5px;
-    
+    padding-left: 7px;
 }
 
 .form-group label{
 	text-align: center !important;
+	font-weight: 600;
 }
+
+.customer-submit-btn{
+	background-color: #008485;
+	border-color: #008485;
+}
+
+.customer-submit-btn:hover{
+	background-color: #008485;
+	border-color: #008485;
+	opacity:0.7;
+}
+
+.customer-cancel-btn{
+	background-color: #a7a9aa;
+}
+
+.customer-cancel-btn:hover{
+	background-color: #a7a9aa;
+	opacity:0.7;
+}
+
+.modal-header{
+    margin: 1vh 2vw 3vh 2vw;
+    border-bottom: 2px solid gray;
+    padding: 9px 0;
+}
+
 </style>
 </head>
 
@@ -64,7 +89,7 @@
 
 				<div class="row-fluid">
 					<div class="box span12">
-						<div class="box-header" style="padding:0; height:40px;">
+						<div class="box-header" style="background-color:white; padding:0; height:40px;">
 							<div id="addModal"><i class="fa fa-user-plus" aria-hidden="true" style="color: white"></i></div>
 							<div style="float: right; font-size: 1rem; line-height: 40px; padding-right: 20px;"></div>
 						</div>
@@ -118,20 +143,23 @@
 											</td>
 											<td style="text-align:center">
 												<script>
-													function myCheck(){
+													function deleteCustomer(cusNo){
 														if(window.confirm('삭제하시겠습니까?')==true){
-															$('#customerDeleteForm').submit();
+															var form = $('<form></form>');
+														    form.attr('action', "${pageContext.request.contextPath}/customer/delete");
+														    form.attr('method', 'post');
+														    form.appendTo('body');
+														    var no = $('<input type="hidden" value="'+cusNo+'" name="cusNo">');
+														    form.append(no);
+														    form.submit();
 														} else {
 															return;
 														}
 													}
 												</script>
-												<form id="customerDeleteForm" action="${pageContext.request.contextPath}/customer/${cus.no}" method="post" style="margin: 0; display: inline-block;">
-												    <input type="hidden" name = "_method" value="delete">
-												    <div class="btn btn-danger" onClick="myCheck()">
-												    	<i class="halflings-icon white trash"></i>
-												    </div>
-												</form>
+												<div class="btn btn-danger" onClick="deleteCustomer(${cus.no})">
+												    <i class="halflings-icon white trash"></i>
+												 </div>
 											</td>
 										</tr>
 									</c:forEach>
@@ -145,7 +173,7 @@
 					<div class="modal-dialog">
 						<div class="modal-content">
 							<div class="modal-header" align="center">
-								<h1>고객등록</h1>
+								<h1 style="font-weight: 600; text-align: left; margin: 1vh auto;">고객등록</h1>
 								<button type="button" class="close" data-dismiss="modal"
 									aria-label="Close">
 									<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
@@ -159,16 +187,19 @@
 										<input class="form-control" id="inputName" type="text"
 											name="name" placeholder="이름">
 									</div>
+									
 									<div class="form-group">
 										<label class="col-sm-3 control-label" for="inputPhone">전화번호</label>
 										<input class="form-control" id="inputPhone" type="text"
 											name="phone" placeholder="- 없이 입력해 주세요">
 									</div>
+									
 									<div class="form-group">
 										<label class="col-sm-3 control-label" for="inputAddress">주소</label>
 										<input class="form-control" id="inputAddress" type="text"
 											name="address" placeholder="주소">
 									</div>
+									
 									<div class="form-group">
 							            <label class="col-sm-3 control-label" for="inputGrade">고객등급</label>
 								         <select class="form-control" id="inputGrade" name="grade">
@@ -182,13 +213,12 @@
 							        
 							        <div class="form-group">
 							            <label class="col-sm-3 control-label" for="inputPost">우편번호</label>
-						                  <input type="text" class="form-control" id="inputPost" name="post" placeholder=" - 없이 입력해 주세요" />
+						                <input type="text" class="form-control" id="inputPost" name="post" placeholder=" - 없이 입력해 주세요" />
 							        </div>
 
 									<div class="form-group">
 										<label class="col-sm-3 control-label" for="inputBirthDate">생년월일</label>
-										<input class="form-control" id="inputBirthDate" type="text"
-											name="birthDate" placeholder=" ex)1999.01.01">
+										<input class="form-control" id="inputBirthDate" type="text" name="birthDate" placeholder=" ex) 1999.01.01">
 									</div>
 									
 									<div class="form-group">
@@ -197,10 +227,10 @@
 									</div>
 									
 									<div class="form-group">
-							          <div class="col-sm-12 text-center">
-							            <button class="btn btn-primary" type="submit">등록<i class="fa fa-check spaceLeft"></i></button>
-							            <button class="btn btn-danger" data-dismiss="modal" aria-hidden="Close">취소<i class="fa fa-times spaceLeft"></i></button>
-							          </div>
+										<div class="col-sm-12 text-center" style="margin: 30px auto;">
+										  <button class="btn customer-submit-btn" type="submit">등록<i class="fa fa-check spaceLeft"></i></button>
+										  <button class="btn customer-cancel-btn" data-dismiss="modal" aria-hidden="Close">취소<i class="fa fa-times spaceLeft"></i></button>
+										</div>
 							        </div>
 						        </form>
 							</div>
@@ -264,21 +294,12 @@
 	<script src="js/jquery.sparkline.min.js"></script>
 	<script src="js/counter.js"></script>
 	<script src="js/retina.js"></script>
-
 	<script src="js/custom.js"></script>
+	
 	<script>
 	function resize(obj) {
 		  obj.style.height = "1px";
 		  obj.style.height = (12+obj.scrollHeight)+"px";
-		}
-	
-	function sleep(num){	//[1/1000초]
-		 var now = new Date();
-		   var stop = now.getTime() + num;
-		   while(true){
-			 now = new Date();
-			 if(now.getTime() > stop)return;
-		   }
 	}
 	
 	function add_ajax(){
@@ -313,7 +334,6 @@
 			success:function(data){
 				$('#add-modal').modal('toggle');
 				console.dir(data);
-				alert(data.msg);
 			},
 		});
 	})
@@ -324,6 +344,5 @@
 		});
 	});
 	</script>
-	<!-- end: JavaScript-->
 </body>
 </html>

@@ -26,7 +26,7 @@
 		<div class="row-fluid">
 			<jsp:include page="/include/sideMenu.jsp" />
 
-			<div id="content" class="span10">
+			<div id="content" class="span10" style="padding: 10px">
 				<div class="row-fluid">
 					<div class="box span8" style="height: 65vh; overflow: auto; border: 1px solid lightgray">
 						<div class="box-header">

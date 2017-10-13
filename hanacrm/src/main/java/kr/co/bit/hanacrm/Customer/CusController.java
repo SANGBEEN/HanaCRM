@@ -117,10 +117,13 @@ public class CusController {
 		System.out.println(cus);
 		return "success";
 	}
+	
 	//고객삭제
-	@RequestMapping(value="/{no}",method=RequestMethod.DELETE)
-	public String delete(@PathVariable int no){
-		if(cusService.delete(no)==1){
+	@RequestMapping(value="/delete", method=RequestMethod.POST)
+	public String delete(String cusNo){
+		System.out.println("삭제할꺼야 : " + cusNo);
+		
+		if(cusService.delete(Integer.parseInt(cusNo))==1){
 			System.out.println("삭제성공");
 			return "redirect:/customer";
 		}

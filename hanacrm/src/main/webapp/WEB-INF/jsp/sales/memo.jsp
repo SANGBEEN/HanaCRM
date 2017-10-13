@@ -230,14 +230,11 @@
 		
 		// 기본 셋팅 - 클릭 이벤트
 		 function clickTitle(no, date){
-			 
-			 $('#thisMemo').css('visibility','visible');
-			 
+			$('#thisMemo').css('visibility','visible');
 			$('#thisMessage').val($('#memo'+no).text());
 			$('#thisDate').text(date);
 			$('#thisTitle').text(subString($('#memo'+no).text()));
 			memoNo = no;
-		//	console.log(memoNo);
 		}
 		
 		// 메모 삭제
