@@ -131,7 +131,8 @@ select {
 
 select[multiple],
 select[size] {
-  height: auto;
+    height: 30px;
+    margin: 0;
 }
 
 select:focus,

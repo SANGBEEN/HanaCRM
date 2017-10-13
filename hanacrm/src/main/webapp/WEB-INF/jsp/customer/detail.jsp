@@ -5,7 +5,52 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>영업지원 시스템 - 고객정보</title>
+<meta charset="utf-8">
+<meta name="description" content="Bootstrap Metro Dashboard">
+<meta name="author" content="Dennis Ji">
+<meta name="keyword" content="Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid,  Retina">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link id="bootstrap-style" href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/bootstrap-responsive.min.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/addModal.css" rel="stylesheet">
+<link id="base-style" href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
+<link id="base-style-responsive" href="${pageContext.request.contextPath}/css/style-responsive.css" rel="stylesheet">
+<link href='http://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Bungee+Inline' rel='stylesheet' type='text/css'>
+<script src="${pageContext.request.contextPath}/js/jquery-1.9.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery-migrate-1.0.0.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery-ui-1.10.0.custom.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery.ui.touch-punch.js"></script>
+<script src="${pageContext.request.contextPath}/js/modernizr.js"></script>
+<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery.cookie.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
+<script src='${pageContext.request.contextPath}/js/fullcalendar.min.js'></script>
+<script src='${pageContext.request.contextPath}/js/jquery.dataTables.min.js'></script>
+<script src="${pageContext.request.contextPath}/js/excanvas.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery.flot.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery.flot.pie.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery.flot.stack.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery.flot.resize.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery.chosen.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery.uniform.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery.cleditor.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery.noty.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery.elfinder.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery.raty.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery.iphone.toggle.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery.uploadify-3.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery.gritter.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery.imagesloaded.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery.masonry.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery.knob.modified.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery.sparkline.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/counter.js"></script>
+<script src="${pageContext.request.contextPath}/js/retina.js"></script>
+<script src="${pageContext.request.contextPath}/js/custom.js"></script>
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/img/favicon.ico">
+
 <style>
 input.hidden {
 	position: absolute;
@@ -19,309 +64,237 @@ input.hidden {
 	border: 2px solid #03b1ce;
 }
 
-.tital {
-	font-size: 16px;
-	font-weight: 500;
-}
-
 .bot-border {
 	border-bottom: 1px #f8f8f8 solid;
 	margin: 5px 0 5px 0
 }
 
-.myInput{
-	background-color: white !important;
-	border : 0 !important;
-}
-.modifyInput{
-	border: solid 1px black !important;
-	
-}
 .profile{
 	margin-left : 20px;
 }
 
+.division-tital{
+    height: 30px;
+    line-height: 30px;
+    background: lightgray;
+    padding-left: 10px;
+}
+
+.tital{
+    background-color: white;
+    height: auto;
+    margin: 5px auto;
+}
+
+.tital label{
+    display: inline-block;
+    background-color: white;
+    color: gray;
+    font-weight: 600;
+    height: 35px;
+    line-height: 35px;
+    width: 25%;
+    margin: 0;
+    font-size: 16px;
+}
+
+.tital > label > span{
+    display: inline-block;
+    padding-left: 10px;
+    color: #2e335d;
+}
+
+.myInput{
+    background-color: white !important;
+    border: 0 !important;
+    width: 80%;
+    margin: 0 !important;
+    height: 35px !important;
+    line-height: 35px !important;
+    margin: 0 0 0 8px !important;
+    padding: 0 0 0 2px !important;
+    font-size: 16px !important;
+    color: black !important;
+}
+
+.modifyInput{
+	border: 1px solid black !important;
+}
+
+.modify-submit-div{
+    height: 50px;
+    width: 100%;
+    text-align: center;
+    line-height: 50px;
+    background: #3c4379;
+    color: white;
+    font-weight: 700;
+}
 </style>
-<!-- start: Meta -->
-<meta charset="utf-8">
-<title>Bootstrap Metro Dashboard by Dennis Ji for ARM demo</title>
-<meta name="description" content="Bootstrap Metro Dashboard">
-<meta name="author" content="Dennis Ji">
-<meta name="keyword"
-	content="Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid,
-        Retina">
-<!-- end: Meta -->
-
-<!-- start: Mobile Specific -->
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- end: Mobile Specific -->
-
-<!-- start: CSS -->
-<link id="bootstrap-style"
-	href="${pageContext.request.contextPath}/css/bootstrap.min.css"
-	rel="stylesheet">
-<link
-	href="${pageContext.request.contextPath}/css/bootstrap-responsive.min.css"
-	rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/addModal.css"
-	rel="stylesheet">
-<link id="base-style"
-	href="${pageContext.request.contextPath}/css/style.css"
-	rel="stylesheet">
-<link id="base-style-responsive"
-	href="${pageContext.request.contextPath}/css/style-responsive.css"
-	rel="stylesheet">
-<link
-	href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext'
-	rel='stylesheet' type='text/css'>
-<!-- end: CSS -->
-<!-- start: JavaScript-->
-
-	<script src="${pageContext.request.contextPath}/js/jquery-1.9.1.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/js/jquery-migrate-1.0.0.min.js"></script>
-
-	<script
-		src="${pageContext.request.contextPath}/js/jquery-ui-1.10.0.custom.min.js"></script>
-
-	<script
-		src="${pageContext.request.contextPath}/js/jquery.ui.touch-punch.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/modernizr.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/jquery.cookie.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
-	<script src='${pageContext.request.contextPath}/js/fullcalendar.min.js'></script>
-
-	<script
-		src='${pageContext.request.contextPath}/js/jquery.dataTables.min.js'></script>
-
-	<script src="${pageContext.request.contextPath}/js/excanvas.js"></script>
-	<script src="${pageContext.request.contextPath}/js/jquery.flot.js"></script>
-	<script src="${pageContext.request.contextPath}/js/jquery.flot.pie.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/js/jquery.flot.stack.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/js/jquery.flot.resize.min.js"></script>
-
-	<script
-		src="${pageContext.request.contextPath}/js/jquery.chosen.min.js"></script>
-
-	<script
-		src="${pageContext.request.contextPath}/js/jquery.uniform.min.js"></script>
-
-	<script
-		src="${pageContext.request.contextPath}/js/jquery.cleditor.min.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/jquery.noty.js"></script>
-
-	<script
-		src="${pageContext.request.contextPath}/js/jquery.elfinder.min.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/jquery.raty.min.js"></script>
-
-	<script
-		src="${pageContext.request.contextPath}/js/jquery.iphone.toggle.js"></script>
-
-	<script
-		src="${pageContext.request.contextPath}/js/jquery.uploadify-3.1.min.js"></script>
-
-	<script
-		src="${pageContext.request.contextPath}/js/jquery.gritter.min.js"></script>
-
-	<script
-		src="${pageContext.request.contextPath}/js/jquery.imagesloaded.js"></script>
-
-	<script
-		src="${pageContext.request.contextPath}/js/jquery.masonry.min.js"></script>
-
-	<script
-		src="${pageContext.request.contextPath}/js/jquery.knob.modified.js"></script>
-
-	<script
-		src="${pageContext.request.contextPath}/js/jquery.sparkline.min.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/counter.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/retina.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/custom.js"></script>
-
-<!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
-<!--[if lt IE 9]>
-        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-        <link id="ie-style" href="css/ie.css" rel="stylesheet">
-        <![endif]-->
-
-<!--[if IE 9]>
-        <link id="ie9style" href="css/ie9.css" rel="stylesheet">
-        <![endif]-->
-
-<!-- start: Favicon -->
-<link rel="shortcut icon"
-	href="${pageContext.request.contextPath}/img/favicon.ico">
-<!-- end: Favicon -->
-
-
 </head>
 <body>
-	<!-- 헤더 -->
 	<jsp:include page="/include/header.jsp" />
 	<div class="container-fluid-full">
 		<div class="row-fluid">
-
-			<!-- start: Main Menu -->
 			<jsp:include page="/include/sideMenu.jsp" />
 
-
-			<!-- start: Content -->
 			<div id="content" class="span10">
-			<ul class="breadcrumb">
+				<ul class="breadcrumb">
 					<li><i class="icon-home"></i> <a href="${pageContext.request.contextPath}/main">Home</a> 
 					<i class="icon-angle-right"></i></li>
 					<li><a href="${pageContext.request.contextPath}/customer">고객목록</a><i class="icon-angle-right"></i></li>
 					<li><a href="${pageContext.request.contextPath}/customer">고객정보</a></li>
-			</ul>
+				</ul>
 				<div class="row-fluid">
 					<div class="span5">
-						<div class="row">
-							<div class="col-md-7 profile">
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<h4> User Profile</h4>
-									</div>
-									<div class="panel-body">
-										<div class="box box-info">
-											<div class="box-body">
-												<div class="col-sm-4">
-													<div align="center">
-														<img alt="User Pic"
-															src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg"
-															id="profile-image1" class="img-circle img-responsive">
-														<input id="profile-image-upload" class="hidden"
-															type="file">
-														<div style="color: #999;">click here to change
-															profile image</div>
-														<!--Upload Image Js And Css-->
-													</div>
-													<br>
-													<!-- /input-group -->
-												</div>
-												<div class="col-sm-6">
-													<h4 style="color: #00b1b1;">Prasad Shankar Huddedar</h4>
-													<span><p>Aspirant</p></span>
-												</div>
-												<div class="clearfix"></div>
-												<hr style="margin: 5px 0 5px 0;">
-												
-												<form name="modifyForm">
-												
-												<div class="col-sm-5 col-xs-6 tital "> 
-													No:<input type="text" class="myInput" name="no" value="${customer.no }" readonly="readonly"/> 
-												</div>
-												
-												<div class="clearfix"></div>
-												<div class="bot-border"></div>
-
-												<div class="col-sm-5 col-xs-6 tital ">
-													Name:<input type="text" class="myInput" name="name" value="${customer.name }" readonly="readonly"/> 
-												</div>
-												<div class="clearfix"></div>
-												<div class="bot-border"></div>
-
-												<div class="col-sm-5 col-xs-6 tital ">
-													Phone:<input type="text" class="myInput" name="phone" value="${customer.phone }" readonly="readonly"/> 
-												</div>
-												<div class="clearfix"></div>
-												<div class="bot-border"></div>
-
-												<div class="col-sm-5 col-xs-6 tital ">
-													Grade:<input type="text" class="myInput" name="grade" value="${customer.grade }" readonly="readonly"/> 
-												</div>
-												<div class="clearfix"></div>
-												<div class="bot-border"></div>
-
-												<div class="col-sm-5 col-xs-6 tital ">
-													Address:<input type="text" class="myInput" name="address" value="${customer.address }" readonly="readonly"/> 
-												</div>
-												<div class="clearfix"></div>
-												<div class="bot-border"></div>
-
-												<div class="col-sm-5 col-xs-6 tital ">
-													Birth Date:<input type="text" class="myInput" name="birthDate" value="${customer.birthDate }" readonly="readonly"/> 
-												</div>
-												<div class="clearfix"></div>
-												<div class="bot-border"></div>
-
-												<div class="col-sm-5 col-xs-6 tital ">
-													Reg Date:<input type="text" class="myInput" name="regDate" value="${customer.regDate }" readonly="readonly"/>
-												</div>
-												<div class="clearfix"></div>
-												<div class="bot-border"></div>
-
-												<div class="col-sm-5 col-xs-6 tital ">
-													Post:<input type="text" class="myInput" name="post" value="${customer.post }" readonly="readonly"/> 
-												</div>
-												<div class="clearfix"></div>
-												<div class="bot-border"></div>
-
-												<div class="col-sm-5 col-xs-6 tital ">
-													Comments:<input type="text" class="myInput" name="comments" value="${customer.comments }" readonly="readonly"/> 
-												</div>
-												<input type="hidden" name="employeeNo" value="${customer.employeeNo }">
-												<!-- <input type="submit" value="수정"/> -->
-												</form>
-												<button id="modifyBtn">수정</button>
-												<!-- /.box-body -->
-											</div>
-											<!-- /.box -->
-										</div>
-									</div>
+						<div class="panel-heading">
+							<h1>고객 정보</h1>
+						</div>
+						<div style="height:20px; background-color:white"></div>
+						<div class="box box-info">
+						
+							<!-- 
+							<div class="col-sm-4">
+								<div align="center">
+									<img alt="User Pic"
+										src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg"
+										id="profile-image1" class="img-circle img-responsive">
+									<input id="profile-image-upload" class="hidden"
+										type="file">
+									<div style="color: #999;">click here to change
+										profile image</div>
+									Upload Image Js And Css
 								</div>
+							</div>
+							 -->
+							 
+							 <!-- 
+							<div class="col-sm-6">
+								<h4 style="color: #00b1b1;">Prasad Shankar Huddedar</h4>
+								<span><p>Aspirant</p></span>
+							</div>  -->
+							
+							<form name="modifyForm">
+								<input type="hidden" name="no" value="${customer.no }" readonly="readonly"/> 
+								<div class="division-tital">
+									개인정보
+								</div>
+								<div class="tital">
+									<label for="name">
+										<span>이름</span>
+									</label>
+									<input id="name" type="text" class="myInput" name="name" value="${customer.name }" readonly="readonly"/> 
+								</div>
+								<div class="tital">
+									<label for="phone">
+										<span>전화번호</span>
+									</label> 
+									<input id="phone" type="text" class="myInput" name="phone" value="${customer.phone }" readonly="readonly"/> 
+								</div>
+								<div class="tital">
+									<label for="birthDate">
+										<span>생년월일</span>
+									</label> 
+									<input id="birthDate" type="text" class="myInput" name="birthDate" value="${customer.birthDate }" readonly="readonly"/> 
+								</div>
+								<div class="tital">
+									<label for="post">
+										<span>우편번호</span>
+									</label> 
+									<input id="post" type="text" class="myInput" name="post" value="${customer.post }" readonly="readonly"/> 
+								</div>
+								<div class="tital">
+									<label for="address">
+										<span>주소</span>
+									</label> 
+									<input id="address" type="text" class="myInput" name="address" value="${customer.address }" readonly="readonly"/> 
+								</div>
+								
+								<div class="division-tital">
+									특이사항
+								</div>
+								<div class="tital">
+									<label for="grade">
+										<span>고객등급</span>
+									</label>
+									<input id="grade" type="text" class="myInput" name="grade" value="${customer.grade }" readonly="readonly"/> 
+								</div>
+								<div class="tital">
+									<label for="regDate">
+										<span>고객등록일</span>
+									</label> 
+									<input for="regDate" type="text" class="myInput" name="regDate" value="${customer.regDate }" readonly="readonly"/>
+								</div>
+								<div class="tital">
+									<label for="comments">
+										<span>Comments</span>
+									</label> 
+									<input id="comments" type="text" class="myInput" name="comments" value="${customer.comments }" readonly="readonly"/> 
+								</div>
+								<input type="hidden" name="employeeNo" value="${customer.employeeNo }">
+							<!-- <input type="submit" value="수정"/> -->
+							</form>
+							<div id="modifyBtn" class="modify-submit-div">
+								<span>고객정보 수정</span>
 							</div>
 						</div>
 					</div>
-
+					
+					
+					
 					<div class="span7 noMarginLeft">
-
-						<div class="dark">
-
-							<h1>Timeline</h1>
-
+						<div class="dark" style="margin-right: 0;">
+						<h1>고객 상담내역</h1>
 							<div class="timeline">
-								<c:forEach var="consult" items="${consultList }" varStatus="status">
+								<c:forEach var="consult" items="${consultList}" varStatus="status">
 									<c:choose>
 										<c:when test="${status.index%2==0}">
 											<div class="timeslot">
+												<div class="task">
+													<span> 
+														<span class="type">${consult.title }</span>
+														<span class="details"> ${consult.content } </span> 
+														<span> 상담상품 
+															<c:forEach var="product" items="${consult.consultProduct}">
+																<span class="remaining"> ${product.productName} </span>
+															</c:forEach>
+														</span>
+													</span>
+													<div class="arrow"></div>
+												</div>
+												<div class="icon">
+													<i class="icon-map-marker"></i>
+												</div>
+												<div class="time">${consult.regDate }</div>
+											</div>
+											<div class="clearfix"></div>
 										</c:when>
+										
 										<c:otherwise>
 											<div class="timeslot alt">
+												<div class="task">
+													<span> 
+														<span class="type">${consult.title }</span>
+														<span class="details"> ${consult.content } </span> 
+														<span>  상담상품 
+															<c:forEach var="product" items="${consult.consultProduct}">
+																<span class="remaining"> ${product.productName} </span>
+															</c:forEach>
+														</span>
+													</span>
+													<div class="arrow"></div>
+												</div>
+												<div class="icon">
+													<i class="icon-map-marker"></i>
+												</div>
+												<div class="time">${consult.regDate }</div>
+											</div>
 										</c:otherwise>
 									</c:choose>
-										<div class="task">
-											<span> 
-												<span class="type">${consult.title }</span>
-												<span class="details"> ${consult.content } </span> 
-												<span>  상담상품 
-													<c:forEach var="product" items="${consult.consultProduct}">
-														<span class="remaining"> ${product.productName} </span>
-													</c:forEach>
-												</span>
-											</span>
-											<div class="arrow"></div>
-										</div>
-										<div class="icon">
-											<i class="icon-map-marker"></i>
-										</div>
-										<div class="time">${consult.regDate }</div>
-	
-									</div>
 								</c:forEach>
-				
 							</div>
 						</div>
+					<!--  -->
 					</div>
 				</div>
 			</div>
@@ -341,22 +314,14 @@ input.hidden {
 				class="btn btn-primary">Save changes</a>
 		</div>
 	</div>
-
 	<div class="clearfix"></div>
-
 	<footer>
-
-	<p>
-		<span style="text-align: left; float: left">&copy; 2013 <a
-			href="http://jiji262.github.io/Bootstrap_Metro_Dashboard/"
-			alt="Bootstrap_Metro_Dashboard">Bootstrap Metro Dashboard</a></span>
-
-	</p>
-
+		<p>
+			<span style="text-align: left; float: left">&copy; 2013 <a
+				href="http://jiji262.github.io/Bootstrap_Metro_Dashboard/"
+				alt="Bootstrap_Metro_Dashboard">Bootstrap Metro Dashboard</a></span>
+		</p>
 	</footer>
-
-	<!-- start: JavaScript-->
-
 	
 	<script>
 		function modifyForm(){
@@ -378,13 +343,14 @@ input.hidden {
 			$('#modifyBtn').click(function(){
 				console.log("click");
 				console.log($('.myInput')[0].value);
-				
 				console.log($('input.myInput')[0].readOnly);
+				
 				if($('input.myInput')[0].readOnly==true){
 					$('.myInput').attr("readonly",false);
 					$('.myInput').addClass('modifyInput');
 					console.log("readonly");
 				}else{
+					
 					//var data = JSON.stringify($('form[name="modifyForm"]').serializeArray());
 					var data={};
 					$('form[name="modifyForm"]').serializeArray().map(function(item){
@@ -401,17 +367,20 @@ input.hidden {
 					
 					//json을 문자열로 바꿔서 컨트롤러에서 RequestBody로 받음 
 					$.ajax({
-							type:'PUT',
-							url:'${pageContext.request.contextPath}/customer',
-							data:JSON.stringify(data),
-							contentType: "application/json; charset=UTF-8",
-							dataType:'json',
-							error:function(xhr, status, error){
-								console.log(error);
-							},
-							success:function(data){
-								console.dir(data);
-							},
+						type:'PUT',
+						url:'${pageContext.request.contextPath}/customer',
+						data:JSON.stringify(data),
+						contentType: "application/json; charset=UTF-8",
+						dataType:'json',
+						error:function(xhr, status, error){
+							console.log(error);
+						},
+						success:function(data){
+							console.dir(data);
+							alert(data);
+							$('.myInput').attr("readonly",true);
+							$('.myInput').removeClass('modifyInput');
+						},
 					});
 				}
 			});

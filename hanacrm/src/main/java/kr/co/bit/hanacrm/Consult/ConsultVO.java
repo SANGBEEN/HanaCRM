@@ -10,9 +10,9 @@ import kr.co.bit.hanacrm.Customer.CusVO;
 //상담내역 (진행중인)
 public class ConsultVO {
 
-	private Integer no;
-	private Integer customerNo;
-	private Integer employeeNo;
+	private int no;
+	private int customerNo;
+	private int employeeNo;
 	private String content;
 	private String regDate;
 	private String title;
@@ -25,7 +25,7 @@ public class ConsultVO {
 
 	}	
 
-	public ConsultVO(Integer no, Integer customerNo, Integer employeeNo, String content, String regDate,String title,
+	public ConsultVO(int no, int customerNo, int employeeNo, String content, String regDate,String title,
 			List<ConsultProductVO> consultProduct) {
 		this.no = no;
 		this.customerNo = customerNo;
@@ -35,27 +35,27 @@ public class ConsultVO {
 		this.title = title;
 	}
 
-	public Integer getNo() {
+	public int getNo() {
 		return no;
 	}
 
-	public void setNo(Integer no) {
+	public void setNo(int no) {
 		this.no = no;
 	}
 
-	public Integer getCustomerNo() {
+	public int getCustomerNo() {
 		return customerNo;
 	}
 
-	public void setCustomerNo(Integer customerNo) {
+	public void setCustomerNo(int customerNo) {
 		this.customerNo = customerNo;
 	}
 
-	public Integer getEmployeeNo() {
+	public int getEmployeeNo() {
 		return employeeNo;
 	}
 
-	public void setEmployeeNo(Integer employeeNo) {
+	public void setEmployeeNo(int employeeNo) {
 		this.employeeNo = employeeNo;
 	}
 

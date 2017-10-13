@@ -16,8 +16,8 @@
 	<link href="${pageContext.request.contextPath}/css/bootstrap-responsive.min.css" rel="stylesheet">
 	<link id="base-style" href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
 	<link id="base-style-responsive" href="${pageContext.request.contextPath}/css/style-responsive.css" rel="stylesheet">
-	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext' rel='stylesheet' type='text/css'>
-	<!-- end: CSS -->
+	<link href='http://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Bungee+Inline' rel='stylesheet' type='text/css'>	
 </head>
 <body>
 
@@ -230,14 +230,11 @@
 		
 		// 기본 셋팅 - 클릭 이벤트
 		 function clickTitle(no, date){
-			 
-			 $('#thisMemo').css('visibility','visible');
-			 
+			$('#thisMemo').css('visibility','visible');
 			$('#thisMessage').val($('#memo'+no).text());
 			$('#thisDate').text(date);
 			$('#thisTitle').text(subString($('#memo'+no).text()));
 			memoNo = no;
-		//	console.log(memoNo);
 		}
 		
 		// 메모 삭제

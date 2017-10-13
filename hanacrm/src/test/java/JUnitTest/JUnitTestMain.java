@@ -10,6 +10,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+import kr.co.bit.hanacrm.Consult.ConsultService;
 import kr.co.bit.hanacrm.Product.DepositVO;
 import kr.co.bit.hanacrm.Product.ProductDAO;
 import kr.co.bit.hanacrm.Product.ProductService;
@@ -28,6 +29,9 @@ public class JUnitTestMain {
 	
 	@Autowired
 	private ProductDAO productDAO;
+	
+	@Autowired
+	private ConsultService consultService;
 	
 	@Test
 	public void 테스트() throws Exception {
@@ -79,9 +83,9 @@ public class JUnitTestMain {
 		
 		//System.out.println(productService.selectList(1));
 		
-		List<ProductVO> list = productService.selectList(1);
+		//List<ProductVO> list = productService.selectList(1);
 		
-		System.out.println(list);
+		System.out.println(consultService.delete(1));
 		
 	}
 }

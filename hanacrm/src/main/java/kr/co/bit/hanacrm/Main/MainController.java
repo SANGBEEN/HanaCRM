@@ -38,7 +38,7 @@ public class MainController {
 	private ContractService contractService;
 	@Autowired
 	private ProductService productService;
-	
+
 	// 로그인
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(@RequestParam("uid") String id, @RequestParam("password") String password, HttpSession session) {
@@ -46,15 +46,18 @@ public class MainController {
 		System.out.println("login : " + id);
 		emp.setId(id);
 		emp.setPassword(password);
+		
 		EmpVO loginEmp = new EmpVO();
 		loginEmp = empService.login(emp);
 		System.out.println(loginEmp);
+		
 		if(loginEmp!=null){
 			session.setAttribute("emp", loginEmp);
 			return "redirect:/main";
 		}
 		return "redirect:/";
 	}
+	
 	//메인화면(대시보드)
 	@RequestMapping(value="/main", method=RequestMethod.GET)
 	public String main(HttpSession session, Model model){
@@ -77,6 +80,7 @@ public class MainController {
 		List<Map<String,Object>> contractList = new ArrayList<>();
 		contractList = contractService.selectCount(emp.getNo());
 		String json = "";
+		
 		//VO to JSON
 		ObjectMapper mapper = new ObjectMapper();
 		try {

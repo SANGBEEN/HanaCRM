@@ -5,27 +5,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class CusVO {
 	private Integer no;
-
     private String name;
-
     private String birthDate;
-
     private String phone;
-
     private Integer employeeNo;
-
     private String comments;
-
-    //  잠재,일반,우수?
     private String grade;
-
-
-    //  우편
     private String post;
-
     private String address;
-
-
     private String regDate;
 
     public Integer getNo() {
@@ -126,7 +113,6 @@ public class CusVO {
 
 	public CusVO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 

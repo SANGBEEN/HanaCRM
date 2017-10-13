@@ -7,11 +7,13 @@
 		select no, name, to_char(birth_date,'yyyy-mm-dd') as birthDate, phone, employee_no as employeeNo, comments, grade, post, address, to_char(reg_date,'yyyy-mm-dd') as regDate
 		from customer
 	</select>
+	
 	<select id="selectByNo"  parameterType="int" resultType="cus">
 		select no, name, to_char(birth_date,'yyyy-mm-dd') as birthDate, phone, employee_no as employeeNo, comments, grade, post, address, to_char(reg_date,'yyyy-mm-dd') as regDate
 		from customer
 		where no=#{no}
 	</select>
+	
 	<select id="selectByEmpNo"  parameterType="int" resultType="cus">
 		select no, name, to_char(birth_date,'yyyy-mm-dd') as birthDate, phone, employee_no as employeeNo, comments, grade, post, address, to_char(reg_date,'yyyy-mm-dd') as regDate
 		from customer
@@ -19,8 +21,9 @@
 	</select>
 	
 	<insert id="insert" parameterType="cus">
-		insert into customer values(customer_seq.nextval, #{name}, #{birthDate}, #{phone}, #{employeeNo}, #{comments,jdbcType=VARCHAR}, #{grade}, #{post,jdbcType=VARCHAR},#{address,jdbcType=VARCHAR},#{regDate})
+		insert into customer values(customer_seq.nextval, #{name}, #{birthDate}, #{phone}, #{employeeNo}, #{comments,jdbcType=VARCHAR}, #{grade}, #{post,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, sysdate)
 	</insert>
+	
 	<update id="update" parameterType="cus">
 		update customer
 		<set>
@@ -54,6 +57,7 @@
 		</set>
 		where no=#{no}
 	</update>
+	
 	<delete id="deleteByNo" parameterType="int">
 		delete from customer where no=#{no}
 	</delete>
