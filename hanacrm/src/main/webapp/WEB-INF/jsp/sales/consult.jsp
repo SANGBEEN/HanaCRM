@@ -644,9 +644,10 @@
 	        		success: function(consultNo) {
 	        			console.log(consultNo + "번 추가 완료");
 	        			consultJson = null;
-	        			selectedProduct = [];
+	        			selectedProduct = [];	        		
 	        			$('#consultContentInsert').modal('hide');
-	        			location.href= '${pageContext.request.contextPath}/sales/consult';
+	        			location.href = '${pageContext.request.contextPath}/sales/consult';
+
 					},
 	        		error: function(e) {
 	        			console.log(e);
