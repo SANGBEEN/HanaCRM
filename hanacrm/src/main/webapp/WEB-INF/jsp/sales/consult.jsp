@@ -448,10 +448,10 @@
 	        	        
 	        	        for (var i = 0; i < schedule.length; i++) {
 		        	            html += '<tr><td><input type="radio" name="optionsRadios" data-schedule_no="' + schedule[i].no + '" data-customer_no="' + schedule[i].customer.no + '" data-reg_date="' + schedule[i].startDate + '"></td>' 
-		        	            		+ '<td><span class="input-xlarge uneditable-input">' + schedule[i].customer.name + '</span></td>' 
-		        	            		+ '<td><span class="input-xlarge uneditable-input">' + schedule[i].location + '</span></td>' 
-		        	            		+ '<td><span class="input-xlarge uneditable-input">' + schedule[i].comments + '</span></td>'
-		        	            		+ '<td><span class="input-xlarge uneditable-input">' + schedule[i].startDate + '</span></td></tr>';
+		        	            		+ '<td>' + schedule[i].customer.name + '</span></td>' 
+		        	            		+ '<td>' + schedule[i].location + '</td>' 
+		        	            		+ '<td>' + schedule[i].comments + '</td>'
+		        	            		+ '<td>' + schedule[i].startDate + '</td></tr>';
 	        	        }
 	        	        
 	        	        html += '</tbody></table>';
@@ -650,9 +650,9 @@
 	        			console.log(consultNo + "번 추가 완료");
 	        			
 	        			consultJson = null;
-	        			selectedProduct = [];
-	        			
+	        			selectedProduct = [];	        		
 	        			$('#consultContentInsert').modal('hide');
+	        			location.href = '${pageContext.request.contextPath}/sales/consult';
 					},
 	        		error: function(e) {
 	        			console.log(e);
