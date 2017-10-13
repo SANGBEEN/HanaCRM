@@ -4,13 +4,13 @@
 <div class="modal hide fade" id="detailModal">
 	<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal">×</button>
-		Event Detail
+		&nbsp;
 	</div>
 	<div class="modal-body">			
-		<div class="row-fluid sortable">
+		<div class="row-fluid">
 			<div class="box span12">
 				<div class="box-header" data-original-title>
-					<h2><i class="halflings-icon edit"></i><span class="break"></span>Form Elements</h2>
+					<h2><i class="halflings-icon edit"></i><span class="break"></span>상세 일정</h2>
 					<div class="box-icon">
 						
 					</div>
@@ -21,13 +21,13 @@
 						
 						<div class="control-group" id="div_customerName">
 							<label class="control-label">고객명</label>
-							<div class="controls" style="vertical-align:center">
+							<div class="controls" style="padding-left: 5px; height: 30px; line-height: 30px;">
 								<span id="customerName"></span>
 							</div>
 						</div>
 						<!-- Type select -->
 						  <div class="control-group">
-							<label class="control-label" for="selectError3">Type</label>
+							<label class="control-label" for="selectError3">이벤트타입</label>
 							<div class="controls">
 							  <select id="scheduleType"> <!-- name="scheduleType" -->
 								<option value="Meeting">Meeting</option>
@@ -41,14 +41,14 @@
 						  </div>
 						  
 						  <div class="control-group">
-						  	<label class="control-label" for="focusedInput">Start Date</label>
+						  	<label class="control-label" for="focusedInput">시작일시</label>
 						  	<div class="controls">
 								<input id="detail_datetimepicker" type="text" >
 							</div>	
 						</div>
 						
 						<div class="control-group" id="div_duration">
-							<label class="control-label" for="focusedInput">Duration</label>
+							<label class="control-label" for="focusedInput">기간</label>
 							<div class="controls">
 								<div class="btn-group btn-overlap btn-corner">
 									<button value="1" class="btn btn-sm btn-white btn-info dduration">1</button>
@@ -60,14 +60,14 @@
 						</div>
 						
 						<div class="control-group">
-							<label class="control-label" for="focusedInput">End Date</label>
-							<div class="controls">
+							<label class="control-label" for="focusedInput">종료일시</label>
+							<div class="controls" style="padding-left: 5px; height: 30px; line-height: 30px;">
 								<span id="endDate"></span>
 							</div>					
 						</div>
 						  
 						  <div class="control-group">
-							<label class="control-label" for="focusedInput">location</label>
+							<label class="control-label" for="focusedInput">장소</label>
 							<div class="controls">
 							  <input class="input-xlarge" id="location" type="text" value=""> <!-- name="location" -->
 							</div>
@@ -75,7 +75,7 @@
 			
 						  <!-- Comment -->
 						  <div class="control-group">
-							<label class="control-label" for="focusedInput">Comments</label>
+							<label class="control-label" for="focusedInput">일정사항</label>
 							<div class="controls">
 							  <input class="input-xlarge focused" id="comments" type="text" value=""> <!-- name="comments" -->
 							</div>
@@ -113,8 +113,8 @@
 		</div><!--/row-->
 	</div>
 	<div class="modal-footer">
-		<a href="#" id="modalSave" class="btn btn-primary" id="modalSave" data-dismiss="modal">Save changes</a>
-		<a href="#" class="btn btn-danger" id="modalDelete">Delete</a>
-		<a href="#" class="btn" id="modalCancle" data-dismiss="modal">Close</a>
+		<a href="#" id="modalSave" class="btn btn-primary" id="modalSave" data-dismiss="modal">수정</a>
+		<a href="#" class="btn btn-danger" id="modalDelete">일정삭제</a>
+		<a href="#" class="btn" id="modalCancle" data-dismiss="modal">취소</a>
 	</div>
 </div>

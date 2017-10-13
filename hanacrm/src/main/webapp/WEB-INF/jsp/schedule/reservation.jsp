@@ -5,103 +5,58 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-<!-- start: Meta -->
 <meta charset="utf-8">
-<title>Bootstrap Metro Dashboard by Dennis Ji for ARM demo</title>
+<title>영업지원 시스템-예약관리</title>
 <meta name="description" content="Bootstrap Metro Dashboard">
 <meta name="author" content="Dennis Ji">
 <meta name="keyword"
 	content="Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid,
         Retina">
-<!-- end: Meta -->
-
-<!-- start: Mobile Specific -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- end: Mobile Specific -->
-
-<!-- start: CSS -->
 <link id="bootstrap-style" href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/bootstrap-responsive.min.css" rel="stylesheet">
 <link id="base-style" href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
 <link id="base-style-responsive" href="${pageContext.request.contextPath}/css/style-responsive.css" rel="stylesheet">
 <link href='http://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Bungee+Inline' rel='stylesheet' type='text/css'>
-
-
-<!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
-<!--[if lt IE 9]>
-        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-        <link id="ie-style" href="css/ie.css" rel="stylesheet">
-        <![endif]-->
-
-<!--[if IE 9]>
-        <link id="ie9style" href="css/ie9.css" rel="stylesheet">
-        <![endif]-->
-
-<!-- start: Favicon -->
-<!-- <link rel="shortcut icon" href="img/favicon.ico"> -->
-<!-- end: Favicon -->
-
-
 </head>
 
 <body>
-	<!-- 헤더 -->
 	<jsp:include page="/include/header.jsp" />
-	
-
 	<div class="container-fluid-full">
 		<div class="row-fluid">
-
-			<!-- start: Main Menu -->
 			<jsp:include page="/include/sideMenu.jsp" />
-
-
-			<!-- start: Content -->
 			<div id="content" class="span10">
-
 				<ul class="breadcrumb">
 					<li><i class="icon-home"></i> <a href="${pageContext.request.contextPath}/main">Home</a> <i
 						class="icon-angle-right"></i></li>
 					<li><a href="${pageContext.request.contextPath}/customer">신청 목록</a></li>
 				</ul>
 
-				<div class="row-fluid sortable">
+				<div class="row-fluid">
 					<div class="box span12">
 						<div class="box-header" data-original-title>
 							<h2>
-								<i class="halflings-icon user"></i><span class="break"></span>신청 내역
+								예약신청 내역
 							</h2>
-							<div class="box-icon">
-								<a id="addModal">
-									<i class="halflings-icon plus"></i>
-								</a> 
-								<a href="#"
-									class="btn-minimize">
-									<i class="halflings-icon chevron-up"></i>
-								</a>
-								<a href="#" class="btn-close">
-									<i class="halflings-icon remove"></i>
-								</a>
-							</div>
 						</div>
 						<div class="box-content">
 							<table
 								class="table table-striped table-bordered bootstrap-datatable datatable">
 								<thead>
 									<tr>
-										<th>Name</th>
-										<th>Phone</th>
-										<th>Grade</th>
-										<th>Location</th>
-										<th>Start_date</th>
-										<th>End_date</th>
-										<th>Message</th>
-										<th>Reg_date</th>
-										<th>Action</th>
+										<th style="width:5%; text-align:center">이름</th>
+										<th style="width:10%; text-align:center">전화번호</th>
+										<th style="width:5%; text-align:center">고객등급</th>
+										<th style="width:15%; text-align:center">장소</th>
+										<th style="width:10%; text-align:center">희망시작일시</th>
+										<th style="width:10%; text-align:center">희망종료일시</th>
+										<th style="width:25%; text-align:center">메세지</th>
+										<th style="width:10%; text-align:center">예약등록일</th>
+										<th style="width:10%; text-align:center">수락/거절</th>
 									</tr>
 								</thead>
+								
 								<tbody id="table-data">
 									<c:forEach var="reservation" items="${reservationList}">
 										<tr id="${reservation.no}">
@@ -110,40 +65,40 @@
 											<td class="center">
 												<c:choose>
 													<c:when test="${reservation.customer.grade=='잠재'}">
-														<span class="label"><%-- ${reservation.customer.grade}</span> --%>
+														<span class="label">${reservation.customer.grade}</span>
 													</c:when>
 													<c:when test="${reservation.customer.grade=='신규'}">
-														<span class="label label-success"><%-- ${reservation.customer.grade}</span> --%>
+														<span class="label label-success">${reservation.customer.grade}</span>
 													</c:when>
 													<c:when test="${reservation.customer.grade=='기존'}">
-														<span class="label label-warning"><%-- ${reservation.customer.grade}</span> --%>
+														<span class="label label-warning">${reservation.customer.grade}</span>
 													</c:when>
 													<c:when test="${reservation.customer.grade=='핵심'}">
-														<span class="label label-important"><%-- ${reservation.customer.grade}</span> --%>
+														<span class="label label-important">${reservation.customer.grade}</span>
 													</c:when>
 													<c:otherwise>
 													</c:otherwise>
 												</c:choose>
-													${reservation.customer.grade}</span>
+													
 											</td>
-											<td class="center">${reservation.location}</td>
-											<td class="center">${reservation.startDate}</td>
-											<td class="center">${reservation.endDate}</td>
-											<td class="center">${reservation.msg}</td>
-											<td class="center">${reservation.regDate}</td>
-											<td class="center" id="actionColum${reservation.no}">
+											<td style="text-align:center">${reservation.location}</td>
+											<td style="text-align:center">${reservation.startDate}</td>
+											<td style="text-align:center">${reservation.endDate}</td>
+											<td style="text-align:center">${reservation.msg}</td>
+											<td style="text-align:center">${reservation.regDate}</td>
+											<td style="text-align:center" id="actionColum${reservation.no}">
 												 <c:choose>
 													<c:when test="${reservation.status=='N'}">
 														취소됨
 													</c:when>
 													<c:otherwise>
-															<a class="btn btn-info" id="agree" href="#" data-reservation='${reservation}' <%-- onclick='clickAgree(${reservation})' --%>>
-																	<i class="halflings-icon check"></i>
-															</a> 
-															
-														    <a class="btn yellow" id="disagree" href="#" data-reservation='${reservation}' <%-- onclick="clickDisagree('${reservation.no}')" --%>>
-														    		<i class="halflings-icon remove-circle"></i>
-												    		</a>
+														<a class="btn btn-info" id="agree" href="#" data-reservation='${reservation}' <%-- onclick='clickAgree(${reservation})' --%>>
+															<i class="halflings-icon check"></i>
+														</a> 
+														
+													    <a class="btn yellow" id="disagree" href="#" data-reservation='${reservation}' <%-- onclick="clickDisagree('${reservation.no}')" --%>>
+												    		<i class="halflings-icon remove-circle"></i>
+											    		</a>
 													</c:otherwise>
 												</c:choose>
 											</td>

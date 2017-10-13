@@ -3,11 +3,11 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<div class="row-fluid sortable" id="customerInfo">
+<div class="row-fluid" id="customerInfo">
 	<div class="box span12">
 		<div class="box-header" data-original-title>
 			<h2>
-				<i class="halflings-icon user"></i><span class="break"></span>Members
+				<i class="halflings-icon user"></i><span class="break"></span>고객
 			</h2>
 		</div>
 		<div class="box-content" id="customerTable">
