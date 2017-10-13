@@ -39,16 +39,6 @@ public class CusController {
 	    for(CusVO cus : cusList){
 	    	System.out.println(cus);
 	    }
-//		//VO to JSON
-//		ObjectMapper mapper = new ObjectMapper();
-//		try {
-//			String json = mapper.writeValueAsString(cusList);
-//			model.addAttribute("cusList", json);
-//			System.out.println("==========");
-//			System.out.println(json);
-//		} catch (JsonProcessingException e) {
-//			e.printStackTrace();
-//		}
 	    model.addAttribute("cusList", cusList);
 		return "customer/list";	
 	}
@@ -104,29 +94,26 @@ public class CusController {
 	public String create(CusVO cus, Model model, HttpSession session){
 		System.out.println("고객등록");
 		System.out.println(cus.toString());
-		
 		EmpVO emp = (EmpVO) session.getAttribute("emp");
-		
-		//임시사원번호
 		cus.setEmployeeNo(emp.getNo());
 		
-		//Map<String, Object> res = new HashMap<>();
-		
 		if(cusService.create(cus)==1){
-			//res.put("msg", "등록성공");
 			model.addAttribute("msg", "등록성공");
 		}else
 			model.addAttribute("msg", "등록실패");
 		model.addAttribute("url", "/customer");
 		return "process/alertProcess";
 	}
+	
 	//고객수정
 	@ResponseBody
 	@RequestMapping(method=RequestMethod.PUT)
 	public String update(@RequestBody CusVO cus){
+		
+		cusService.update(cus);
 //		if(cusService.update(cus)==1)
 //			return "redirect:/customer/"+cus.getNo();
-		//return "redirect:/customer";
+//		return "redirect:/customer";
 		System.out.println(cus);
 		return "success";
 	}
@@ -141,6 +128,7 @@ public class CusController {
 		return "redirect:/customer";
 	}
 }
+
 //1.@restcontroller 쓰고 ModelAndView써서포워딩 -> 가능하나 RestController 목적의 위배됨
 //2.api요청을 ajax를 이용하고 모든데이터를 json으로 리턴후 뷰 포워딩
 //3.restcontroller이나 @responsebody를 안쓰고 put delete 구현?
