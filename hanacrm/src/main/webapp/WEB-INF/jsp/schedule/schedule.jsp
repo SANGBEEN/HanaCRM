@@ -127,7 +127,7 @@
 			opacity:0.7;
 		}
 		
-		.duration.clicked{
+		.duration.clicked, .dduration.clicked{
 			background-color: #f9105b !important;
 			border-color: #f9105b;
 		}
@@ -207,17 +207,6 @@
 		 start = new Date(2010, 10, 21).getTime();
 		console.log(start);
 		 
-		 	$('[data-dismiss=modal]').on('hidden.bs.modal', function (e) {
-		 		console.log('dismiss');
-		 		 $(this)
-		 	    .find("input,textarea,select")
-		 	       .val('')
-		 	       .end()
-		 	    .find("input[type=checkbox], input[type=radio]")
-		 	       .prop("checked", "")
-		 	       .end();
-		 	});
-				 
 		 jQuery(function($) {
 				
 			var addModal = $('#addModal');
@@ -225,6 +214,18 @@
 			
 			var datetimepicker = $('#datetimepicker');
 			var detail_datetimepicker = $('#detail_datetimepicker');
+			
+			addModal.on('hidden.bs.modal', function (e) {
+		 		console.log('dismiss');
+		 		 $(this)
+		 	    .find("input,textarea,select")
+		 	       .val('')
+		 	       .end()
+		 	    .find("input[type=checkbox], input[type=radio]")
+		 	       .prop("checked", "")
+		 	       .end()
+		 	    .find("button.clicked").removeClass('clicked');
+		 	});
 	
 			 
 				/************************** initialize the external events
@@ -668,6 +669,9 @@
 
 							dduration = 1;
 							dtype = 'hours';
+							
+							$('.dduration').removeClass('clicked');
+							$(this).addClass('clicked');
 							
 							if(calEvent.className=='Call'){
 								dduration = 30;
