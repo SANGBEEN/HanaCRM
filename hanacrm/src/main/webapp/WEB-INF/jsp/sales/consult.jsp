@@ -119,7 +119,7 @@
 		
 	<!-- 상담 내역 상세 -->
 	<c:forEach items="${ consultList }" var="consultVO">
-		<div class="modal hide fade" id="consult-detail-${ consultVO.no }">
+		<div class="modal hide fade" id="consultDetail${ consultVO.no }">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">×</button>
 				<h3>상담 내역 상세</h3>
@@ -139,7 +139,7 @@
 							<strong>상품 번호 임시:</strong> ${ consultProductVO.productNo }<br>
 						</c:forEach>
 					
-					<strong>상담 내용:</strong> ${ consultVO.content }<br>
+					<strong>상담 내용:</strong> <div id="consultVO-content-hs">${ consultVO.content }</div><br>
 				</div>			
 			</div>
 			<div class="modal-footer">
@@ -265,15 +265,9 @@
 		</div>
 		<div class="modal-body">
 			<div class="control-group">
-				<label class="control-label" for="focusedInput">상담 요약</label>
+				<label class="control-label" for="consult-content-update-hs">상담 내용</label>
 				<div class="controls">
-				  <input class="input-xlarge focused" id="consultTitle" type="text" value="${ consultVO.title }">
-				</div>
-			</div>
-			<div class="control-group">
-				<label class="control-label" for="focusedInput">상담 내용</label>
-				<div class="controls">
-				  <input class="input-xlarge focused" id="consultContent" type="text" value="${ consultVO.content }">
+				  <input class="input-xlarge focused" id="consult-content-update-hs" type="text" value="">
 				</div>
 			</div>
 		</div>
@@ -370,7 +364,7 @@
 			
 			$('#myModal').on('hidden.bs.modal', function() {
 				$(this).removeData();
-			});
+			});			
 			
 			$('a[id=consult-detail-hs]').click(function(e) {
 				e.preventDefault();
@@ -386,7 +380,7 @@
 				
 				//console.dir(consultList);
 				console.log(consultDetailNo);
-				$('#consult-detail-'+consultDetailNo).modal();
+				$('#consultDetail'+consultDetailNo).modal();
 				console.log("상세");
 			});
 						
@@ -648,14 +642,23 @@
 				});									
 			});
 			
+			$('#consult-insert-cancel-hs').on('click', function() {
+				selectedProduct = [];
+				
+				$(this).removeData();
+			});
+			
 			var consultUpdateNo = null;
 		
 			/* 수정 */
 			$('a[id=consult-update-hs]').click(function(e) {
 				e.preventDefault();
 				e.stopPropagation();
+				consult-content-update-hs consultVO-content-hs
 				
 				consultUpdateNo = $(this).data('consult_no');
+				
+				$('#consultDetail' + consultUpdateNo)
 				
 				$('#consultUpdate').modal();
 				console.log("수정");
