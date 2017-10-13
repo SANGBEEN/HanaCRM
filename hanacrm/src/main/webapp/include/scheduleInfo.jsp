@@ -38,30 +38,9 @@
 				</div>
 				
 				
-				<div class="control-group">
-					<label class="control-label" for="focusedInput">Duration</label>
-					<div class="controls">
-				  		<a class="quick-button-small span2">
-							<i class="icon-dashboard"></i>
-								<p id="1">1</p>
-						</a>
-						<a class="quick-button-small span2">
-							<i class="icon-dashboard"></i>
-								<p id="2">2</p>
-						</a>
-						<a class="quick-button-small span2">
-							<i class="icon-dashboard"></i>
-								<p id="3">3</p>
-						</a>
-						<a class="quick-button-small span2">
-							<i class="icon-dashboard"></i>
-								<p id="4">4</p>
-						</a>		
-				  </div>
-				</div>
-				
+		
 				<div class="control-group" id="div_duration">
-					<label class="control-label" for="focusedInput">여기가 진짜 Duration</label>
+					<label class="control-label" for="focusedInput">Duration</label>
 					<div class="controls">
 						<div class="btn-group btn-overlap btn-corner">
 							<button value="1" class="btn btn-sm btn-white btn-info duration">1</button>
@@ -78,19 +57,7 @@
 						<span id="endDate"></span>
 					</div>					
 				</div>
-			  
-			  <div class="control-group">
-			  	<label class="control-label" for="focusedInput">Duration</label>
-				  <div class="controls dataTables_paginate paging_bootstrap pagination">
-					  <ul class="button-group radius">
-						  <li class="button"><a href="#">1</a></li>
-						  <li class="button"><a href="#">2</a></li>
-						  <li class="button"><a href="#">3</a></li>
-						  <li class="button"><a href="#">4</a></li>
-					  </ul>
-				  </div>
-			 </div>
-			  
+
 			  <div class="control-group">
 				<label class="control-label" for="focusedInput">location</label>
 				<div class="controls">
