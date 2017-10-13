@@ -20,6 +20,7 @@
 	<link id="base-style-responsive" href="${pageContext.request.contextPath}/css/style-responsive.css" rel="stylesheet">
 	<link href='http://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
 	<link href='https://fonts.googleapis.com/css?family=Bungee+Inline' rel='stylesheet' type='text/css'>
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 	<link rel="shortcut icon" href="img/favicon.ico">
 </head>
 <body>
@@ -58,43 +59,39 @@
 				</li>
 			</ul>
 
-			<div class="row-fluid sortable">		
+			<div class="row-fluid">		
 				<div class="box span12">
-					<div class="box-header" data-original-title>
-						<h2><i class="halflings-icon user"></i><span class="break"></span>상담 내역</h2>
-						<div class="box-icon">
-							<a href="#" id="consult-insert-hs"><i class="halflings-icon plus"></i></a>
-							<!-- <a href="#" class="btn-setting"><i class="halflings-icon wrench"></i></a>
-							<a href="#" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
-							<a href="#" class="btn-close"><i class="halflings-icon remove"></i></a> -->
-						</div>
+					<div class="box-header" style="background-color:white; padding:0; height:40px;">
+						<div id="consult-insert-hs" style="	float: right; height: 40px;line-height: 40px; text-align: center; width: 50px; background: gray;">
+							<i class="fa fa-plus" aria-hidden="true" style="color: white"></i></div>
+						<div style="float: right; font-size: 1rem; line-height: 40px; padding-right: 20px;"></div>
 					</div>
+					
 					<div class="box-content">
 						<table class="table table-striped table-bordered bootstrap-datatable datatable">
 						  <thead>
 							  <tr>
-								<th>번호</th>	
-								<th>고객 이름</th>
-								<th>요약</th>
-								<th>상담 날짜</th>
-								<th>고객 타입</th>
-								<th>상태</th>
-								<th>기능</th>
+								<th style="width:5%; text-align:center">번호</th>	
+								<th style="width:15%; text-align:center">고객 이름</th>
+								<th style="width:30%; text-align:center">요약</th>
+								<th style="width:15%; text-align:center">상담 날짜</th>
+								<th style="width:10%; text-align:center">타입</th>
+								<th style="width:10%; text-align:center">상태</th>
+								<th style="width:15%; text-align:center">기능</th>
 							  </tr>
 						  </thead>   
 						<tbody>
 							<c:forEach items="${ consultList }" var="consultVO">						
-												
 							<tr id="tr${ consultVO.no }"> <!-- class="row-minimize-hs"> -->
-								<td id="row-no-hs">${ consultVO.no }</td>
-								<td>${ consultVO.customerVO.name }</td>
+								<td id="row-no-hs" style="text-align:center">${ consultVO.no }</td>
+								<td style="text-align:center">${ consultVO.customerVO.name }</td>
 								<td>${ consultVO.title }</td>
-								<td class="center">${ consultVO.regDate }</td>
-								<td class="center">${ consultVO.customerVO.grade }</td>
-								<td class="center">
+								<td style="text-align:center">${ consultVO.regDate }</td>
+								<td style="text-align:center">${ consultVO.customerVO.grade }</td>
+								<td style="text-align:center">
 									<span class="label label-success">Active</span>
 								</td>
-								<td class="center">
+								<td style="text-align:center">
 									<a class="btn btn-success" id="consult-detail-hs" href="#" data-consult_no="${ consultVO.no }">
 										<i class="halflings-icon white zoom-in"></i>  
 									</a>
@@ -404,7 +401,7 @@
 			});
 						
 			/* 상담 날짜 선택 */
-			$('a[id=consult-insert-hs]').click(function(e){
+			$('div[id=consult-insert-hs]').click(function(e){
 				e.preventDefault();
 				e.stopPropagation();	
 				
@@ -448,7 +445,7 @@
 	        	        
 	        	        for (var i = 0; i < schedule.length; i++) {
 		        	            html += '<tr><td><input type="radio" name="optionsRadios" data-schedule_no="' + schedule[i].no + '" data-customer_no="' + schedule[i].customer.no + '" data-reg_date="' + schedule[i].startDate + '"></td>' 
-		        	            		+ '<td>' + schedule[i].customer.name + '</span></td>' 
+		        	            		+ '<td>' + schedule[i].customer.name + '</td>' 
 		        	            		+ '<td>' + schedule[i].location + '</td>' 
 		        	            		+ '<td>' + schedule[i].comments + '</td>'
 		        	            		+ '<td>' + schedule[i].startDate + '</td></tr>';
@@ -648,11 +645,11 @@
 	        		data: JSON.stringify(consultJson),
 	        		success: function(consultNo) {
 	        			console.log(consultNo + "번 추가 완료");
-	        			
 	        			consultJson = null;
 	        			selectedProduct = [];	        		
 	        			$('#consultContentInsert').modal('hide');
 	        			location.href = '${pageContext.request.contextPath}/sales/consult';
+
 					},
 	        		error: function(e) {
 	        			console.log(e);

@@ -10,26 +10,50 @@
 	<meta name="description" content="Bootstrap Metro Dashboard">
 	<meta name="author" content="Dennis Ji">
 	<meta name="keyword" content="Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
-	<!-- end: Meta -->
-	
-	<!-- start: Mobile Specific -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!-- end: Mobile Specific -->
 	
-	<!-- start: CSS -->
-	<!-- ace styles -->
-		<%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" /> --%>
-	<link id="bootstrap-style" href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
+	<script src='${pageContext.request.contextPath}/js/jquery.min.js'></script> <!-- for calendar -->
+	<script src='${pageContext.request.contextPath}/js/moment.min.js'></script> <!-- for calendar -->
+	<script src="${pageContext.request.contextPath}/js/jquery-1.9.1.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery-migrate-1.0.0.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery-ui-1.10.0.custom.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.ui.touch-punch.js"></script>
+	<script src="${pageContext.request.contextPath}/js/modernizr.js"></script>
+	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.cookie.js"></script>
+	<script src='${pageContext.request.contextPath}/js/fullcalendar.js'></script>
+	<script src='${pageContext.request.contextPath}/js/jquery.dataTables.min.js'></script>
+	<script src="${pageContext.request.contextPath}/js/excanvas.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.flot.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.flot.pie.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.flot.stack.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.flot.resize.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.chosen.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.uniform.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.cleditor.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.noty.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.elfinder.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.raty.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.iphone.toggle.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.uploadify-3.1.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.gritter.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.imagesloaded.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.masonry.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.knob.modified.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.sparkline.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/counter.js"></script>
+	<script src="${pageContext.request.contextPath}/js/retina.js"></script>
+	<script src="${pageContext.request.contextPath}/js/custom.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.datetimepicker.full.js"></script>
+	<link id="bootstrap-style" href="${pageContext.request.contextPath}/css/bootstrap.css" rel="stylesheet">
 	<link href="${pageContext.request.contextPath}/css/bootstrap-responsive.min.css" rel="stylesheet">
 	<link id="base-style" href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
 	<link id="base-style-responsive" href="${pageContext.request.contextPath}/css/style-responsive.css" rel="stylesheet">
-
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/jquery.datetimepicker.css"/>	
 	<link href='http://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
 	<link href='https://fonts.googleapis.com/css?family=Bungee+Inline' rel='stylesheet' type='text/css'>
 	<link rel="shortcut icon" href="img/favicon.ico">
-	<script src='${pageContext.request.contextPath}/js/jquery.min.js'></script> <!-- for calendar -->
-	<script src='${pageContext.request.contextPath}/js/moment.min.js'></script> <!-- for calendar -->
+
 	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script> -->
 	<!-- end: javascript -->
 	
@@ -81,8 +105,11 @@
 		}
 		
 		.btn-group.btn-corner>.btn {
-		    border-bottom-left-radius: 8px;
-		    border-top-left-radius: 8px;
+			margin: 0 2px;
+		}
+		
+		.drag-event-div{
+			margin: 2px auto;
 		}
 
 	</style>
@@ -123,28 +150,17 @@
 				  <div class="box-header" data-original-title>
 					  <h2><i class="halflings-icon calendar"></i><span class="break"></span>Calendar</h2>
 				  </div>
-				  <div class="box-content">
-					<div id="external-events" class="span3 hidden-phone hidden-tablet">
-						<!-- 이벤트 분류 -->
-						<h4>Draggable Events</h4>
-						<div class="external-event badge badge-important">Important</div>
-						<br/>
-						<div class="external-event badge badge-success">Meeting</div>
-						<br/>
-						<div class="external-event badge badge-warning">Call</div>
-						<br/>
-						<div class="external-event badge badge-info">Task</div>
-						<br/>
-						<div class="external-event badge">Event</div>
-						<br/>
-						<div class="external-event badge badge-inverse">Other</div>
-						<p>
-<!-- 							<label for="drop-remove"><input type="checkbox" id="drop-remove" /> remove after drop</label> -->
-						</p>
+					<div class="box-content">
+						<div id="external-events" class="span2 hidden-phone hidden-tablet">
+							<h4>Events</h4>
+							<div class="external-event badge badge-important drag-event-div">중요사항</div>
+							<div class="external-event badge badge-success drag-event-div">미팅</div>
+							<div class="external-event badge badge-warning drag-event-div">전화</div>
+							<div class="external-event badge badge-info drag-event-div">작업</div>
+							<div class="external-event badge drag-event-div">이벤트</div>
+							<div class="external-event badge badge-inverse drag-event-div">그 외</div>
 						</div>
-
 						<div id="calendar" class="span9"></div>
-
 						<div class="clearfix"></div>
 					</div>
 				</div>
@@ -161,70 +177,6 @@
 	
 	<!-- 푸터 -->
 	<jsp:include page="/include/footer.jsp"/>
-	
-
-	<!-- start: JavaScript-->
-
-	<script src="${pageContext.request.contextPath}/js/jquery-1.9.1.min.js"></script>
-	
-	<%-- <script src="${pageContext.request.contextPath}/js/jquery-2.1.4.min.js"></script> --%>
-	<script src="${pageContext.request.contextPath}/js/jquery-migrate-1.0.0.min.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/jquery-ui-1.10.0.custom.min.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/jquery.ui.touch-punch.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/modernizr.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/jquery.cookie.js"></script>
-	<script src='${pageContext.request.contextPath}/js/fullcalendar.js'></script>
-	<%-- <script src='${pageContext.request.contextPath}/js/fullcalendar.min.js'></script> --%>
-
-	<script src='${pageContext.request.contextPath}/js/jquery.dataTables.min.js'></script>
-
-	<script src="${pageContext.request.contextPath}/js/excanvas.js"></script>
-	<script src="${pageContext.request.contextPath}/js/jquery.flot.js"></script>
-	<script src="${pageContext.request.contextPath}/js/jquery.flot.pie.js"></script>
-	<script src="${pageContext.request.contextPath}/js/jquery.flot.stack.js"></script>
-	<script src="${pageContext.request.contextPath}/js/jquery.flot.resize.min.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/jquery.chosen.min.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/jquery.uniform.min.js"></script>
-	
-	<script src="${pageContext.request.contextPath}/js/jquery.cleditor.min.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/jquery.noty.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/jquery.elfinder.min.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/jquery.raty.min.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/jquery.iphone.toggle.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/jquery.uploadify-3.1.min.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/jquery.gritter.min.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/jquery.imagesloaded.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/jquery.masonry.min.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/jquery.knob.modified.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/jquery.sparkline.min.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/counter.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/retina.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/custom.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/jquery.datetimepicker.full.js"></script>
-	
-	<!-- end: JavaScript-->
 	
 	<script> 
 		 console.dir('${scheduleList}');
@@ -366,33 +318,10 @@
 					// 1. 등록 폼 모달 띄움 (타입 별 모달 처리)
 					addModal.modal('show');	
 					
-					// 초기 시간 셋팅
-					date.time('10:00');
-				 	
-				 	/*  https://xdsoft.net/jqplugins/datetimepicker/ */
-				 		datetimepicker.datetimepicker({
-					 		defaultDate: getDate(date),
-					 		defaultTime: '10:00',
-					 		 allowTimes:[
-					 			'10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00', '13:30',
-					 			'14:00', '14:30', '15:00', '15:30', '16:00', '16:30', '17:00', '17:30',
-					 			'18:00', '18:30', '19:00', '19:30', '20:00', '20:30', '21:00', '21:30', '22:00'
-				 			],
-				 			yearStart: '2017',
-				 			/* minTime: '10:00',
-				 			maxTime: '22:00',
-				 			step: 30, */
-					 		value: getDate(date),
-					 		format:'y-m-d H:i'
-				 	});
-					
-						if(originalEventObject.title=='Task'){
+						if(originalEventObject.title=='작업'){
 							$('#customerInfo').hide();
 						}else {
 							$('#customerInfo').show();
-							var a = moment(datetimepicker.datetimepicker('getValue'));
-							a.add(3,'hours');
-							console.log(getDate(a));
 							//	detailModal.remove();
 							// 1-1. 고객 정보 받아오기, 모달에 셋팅
 							/* $.ajax({
@@ -420,6 +349,13 @@
 				        			alert('error');
 				        		} 
 							}); */
+							
+							if(originalEventObject.title=='이벤트'){
+								addModal.find('#div_duration').hide();
+							}else {
+								addModal.find('#div_duration').show();
+							}
+							
 						}
 						
 						// 2.추가할 이벤트 저장
@@ -453,32 +389,72 @@
 						});
 					
 						// 2) 날짜 설정
-						var start = getDate(date);
-						var end = start;
-						console.log('start:'+start);
-						console.log('end:'+start);
+						var duration = 1;
+						var type = 'hours';
 						
-						console.dir($("#scheduleType"));
-						console.log(start +"~"+end);
+						// 초기 시간 셋팅
+						date.time('10:00');
+					 	
+					 	/*  https://xdsoft.net/jqplugins/datetimepicker/ */
+				 		datetimepicker.datetimepicker({
+					 		defaultDate: getDate(date),
+					 		defaultTime: '10:00',
+					 		 allowTimes:[
+					 			'10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00', '13:30',
+					 			'14:00', '14:30', '15:00', '15:30', '16:00', '16:30', '17:00', '17:30',
+					 			'18:00', '18:30', '19:00', '19:30', '20:00', '20:30', '21:00', '21:30', '22:00'
+				 			],
+				 			yearStart: '2017',
+				 			/* minTime: '10:00',
+				 			maxTime: '22:00',
+				 			step: 30, */
+					 		value: getDate(date),
+					 		format:'Y-m-d H:i',
+					 		onChangeDateTime:function(dp,$input){
+					 			addModal.find('#endDate').text($input.val());
+					 		}
+				 		});
+						
+				 		addModal.find('#endDate').text(getDate(date));						
+						addModal.find('.duration').off().on('click', function(ev){
+							duration = 1;
+							type='hours';
+							
+							if(originalEventObject.title=='Call'){
+								duration = 30;
+								type = 'minutes';
+							}
+							
+							duration = duration * Number($(this).val());
+							console.log(duration);
+							
+							var endDate = moment(datetimepicker.datetimepicker('getValue'));
+							endDate.add(duration, type);
+							addModal.find('#endDate').text(getDate(endDate));
+						});
+						
 				
 						
 						// 5. 등록 처리
 					//	$('#modalSave').unbind("click");
-						addModal.find('button[id=modalSave]').click(function(ev){
+						addModal.find('button[id=modalSave]').off().on('click', function(ev){
 							// We don't want this to act as a link so cancel the link action
 							ev.preventDefault();
 							ev.stopPropagation();  // 이벤트버블링 방지
 							console.log("클릭 메서드");
 							var check = addCheck();
+							
+							console.log(duration);
 														
 							if(check=='ok'){
 							
 								// 캘린더에 쓰일 Data (변경사항 저장 - type, end 날짜)	
 								var selectedDate_s = moment(datetimepicker.datetimepicker('getValue'));
-								var selectedDate_e = selectedDate_s.add(1,'hours');
+								/* var selectedDate_e = selectedDate_s;
+								selectedDate_e.add(duration,type); */
 								
 								 var startData = getDate(selectedDate_s); 
-								 var endData = getDate(selectedDate_e); // getDate(moment(endDatepicker.toString()));
+								 var endData = addModal.find('#endDate').text(); //getDate(selectedDate_e); // getDate(moment(endDatepicker.toString()));
 								 var cNo = $("input[name='customerNo']:checked").val()!=null?$("input[name='customerNo']:checked").val():null;
 								 var name = cNo!=null?document.getElementById(cNo).innerText:addModal.find('input[id=location]').val();
 								 console.log('modalSave start output : '+startData);
@@ -596,7 +572,7 @@
 								detailModal.find('input[id=location]').val(schedule.location);
 								detailModal.find('input[id=comments]').val(schedule.comments);
 								detailModal.find('input[id=repetition]').val(schedule.repetition);
-								if(schedule.customerNo!=""){
+								if(schedule.customerNo!=null || schedule.customerNo!=""){
 									detailModal.find('span[id=customerName]').text(schedule.customer.name);									
 									detailModal.find('div[id=div_customerName]').show();
 								}else {
@@ -609,7 +585,7 @@
 								// 데이트피커
 								/*  https://xdsoft.net/jqplugins/datetimepicker/ */
 							 	detail_datetimepicker.datetimepicker({
-							 		defaultDate: start,
+							 		defaultDate: schedule.startDate,
 							 		 allowTimes:[
 							 			'10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00', '13:30',
 							 			'14:00', '14:30', '15:00', '15:30', '16:00', '16:30', '17:00', '17:30',
@@ -619,9 +595,20 @@
 						 			/* minTime: '10:00',
 						 			maxTime: '22:00',
 						 			step: 30, */
-							 		value: start,
-							 		format:'y-m-d H:i'
+							 		value: schedule.startDate,
+							 		format:'Y-m-d H:i',
+							 		onChangeDateTime:function(dp,$input){
+							 			detailModal.find('#endDate').text($input.val());
+							 		}
 							 	});
+								
+								detailModal.find('#endDate').text(end);
+								
+								if(schedule.type=='Event'){
+									detailModal.find('#div_duration').hide();
+								}else {
+									detailModal.find('#div_duration').show();
+								}
 
 							},
 							error: function(){
@@ -629,19 +616,40 @@
 							}
 						});
 						
+						var dduration = 1;
+						var dtype = 'hours';
+						
+						detailModal.find('.dduration').off().on('click', function(ev){
+
+							dduration = 1;
+							dtype = 'hours';
+							
+							if(calEvent.className=='Call'){
+								dduration = 30;
+								dtype = 'minutes';
+							}
+							
+							dduration = dduration * Number($(this).val());
+							console.log(dduration);
+
+							var endDate = moment(detail_datetimepicker.datetimepicker('getValue'));
+							endDate.add(dduration, dtype);
+							detailModal.find('#endDate').text(getDate(endDate));
+							
+						});
 						
 						// 수정 버튼
-						detailModal.find('a[id=modalSave]').click(function(ev){
+						detailModal.find('a[id=modalSave]').off().on('click', function(ev){
 							
 							ev.preventDefault();
 							ev.stopPropagation();  // 이벤트버블링 방지
 							
 							// 캘린더에 쓰일 Data (변경사항 저장 - type, end 날짜)						
 							 var selectedDate_s = moment(detail_datetimepicker.datetimepicker('getValue'));
-							var selectedDate_e = selectedDate_s.add(1,'hours');
+							/* var selectedDate_e = selectedDate_s.add(dduration,dtype); */
 	
 							 var startData = getDate(selectedDate_s);
-							 var endData = getDate(selectedDate_e);
+							 var endData = detailModal.find('#endDate').text();
 							 
 							console.log(calEvent);
 		        			console.log(name);
@@ -662,7 +670,7 @@
 							console.log(scheduleData);
 							
 							  $.ajax({
-				        		url: "${pageContext.request.contextPath}/schedule/",
+				        		url: "${pageContext.request.contextPath}/schedule",
 				        		type: "put",
 				        		contentType: "application/json; charset=uft-8",
 				        		dataType: "json",
@@ -686,7 +694,7 @@
 						});
 						
 						// 삭제 버튼
-						detailModal.find('a[id=modalDelete]').click(function(){
+						detailModal.find('a[id=modalDelete]').off().on('click', function(){
 							
 							$.ajax({
 								url: '${pageContext.request.contextPath}/schedule/'+calEvent.id,
@@ -696,8 +704,8 @@
 										calendar.fullCalendar('removeEvents' , function(ev){
 											return (ev._id == calEvent._id);
 										});
-								//		detailModal.modal("hide");
 										alert('삭제 완료');
+										detailModal.modal("hide");
 									}else {
 										console.log('디비에러');
 									}

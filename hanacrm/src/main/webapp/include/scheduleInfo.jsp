@@ -38,40 +38,26 @@
 				</div>
 				
 				
-				<div class="control-group">
-					<label class="control-label" for="focusedInput">Duration</label>
-					<div class="controls">
-				  		<a class="quick-button-small span2">
-							<i class="icon-dashboard"></i>
-								<p id="1">1</p>
-						</a>
-						<a class="quick-button-small span2">
-							<i class="icon-dashboard"></i>
-								<p id="2">2</p>
-						</a>
-						<a class="quick-button-small span2">
-							<i class="icon-dashboard"></i>
-								<p id="3">3</p>
-						</a>
-						<a class="quick-button-small span2">
-							<i class="icon-dashboard"></i>
-								<p id="4">4</p>
-						</a>		
-				  </div>
-				</div>
-				
-				<div class="control-group">
+		
+				<div class="control-group" id="div_duration">
 					<label class="control-label" for="focusedInput">Duration</label>
 					<div class="controls">
 						<div class="btn-group btn-overlap btn-corner">
-							<button value="1" class="btn btn-sm btn-white btn-info">1</button>
-							<button value="2" class="btn btn-sm btn-white btn-info">2</button>
-							<button value="3" class="btn btn-sm btn-white btn-info">3</button>
-							<button value="4" class="btn btn-sm btn-white btn-info">4</button>
+							<button value="1" class="btn btn-sm btn-white btn-info duration">1</button>
+							<button value="2" class="btn btn-sm btn-white btn-info duration">2</button>
+							<button value="3" class="btn btn-sm btn-white btn-info duration">3</button>
+							<button value="4" class="btn btn-sm btn-white btn-info duration">4</button>
 						</div>
 					</div>
 				</div>
-			  
+				
+				<div class="control-group">
+					<label class="control-label" for="focusedInput">End Date</label>
+					<div class="controls">
+						<span id="endDate"></span>
+					</div>					
+				</div>
+
 			  <div class="control-group">
 				<label class="control-label" for="focusedInput">location</label>
 				<div class="controls">
