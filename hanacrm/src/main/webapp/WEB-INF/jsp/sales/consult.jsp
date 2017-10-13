@@ -24,13 +24,10 @@
 	<link rel="shortcut icon" href="img/favicon.ico">
 </head>
 <body>
-<!-- 헤더 -->
 	<jsp:include page="/include/header.jsp"/>
 	
 		<div class="container-fluid-full">
 		<div class="row-fluid">
-				
-			<!-- 메뉴 -->
 			<jsp:include page="/include/sideMenu.jsp"/>
 			
 			<noscript>
@@ -42,8 +39,6 @@
 			
 			<!-- start: Content -->
 			<div id="content" class="span10">
-			
-			
 			<ul class="breadcrumb">
 				<li>
 					<i class="icon-home"></i>
