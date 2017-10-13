@@ -59,5 +59,17 @@
 		insert into consult_product(no, consult_no, type, product_no) 
 		values(consult_product_seq.nextval, #{consultNo}, #{type}, #{productNo})
 	</insert>
+	
+	<update id="update" parameterType="consult">
+		update into consult set content=#{content}, title=#{title} where no=#{no}
+	</update>
+	
+	<update id="updateProduct" parameterType="consultProduct">
+		update into consult_product set type=#{type}, product_no=#{productNo} where consult_no=#{consultNo}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		delete from consult where no=#{consultNo}
+	</delete>
 		
 </mapper>

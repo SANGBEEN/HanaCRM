@@ -45,9 +45,13 @@ public class ConsultDAO {
 	public int update(ConsultVO consultVO) {
 		return sqlSessionTemplate.update("consult.ConsultDAO.update", consultVO);
 	}
+	
+	public int updateProduct(ConsultProductVO consultProductVO) {
+		return sqlSessionTemplate.update("consult.ConsultDAO.updateProduct", consultProductVO);
+	}
 
-	public int delete(int no) {
-		return sqlSessionTemplate.delete("consult.ConsultDAO.delete", no);
+	public int delete(int consultNo) {
+		return sqlSessionTemplate.delete("consult.ConsultDAO.delete", consultNo);
 	}
 
 	public List<ConsultVO> selectByCusNo(int customerNo) {

@@ -17,7 +17,7 @@
 	<!-- end: Mobile Specific -->
 	
 	<!-- start: CSS -->
-	<link id="bootstrap-style" href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
+	<link id="bootstrap-style" href="${pageContext.request.contextPath}/css/bootstrap.css" rel="stylesheet">
 	<link href="${pageContext.request.contextPath}/css/bootstrap-responsive.min.css" rel="stylesheet">
 	<link id="base-style" href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
 	<link id="base-style-responsive" href="${pageContext.request.contextPath}/css/style-responsive.css" rel="stylesheet">
@@ -102,7 +102,7 @@
 						<tbody>
 							<c:forEach items="${ consultList }" var="consultVO">						
 												
-							<tr> <!-- class="row-minimize-hs"> -->
+							<tr id="tr${ consultVO.no }"> <!-- class="row-minimize-hs"> -->
 								<td id="row-no-hs">${ consultVO.no }</td>
 								<td>${ consultVO.customerVO.name }</td>
 								<td>${ consultVO.title }</td>
@@ -115,10 +115,10 @@
 									<a class="btn btn-success" id="consult-detail-hs" href="#" data-consult_no="${ consultVO.no }">
 										<i class="halflings-icon white zoom-in"></i>  
 									</a>
-									<a class="btn btn-info consult-update-hs" id="consult-update-hs" href="#">
+									<a class="btn btn-info" id="consult-update-hs" href="#" data-consult_no="${ consultVO.no }">
 										<i class="halflings-icon white edit"></i>  
 									</a>
-									<a class="btn btn-danger" id="consult-delete-hs" href="#">
+									<a class="btn btn-danger" id="consult-delete-hs" href="#" data-consult_no="${ consultVO.no }">
 										<i class="halflings-icon white trash"></i> 
 									</a>
 								</td>
@@ -183,7 +183,7 @@
 	</c:forEach>	
 	
 	<!-- 일정  선택 -->
-	<div class="modal hide fade" id="consult-schedule-select-hs">
+	<div class="modal hide fade" id="consultScheduleSelect">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -211,7 +211,7 @@
 	</div>		
 	
 	<!-- 상품  선택 -->
-	<div class="modal hide fade" id="consult-product-select-hs">
+	<div class="modal hide fade" id="consultProductSelect">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -244,7 +244,7 @@
 	</div>
 	
 	<!-- 선택한 상품 출력 -->
-	<div class="modal hide fade" id="selected-product-hs">
+	<div class="modal hide fade" id="selectedProduct">
 		<div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal">×</button>
 			<h3>선택한 상품</h3>
@@ -260,7 +260,7 @@
 	</div>
 	
 	<!-- 상담 내용 입력 -->
-	<div class="modal hide fade" id="consult-content-insert-hs">
+	<div class="modal hide fade" id="consultContentInsert">
 		<div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal">×</button>
 			<h3>상담 내용 입력</h3>
@@ -281,7 +281,7 @@
 			<div class="control-group hidden-phone">
 			  	<label class="control-label" for="consult-content-hs">상담 내용</label>
 			  	<div class="controls">
-					<textarea class="cleditor" id="consult-content-hs" rows="3"></textarea>
+					<textarea id="consult-content-hs"></textarea>
 			 	</div>
 			</div>
 		</div>
@@ -289,12 +289,10 @@
 			<a href="#" class="btn btn-primary" id="consult-insert-complete-hs">확인</a>
 			<a href="#" class="btn" data-dismiss="modal">취소</a>			
 		</div>
-	</div>
-	
-	
+	</div>	
 	
 	<!-- 수정 -->
-	<div class="modal hide fade" id="consult-update-hs">
+	<div class="modal hide fade" id="consultUpdate">
 		<div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal">×</button>
 			<h3>수정</h3>
@@ -329,8 +327,8 @@
 			<p>삭제하시겠습니까?</p>
 		</div>
 		<div class="modal-footer">
-			<a href="#" class="btn" data-dismiss="modal">취소</a>
-			<a href="#" class="btn btn-primary" id="consult-delete-complete-hs" data-dismiss="modal">확인</a>
+			<a href="#" class="btn btn-primary" id="consult-delete-complete-hs">확인</a>
+			<a href="#" class="btn" data-dismiss="modal">취소</a>			
 		</div>
 	</div>
 	
@@ -418,7 +416,7 @@
 				
 				//console.dir(consultList);
 				console.log(consultDetailNo);
-				$("#consult-detail-"+consultDetailNo).modal();
+				$('#consult-detail-'+consultDetailNo).modal();
 				console.log("상세");
 			});
 						
@@ -431,7 +429,7 @@
 				
 				selectDate();
 				
-				$("#consult-schedule-select-hs").modal();
+				$('#consultScheduleSelect').modal();
 				console.log("추가");
 			});			
 			
@@ -448,7 +446,7 @@
 			});
 			
 			function selectDate(){
-				var inputDate = $("#consult-date-hs").val();
+				var inputDate = $('#consult-date-hs').val();
 				
 				console.log(inputDate);
 
@@ -519,8 +517,8 @@
 				
 				getList(1);
 				
-				$("#consult-schedule-select-hs").modal("hide");
-				$("#consult-product-select-hs").modal();
+				$('#consultScheduleSelect').modal("hide");
+				$('#consultProductSelect').modal();
 				console.log("상품 선택");
 			});
 			
@@ -620,7 +618,7 @@
 				
 				$('div[id=selected-product-list-hs]').html(html);
 				
-				$('#selected-product-hs').modal();
+				$('#selectedProduct').modal();
 			});
 			
 			/* 상품 선택 완료 및 내용 입력 */
@@ -634,8 +632,8 @@
 				
 				$('span[id=consult-date-input-hs]').text(consultJson['regDate']);
 				
-				$('#consult-product-select-hs').modal('hide');
-				$('#consult-content-insert-hs').modal();
+				$('#consultProductSelect').modal('hide');
+				$('#consultContentInsert').modal();
 			});			
 			
 			/* 추가 완료 */
@@ -667,22 +665,25 @@
 	        		data: JSON.stringify(consultJson),
 	        		success: function(consultNo) {
 	        			console.log(consultNo + "번 추가 완료");
-	        			$('#consult-content-insert-hs').modal('hide');
+	        			$('#consultContentInsert').modal('hide');
 					},
 	        		error: function(e) {
 	        			console.log(e);
 	        			alert('error');
 					}
-				});											
+				});									
 			});
+			
+			var consultUpdateNo;
 		
 			/* 수정 */
 			$('a[id=consult-update-hs]').click(function(e){
 				e.preventDefault();
 				e.stopPropagation();
-				/* $(this).parent().next('.row-detail-hs').empty(); */
-				//console.log($(this).parent().parent().find('td[id=row-no-hs]'));
-				$("#consultUpdate").modal();
+				
+				consultUpdateNo = $(this).data('consult_no');
+				
+				$('#consultUpdate').modal();
 				console.log("수정");
 			});
 			
@@ -690,19 +691,35 @@
 			$('a[id=consult-update-complete-hs]').click(function(e){
 				e.preventDefault();
 				e.stopPropagation();
-				/* $(this).parent().next('.row-detail-hs').empty(); */
-				//console.log($(this).parent().parent().find('td[id=row-no-hs]'));
-				$("#consultUpdate").modal();
+				
 				console.log("수정 완료");
+				
+				$.ajax({	
+	        		url: "${pageContext.request.contextPath}/sales/consult",
+	        		type: "put",
+	        		contentType: "application/json; charset=utf-8",
+	        		data: JSON.stringify(consultJson),
+	        		success: function(consultNo) {
+	        			console.log(consultNo + "번 추가 완료");
+	        			$('#consultContentInsert').modal('hide');
+					},
+	        		error: function(e) {
+	        			console.log(e);
+	        			alert('error');
+					}
+				});			
 			});
+			
+			var consultDeleteNo;
 			
 			/* 삭제 */
 			$('a[id=consult-delete-hs]').click(function(e){
 				e.preventDefault();
 				e.stopPropagation();
-				/* $(this).parent().next('.row-minimize-hs').empty();
-				$(this).parent().next('.row-detail-hs').empty(); */
-				$("#consultDelete").modal();
+				
+				consultDeleteNo = $(this).data('consult_no');
+				
+				$('#consultDelete').modal();
 				console.log("삭제");
 			});
 			
@@ -711,22 +728,21 @@
 				e.preventDefault();
 				e.stopPropagation();
 				
-				var consultVONo = $(this).parent().parent().children('td[id=row-no-hs]').text();
-				
-				$.ajax({
-	        		url: "${pageContext.request.contextPath}/sales/consult/" + consultVONo,
+				$.ajax({	
+	        		url: "${pageContext.request.contextPath}/sales/consult/" + consultNo,
 	        		type: "delete",
-	        		success: function(data){
-	        			console.dir("data: " + data);
-	        	        console.log("삭제 완료");
-	        	    },
-	        		error: function(e){
-	      				console.log(e);
+	        		data: consultDeleteNo,
+	        		success: function(result) {
+	        			//console.log(consultNo + "번 추가 완료");
+	        			console.log(result + "번 삭제 완료");
+	        			$('#tr' + consultNo).remove();
+	        			$('#consultDelete').modal('hide');
+					},
+	        		error: function(e) {
+	        			console.log(e);
 	        			alert('error');
-	        		}
-	        	});
-				
-				console.log("삭제 완료");
+					}
+				});				
 			});						
 			
 		</script>

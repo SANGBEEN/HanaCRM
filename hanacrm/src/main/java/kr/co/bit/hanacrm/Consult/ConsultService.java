@@ -76,8 +76,8 @@ public class ConsultService {
 		return consultDAO.update(consultVO);
 	}
 
-	public int delete(int no) {
-		return consultDAO.delete(no);
+	public int delete(int consultNo) {		
+		return consultDAO.delete(consultNo) == 1 ? consultNo : 0;
 	}
 	
 	public List<ConsultVO> selectList(int customerNo) {
