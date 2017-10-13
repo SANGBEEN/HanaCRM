@@ -112,6 +112,32 @@
 			margin: 2px auto;
 		}
 
+		.duration, .dduration{
+			background-color: #008485;
+			border-color:#008485;
+		}
+		
+		.duration:focus, .dduration:focus {
+		  outline: none;
+		}
+		
+		.duration:hover, .dduration:hover {
+		  	background-color:  #008485;
+			border-color:  #008485;
+			opacity:0.7;
+		}
+		
+		.duration.clicked{
+			background-color: #f9105b !important;
+			border-color: #f9105b;
+		}
+		
+		.duration.clicked:hover, .dduration.clicked:hover {
+		  	background-color: #f9105b !important;
+			border-color: #f9105b;
+			opacity:0.7;
+		}
+
 	</style>
 </head>
 <body>
@@ -145,20 +171,17 @@
 				<li><a href="#">일정 관리</a></li>
 			</ul>
 
-			<div class="row-fluid sortable">
+			<div class="row-fluid">
 				<div class="box span12">
-				  <div class="box-header" data-original-title>
-					  <h2><i class="halflings-icon calendar"></i><span class="break"></span>Calendar</h2>
-				  </div>
 					<div class="box-content">
 						<div id="external-events" class="span2 hidden-phone hidden-tablet">
 							<h4>Events</h4>
-							<div class="external-event badge badge-important drag-event-div">중요사항</div>
-							<div class="external-event badge badge-success drag-event-div">미팅</div>
-							<div class="external-event badge badge-warning drag-event-div">전화</div>
-							<div class="external-event badge badge-info drag-event-div">작업</div>
-							<div class="external-event badge drag-event-div">이벤트</div>
-							<div class="external-event badge badge-inverse drag-event-div">그 외</div>
+							<div class="external-event badge badge-important drag-event-div">Important</div>
+							<div class="external-event badge badge-success drag-event-div">Meeting</div>
+							<div class="external-event badge badge-warning drag-event-div">Call</div>
+							<div class="external-event badge badge-info drag-event-div">Task</div>
+							<div class="external-event badge drag-event-div">Event</div>
+							<div class="external-event badge badge-inverse drag-event-div">Other</div>
 						</div>
 						<div id="calendar" class="span9"></div>
 						<div class="clearfix"></div>
@@ -318,7 +341,7 @@
 					// 1. 등록 폼 모달 띄움 (타입 별 모달 처리)
 					addModal.modal('show');	
 					
-						if(originalEventObject.title=='작업'){
+						if(originalEventObject.title=='Task'){
 							$('#customerInfo').hide();
 						}else {
 							$('#customerInfo').show();
@@ -350,12 +373,11 @@
 				        		} 
 							}); */
 							
-							if(originalEventObject.title=='이벤트'){
+							if(originalEventObject.title=='Event'){
 								addModal.find('#div_duration').hide();
 							}else {
 								addModal.find('#div_duration').show();
 							}
-							
 						}
 						
 						// 2.추가할 이벤트 저장
@@ -424,6 +446,8 @@
 						addModal.find('.duration').off().on('click', function(ev){
 							duration = 1;
 							type='hours';
+							$('.duration').removeClass('clicked');
+							$(this).addClass('clicked');
 							
 							if(originalEventObject.title=='Call'){
 								duration = 30;

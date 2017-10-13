@@ -20,16 +20,7 @@
 <link href='http://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Bungee+Inline' rel='stylesheet' type='text/css'>
 <link rel="shortcut icon" href="img/favicon.ico">
-
 <style>
-#addModal{
-	float: right;
-    height: 40px;
-    line-height: 40px;
-    text-align: center;
-    width: 50px;
-    background: gray;
-}
 
 .form-group{
     margin: 15px auto;
@@ -89,9 +80,15 @@
 
 				<div class="row-fluid">
 					<div class="box span12">
-						<div class="box-header" style="background-color:white; padding:0; height:40px;">
-							<div id="addModal"><i class="fa fa-plus" aria-hidden="true" style="color: white"></i></div>
-							<div style="float: right; font-size: 1rem; line-height: 40px; padding-right: 20px;"></div>
+						<div class="box-header" data-original-title>
+							<h2>
+								고객 리스트
+							</h2>
+							<div class="box-icon">
+								<a id="addModal" style="cursor: pointer;">
+									<i class="halflings-icon plus"></i>
+								</a>
+							</div>
 						</div>
 						<div class="box-content">
 							<table class="table table-striped table-bordered bootstrap-datatable datatable">
