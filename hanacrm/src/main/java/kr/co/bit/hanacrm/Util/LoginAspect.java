@@ -40,7 +40,8 @@ public class LoginAspect {
 			}else if(emp!=null){
 				return "redirect:/main";
 			}
-		} 
+		}
+		
 		Object result = joinPoint.proceed();
 		return result;
 	}

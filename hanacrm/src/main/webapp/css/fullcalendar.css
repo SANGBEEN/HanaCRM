@@ -917,6 +917,7 @@ NOTE: use percentage font sizes or else old IE chokes
 
 .fc-toolbar.fc-header-toolbar {
 	margin-bottom: 1em;
+	margin-top: 1vh;
 }
 
 .fc-toolbar.fc-footer-toolbar {
