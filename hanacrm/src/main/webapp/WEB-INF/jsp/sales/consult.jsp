@@ -58,17 +58,14 @@
 				</li>
 			</ul>
 
-			<div class="row-fluid sortable">		
+			<div class="row-fluid">		
 				<div class="box span12">
-					<div class="box-header" data-original-title>
-						<h2><i class="halflings-icon user"></i><span class="break"></span>상담 내역</h2>
-						<div class="box-icon">
-							<a href="#" id="consult-insert-hs"><i class="halflings-icon plus"></i></a>
-							<!-- <a href="#" class="btn-setting"><i class="halflings-icon wrench"></i></a>
-							<a href="#" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
-							<a href="#" class="btn-close"><i class="halflings-icon remove"></i></a> -->
-						</div>
+					<div class="box-header" style="background-color:white; padding:0; height:40px;">
+						<div id="consult-insert-hs" style="	float: right; height: 40px;line-height: 40px; text-align: center; width: 50px; background: gray;">
+							<i class="fa fa-plus" aria-hidden="true" style="color: white"></i></div>
+						<div style="float: right; font-size: 1rem; line-height: 40px; padding-right: 20px;"></div>
 					</div>
+					
 					<div class="box-content">
 						<table class="table table-striped table-bordered bootstrap-datatable datatable">
 						  <thead>
@@ -84,7 +81,6 @@
 						  </thead>   
 						<tbody>
 							<c:forEach items="${ consultList }" var="consultVO">						
-												
 							<tr id="tr${ consultVO.no }"> <!-- class="row-minimize-hs"> -->
 								<td id="row-no-hs">${ consultVO.no }</td>
 								<td>${ consultVO.customerVO.name }</td>
@@ -648,11 +644,10 @@
 	        		data: JSON.stringify(consultJson),
 	        		success: function(consultNo) {
 	        			console.log(consultNo + "번 추가 완료");
-	        			
 	        			consultJson = null;
 	        			selectedProduct = [];
-	        			
 	        			$('#consultContentInsert').modal('hide');
+	        			location.href= '${pageContext.request.contextPath}/sales/consult';
 					},
 	        		error: function(e) {
 	        			console.log(e);
