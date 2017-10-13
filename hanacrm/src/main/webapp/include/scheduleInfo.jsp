@@ -1,13 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<div class="row-fluid sortable">
+<div class="row-fluid">
 <div class="box span12">
 	<div class="box-header" data-original-title>
-		<h2><i class="halflings-icon edit"></i><span class="break"></span>Schedule Info</h2>
-		<div class="box-icon">
-			
-		</div>
+		<h2><i class="halflings-icon edit"></i><span class="break"></span>일정 정보</h2>
+		<div class="box-icon"></div>
 	</div>
 	<div class="box-content">
 		<div class="form-horizontal">
@@ -53,7 +51,7 @@
 				
 				<div class="control-group">
 					<label class="control-label" for="focusedInput">End Date</label>
-					<div class="controls">
+					<div class="controls" style="padding-left: 5px; height: 30px; line-height: 30px;">
 						<span id="endDate"></span>
 					</div>					
 				</div>

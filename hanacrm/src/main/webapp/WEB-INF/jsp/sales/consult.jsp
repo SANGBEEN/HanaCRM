@@ -42,7 +42,7 @@
 			<ul class="breadcrumb">
 				<li>
 					<i class="icon-home"></i>
-					<a href="${pageContext.request.contextPath}/main">Dashboard</a> 
+					<a href="${pageContext.request.contextPath}/main">Home</a> 
 					<i class="icon-angle-right"></i>
 				</li>
 				<li>
@@ -56,10 +56,15 @@
 
 			<div class="row-fluid">		
 				<div class="box span12">
-					<div class="box-header" style="background-color:white; padding:0; height:40px;">
-						<div id="consult-insert-hs" style="	float: right; height: 40px;line-height: 40px; text-align: center; width: 50px; background: gray;">
-							<i class="fa fa-plus" aria-hidden="true" style="color: white"></i></div>
-						<div style="float: right; font-size: 1rem; line-height: 40px; padding-right: 20px;"></div>
+					<div class="box-header" data-original-title>
+						<h2>
+							상담 내역
+						</h2>
+						<div class="box-icon">
+							<a id="consult-insert-hs" style="cursor: pointer;">
+								<i class="halflings-icon plus"></i>
+							</a>
+						</div>
 					</div>
 					
 					<div class="box-content">
@@ -110,20 +115,7 @@
 			<!-- end: Content -->
 		</div><!--/#content.span10-->
 		</div><!--/fluid-row-->
-		
-	<div class="modal hide fade" id="myModal">
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal">×</button>
-			<h3>Settings</h3>
-		</div>
-		<div class="modal-body">
-			<p>Here settings can be configured...</p>
-		</div>
-		<div class="modal-footer">
-			<a href="#" class="btn" data-dismiss="modal">Close</a>
-			<a href="#" class="btn btn-primary">Save changes</a>
-		</div>
-	</div>
+
 		
 	<!-- 상담 내역 상세 -->
 	<c:forEach items="${ consultList }" var="consultVO">
