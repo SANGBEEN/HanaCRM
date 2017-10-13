@@ -10,26 +10,50 @@
 	<meta name="description" content="Bootstrap Metro Dashboard">
 	<meta name="author" content="Dennis Ji">
 	<meta name="keyword" content="Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
-	<!-- end: Meta -->
-	
-	<!-- start: Mobile Specific -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!-- end: Mobile Specific -->
 	
-	<!-- start: CSS -->
-	<!-- ace styles -->
-		<%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" /> --%>
+	<script src='${pageContext.request.contextPath}/js/jquery.min.js'></script> <!-- for calendar -->
+	<script src='${pageContext.request.contextPath}/js/moment.min.js'></script> <!-- for calendar -->
+	<script src="${pageContext.request.contextPath}/js/jquery-1.9.1.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery-migrate-1.0.0.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery-ui-1.10.0.custom.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.ui.touch-punch.js"></script>
+	<script src="${pageContext.request.contextPath}/js/modernizr.js"></script>
+	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.cookie.js"></script>
+	<script src='${pageContext.request.contextPath}/js/fullcalendar.js'></script>
+	<script src='${pageContext.request.contextPath}/js/jquery.dataTables.min.js'></script>
+	<script src="${pageContext.request.contextPath}/js/excanvas.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.flot.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.flot.pie.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.flot.stack.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.flot.resize.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.chosen.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.uniform.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.cleditor.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.noty.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.elfinder.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.raty.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.iphone.toggle.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.uploadify-3.1.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.gritter.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.imagesloaded.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.masonry.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.knob.modified.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.sparkline.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/counter.js"></script>
+	<script src="${pageContext.request.contextPath}/js/retina.js"></script>
+	<script src="${pageContext.request.contextPath}/js/custom.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.datetimepicker.full.js"></script>
 	<link id="bootstrap-style" href="${pageContext.request.contextPath}/css/bootstrap.css" rel="stylesheet">
 	<link href="${pageContext.request.contextPath}/css/bootstrap-responsive.min.css" rel="stylesheet">
 	<link id="base-style" href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
 	<link id="base-style-responsive" href="${pageContext.request.contextPath}/css/style-responsive.css" rel="stylesheet">
-
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/jquery.datetimepicker.css"/>	
 	<link href='http://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
 	<link href='https://fonts.googleapis.com/css?family=Bungee+Inline' rel='stylesheet' type='text/css'>
 	<link rel="shortcut icon" href="img/favicon.ico">
-	<script src='${pageContext.request.contextPath}/js/jquery.min.js'></script> <!-- for calendar -->
-	<script src='${pageContext.request.contextPath}/js/moment.min.js'></script> <!-- for calendar -->
+
 	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script> -->
 	<!-- end: javascript -->
 	
@@ -81,8 +105,11 @@
 		}
 		
 		.btn-group.btn-corner>.btn {
-		    border-bottom-left-radius: 8px;
-		    border-top-left-radius: 8px;
+			margin: 0 2px;
+		}
+		
+		.drag-event-div{
+			margin: 2px auto;
 		}
 
 	</style>
@@ -123,28 +150,17 @@
 				  <div class="box-header" data-original-title>
 					  <h2><i class="halflings-icon calendar"></i><span class="break"></span>Calendar</h2>
 				  </div>
-				  <div class="box-content">
-					<div id="external-events" class="span2 hidden-phone hidden-tablet">
-						<!-- 이벤트 분류 -->
-						<h4>Draggable Events</h4>
-						<div class="external-event badge badge-important">Important</div>
-						<br/>
-						<div class="external-event badge badge-success">Meeting</div>
-						<br/>
-						<div class="external-event badge badge-warning">Call</div>
-						<br/>
-						<div class="external-event badge badge-info">Task</div>
-						<br/>
-						<div class="external-event badge">Event</div>
-						<br/>
-						<div class="external-event badge badge-inverse">Other</div>
-						<p>
-<!-- 							<label for="drop-remove"><input type="checkbox" id="drop-remove" /> remove after drop</label> -->
-						</p>
+					<div class="box-content">
+						<div id="external-events" class="span2 hidden-phone hidden-tablet">
+							<h4>Events</h4>
+							<div class="external-event badge badge-important drag-event-div">중요사항</div>
+							<div class="external-event badge badge-success drag-event-div">미팅</div>
+							<div class="external-event badge badge-warning drag-event-div">전화</div>
+							<div class="external-event badge badge-info drag-event-div">작업</div>
+							<div class="external-event badge drag-event-div">이벤트</div>
+							<div class="external-event badge badge-inverse drag-event-div">그 외</div>
 						</div>
-
 						<div id="calendar" class="span9"></div>
-
 						<div class="clearfix"></div>
 					</div>
 				</div>
@@ -161,70 +177,6 @@
 	
 	<!-- 푸터 -->
 	<jsp:include page="/include/footer.jsp"/>
-	
-
-	<!-- start: JavaScript-->
-
-	<script src="${pageContext.request.contextPath}/js/jquery-1.9.1.min.js"></script>
-	
-	<%-- <script src="${pageContext.request.contextPath}/js/jquery-2.1.4.min.js"></script> --%>
-	<script src="${pageContext.request.contextPath}/js/jquery-migrate-1.0.0.min.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/jquery-ui-1.10.0.custom.min.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/jquery.ui.touch-punch.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/modernizr.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/jquery.cookie.js"></script>
-	<script src='${pageContext.request.contextPath}/js/fullcalendar.js'></script>
-	<%-- <script src='${pageContext.request.contextPath}/js/fullcalendar.min.js'></script> --%>
-
-	<script src='${pageContext.request.contextPath}/js/jquery.dataTables.min.js'></script>
-
-	<script src="${pageContext.request.contextPath}/js/excanvas.js"></script>
-	<script src="${pageContext.request.contextPath}/js/jquery.flot.js"></script>
-	<script src="${pageContext.request.contextPath}/js/jquery.flot.pie.js"></script>
-	<script src="${pageContext.request.contextPath}/js/jquery.flot.stack.js"></script>
-	<script src="${pageContext.request.contextPath}/js/jquery.flot.resize.min.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/jquery.chosen.min.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/jquery.uniform.min.js"></script>
-	
-	<script src="${pageContext.request.contextPath}/js/jquery.cleditor.min.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/jquery.noty.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/jquery.elfinder.min.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/jquery.raty.min.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/jquery.iphone.toggle.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/jquery.uploadify-3.1.min.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/jquery.gritter.min.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/jquery.imagesloaded.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/jquery.masonry.min.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/jquery.knob.modified.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/jquery.sparkline.min.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/counter.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/retina.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/custom.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/jquery.datetimepicker.full.js"></script>
-	
-	<!-- end: JavaScript-->
 	
 	<script> 
 		 console.dir('${scheduleList}');
@@ -366,7 +318,7 @@
 					// 1. 등록 폼 모달 띄움 (타입 별 모달 처리)
 					addModal.modal('show');	
 					
-						if(originalEventObject.title=='Task'){
+						if(originalEventObject.title=='작업'){
 							$('#customerInfo').hide();
 						}else {
 							$('#customerInfo').show();
@@ -398,7 +350,7 @@
 				        		} 
 							}); */
 							
-							if(originalEventObject.title=='Event'){
+							if(originalEventObject.title=='이벤트'){
 								addModal.find('#div_duration').hide();
 							}else {
 								addModal.find('#div_duration').show();
