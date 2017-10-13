@@ -378,6 +378,14 @@
 							}else {
 								addModal.find('#div_duration').show();
 							}
+							
+							// radio button
+							$('.tr_radio').on('click', function(ev){
+								//ev.preventDefault();
+								$('.radio').find('span').removeClass('checked');
+								$('#uniform-radio'+$(this).data('no')).find('span').addClass('checked');
+								// $('#radio'+$(this).data('no')).prop('checked');
+							});
 						}
 						
 						// 2.추가할 이벤트 저장
@@ -401,8 +409,11 @@
 						console.log('1: '+copiedEventObject.className);
 							
 		 				// 1) type 설정
-						$("#scheduleType").val(originalEventObject.title);
-						$("#scheduleType").change(function(){
+		 				var duration = 1;
+						var type = 'hours';
+								 				
+						addModal.find("#scheduleType").val(originalEventObject.title);
+						addModal.find("#scheduleType").change(function(){
 							if($(this).val()=='Task'){
 								$('#customerInfo').hide();
 							}else {
@@ -412,15 +423,20 @@
 								}else {
 									addModal.find('#div_duration').show();
 								}
+								
+								if($(this).val()=='Call'){
+									duration = 30;
+									type = 'minutes';
+								}else {
+									duration = 1;
+									type = 'hours';
+								}
 							}
 						});
 					
 						// 2) 날짜 설정
-						var duration = 1;
-						var type = 'hours';
 						
-						// 초기 시간 셋팅
-						date.time('10:00');
+						date.time('10:00');  // 초기 시간 셋팅
 					 	
 					 	/*  https://xdsoft.net/jqplugins/datetimepicker/ */
 				 		datetimepicker.datetimepicker({
@@ -484,7 +500,7 @@
 								
 								 var startData = getDate(selectedDate_s); 
 								 var endData = addModal.find('#endDate').text(); //getDate(selectedDate_e); // getDate(moment(endDatepicker.toString()));
-								 var cNo = $("input[name='customerNo']:checked").val()!=null?$("input[name='customerNo']:checked").val():null;
+								 var cNo = $('span.checked').parent().parent().parent().data('no')!=null?$('span.checked').parent().parent().parent().data('no'):null;
 								 var name = cNo!=null?document.getElementById(cNo).innerText:addModal.find('input[id=location]').val();
 								 console.log('modalSave start output : '+startData);
 								 console.log('modalSave end output : '+endData);
@@ -597,7 +613,7 @@
 								var schedule = JSON.parse(data);
 								s = schedule;
 								console.dir(schedule);
-								detailModal.find('select[id=scheduleType]').val(schedule.type);
+								detailModal.find('span[id=scheduleType]').text(schedule.type);
 								detailModal.find('input[id=location]').val(schedule.location);
 								detailModal.find('input[id=comments]').val(schedule.comments);
 								detailModal.find('input[id=repetition]').val(schedule.repetition);
@@ -688,7 +704,7 @@
 									no: calEvent.id,
 				        			comments: detailModal.find('input[id=comments]').val(),
 				        			customerNo: s.customer.no,
-				        			type: detailModal.find('select[id=scheduleType]').val(),
+				        			type: detailModal.find('span[id=scheduleType]').text(),
 				        			location: detailModal.find('input[id=location]').val(),
 				        			importance: detailModal.find('select[id=importance]').val(),
 				        			repetition: detailModal.find('select[id=repetition]').val(),
@@ -890,7 +906,7 @@
 
 		 		var msg = 'ok';
 		 		
-		 		if($("#scheduleType").val()!='Task' && $("input[name='customerNo']:checked").val()==null){
+		 		if($("#scheduleType").val()!='Task' && $('span.checked').length==0){ // $("input[name='customerNo']:checked").val()==null){
 		 			return 'customer is not checked';
 		 		}
 		 		

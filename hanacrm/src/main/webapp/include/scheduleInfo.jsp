@@ -59,7 +59,7 @@
 			  <div class="control-group">
 				<label class="control-label" for="focusedInput">location</label>
 				<div class="controls">
-				  <input class="input-xlarge" id="location" type="text" value=""> <!-- name="location" -->
+				  <input class="focused" id="location" type="text" value=""> <!-- name="location" -->
 				</div>
 			  </div>
 
@@ -67,7 +67,7 @@
 			  <div class="control-group">
 				<label class="control-label" for="focusedInput">Comments</label>
 				<div class="controls">
-				  <input class="input-xlarge focused" id="comments" type="text" value=""> <!-- name="comments" -->
+				  <input id="comments" type="text" value=""> <!-- name="comments" -->
 				</div>
 			  </div>
 

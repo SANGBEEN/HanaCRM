@@ -28,15 +28,8 @@
 						<!-- Type select -->
 						  <div class="control-group">
 							<label class="control-label" for="selectError3">이벤트타입</label>
-							<div class="controls">
-							  <select id="scheduleType"> <!-- name="scheduleType" -->
-								<option value="Meeting">Meeting</option>
-							  	<option value="Call">Call</option>
-							  	<option value="Task">Task</option>
-							  	<option value="Event">Event</option>
-							  	<option value="Other">Other</option>	
-							  	<option value="Important">Important</option>
-							  </select>
+							<div class="controls" style="padding-left: 5px; height: 30px; line-height: 30px;">
+							 	 <span id="scheduleType"></span>
 							</div>
 						  </div>
 						  
@@ -69,7 +62,7 @@
 						  <div class="control-group">
 							<label class="control-label" for="focusedInput">장소</label>
 							<div class="controls">
-							  <input class="input-xlarge" id="location" type="text" value=""> <!-- name="location" -->
+							  <input class="focused" id="location" type="text" value=""> <!-- name="location" -->
 							</div>
 						  </div>
 			
@@ -77,7 +70,7 @@
 						  <div class="control-group">
 							<label class="control-label" for="focusedInput">일정사항</label>
 							<div class="controls">
-							  <input class="input-xlarge focused" id="comments" type="text" value=""> <!-- name="comments" -->
+							  <input id="comments" type="text" value=""> <!-- name="comments" -->
 							</div>
 						  </div>
 			
