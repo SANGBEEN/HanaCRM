@@ -19,7 +19,7 @@
 	<!-- start: CSS -->
 	<!-- ace styles -->
 		<%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" /> --%>
-	<link id="bootstrap-style" href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
+	<link id="bootstrap-style" href="${pageContext.request.contextPath}/css/bootstrap.css" rel="stylesheet">
 	<link href="${pageContext.request.contextPath}/css/bootstrap-responsive.min.css" rel="stylesheet">
 	<link id="base-style" href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
 	<link id="base-style-responsive" href="${pageContext.request.contextPath}/css/style-responsive.css" rel="stylesheet">
@@ -124,7 +124,7 @@
 					  <h2><i class="halflings-icon calendar"></i><span class="break"></span>Calendar</h2>
 				  </div>
 				  <div class="box-content">
-					<div id="external-events" class="span3 hidden-phone hidden-tablet">
+					<div id="external-events" class="span2 hidden-phone hidden-tablet">
 						<!-- 이벤트 분류 -->
 						<h4>Draggable Events</h4>
 						<div class="external-event badge badge-important">Important</div>
@@ -366,33 +366,10 @@
 					// 1. 등록 폼 모달 띄움 (타입 별 모달 처리)
 					addModal.modal('show');	
 					
-					// 초기 시간 셋팅
-					date.time('10:00');
-				 	
-				 	/*  https://xdsoft.net/jqplugins/datetimepicker/ */
-				 		datetimepicker.datetimepicker({
-					 		defaultDate: getDate(date),
-					 		defaultTime: '10:00',
-					 		 allowTimes:[
-					 			'10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00', '13:30',
-					 			'14:00', '14:30', '15:00', '15:30', '16:00', '16:30', '17:00', '17:30',
-					 			'18:00', '18:30', '19:00', '19:30', '20:00', '20:30', '21:00', '21:30', '22:00'
-				 			],
-				 			yearStart: '2017',
-				 			/* minTime: '10:00',
-				 			maxTime: '22:00',
-				 			step: 30, */
-					 		value: getDate(date),
-					 		format:'y-m-d H:i'
-				 	});
-					
 						if(originalEventObject.title=='Task'){
 							$('#customerInfo').hide();
 						}else {
 							$('#customerInfo').show();
-							var a = moment(datetimepicker.datetimepicker('getValue'));
-							a.add(3,'hours');
-							console.log(getDate(a));
 							//	detailModal.remove();
 							// 1-1. 고객 정보 받아오기, 모달에 셋팅
 							/* $.ajax({
@@ -420,6 +397,13 @@
 				        			alert('error');
 				        		} 
 							}); */
+							
+							if(originalEventObject.title=='Event'){
+								addModal.find('#div_duration').hide();
+							}else {
+								addModal.find('#div_duration').show();
+							}
+							
 						}
 						
 						// 2.추가할 이벤트 저장
@@ -453,32 +437,72 @@
 						});
 					
 						// 2) 날짜 설정
-						var start = getDate(date);
-						var end = start;
-						console.log('start:'+start);
-						console.log('end:'+start);
+						var duration = 1;
+						var type = 'hours';
 						
-						console.dir($("#scheduleType"));
-						console.log(start +"~"+end);
+						// 초기 시간 셋팅
+						date.time('10:00');
+					 	
+					 	/*  https://xdsoft.net/jqplugins/datetimepicker/ */
+				 		datetimepicker.datetimepicker({
+					 		defaultDate: getDate(date),
+					 		defaultTime: '10:00',
+					 		 allowTimes:[
+					 			'10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00', '13:30',
+					 			'14:00', '14:30', '15:00', '15:30', '16:00', '16:30', '17:00', '17:30',
+					 			'18:00', '18:30', '19:00', '19:30', '20:00', '20:30', '21:00', '21:30', '22:00'
+				 			],
+				 			yearStart: '2017',
+				 			/* minTime: '10:00',
+				 			maxTime: '22:00',
+				 			step: 30, */
+					 		value: getDate(date),
+					 		format:'Y-m-d H:i',
+					 		onChangeDateTime:function(dp,$input){
+					 			addModal.find('#endDate').text($input.val());
+					 		}
+				 		});
+						
+				 		addModal.find('#endDate').text(getDate(date));						
+						addModal.find('.duration').off().on('click', function(ev){
+							duration = 1;
+							type='hours';
+							
+							if(originalEventObject.title=='Call'){
+								duration = 30;
+								type = 'minutes';
+							}
+							
+							duration = duration * Number($(this).val());
+							console.log(duration);
+							
+							var endDate = moment(datetimepicker.datetimepicker('getValue'));
+							endDate.add(duration, type);
+							addModal.find('#endDate').text(getDate(endDate));
+						});
+						
 				
 						
 						// 5. 등록 처리
 					//	$('#modalSave').unbind("click");
-						addModal.find('button[id=modalSave]').click(function(ev){
+						addModal.find('button[id=modalSave]').off().on('click', function(ev){
 							// We don't want this to act as a link so cancel the link action
 							ev.preventDefault();
 							ev.stopPropagation();  // 이벤트버블링 방지
 							console.log("클릭 메서드");
 							var check = addCheck();
+							
+							console.log(duration);
 														
 							if(check=='ok'){
 							
 								// 캘린더에 쓰일 Data (변경사항 저장 - type, end 날짜)	
 								var selectedDate_s = moment(datetimepicker.datetimepicker('getValue'));
-								var selectedDate_e = selectedDate_s.add(1,'hours');
+								/* var selectedDate_e = selectedDate_s;
+								selectedDate_e.add(duration,type); */
 								
 								 var startData = getDate(selectedDate_s); 
-								 var endData = getDate(selectedDate_e); // getDate(moment(endDatepicker.toString()));
+								 var endData = addModal.find('#endDate').text(); //getDate(selectedDate_e); // getDate(moment(endDatepicker.toString()));
 								 var cNo = $("input[name='customerNo']:checked").val()!=null?$("input[name='customerNo']:checked").val():null;
 								 var name = cNo!=null?document.getElementById(cNo).innerText:addModal.find('input[id=location]').val();
 								 console.log('modalSave start output : '+startData);
@@ -596,7 +620,7 @@
 								detailModal.find('input[id=location]').val(schedule.location);
 								detailModal.find('input[id=comments]').val(schedule.comments);
 								detailModal.find('input[id=repetition]').val(schedule.repetition);
-								if(schedule.customerNo!=""){
+								if(schedule.customerNo!=null || schedule.customerNo!=""){
 									detailModal.find('span[id=customerName]').text(schedule.customer.name);									
 									detailModal.find('div[id=div_customerName]').show();
 								}else {
@@ -609,7 +633,7 @@
 								// 데이트피커
 								/*  https://xdsoft.net/jqplugins/datetimepicker/ */
 							 	detail_datetimepicker.datetimepicker({
-							 		defaultDate: start,
+							 		defaultDate: schedule.startDate,
 							 		 allowTimes:[
 							 			'10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00', '13:30',
 							 			'14:00', '14:30', '15:00', '15:30', '16:00', '16:30', '17:00', '17:30',
@@ -619,9 +643,20 @@
 						 			/* minTime: '10:00',
 						 			maxTime: '22:00',
 						 			step: 30, */
-							 		value: start,
-							 		format:'y-m-d H:i'
+							 		value: schedule.startDate,
+							 		format:'Y-m-d H:i',
+							 		onChangeDateTime:function(dp,$input){
+							 			detailModal.find('#endDate').text($input.val());
+							 		}
 							 	});
+								
+								detailModal.find('#endDate').text(end);
+								
+								if(schedule.type=='Event'){
+									detailModal.find('#div_duration').hide();
+								}else {
+									detailModal.find('#div_duration').show();
+								}
 
 							},
 							error: function(){
@@ -629,19 +664,40 @@
 							}
 						});
 						
+						var dduration = 1;
+						var dtype = 'hours';
+						
+						detailModal.find('.dduration').off().on('click', function(ev){
+
+							dduration = 1;
+							dtype = 'hours';
+							
+							if(calEvent.className=='Call'){
+								dduration = 30;
+								dtype = 'minutes';
+							}
+							
+							dduration = dduration * Number($(this).val());
+							console.log(dduration);
+
+							var endDate = moment(detail_datetimepicker.datetimepicker('getValue'));
+							endDate.add(dduration, dtype);
+							detailModal.find('#endDate').text(getDate(endDate));
+							
+						});
 						
 						// 수정 버튼
-						detailModal.find('a[id=modalSave]').click(function(ev){
+						detailModal.find('a[id=modalSave]').off().on('click', function(ev){
 							
 							ev.preventDefault();
 							ev.stopPropagation();  // 이벤트버블링 방지
 							
 							// 캘린더에 쓰일 Data (변경사항 저장 - type, end 날짜)						
 							 var selectedDate_s = moment(detail_datetimepicker.datetimepicker('getValue'));
-							var selectedDate_e = selectedDate_s.add(1,'hours');
+							/* var selectedDate_e = selectedDate_s.add(dduration,dtype); */
 	
 							 var startData = getDate(selectedDate_s);
-							 var endData = getDate(selectedDate_e);
+							 var endData = detailModal.find('#endDate').text();
 							 
 							console.log(calEvent);
 		        			console.log(name);
@@ -662,7 +718,7 @@
 							console.log(scheduleData);
 							
 							  $.ajax({
-				        		url: "${pageContext.request.contextPath}/schedule/",
+				        		url: "${pageContext.request.contextPath}/schedule",
 				        		type: "put",
 				        		contentType: "application/json; charset=uft-8",
 				        		dataType: "json",
@@ -686,7 +742,7 @@
 						});
 						
 						// 삭제 버튼
-						detailModal.find('a[id=modalDelete]').click(function(){
+						detailModal.find('a[id=modalDelete]').off().on('click', function(){
 							
 							$.ajax({
 								url: '${pageContext.request.contextPath}/schedule/'+calEvent.id,
@@ -696,8 +752,8 @@
 										calendar.fullCalendar('removeEvents' , function(ev){
 											return (ev._id == calEvent._id);
 										});
-								//		detailModal.modal("hide");
 										alert('삭제 완료');
+										detailModal.modal("hide");
 									}else {
 										console.log('디비에러');
 									}

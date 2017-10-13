@@ -60,17 +60,36 @@
 				  </div>
 				</div>
 				
-				<div class="control-group">
-					<label class="control-label" for="focusedInput">Duration</label>
+				<div class="control-group" id="div_duration">
+					<label class="control-label" for="focusedInput">여기가 진짜 Duration</label>
 					<div class="controls">
 						<div class="btn-group btn-overlap btn-corner">
-							<button value="1" class="btn btn-sm btn-white btn-info">1</button>
-							<button value="2" class="btn btn-sm btn-white btn-info">2</button>
-							<button value="3" class="btn btn-sm btn-white btn-info">3</button>
-							<button value="4" class="btn btn-sm btn-white btn-info">4</button>
+							<button value="1" class="btn btn-sm btn-white btn-info duration">1</button>
+							<button value="2" class="btn btn-sm btn-white btn-info duration">2</button>
+							<button value="3" class="btn btn-sm btn-white btn-info duration">3</button>
+							<button value="4" class="btn btn-sm btn-white btn-info duration">4</button>
 						</div>
 					</div>
 				</div>
+				
+				<div class="control-group">
+					<label class="control-label" for="focusedInput">End Date</label>
+					<div class="controls">
+						<span id="endDate"></span>
+					</div>					
+				</div>
+			  
+			  <div class="control-group">
+			  	<label class="control-label" for="focusedInput">Duration</label>
+				  <div class="controls dataTables_paginate paging_bootstrap pagination">
+					  <ul class="button-group radius">
+						  <li class="button"><a href="#">1</a></li>
+						  <li class="button"><a href="#">2</a></li>
+						  <li class="button"><a href="#">3</a></li>
+						  <li class="button"><a href="#">4</a></li>
+					  </ul>
+				  </div>
+			 </div>
 			  
 			  <div class="control-group">
 				<label class="control-label" for="focusedInput">location</label>

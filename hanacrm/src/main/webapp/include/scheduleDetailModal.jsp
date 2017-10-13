@@ -21,7 +21,7 @@
 						
 						<div class="control-group" id="div_customerName">
 							<label class="control-label">고객명</label>
-							<div class="controls">
+							<div class="controls" style="vertical-align:center">
 								<span id="customerName"></span>
 							</div>
 						</div>
@@ -45,6 +45,25 @@
 						  	<div class="controls">
 								<input id="detail_datetimepicker" type="text" >
 							</div>	
+						</div>
+						
+						<div class="control-group" id="div_duration">
+							<label class="control-label" for="focusedInput">Duration</label>
+							<div class="controls">
+								<div class="btn-group btn-overlap btn-corner">
+									<button value="1" class="btn btn-sm btn-white btn-info dduration">1</button>
+									<button value="2" class="btn btn-sm btn-white btn-info dduration">2</button>
+									<button value="3" class="btn btn-sm btn-white btn-info dduration">3</button>
+									<button value="4" class="btn btn-sm btn-white btn-info dduration">4</button>
+								</div>
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label" for="focusedInput">End Date</label>
+							<div class="controls">
+								<span id="endDate"></span>
+							</div>					
 						</div>
 						  
 						  <div class="control-group">
@@ -95,7 +114,7 @@
 	</div>
 	<div class="modal-footer">
 		<a href="#" id="modalSave" class="btn btn-primary" id="modalSave" data-dismiss="modal">Save changes</a>
-		<a href="#" class="btn btn-danger" id="modalDelete" data-dismiss="modal">Delete Event</a>
+		<a href="#" class="btn btn-danger" id="modalDelete">Delete</a>
 		<a href="#" class="btn" id="modalCancle" data-dismiss="modal">Close</a>
 	</div>
 </div>
