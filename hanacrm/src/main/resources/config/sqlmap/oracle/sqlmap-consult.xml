@@ -23,7 +23,7 @@
 <!-- 쿼리 -->
 	<!-- 상담 내역 받아오기 -->
 	<select id="selectListByEmployeeNo" parameterType="int" resultMap="consultMap">
-		select no, customer_no, employee_no, content, to_char(reg_date, 'yyyy-mm-dd') as reg_date, title from consult where employee_no=#{employeeNo}
+		select no, customer_no, employee_no, content, to_char(reg_date, 'YYYY-MM-DD hh24:mi') as reg_date, title from consult where employee_no=#{employeeNo}
 	</select>
 	
 	<!-- 상담 내역의 상품 받아오기 -->
@@ -37,7 +37,7 @@
 	
 	<!-- 상담 내역의 상세 정보 받아오기 -->
 	<select id="selectByNo" parameterType="int" resultMap="consultMap">
-		select * from consult where no=#{consultNo}
+		select no, customer_no, employee_no, content, to_char(reg_date, 'YYYY-MM-DD hh24:mi') as reg_date, title from consult where no=#{consultNo}
 	</select>
 	
 	<select id="select" parameterType="int" resultMap="consultMap">

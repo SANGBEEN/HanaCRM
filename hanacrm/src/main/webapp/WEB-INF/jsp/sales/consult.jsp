@@ -75,9 +75,11 @@
 								<th style="width:15%; text-align:center">고객 이름</th>
 								<th style="width:30%; text-align:center">요약</th>
 								<th style="width:15%; text-align:center">상담 날짜</th>
-								<th style="width:10%; text-align:center">타입</th>
+								<th style="width:7%; text-align:center">타입</th>
 								<th style="width:10%; text-align:center">상태</th>
-								<th style="width:15%; text-align:center">기능</th>
+								<th style="width:6%; text-align:center">상세보기</th>
+								<th style="width:6%; text-align:center">수정</th>
+								<th style="width:6%; text-align:center">삭제</th>
 							  </tr>
 						  </thead>   
 						<tbody>
@@ -95,9 +97,13 @@
 									<a class="btn btn-success" id="consult-detail-hs" href="#" data-consult_no="${ consultVO.no }">
 										<i class="halflings-icon white zoom-in"></i>  
 									</a>
+								</td>
+								<td style="text-align:center">
 									<a class="btn btn-info" id="consult-update-hs" href="#" data-consult_no="${ consultVO.no }">
 										<i class="halflings-icon white edit"></i>  
 									</a>
+								</td>
+								<td style="text-align:center">
 									<a class="btn btn-danger" id="consult-delete-hs" href="#" data-consult_no="${ consultVO.no }">
 										<i class="halflings-icon white trash"></i> 
 									</a>
@@ -164,7 +170,7 @@
 							<a href="#" class="btn yellow" id="date-select-hs">선택</a>					
 						</div>
 					</div>				
-					<div class="schedule-list">
+					<div id="schedule-list-hs">
 						
 					</div>							
 				</div>
@@ -188,14 +194,14 @@
 					<div class="row-fluid sortable">		
 						<div class="box span12">					
 							<ul class="nav nav-tabs">
-								<li class="active"><a data-toggle="tab" id="type-select-hs" data-product_type="1" href="#product-list">예금</a></li>
-								<li><a data-toggle="tab" id="type-select-hs" data-product_type="2" href="#product-list">적금</a></li>
-								<li><a data-toggle="tab" id="type-select-hs" data-product_type="3" href="#product-list">카드</a></li>
+								<li class="active"><a data-toggle="tab" id="type-select-hs" data-product_type="1" href="#product-list-hs">예금</a></li>
+								<li><a data-toggle="tab" id="type-select-hs" data-product_type="2" href="#product-list-hs">적금</a></li>
+								<li><a data-toggle="tab" id="type-select-hs" data-product_type="3" href="#product-list-hs">카드</a></li>
 							</ul>				
 							<div class="box-header" data-original-title>
 								<h2 id="tab-name-hs"></h2>								
 							</div>
-							<div class="box-content" id="product-list">
+							<div class="box-content" id="product-list-hs">
 								
 							</div>
 						</div><!--/span-->					
@@ -264,15 +270,18 @@
 			<h3>수정</h3>
 		</div>
 		<div class="modal-body">
-			<div class="control-group">
+			<div id="consult-update-table-hs">
+			
+			</div>				
+			<!-- <div class="control-group">
 				<label class="control-label" for="consult-content-update-hs">상담 내용</label>
 				<div class="controls">
 				  <input class="input-xlarge focused" id="consult-content-update-hs" type="text" value="">
 				</div>
-			</div>
+			</div> -->
 		</div>
 		<div class="modal-footer">			
-			<a href="#" class="btn btn-primary" id="consult-update-complete-hs" data-dismiss="modal">확인</a>
+			<a href="#" class="btn btn-primary" id="consult-update-complete-hs">확인</a>
 			<a href="#" class="btn" id="consult-insert-cancel-hs" data-dismiss="modal">취소</a>
 		</div>
 	</div>
@@ -424,7 +433,7 @@
 	        				"date"	:	inputDate
 	        		}, 
 	        		success: function(schedule) {
-	        	        html = '<table class="table table-striped table-bordered bootstrap-datatable datatable">';
+	        	        var html = '<table class="table table-striped table-bordered bootstrap-datatable datatable">';
 	        	        html += '<thead><tr><th>선택</th><th>고객 이름</th><th>장소</th><th>일정 내용</th><th>일시</th></tr></thead><tbody>';
 	        	        
 	        	        for (var i = 0; i < schedule.length; i++) {
@@ -437,8 +446,9 @@
 	        	        
 	        	        html += '</tbody></table>';
 	        	 
-	        	        document.querySelector('.schedule-list').innerHTML = html;
+	        	        //document.querySelector('#schedule-list').innerHTML = html;
 	        	        //console.log("html: " + html);
+	        	        $('div[id=schedule-list-hs]').html(html);
 	        	        
 	        	        $('.datatable').dataTable({
 	        				"sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span12'i><'span12 center'p>>",
@@ -459,6 +469,9 @@
 			
 			var consultJson;
 			
+			/* 선택한 상품들 담는 배열 */
+			var selectedProduct = [];
+			
 			/* 상품 선택 */
 			$('a[id=schedule-select-hs]').click(function(e) {
 				e.preventDefault();
@@ -471,7 +484,7 @@
 				
 				consultJson = {
 						"customerNo": $('input[name="optionsRadios"]:checked').data('customer_no'),
-						"regDate": "2017-10-12 13:30",//$('input[name="optionsRadios"]:checked').data('reg_date'),
+						"regDate": $('input[name="optionsRadios"]:checked').data('reg_date'),
 						"content": null,
 						"title": null,
 						"consultProduct": {}
@@ -488,7 +501,7 @@
 			
 			/* 탭에 따른 상품 목록 출력 */
 			$(document).on('click.tab.data-api', '[data-toggle="tab"]', function(e) {
-			    e.preventDefault();				   
+			    e.preventDefault();
 			    
 			    getList($(this).data('product_type'));
 			});
@@ -502,7 +515,7 @@
 	        		success: function(product) {	        			
 	        			$('h2[id=tab-name-hs]').html('<i class="halflings-icon book"></i><span class="break"></span>' + $('li[class=active]').find('a[id=type-select-hs]').text());
 	        			
-	        	        html = '<table class="table table-striped table-bordered bootstrap-datatable datatable">';
+	        	        var html = '<table class="table table-striped table-bordered bootstrap-datatable datatable">';
 	        	        html += '<thead><tr><th>선택</th><th>금융상품코드</th><th>금융상품명</th></tr></thead><tbody>'; /* <th>적립유형명</th></tr></thead><tbody>'; */
 	        	        
 	        	        for (var i = 0; i < product.length; i++) {		        	        	
@@ -517,7 +530,8 @@
 	        	        
 	        	        //console.log(html);
 	        	 
-	        	        document.querySelector('#product-list').innerHTML = html;
+	        	        //document.querySelector('#product-list').innerHTML = html;
+	        	        $('div[id=product-list-hs]').html(html);
 	        	        
 	        	        $('.datatable').dataTable({
 	        				"sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span12'i><'span12 center'p>>",
@@ -536,10 +550,7 @@
 	        	});
 				
 				console.log("탭 선택");
-			}
-			
-			/* 선택한 상품들 담는 배열 */
-			var selectedProduct = [];
+			}			
 			
 			/* 선택한 상품 담아두기 */
 			$(document).on('change', 'input[id=product-checkbox]', function() {
@@ -593,6 +604,8 @@
 				for (var i = 0; i < selectedProduct.length; i++) {
 					$('<span class="input-xlarge uneditable-input">' + selectedProduct[i]['productJson']['finPrdtNm'] + '</span>').appendTo('div[id=consult-product-input-hs]');
 				}
+				
+				selectedProduct = [];
 				
 				$('span[id=consult-date-input-hs]').text(consultJson['regDate']);
 				
@@ -654,9 +667,67 @@
 			$('a[id=consult-update-hs]').click(function(e) {
 				e.preventDefault();
 				e.stopPropagation();
-				consult-content-update-hs consultVO-content-hs
 				
 				consultUpdateNo = $(this).data('consult_no');
+				
+				$.ajax({	
+	        		url: "${pageContext.request.contextPath}/sales/consult/" + consultUpdateNo,
+	        		type: "get",
+	        		success: function(consult) {
+	        			var html = '<table class="table table-striped table-bordered">' 
+	        			+ '<tr><th>상담 일시</th><td>' + consult.regDate + '</td></tr>' 
+	        			+ '<tr><th>고객명</th><td>' + consult.customerVO.name + '</td></tr>'
+	        			+ '<tr><th>상담 요약</th><td>' + consult.title + '</td></tr>'
+	        			+ '<tr><th>상담 상품</th><td>' + '</td></tr>'
+	        			+ '<tr><th>상담 내용</th><td><textarea rows="3" cols="20">' + consult.content + '</textarea></td></tr>' 
+	        			+ '</table>';
+	        			
+	        			$('div[id=consult-update-table-hs]').html(html);
+	        			
+	        			/* var div = $('div[id=consult-update-table-hs]');
+	        			var table = $('<table class="table table-striped table-bordered">');
+	        			var tr = $('<tr>');
+	        			var th = $('<th>');
+	        			var td = $('<td>');
+	        			
+	        			table.append(
+       							tr.append(th.html('상담 일시'))
+       							.append(td.html(consult.regDate))
+       							)
+       						.append(
+       							tr.append(th.html('고객명'))
+       							.append(td.html(consult.customerVO.name))
+       							)
+       						.append(
+       							tr.append(th.html('상담 요약'))
+       							.append(td.html(consult.title))
+       							)
+       						.append(
+       							tr.append(th.html('상담 상품'))
+       							//.append(td.html(consult.regDate))
+       							)
+       						.append(
+       							tr.append(th.html('상담 내용'))
+       							.append(td.html(consult.content))
+       							);
+	        			
+	        			div.html(table); */
+	        			
+	        			/* $.each(consult, function(key, value) {
+	        				console.log('key: ' + key + ', value : ' + value);        				
+						}) */
+	        	 
+	        	        //$('table[id=consult-update-table]').append(html);
+					},
+	        		error: function(e) {
+	        			console.log(e);
+	        			alert('error');
+					}
+				});	
+				
+				//consult-content-update-hs consultVO-content-hs
+				
+				
 				
 				$('#consultDetail' + consultUpdateNo)
 				
@@ -720,7 +791,7 @@
 	        			console.log(e);
 	        			alert('error');
 					}
-				});				
+				});	
 			});						
 			
 		</script>

@@ -308,7 +308,7 @@
 	    	console.log(productType);
 	    	
 	    	var productDetail = ${ productDetail };
-	    	var productHeader = new Array();
+	    	var productHeader = [];
 	    	var productBody;
 	    	
 	    	switch (Number(productType)) {

@@ -38,7 +38,13 @@ public class ConsultService {
 	}
 	
 	public ConsultVO selectByNo(int no) {
-		return consultDAO.selectByNo(no);
+		ConsultVO consultVO = consultDAO.selectByNo(no);
+		
+		consultVO.setCustomerVO(customerDAO.detail(consultVO.getCustomerNo()));
+		
+		consultVO.setConsultProduct(consultDAO.selectProductList(consultVO.getNo()));
+		
+		return consultVO;
 	} 
 
 	public int insert(ConsultVO consultVO) {
@@ -73,7 +79,7 @@ public class ConsultService {
 	}
 
 	public int update(ConsultVO consultVO) {
-		return consultDAO.update(consultVO);
+		return consultDAO.update(consultVO) == 1 ? consultVO.getNo() : 0;
 	}
 
 	public int delete(int consultNo) {		
