@@ -690,9 +690,10 @@
 				$.ajax({	
 	        		url: "${pageContext.request.contextPath}/sales/consult/" + consultDetailNo,
 	        		type: "get",
+	        		dataType: "json",
 	        		success: function(consult) {
 	        			console.log(typeof consult);
-	        		
+	        			
 	        			var html = '<table class="table table-striped table-bordered">' 
 	        			+ '<tr><th>상담 일시</th><td>' + consult.regDate + '</td></tr>' 
 	        			+ '<tr><th>고객명</th><td>' + consult.customerVO.name + ' <a class="btn btn-success" id="customer-detail-hs" data-customer_no="' + consult.customerVO.no + '">상세정보</a></td></tr>'
@@ -764,7 +765,7 @@
 				$.ajax({
 	        		url: "${pageContext.request.contextPath}/customer/consult/" + customerNo,
 	        		type: "get",
-	        		//dataType: "json",
+	        		dataType: "json",
 	        		success: function(customer) {
 	        			console.log(customer);
 	        			
