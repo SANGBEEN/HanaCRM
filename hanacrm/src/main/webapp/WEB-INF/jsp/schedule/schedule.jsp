@@ -137,7 +137,38 @@
 			border-color: #f9105b;
 			opacity:0.7;
 		}
-
+		
+		.schedule-add-btn, .schedule-edit-btn{
+			background-color: #008485;
+			border-color: #008485;
+		}
+		
+		.schedule-add-btn:hover, .schedule-edit-btn:hover{
+			background-color: #008485;
+			border-color: #008485;
+			opacity:0.7;
+		}
+		
+		.schedule-cancle-btn{
+			background-color: #a7a9aa;
+		}
+		
+		.schedule-cancle-btn:hover{
+			background-color: #a7a9aa;
+			opacity:0.7;
+		}
+		
+		.schedule-delete-btn{
+			background-color: #b94a48;
+			border-color: #b94a48;
+		}
+		
+		.schedule-delete-btn:hover{
+			background-color: #b94a48;
+			border-color: #b94a48;
+			opacity:0.7;
+		}
+		
 	</style>
 </head>
 <body>
@@ -168,11 +199,18 @@
 					<a href="${pageContext.request.contextPath}/main">Home</a> 
 					<i class="icon-angle-right"></i>
 				</li>
-				<li><a href="#">일정 관리</a></li>
+				<li><a href="${pageContext.request.contextPath}/schedule">일정 관리</a></li>
 			</ul>
 
 			<div class="row-fluid">
 				<div class="box span12">
+				
+					<div class="box-header" data-original-title="">
+							<h2>
+								일정
+							</h2>
+					</div>
+					
 					<div class="box-content">
 						<div id="external-events" class="span2 hidden-phone hidden-tablet">
 							<h4>Events</h4>
@@ -182,6 +220,52 @@
 							<div class="external-event badge badge-info drag-event-div">Task</div>
 							<div class="external-event badge drag-event-div">Event</div>
 							<div class="external-event badge badge-inverse drag-event-div">Other</div>
+						
+							<!-- 오늘 일정 간략하게 -->
+							<div class="todo metro">
+								<ul class="todo-list">
+									<li class="red">
+										<a class="action icon-check-empty" href="#"></a>	
+										Windows Phone 8 App 
+										<strong>today</strong>
+									</li>
+									<li class="red">
+										<a class="action icon-check-empty" href="#"></a>
+										New frontend layout
+										<strong>today</strong>
+									</li>
+									<li class="yellow">
+										<a class="action icon-check-empty" href="#"></a>
+										Hire developers
+										<strong>tommorow</strong>
+									</li>
+									<li class="yellow">
+										<a class="action icon-check-empty" href="#"></a>
+										Windows Phone 8 App
+										<strong>tommorow</strong>
+									</li>
+									<li class="green">
+										<a class="action icon-check-empty" href="#"></a>
+										New frontend layout
+										<strong>this week</strong>
+									</li>
+									<li class="green">
+										<a class="action icon-check-empty" href="#"></a>
+										Hire developers
+										<strong>this week</strong>
+									</li>
+									<li class="blue">
+										<a class="action icon-check-empty" href="#"></a>
+										New frontend layout
+										<strong>this month</strong>
+									</li>
+									<li class="blue">
+										<a class="action icon-check-empty" href="#"></a>
+										Hire developers
+										<strong>this month</strong>
+									</li>
+								</ul>
+							</div>	
 						</div>
 						<div id="calendar" class="span9"></div>
 						<div class="clearfix"></div>
@@ -436,7 +520,6 @@
 						});
 					
 						// 2) 날짜 설정
-						
 						date.time('10:00');  // 초기 시간 셋팅
 					 	
 					 	/*  https://xdsoft.net/jqplugins/datetimepicker/ */
@@ -479,7 +562,7 @@
 							addModal.find('#endDate').text(getDate(endDate));
 						});
 						
-				
+						addModal.find('#importance').val(3);
 						
 						// 5. 등록 처리
 					//	$('#modalSave').unbind("click");
@@ -516,7 +599,7 @@
 								
 								// 서버에 보낼 Data
 								var scheduleData = {
-										comments: addModal.find('input[id=comments]').val(),
+										comments: addModal.find('textarea[id=comments]').val(),
 					        			customerNo: cNo,
 					        			type: addModal.find('select[id=scheduleType]').val(),
 					        			location: addModal.find('input[id=location]').val(),
@@ -542,7 +625,8 @@
 					        		type: "post",
 					        		data: scheduleData, 
 					        		success: function(scheduleNo){
-					        			alert('추가'+scheduleNo);
+					        		//	alert('추가'+scheduleNo);
+					        			alert('일정이 추가되었습니다.');
 					        			addModal.modal("hide");
 										//addModal.remove();
 										// 추가할 이벤트에 scheduleNo 저장
@@ -552,14 +636,14 @@
 										$('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
 					        		},
 					        		error: function(){
-					        			alert('error');
+					        	//		alert('error');
 					        		}
 					        	});   // post ajax end 
 					        	
 							//	 $(".modal-body").val("");							
 							
 							} else{
-								alert(check);
+							//	alert(check);
 							}  // check else end
 						}); // click end
 						
@@ -616,7 +700,7 @@
 								console.dir(schedule);
 								detailModal.find('span[id=scheduleType]').text(schedule.type);
 								detailModal.find('input[id=location]').val(schedule.location);
-								detailModal.find('input[id=comments]').val(schedule.comments);
+								detailModal.find('textarea[id=comments]').val(schedule.comments);
 								detailModal.find('input[id=repetition]').val(schedule.repetition);
 								if(schedule.customerNo!=null || schedule.customerNo!=""){
 									detailModal.find('span[id=customerName]').text(schedule.customer.name);									
@@ -658,7 +742,7 @@
 
 							},
 							error: function(){
-								alert('error');
+							//	alert('error');
 							}
 						});
 						
@@ -706,7 +790,7 @@
 							// 서버에 보낼 Data
 							var scheduleData = {
 									no: calEvent.id,
-				        			comments: detailModal.find('input[id=comments]').val(),
+				        			comments: detailModal.find('textarea[id=comments]').val(),
 				        			customerNo: s.customer.no,
 				        			type: detailModal.find('span[id=scheduleType]').text(),
 				        			location: detailModal.find('input[id=location]').val(),
@@ -725,7 +809,7 @@
 				        		dataType: "json",
 				        		data: JSON.stringify(scheduleData), 
 				        		success: function(data){
-				        			alert('수정'+data);
+				        	//		alert('수정'+data);
 				        			detailModal.modal("hide");
 									
 				        			// 달력 객체 정보 수정
@@ -736,7 +820,7 @@
 									calendar.fullCalendar('updateEvent', calEvent);
 				        		},
 				        		error: function(){
-				        			alert('error');
+				        	//		alert('error');
 				        		}
 				        	}); 
 							
@@ -745,27 +829,29 @@
 						// 삭제 버튼
 						detailModal.find('a[id=modalDelete]').off().on('click', function(){
 							
-							$.ajax({
-								url: '${pageContext.request.contextPath}/schedule/'+calEvent.id,
-								type: 'delete',
-								success: function(data){
-									if(data==1){										
-										calendar.fullCalendar('removeEvents' , function(ev){
-											return (ev._id == calEvent._id);
-										});
-										alert('삭제 완료');
-										detailModal.modal("hide");
-									}else {
-										console.log('디비에러');
+							if(confirm("일정을 삭제하시겠습니까?")){
+								
+								$.ajax({
+									url: '${pageContext.request.contextPath}/schedule/'+calEvent.id,
+									type: 'delete',
+									success: function(data){
+										if(data==1){										
+											calendar.fullCalendar('removeEvents' , function(ev){
+												return (ev._id == calEvent._id);
+											});
+											alert('삭제 완료');
+											detailModal.modal("hide");
+										}else {
+									//		console.log('디비에러');
+										}
+									},
+									error: function(e){
+										console.dir(e);
+								//		alert('error');
 									}
-								},
-								error: function(e){
-									console.dir(e);
-									alert('error');
-								}
-							});
-						});
-						
+								});
+							}
+						});  // 삭제 버튼 끝
 					}
 				});
 
@@ -803,7 +889,7 @@
 					alert(event.title + " end is now " + getDate(event.end)+ event.id);
 
 				    // 수정할건지 확인
-					if (!confirm("is this okay?")) {
+					if (!confirm("날짜를 변경하시겠습니까?")) {
 						// 취소 시, 원래대로 되돌아감
 						revertFunc();
 					}else {
@@ -885,7 +971,7 @@
 				
 				console.log(scheduleData);
 
-		         if (confirm("Are you sure about this change?")) {
+		         if (confirm("날짜를 변경하시겠습니까?")) {
 		        	$.ajax({
 		        		url: "${pageContext.request.contextPath}/schedule",
 		        		type: "put",
@@ -897,7 +983,7 @@
 		        		},
 		        		error: function(e){
 		      				console.log(e);
-		        			alert('error');
+		        		//	alert('error');
 				        	revertFunc();	
 		        		}
 		        	});

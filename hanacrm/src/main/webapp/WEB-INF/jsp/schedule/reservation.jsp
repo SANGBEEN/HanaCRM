@@ -30,7 +30,7 @@
 				<ul class="breadcrumb">
 					<li><i class="icon-home"></i> <a href="${pageContext.request.contextPath}/main">Home</a> <i
 						class="icon-angle-right"></i></li>
-					<li><a href="${pageContext.request.contextPath}/customer">신청 목록</a></li>
+					<li><a href="${pageContext.request.contextPath}/schedule/reservation">신청 목록</a></li>
 				</ul>
 
 				<div class="row-fluid">
@@ -49,10 +49,10 @@
 										<th style="width:10%; text-align:center">전화번호</th>
 										<th style="width:5%; text-align:center">고객등급</th>
 										<th style="width:15%; text-align:center">장소</th>
-										<th style="width:10%; text-align:center">희망시작일시</th>
-										<th style="width:10%; text-align:center">희망종료일시</th>
-										<th style="width:25%; text-align:center">메세지</th>
-										<th style="width:10%; text-align:center">예약등록일</th>
+										<th style="width:7%; text-align:center">희망시작일시</th>
+										<th style="width:7%; text-align:center">희망종료일시</th>
+										<th style="width:20%; text-align:center">메세지</th>
+										<th style="width:7%; text-align:center">예약등록일</th>
 										<th style="width:10%; text-align:center">수락/거절</th>
 									</tr>
 								</thead>
@@ -60,9 +60,9 @@
 								<tbody id="table-data">
 									<c:forEach var="reservation" items="${reservationList}">
 										<tr id="${reservation.no}">
-											<td>${reservation.name}</td>
-											<td class="center">${reservation.phone }</td>
-											<td class="center">
+											<td style="text-align:center; vertical-align:middle"> ${reservation.name}</td>
+											<td class="center" style="text-align:center; vertical-align:middle">${reservation.phone }</td>
+											<td class="center" style="text-align:center; vertical-align:middle">
 												<c:choose>
 													<c:when test="${reservation.customer.grade=='잠재'}">
 														<span class="label">${reservation.customer.grade}</span>
@@ -81,23 +81,25 @@
 												</c:choose>
 													
 											</td>
-											<td style="text-align:center">${reservation.location}</td>
-											<td style="text-align:center">${reservation.startDate}</td>
-											<td style="text-align:center">${reservation.endDate}</td>
-											<td style="text-align:center">${reservation.msg}</td>
-											<td style="text-align:center">${reservation.regDate}</td>
-											<td style="text-align:center" id="actionColum${reservation.no}">
+											<td style="text-align:center; vertical-align:middle">${reservation.location}</td>
+											<td style="text-align:center; vertical-align:middle">${reservation.startDate}</td>
+											<td style="text-align:center; vertical-align:middle">${reservation.endDate}</td>
+											<td style="text-align:center; vertical-align:middle">${reservation.msg}</td>
+											<td style="text-align:center; vertical-align:middle">${reservation.regDate}</td>
+											<td style="text-align:center; vertical-align:middle" id="actionColum${reservation.no}">
 												 <c:choose>
 													<c:when test="${reservation.status=='N'}">
 														취소됨
 													</c:when>
 													<c:otherwise>
 														<a class="btn btn-info" id="agree" href="#" data-reservation='${reservation}' <%-- onclick='clickAgree(${reservation})' --%>>
-															<i class="halflings-icon check"></i>
+															<!-- <i class="halflings-icon check"></i> -->
+															수락
 														</a> 
 														
 													    <a class="btn yellow" id="disagree" href="#" data-reservation='${reservation}' <%-- onclick="clickDisagree('${reservation.no}')" --%>>
-												    		<i class="halflings-icon remove-circle"></i>
+												    		<!-- <i class="halflings-icon remove-circle"></i> -->
+												    		거절
 											    		</a>
 													</c:otherwise>
 												</c:choose>
@@ -125,18 +127,18 @@
 	<div class="modal hide fade" id="commentsModal">
 		<div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal">×</button>
-			<h3>예약 확인</h3>
+			<h3>전달 메시지 입력</h3>
 		</div>
 		<div class="modal-body">
 			<div class="control-group">
 				<label class="control-label" for="focusedInput">전달할 메시지</label>
 				<div class="controls">
-					<input class="input-xlarge focused" id="comments" type="text"></input>
+					<input class="input-xlarge focused" id="comments" type="text" placeholder="연락드리겠습니다."></input>
 				</div>
 			</div>
 		</div>		
 		<div class="modal-footer">
-			<a href="#" class="btn btn-primary" id="updateBtn">입력</a>
+			<a href="#" class="btn btn-primary" id="updateBtn">전송</a>
 			<a href="#" class="btn" data-dismiss="modal">취소</a>
 			<!-- <a href="#" class="btn btn-primary" id="consult-insert-complete-hs" data-dismiss="modal">확인</a> -->			
 		</div>
@@ -267,13 +269,16 @@
 			var reservationData = {
 					no: reservation.no,
 					status: 'N',
-					comments: $('input[id=comments]').val()
+					comments: $('input[id=comments]')[0].placeholder
 				};
-			
 			
 			$('#commentsModal').modal('show');
 			
 			$('#commentsModal').find('a[id=updateBtn]').click(function(){
+				if($('input[id=comments]').val()!=null || $('input[id=comments]').val()!=""){
+					reservationData.comments = $('input[id=comments]').val();
+					console.log(reservationData.comments);
+				}
 				updateReservation(reservationData);
 			});
 			
@@ -299,18 +304,18 @@
 		
 		function updateReservation(reservationData){
 		
-			if(reservationData.status=='N')
-				reservationData.comments = $('input[id=comments]').val();
+			/* if(reservationData.status=='N')
+				reservationData.comments = $('input[id=comments]').val(); */
 			
 			console.log(reservationData);
 	
-			  $.ajax({
+			 /*  $.ajax({
 					url: "${pageContext.request.contextPath}/schedule/reservation",
 					type: "put",
 					contentType: "application/json; charset=uft-8",
 					data: JSON.stringify(reservationData),
 					success: function(data){
-						if(data==1){
+						if(data==1){ */
 							if(reservationData.status=='N'){
 								$('#commentsModal').modal('hide');
 								$('#actionColum'+reservationData.no).empty();
@@ -318,13 +323,13 @@
 							}else {
 								$('#'+reservationData.no).remove();						
 							}
-						}
-						console.log(reservationData);
+						/*}
 					},
 					error: function(e){
 						alert('error');
 					}
-				});
+				}); */
+						 console.log(reservationData);
 			
 		};
 	

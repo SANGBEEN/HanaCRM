@@ -1,6 +1,7 @@
 package kr.co.bit.hanacrm.Customer;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,5 +39,17 @@ public class CusDAO {
 		// TODO Auto-generated method stub
 		return sql.selectList("cus.CusDAO.selectByEmpNo", no);
 	}
+
+	public int selectCount(int no) {
+		// TODO Auto-generated method stub
+		return sql.selectOne("cus.CusDAO.selectCount",no);
+	}
+
+	public List<Map<String, Integer>> selectCountByType(int no) {
+		// TODO Auto-generated method stub
+		return sql.selectList("cus.CusDAO.selectCountByType", no);
+	}
+	
+	
 	
 }

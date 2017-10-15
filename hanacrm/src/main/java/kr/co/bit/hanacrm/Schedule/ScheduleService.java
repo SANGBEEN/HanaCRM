@@ -163,5 +163,10 @@ public class ScheduleService {
 		
 		return result;
 	}
+	
+	// 처리해야할 예약 수
+	public int selectReservationCount(int no){
+		return scheduleDAO.selectReservationCount(no);
+	}
 
 }

@@ -87,15 +87,15 @@
 				<div class="row-fluid">
 					<div class="span3 statbox purple" style="height: 120px;">
 						<div class="boxchart">7,2,2,2,1,-4,-2,4,8,,0,3,3,5</div>
-						<div class="number" id="number-of-visits-hs"></div>
+						<div class="number" id="number-of-customer-hy"></div>
 						<div class="title">customers</div>
 						<div class="footer">
-							<a>고객수</a>
+							<a>총 고객</a>
 						</div>
 					</div>
 					<div class="span3 statbox green" style="height: 120px;">
 						<div class="boxchart">7,2,2,2,1,-4,-2,4,8,,0,3,3,5</div>
-						<div class="number" id="number-of-visits-hs"></div>
+						<div class="number" id="number-of-consult-hs"></div>
 						<div class="title">consult</div>
 						<div class="footer">
 							<a>상담</a>
@@ -111,10 +111,10 @@
 					</div>
 					<div class="span3 statbox blue" style="height: 120px;">
 						<div class="boxchart">7,2,2,2,1,-4,-2,4,8,,0,3,3,5</div>
-						<div class="number" id="number-of-visits-hs"></div>
+						<div class="number" id="number-of-reservation-hy"></div>
 						<div class="title">alarm</div>
 						<div class="footer">
-							<a>알림</a>
+							<a>신청예약수</a>
 						</div>
 					</div>
 				</div>
@@ -142,19 +142,19 @@
 				<div class="row-fluid circleStats">
 					<div class="box span6">
 						<div class="box-header">
-							<span>적금상품</span>
+							<span>고객현황</span>
 						</div>
 						<div class="box-content">
-							<div id="piechart_savings" style="height:300px"></div>
+							<div id="donutchart" style="height: 300px;"></div>
 						</div>
 					</div>
 			
 					<div class="box span6">
 						<div class="box-header" data-original-title>
-							<span>뭔데시불</span>
+							<span>적금상품</span>
 						</div>
 						<div class="box-content">
-							 <div id="donutchart" style="height: 300px;"></div>
+							 <div id="piechart_savings" style="height:300px"></div>
 						</div>
 					</div>
 				</div>
@@ -229,14 +229,19 @@
 	<script src="${pageContext.request.contextPath}/js/custom.js"></script>
 
 	<script>
+		// custom.js chart() 부분에 들어갈 데이터
 		var contract = ${contractList};
 		var savingsList = ${savingsList};
 		var depositList = ${depositList};
+		var customerCountList = ${customerCountList};
 	
 		// 상품 Top3
 		var savingsData = [];
 		var depositData = [];
 		
+		// 고객 현황
+		var customerData = [];
+
 		 for(var i=0; i<savingsList.length ; i++){
 			savingsData.push({
 				label: savingsList[i].name,
@@ -248,6 +253,13 @@
 			depositData.push({
 				label: depositList[i].name,
 				data: depositList[i].count
+			});
+		}
+		
+		for(var i=0; i<customerCountList.length; i++){
+			customerData.push({
+				label: customerCountList[i].GRADE,
+				data: customerCountList[i].COUNT
 			});
 		}
 		
@@ -360,6 +372,13 @@
         		}
         	});
 		}
+		
+		// 알림수
+		$('div[id=number-of-reservation-hy]').text('${reservationCount}');
+		// 고객수
+		$('div[id=number-of-customer-hy]').text('${customerCount}');
+		
+		
 	</script>
 </body>
 </html>

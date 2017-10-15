@@ -163,6 +163,7 @@
 						<li class="dropdown hidden-phone">
 							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
 								<i class="halflings-icon white envelope"></i>
+								<span class="label label-important">${sessionScope.reservationCount}</span>
 							</a>
 							<ul class="dropdown-menu messages">
 								<li class="dropdown-menu-title">

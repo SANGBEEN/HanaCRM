@@ -18,6 +18,21 @@
 	<link id="base-style-responsive" href="${pageContext.request.contextPath}/css/style-responsive.css" rel="stylesheet">
 	<link href='http://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
 	<link href='https://fonts.googleapis.com/css?family=Bungee+Inline' rel='stylesheet' type='text/css'>	
+
+	<style>
+		.memo-insert {
+			background-color: #008485;
+			border-color: #008485;
+		}
+		
+		.memo-insert:hover{
+			background-color: #008485;
+			border-color: #008485;
+			opacity: 0.7
+		}
+	</style>
+	
+
 </head>
 <body>
 
@@ -42,67 +57,41 @@
 				<ul class="breadcrumb">
 					<li>
 						<i class="icon-home"></i>
-						<a href="index.html">Home</a> 
+						<a href="${pageContext.request.contextPath}/main">Home</a> 
 						<i class="icon-angle-right"></i>
 					</li>
-					<li><a href="#">메모</a></li>
+					<li><a href="${pageContext.request.contextPath}/sales/memo">메모</a></li>
 				</ul>
 				
 				<div class="row-fluid">
 				
 				<h1>메모</h1>
-				<div class="span7" style="padding-right:20px">					
+				<div class="span6" style="padding-right:20px">					
 					<div align="right">
-						<a class="btn btn-info memo-insert" id="memo-insert" href="#" style="align:right">
+						<a class="btn btn-info memo-insert" id="memo-insert" href="#" style="align:right; padding:12px">
 							<i class="halflings-icon white edit"></i>  
 						</a>
 					</div>
 					
 					<ul class="messagesList">
-					
 						<c:forEach items="${ memoList }" var="memoVO" varStatus="status">
 							<li id="li${memoVO.no}">
-								<span class="from">뭐쓰징</span><span id="memo${memoVO.no}" class="title"  onclick="clickTitle('${memoVO.no}','${memoVO.regDate}')">${memoVO.content}</span><span class="date">${memoVO.regDate}<a id="memo-delete" href="#" style="margin-left:10px" onclick="clickDelete('${memoVO.no}')"><i class="halflings-icon remove-sign"></i></a></span>
+								<span class="from">${memoVO.regDate}</span><span id="memo${memoVO.no}" class="title"  onclick="clickTitle('${memoVO.no}','${memoVO.regDate}')">${memoVO.content}</span><span class="date"><a id="memo-delete" href="#" style="margin-left:10px" onclick="clickDelete('${memoVO.no}')"><i class="halflings-icon remove-sign"></i></a></span>
 								<%-- <span id="memo${memoVO.no}" class="title">${memoVO.content}</span><span class="from">${memoVO.regDate}</span><span class="date"><a class="btn memo-delete" id="memo-delete" href="#" style="align:right"><i class="halflings-icon remove-sign"></i></a></span> --%>
 							</li>
 						</c:forEach>
-						
-						<li>
-							<span class="from">
-								<span class="glyphicons star"><i></i></span>
-								Dennis Ji
-								<span class="glyphicons paperclip"><i></i></span>
-							</span>
-							<span id="memo0"class="title">
-								<span class="label label-warning">problem</span>
-								Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..
-							</span>
-							<span class="date">Today, <b>3:47 PM</b></span>
-						</li>
-						
-						<li>
-							<span class="from">
-							<span class="glyphicons dislikes"><i></i></span>
-							Dennis Ji</span><span class="title">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..</span><span class="date">Today, <b>3:47 PM</b></span>
-						</li>
-						
-						<li>
-							<span class="from"><span class="glyphicons star"><i></i></span> Dennis Ji <span class="glyphicons paperclip"><i></i></span></span><span class="title"><span class="label label-success">task</span> Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..</span><span class="date">Today, <b>3:47 PM</b></span>
-						</li>
-						<li>
-							<span class="from"><span class="glyphicons dislikes"><i></i></span> Dennis Ji</span><span class="title"><span class="label label-info">information</span> Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..</span><span class="date">Today, <b>3:47 PM</b></span>
-						</li>
 					</ul>
 						
-					</div>
+				</div>
 					
-					<div id="thisMemo" class="span5 noMarginLeft" style="visibility:hidden; padding-right:10px" >
-						<div class="message dark" style="top:0px; right:5px">
+					<!-- visibility:hidden; -->
+					<div id="thisMemo" class="span6 noMarginLeft" style="padding-right:10px" >
+						<div class="message dark" style="top:0px; right:5px; margin-right:20px">
 
-							<div class="header">
+							<div class="header" style="margin-bottom:20px">
 								<h1 id="thisTitle" class="title"> </h1>
-								<div class="from"><i class="halflings-icon user"></i> <b>Dennis Ji</b> / jiguofei@msn.com</div>
-								<span class="date"><i class="halflings-icon time"></i><span id="thisDate" ></span> Today, <b>3:47 PM</b></span>
+								<div class="from"><i class="halflings-icon user"></i><!--  <b>Dennis Ji</b> / jiguofei@msn.com --></div>
+								<span class="date"><i class="halflings-icon time"></i><span id="thisDate" ></span><!--  Today, <b>3:47 PM</b> --></span>
 								
 								<div class="menu"></div>
 								
@@ -118,7 +107,7 @@
 							<div class="attachments">
 								<ul>
 									<li>
-										<span class="label label-important">zip</span> <b>bootstrap.zip</b> <i>(2,5MB)</i>
+										<span class="label-important" style="padding:3px">zip</span> <b>bootstrap.zip</b> <i>(2,5MB)</i>
 										<span class="quickMenu">
 											<a href="#" class="glyphicons search"><i></i></a>
 											<a href="#" class="glyphicons share"><i></i></a>
@@ -126,7 +115,7 @@
 										</span>
 									</li>
 									<li>
-										<span class="label label-info">txt</span> <b>readme.txt</b> <i>(7KB)</i>
+										<span class="label-info" style="padding:3px">txt</span> <b>readme.txt</b> <i>(7KB)</i>
 										<span class="quickMenu">
 											<a href="#" class="glyphicons search"><i></i></a>
 											<a href="#" class="glyphicons share"><i></i></a>
@@ -134,7 +123,7 @@
 										</span>
 									</li>
 									<li>
-										<span class="label label-success">xls</span> <b>spreadsheet.xls</b> <i>(984KB)</i>
+										<span class="label-success" style="padding:3px">xls</span> <b>spreadsheet.xls</b> <i>(984KB)</i>
 										<span class="quickMenu">
 											<a href="#" class="glyphicons search"><i></i></a>
 											<a href="#" class="glyphicons share"><i></i></a>
@@ -226,7 +215,15 @@
 	<script>
 	
 		var firstCheck = false;
+		var memoList = ${memoList};
 		var memoNo = 0;
+		
+		console.dir(memoList[0].no);
+		
+		// 시작 시 첫번째 메모 보여주기
+		$('document').ready(function(){
+			clickTitle(memoList[0].no, memoList[0].regDate);
+		});
 		
 		// 기본 셋팅 - 클릭 이벤트
 		 function clickTitle(no, date){
@@ -239,25 +236,32 @@
 		
 		// 메모 삭제
 		function clickDelete(no){
-			$.ajax({
-				url: '${pageContext.request.contextPath}/sales/memo/'+no,
-				type: 'delete',
-				success: function(data){
-					alert('삭제되었습니다.');
-					$('#li'+no).remove();
-					$('#thisMessage').val('');
-					$('#thisDate').text('');
-					$('#thisTitle').text('');
-				}
-			});
+			if(confirm("메모를 삭제하시겠습니까?")){
+				$.ajax({
+					url: '${pageContext.request.contextPath}/sales/memo/'+no,
+					type: 'delete',
+					success: function(data){
+						alert('삭제되었습니다.');
+						$('#li'+no).remove();
+						$('#thisMessage').val('');
+						$('#thisDate').text('');
+						$('#thisTitle').text('');
+					}
+				});
+			}
 		}
 		
 		$('#memo-insert').on('click', function(){
 			
 			firstCheck = true;
+			
+			var d = new Date();
+			var today = d.getFullYear()+"-"+(d.getMonth()<9?'0'+(d.getMonth()+1):d.getMonth())+"-"+d.getDate();
+
 			$('#thisMemo').css('visibility','visible');
 			$('#thisTitle').text(' ');
 			$('#thisMessage').val('');
+			$('#thisDate').text(today);
 	
 				/*  $.ajax({
 					url: '${pageContext.request.contextPath}/sales/memoSeq',
@@ -277,9 +281,13 @@
 		
 		$('#thisMessage').on('keyup', function(e){
 			
-			console.dir(e);
-			console.log(memoNo);
+		//	console.dir(e);
+		//	console.log(memoNo);
 			if(firstCheck) console.log(firstCheck);
+			
+			$('#memo'+memoNo).text($('#thisMessage').val());
+			$('#thisTitle').text(subString($('#thisMessage').val()));
+			
 			
 		/*	if(!firstCheck){
 				// 첫 작성이 아니면 수정 요청
@@ -345,16 +353,12 @@
 					}
 				}); */
 				
-				var d = new Date();
-				var today = d.getFullYear()+"-"+(d.getMonth()<9?'0'+(d.getMonth()+1):d.getMonth())+"-"+d.getDate();
-	
-				
 				if(firstCheck){
 					 $.ajax({
 							url: '${pageContext.request.contextPath}/sales/memoSeq',
 							type: 'get',
 							success: function(no){
-								console.log(no);
+							//	console.log(no);
 								memoNo = no;
 							//	console.log(memoNo);
 							//	console.log(firstCheck);
@@ -364,11 +368,6 @@
 							}
 						}); 
 				}
-				
-				
-				$('#memo'+memoNo).text($('#thisMessage').val());
-				$('#thisTitle').text(subString($('#memo'+memoNo).text()));
-				$('#thisDate').text(today);
 				
 			//}
 		});
@@ -411,7 +410,7 @@
 					type: 'post',
 					data: memoData,
 					success: function(data){
-						console.log('post: '+data);
+						// console.log('post: '+data);
 						firstCheck = false;
 						
 						// 메모리스트에 동적 추가
@@ -432,7 +431,7 @@
 						
 					 },
 					error: function(e){
-						alert('post error');
+					//	alert('post error');
 						console.dir(e);
 					}
 				});
