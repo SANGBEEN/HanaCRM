@@ -1,6 +1,7 @@
 package kr.co.bit.hanacrm.Customer;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,5 +29,15 @@ public class CusService {
 
 	public int delete(int no) {
 		return cusDao.delete(no);
+	}
+	
+	// 전체 고객 수
+	public int selectCount(int no){
+		return cusDao.selectCount(no);
+	}
+	
+	// 타입 별 고객 수
+	public List<Map<String, Integer>> selectCountByType(int no){
+		return cusDao.selectCountByType(no);
 	}
 }

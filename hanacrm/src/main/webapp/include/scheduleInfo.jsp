@@ -13,7 +13,7 @@
 			
 			<!-- Type select -->
 			  <div class="control-group">
-				<label class="control-label" for="selectError3">Type</label>
+				<label class="control-label" for="selectError3"><b>일정분류</b></label>
 				<div class="controls">
 				  <select id="scheduleType"> <!-- name="scheduleType" -->
 					<option value="Meeting">Meeting</option>
@@ -29,7 +29,7 @@
 			<!-- <div class="controls"> -->
 		  	
 				<div class="control-group">
-				  	<label class="control-label" for="focusedInput">Start Date</label>
+				  	<label class="control-label" for="focusedInput"><b>시작일시</b></label>
 				  	<div class="controls">
 						<input id="datetimepicker" type="text" >
 					</div>
@@ -38,7 +38,7 @@
 				
 		
 				<div class="control-group" id="div_duration">
-					<label class="control-label" for="focusedInput">Duration</label>
+					<label class="control-label" for="focusedInput"><b>소요시간</b></label>
 					<div class="controls">
 						<div class="btn-group btn-overlap btn-corner">
 							<button value="1" class="btn btn-sm btn-white btn-info duration">1</button>
@@ -50,29 +50,29 @@
 				</div>
 				
 				<div class="control-group">
-					<label class="control-label" for="focusedInput">End Date</label>
+					<label class="control-label" for="focusedInput"><b>종료일시</b></label>
 					<div class="controls" style="padding-left: 5px; height: 30px; line-height: 30px;">
 						<span id="endDate"></span>
 					</div>					
 				</div>
 
 			  <div class="control-group">
-				<label class="control-label" for="focusedInput">location</label>
+				<label class="control-label" for="focusedInput"><b>장소</b></label>
 				<div class="controls">
-				  <input class="input-xlarge" id="location" type="text" value=""> <!-- name="location" -->
+				  <input class="focused" id="location" type="text" value=""> <!-- name="location" -->
 				</div>
 			  </div>
 
 			  <!-- Comment -->
 			  <div class="control-group">
-				<label class="control-label" for="focusedInput">Comments</label>
+				<label class="control-label" for="focusedInput"><b>일정사항</b></label>
 				<div class="controls">
-				  <input class="input-xlarge focused" id="comments" type="text" value=""> <!-- name="comments" -->
+				  <textarea id="comments"></textarea> <!-- name="comments" -->
 				</div>
 			  </div>
 
 			  <div class="control-group">
-				<label class="control-label" for="selectError3">반복</label>
+				<label class="control-label" for="selectError3"><b>반복</b></label>
 				<div class="controls">
 				  <select id="repetition"> <!-- name="repetition" -->
 				  	<option value="한번">한번</option>
@@ -85,7 +85,7 @@
 			  </div>
 			  
 			  <div class="control-group">
-				<label class="control-label" for="selectError3">중요도</label>
+				<label class="control-label" for="selectError3"><b>중요도</b></label>
 				<div class="controls">
 				  <select id="importance">
 				  	<option value="1">매우중요</option>

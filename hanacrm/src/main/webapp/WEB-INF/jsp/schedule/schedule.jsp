@@ -127,7 +127,7 @@
 			opacity:0.7;
 		}
 		
-		.duration.clicked{
+		.duration.clicked, .dduration.clicked{
 			background-color: #f9105b !important;
 			border-color: #f9105b;
 		}
@@ -137,7 +137,38 @@
 			border-color: #f9105b;
 			opacity:0.7;
 		}
-
+		
+		.schedule-add-btn, .schedule-edit-btn{
+			background-color: #008485;
+			border-color: #008485;
+		}
+		
+		.schedule-add-btn:hover, .schedule-edit-btn:hover{
+			background-color: #008485;
+			border-color: #008485;
+			opacity:0.7;
+		}
+		
+		.schedule-cancle-btn{
+			background-color: #a7a9aa;
+		}
+		
+		.schedule-cancle-btn:hover{
+			background-color: #a7a9aa;
+			opacity:0.7;
+		}
+		
+		.schedule-delete-btn{
+			background-color: #b94a48;
+			border-color: #b94a48;
+		}
+		
+		.schedule-delete-btn:hover{
+			background-color: #b94a48;
+			border-color: #b94a48;
+			opacity:0.7;
+		}
+		
 	</style>
 </head>
 <body>
@@ -168,11 +199,18 @@
 					<a href="${pageContext.request.contextPath}/main">Home</a> 
 					<i class="icon-angle-right"></i>
 				</li>
-				<li><a href="#">일정 관리</a></li>
+				<li><a href="${pageContext.request.contextPath}/schedule">일정 관리</a></li>
 			</ul>
 
 			<div class="row-fluid">
 				<div class="box span12">
+				
+					<div class="box-header" data-original-title="">
+							<h2>
+								일정
+							</h2>
+					</div>
+					
 					<div class="box-content">
 						<div id="external-events" class="span2 hidden-phone hidden-tablet">
 							<h4>Events</h4>
@@ -182,6 +220,52 @@
 							<div class="external-event badge badge-info drag-event-div">Task</div>
 							<div class="external-event badge drag-event-div">Event</div>
 							<div class="external-event badge badge-inverse drag-event-div">Other</div>
+						
+							<!-- 오늘 일정 간략하게 -->
+							<div class="todo metro">
+								<ul class="todo-list">
+									<li class="red">
+										<a class="action icon-check-empty" href="#"></a>	
+										Windows Phone 8 App 
+										<strong>today</strong>
+									</li>
+									<li class="red">
+										<a class="action icon-check-empty" href="#"></a>
+										New frontend layout
+										<strong>today</strong>
+									</li>
+									<li class="yellow">
+										<a class="action icon-check-empty" href="#"></a>
+										Hire developers
+										<strong>tommorow</strong>
+									</li>
+									<li class="yellow">
+										<a class="action icon-check-empty" href="#"></a>
+										Windows Phone 8 App
+										<strong>tommorow</strong>
+									</li>
+									<li class="green">
+										<a class="action icon-check-empty" href="#"></a>
+										New frontend layout
+										<strong>this week</strong>
+									</li>
+									<li class="green">
+										<a class="action icon-check-empty" href="#"></a>
+										Hire developers
+										<strong>this week</strong>
+									</li>
+									<li class="blue">
+										<a class="action icon-check-empty" href="#"></a>
+										New frontend layout
+										<strong>this month</strong>
+									</li>
+									<li class="blue">
+										<a class="action icon-check-empty" href="#"></a>
+										Hire developers
+										<strong>this month</strong>
+									</li>
+								</ul>
+							</div>	
 						</div>
 						<div id="calendar" class="span9"></div>
 						<div class="clearfix"></div>
@@ -207,17 +291,6 @@
 		 start = new Date(2010, 10, 21).getTime();
 		console.log(start);
 		 
-		 	$('[data-dismiss=modal]').on('hidden.bs.modal', function (e) {
-		 		console.log('dismiss');
-		 		 $(this)
-		 	    .find("input,textarea,select")
-		 	       .val('')
-		 	       .end()
-		 	    .find("input[type=checkbox], input[type=radio]")
-		 	       .prop("checked", "")
-		 	       .end();
-		 	});
-				 
 		 jQuery(function($) {
 				
 			var addModal = $('#addModal');
@@ -225,6 +298,18 @@
 			
 			var datetimepicker = $('#datetimepicker');
 			var detail_datetimepicker = $('#detail_datetimepicker');
+			
+			addModal.on('hidden.bs.modal', function (e) {
+		 		console.log('dismiss');
+		 		 $(this)
+		 	    .find("input,textarea,select")
+		 	       .val('')
+		 	       .end()
+		 	    .find("input[type=checkbox], input[type=radio]")
+		 	       .prop("checked", "")
+		 	       .end()
+		 	    .find("button.clicked").removeClass('clicked');
+		 	});
 	
 			 
 				/************************** initialize the external events
@@ -378,6 +463,14 @@
 							}else {
 								addModal.find('#div_duration').show();
 							}
+							
+							// radio button
+							$('.tr_radio').on('click', function(ev){
+								//ev.preventDefault();
+								$('.radio').find('span').removeClass('checked');
+								$('#uniform-radio'+$(this).data('no')).find('span').addClass('checked');
+								// $('#radio'+$(this).data('no')).prop('checked');
+							});
 						}
 						
 						// 2.추가할 이벤트 저장
@@ -401,8 +494,11 @@
 						console.log('1: '+copiedEventObject.className);
 							
 		 				// 1) type 설정
-						$("#scheduleType").val(originalEventObject.title);
-						$("#scheduleType").change(function(){
+		 				var duration = 1;
+						var type = 'hours';
+								 				
+						addModal.find("#scheduleType").val(originalEventObject.title);
+						addModal.find("#scheduleType").change(function(){
 							if($(this).val()=='Task'){
 								$('#customerInfo').hide();
 							}else {
@@ -412,15 +508,19 @@
 								}else {
 									addModal.find('#div_duration').show();
 								}
+								
+								if($(this).val()=='Call'){
+									duration = 30;
+									type = 'minutes';
+								}else {
+									duration = 1;
+									type = 'hours';
+								}
 							}
 						});
 					
 						// 2) 날짜 설정
-						var duration = 1;
-						var type = 'hours';
-						
-						// 초기 시간 셋팅
-						date.time('10:00');
+						date.time('10:00');  // 초기 시간 셋팅
 					 	
 					 	/*  https://xdsoft.net/jqplugins/datetimepicker/ */
 				 		datetimepicker.datetimepicker({
@@ -462,7 +562,7 @@
 							addModal.find('#endDate').text(getDate(endDate));
 						});
 						
-				
+						addModal.find('#importance').val(3);
 						
 						// 5. 등록 처리
 					//	$('#modalSave').unbind("click");
@@ -484,7 +584,7 @@
 								
 								 var startData = getDate(selectedDate_s); 
 								 var endData = addModal.find('#endDate').text(); //getDate(selectedDate_e); // getDate(moment(endDatepicker.toString()));
-								 var cNo = $("input[name='customerNo']:checked").val()!=null?$("input[name='customerNo']:checked").val():null;
+								 var cNo = $('span.checked').parent().parent().parent().data('no')!=null?$('span.checked').parent().parent().parent().data('no'):null;
 								 var name = cNo!=null?document.getElementById(cNo).innerText:addModal.find('input[id=location]').val();
 								 console.log('modalSave start output : '+startData);
 								 console.log('modalSave end output : '+endData);
@@ -499,7 +599,7 @@
 								
 								// 서버에 보낼 Data
 								var scheduleData = {
-										comments: addModal.find('input[id=comments]').val(),
+										comments: addModal.find('textarea[id=comments]').val(),
 					        			customerNo: cNo,
 					        			type: addModal.find('select[id=scheduleType]').val(),
 					        			location: addModal.find('input[id=location]').val(),
@@ -525,7 +625,8 @@
 					        		type: "post",
 					        		data: scheduleData, 
 					        		success: function(scheduleNo){
-					        			alert('추가'+scheduleNo);
+					        		//	alert('추가'+scheduleNo);
+					        			alert('일정이 추가되었습니다.');
 					        			addModal.modal("hide");
 										//addModal.remove();
 										// 추가할 이벤트에 scheduleNo 저장
@@ -535,14 +636,14 @@
 										$('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
 					        		},
 					        		error: function(){
-					        			alert('error');
+					        	//		alert('error');
 					        		}
 					        	});   // post ajax end 
 					        	
 							//	 $(".modal-body").val("");							
 							
 							} else{
-								alert(check);
+							//	alert(check);
 							}  // check else end
 						}); // click end
 						
@@ -597,9 +698,9 @@
 								var schedule = JSON.parse(data);
 								s = schedule;
 								console.dir(schedule);
-								detailModal.find('select[id=scheduleType]').val(schedule.type);
+								detailModal.find('span[id=scheduleType]').text(schedule.type);
 								detailModal.find('input[id=location]').val(schedule.location);
-								detailModal.find('input[id=comments]').val(schedule.comments);
+								detailModal.find('textarea[id=comments]').val(schedule.comments);
 								detailModal.find('input[id=repetition]').val(schedule.repetition);
 								if(schedule.customerNo!=null || schedule.customerNo!=""){
 									detailModal.find('span[id=customerName]').text(schedule.customer.name);									
@@ -641,7 +742,7 @@
 
 							},
 							error: function(){
-								alert('error');
+							//	alert('error');
 							}
 						});
 						
@@ -652,6 +753,9 @@
 
 							dduration = 1;
 							dtype = 'hours';
+							
+							$('.dduration').removeClass('clicked');
+							$(this).addClass('clicked');
 							
 							if(calEvent.className=='Call'){
 								dduration = 30;
@@ -686,9 +790,9 @@
 							// 서버에 보낼 Data
 							var scheduleData = {
 									no: calEvent.id,
-				        			comments: detailModal.find('input[id=comments]').val(),
+				        			comments: detailModal.find('textarea[id=comments]').val(),
 				        			customerNo: s.customer.no,
-				        			type: detailModal.find('select[id=scheduleType]').val(),
+				        			type: detailModal.find('span[id=scheduleType]').text(),
 				        			location: detailModal.find('input[id=location]').val(),
 				        			importance: detailModal.find('select[id=importance]').val(),
 				        			repetition: detailModal.find('select[id=repetition]').val(),
@@ -705,7 +809,7 @@
 				        		dataType: "json",
 				        		data: JSON.stringify(scheduleData), 
 				        		success: function(data){
-				        			alert('수정'+data);
+				        	//		alert('수정'+data);
 				        			detailModal.modal("hide");
 									
 				        			// 달력 객체 정보 수정
@@ -716,7 +820,7 @@
 									calendar.fullCalendar('updateEvent', calEvent);
 				        		},
 				        		error: function(){
-				        			alert('error');
+				        	//		alert('error');
 				        		}
 				        	}); 
 							
@@ -725,27 +829,29 @@
 						// 삭제 버튼
 						detailModal.find('a[id=modalDelete]').off().on('click', function(){
 							
-							$.ajax({
-								url: '${pageContext.request.contextPath}/schedule/'+calEvent.id,
-								type: 'delete',
-								success: function(data){
-									if(data==1){										
-										calendar.fullCalendar('removeEvents' , function(ev){
-											return (ev._id == calEvent._id);
-										});
-										alert('삭제 완료');
-										detailModal.modal("hide");
-									}else {
-										console.log('디비에러');
+							if(confirm("일정을 삭제하시겠습니까?")){
+								
+								$.ajax({
+									url: '${pageContext.request.contextPath}/schedule/'+calEvent.id,
+									type: 'delete',
+									success: function(data){
+										if(data==1){										
+											calendar.fullCalendar('removeEvents' , function(ev){
+												return (ev._id == calEvent._id);
+											});
+											alert('삭제 완료');
+											detailModal.modal("hide");
+										}else {
+									//		console.log('디비에러');
+										}
+									},
+									error: function(e){
+										console.dir(e);
+								//		alert('error');
 									}
-								},
-								error: function(e){
-									console.dir(e);
-									alert('error');
-								}
-							});
-						});
-						
+								});
+							}
+						});  // 삭제 버튼 끝
 					}
 				});
 
@@ -783,7 +889,7 @@
 					alert(event.title + " end is now " + getDate(event.end)+ event.id);
 
 				    // 수정할건지 확인
-					if (!confirm("is this okay?")) {
+					if (!confirm("날짜를 변경하시겠습니까?")) {
 						// 취소 시, 원래대로 되돌아감
 						revertFunc();
 					}else {
@@ -865,7 +971,7 @@
 				
 				console.log(scheduleData);
 
-		         if (confirm("Are you sure about this change?")) {
+		         if (confirm("날짜를 변경하시겠습니까?")) {
 		        	$.ajax({
 		        		url: "${pageContext.request.contextPath}/schedule",
 		        		type: "put",
@@ -877,7 +983,7 @@
 		        		},
 		        		error: function(e){
 		      				console.log(e);
-		        			alert('error');
+		        		//	alert('error');
 				        	revertFunc();	
 		        		}
 		        	});
@@ -890,7 +996,7 @@
 
 		 		var msg = 'ok';
 		 		
-		 		if($("#scheduleType").val()!='Task' && $("input[name='customerNo']:checked").val()==null){
+		 		if($("#scheduleType").val()!='Task' && $('span.checked').length==0){ // $("input[name='customerNo']:checked").val()==null){
 		 			return 'customer is not checked';
 		 		}
 		 		

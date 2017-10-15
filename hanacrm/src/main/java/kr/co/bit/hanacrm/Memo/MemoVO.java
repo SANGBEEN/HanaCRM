@@ -4,6 +4,9 @@ import java.sql.Date;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 //사원의 개인적인 메모
 @Component
 public class MemoVO {
@@ -63,10 +66,21 @@ public class MemoVO {
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
+		
+		String json = "";
+		//VO to JSON
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			json = mapper.writeValueAsString(this);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		
+		return json;
+		/*StringBuilder builder = new StringBuilder();
 		builder.append("MemoVO [no=").append(no).append(", content=").append(content).append(", employeeNo=")
 				.append(employeeNo).append(", regDate=").append(regDate).append("]");
-		return builder.toString();
+		return builder.toString();*/
 	}
 
 }

@@ -21,6 +21,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import kr.co.bit.hanacrm.Contract.ContractService;
+import kr.co.bit.hanacrm.Customer.CusService;
 import kr.co.bit.hanacrm.Employee.EmpService;
 import kr.co.bit.hanacrm.Employee.EmpVO;
 import kr.co.bit.hanacrm.Product.ProductService;
@@ -38,6 +39,8 @@ public class MainController {
 	private ContractService contractService;
 	@Autowired
 	private ProductService productService;
+	@Autowired
+	private CusService cusService;
 
 	// 로그인
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -114,10 +117,34 @@ public class MainController {
 			e.printStackTrace();
 		}
 		
+		//알림
+		int reservationCount = scheduleService.selectReservationCount(emp.getNo());
+		//System.out.println("예약수 " +reservationCount);
+		
+		//고객수
+		int customerCount = cusService.selectCount(emp.getNo());
+		
+		//타입별 고객수
+		List<Map<String, Integer>> customerCountList = cusService.selectCountByType(emp.getNo());
+		String jsonCustomerCountList = "";
+		//VO to JSON
+		mapper = new ObjectMapper();
+		try {
+			jsonCustomerCountList = mapper.writeValueAsString(customerCountList);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println(jsonCustomerCountList);
+		
 		model.addAttribute("savingsList", jsonSavingsList);
 		model.addAttribute("depositList", jsonDepositList);
+		model.addAttribute("reservationCount",reservationCount);
+		session.setAttribute("reservationCount", reservationCount);
 		model.addAttribute("scheduleList",scheduleList);
 		model.addAttribute("contractList", json);
+		model.addAttribute("customerCount", customerCount);
+		model.addAttribute("customerCountList", jsonCustomerCountList);
 		return "/main/main";
 	}
 	

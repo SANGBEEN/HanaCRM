@@ -24,9 +24,8 @@
 				</thead>
 				<tbody id="table-data" class="customerBody">
 					<c:forEach var="cus" items="${cusList}">
-						<tr>
-						<!--  <input type="radio" name="customerNo" value="${cus.no}"/> -->
-							<td class="center"><input type="radio" name="customerNo" value="${cus.no}"/></td>
+						<tr class="tr_radio" data-no="${cus.no}" >
+							<td class="center"><input type="radio" name="customerNo" value="${cus.no}" id="radio${cus.no}"/></td>
 							<td class="center" id="${cus.no}">${cus.name}</td>
 							<td class="center">${cus.phone }</td>
 							<td class="center">${cus.regDate}</td>
