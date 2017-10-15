@@ -75,11 +75,12 @@
 								<th style="width:15%; text-align:center">고객 이름</th>
 								<th style="width:30%; text-align:center">요약</th>
 								<th style="width:15%; text-align:center">상담 날짜</th>
-								<th style="width:7%; text-align:center">타입</th>
+								<th style="width:9%; text-align:center">타입</th>
 								<th style="width:10%; text-align:center">상태</th>
-								<th style="width:6%; text-align:center">상세보기</th>
-								<th style="width:6%; text-align:center">수정</th>
-								<th style="width:6%; text-align:center">삭제</th>
+								<!-- <th style="width:6%; text-align:center">상세보기</th>
+								<th style="width:6%; text-align:center">수정</th> -->
+								<th style="width:8%; text-align:center">상세보기</th>
+								<th style="width:8%; text-align:center">삭제</th>
 							  </tr>
 						  </thead>   
 						<tbody>
@@ -93,7 +94,7 @@
 								<td style="text-align:center">
 									<span class="label label-success">Active</span>
 								</td>
-								<td style="text-align:center">
+								<%-- <td style="text-align:center">
 									<a class="btn btn-success" id="consult-detail-hs" href="#" data-consult_no="${ consultVO.no }">
 										<i class="halflings-icon white zoom-in"></i>  
 									</a>
@@ -101,6 +102,11 @@
 								<td style="text-align:center">
 									<a class="btn btn-info" id="consult-update-hs" href="#" data-consult_no="${ consultVO.no }">
 										<i class="halflings-icon white edit"></i>  
+									</a>
+								</td> --%>
+								<td style="text-align:center">
+									<a class="btn btn-success" id="consult-detail-hs" href="#" data-consult_no="${ consultVO.no }">
+										<i class="halflings-icon white zoom-in"></i>  
 									</a>
 								</td>
 								<td style="text-align:center">
@@ -263,26 +269,36 @@
 		</div>
 	</div>	
 	
-	<!-- 수정 -->
-	<div class="modal hide fade" id="consultUpdate">
+	<!-- 상세보기 및 수정 -->
+	<div class="modal hide fade" id="consultDetail">
 		<div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal">×</button>
-			<h3>수정</h3>
+			<h3>상세보기</h3>
 		</div>
 		<div class="modal-body">
 			<div id="consult-update-table-hs">
 			
-			</div>				
-			<!-- <div class="control-group">
-				<label class="control-label" for="consult-content-update-hs">상담 내용</label>
-				<div class="controls">
-				  <input class="input-xlarge focused" id="consult-content-update-hs" type="text" value="">
-				</div>
-			</div> -->
+			</div>			
 		</div>
 		<div class="modal-footer">			
-			<a href="#" class="btn btn-primary" id="consult-update-complete-hs">확인</a>
-			<a href="#" class="btn" id="consult-insert-cancel-hs" data-dismiss="modal">취소</a>
+			<a href="#" class="btn btn-primary" id="consult-update-complete-hs">수정</a>
+			<a href="#" class="btn" id="consult-insert-cancel-hs" data-dismiss="modal">닫기</a>
+		</div>
+	</div>
+	
+	<!-- 고객정보 상세보기 -->
+	<div class="modal hide fade" id="customerDetail">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">×</button>
+			<h3>고객정보</h3>
+		</div>
+		<div class="modal-body">
+			<div id="customer-detail-table-hs">
+			
+			</div>			
+		</div>
+		<div class="modal-footer">
+			<a href="#" class="btn" data-dismiss="modal">닫기</a>
 		</div>
 	</div>
 	
@@ -375,7 +391,7 @@
 				$(this).removeData();
 			});			
 			
-			$('a[id=consult-detail-hs]').click(function(e) {
+			/* $('a[id=consult-detail-hs]').click(function(e) {
 				e.preventDefault();
 				e.stopPropagation();
 				
@@ -391,7 +407,7 @@
 				console.log(consultDetailNo);
 				$('#consultDetail'+consultDetailNo).modal();
 				console.log("상세");
-			});
+			}); */
 						
 			/* 상담 날짜 선택 */
 			$('a[id=consult-insert-hs]').click(function(e) {
@@ -661,22 +677,25 @@
 				$(this).removeData();
 			});
 			
-			var consultUpdateNo = null;
+			var consultDetailNo = null;
 		
-			/* 수정 */
-			$('a[id=consult-update-hs]').click(function(e) {
+			/* 상세보기 및 수정 */
+			//$('a[id=consult-update-hs]').click(function(e) {
+			$('a[id=consult-detail-hs]').click(function(e) {
 				e.preventDefault();
 				e.stopPropagation();
 				
-				consultUpdateNo = $(this).data('consult_no');
+				consultDetailNo = $(this).data('consult_no');
 				
 				$.ajax({	
-	        		url: "${pageContext.request.contextPath}/sales/consult/" + consultUpdateNo,
+	        		url: "${pageContext.request.contextPath}/sales/consult/" + consultDetailNo,
 	        		type: "get",
 	        		success: function(consult) {
+	        			console.log(typeof consult);
+	        		
 	        			var html = '<table class="table table-striped table-bordered">' 
 	        			+ '<tr><th>상담 일시</th><td>' + consult.regDate + '</td></tr>' 
-	        			+ '<tr><th>고객명</th><td>' + consult.customerVO.name + '</td></tr>'
+	        			+ '<tr><th>고객명</th><td>' + consult.customerVO.name + ' <a class="btn btn-success" id="customer-detail-hs" data-customer_no="' + consult.customerVO.no + '">상세정보</a></td></tr>'
 	        			+ '<tr><th>상담 요약</th><td>' + consult.title + '</td></tr>'
 	        			+ '<tr><th>상담 상품</th><td>' + '</td></tr>'
 	        			+ '<tr><th>상담 내용</th><td><textarea rows="3" cols="20">' + consult.content + '</textarea></td></tr>' 
@@ -729,10 +748,48 @@
 				
 				
 				
-				$('#consultDetail' + consultUpdateNo)
+				$('#consultDetail' + consultDetailNo)
 				
-				$('#consultUpdate').modal();
-				console.log("수정");
+				$('#consultDetail').modal();
+				console.log("상세보기");
+			});
+			
+			/* 고객정보 상세보기 */
+			$(document).on('click', 'a[id=customer-detail-hs]', function(e) {
+				e.preventDefault();
+				e.stopPropagation();
+			
+				var customerNo = $(this).data('customer_no');
+			
+				$.ajax({
+	        		url: "${pageContext.request.contextPath}/customer/consult/" + customerNo,
+	        		type: "get",
+	        		//dataType: "json",
+	        		success: function(customer) {
+	        			console.log(customer);
+	        			
+	        			var html = '<table class="table table-striped table-bordered">' 
+	        			+ '<tr><th>고객명</th><td>' + customer.name + '</td></tr>' 
+	        			+ '<tr><th>연락처</th><td>' + customer.phone + '</td></tr>'
+	        			+ '<tr><th>생년월일</th><td>' + customer.birthDate + '</td></tr>'
+	        			+ '<tr><th>우편번호</th><td>' + customer.post + '</td></tr>'
+	        			+ '<tr><th>주소</th><td>' + customer.address + '</td></tr>' 
+	        			+ '<tr><th>고객등급</th><td>' + customer.grade + '</td></tr>' 
+	        			+ '<tr><th>고객등록일</th><td>' + customer.regDate + '</td></tr>' 
+	        			+ '<tr><th>comments</th><td>' + customer.comments + '</td></tr>' 
+	        			+ '</table>';
+	        			
+	        			$('div[id=customer-detail-table-hs]').html(html);        			
+					},
+	        		error: function(e) {
+	        			console.log(e);
+	        			alert('error');
+					}
+				});	
+				
+				console.log("고객정보 상세보기");
+				
+				$('#customerDetail').modal();
 			});
 			
 			/* 수정 확인 */
@@ -749,7 +806,7 @@
 	        		//data: JSON.stringify(consultJson),
 	        		success: function(consultNo) {
 	        			console.log(consultNo + "번 추가 완료");
-	        			consultUpdateNo = null;
+	        			consultDetailNo = null;
 	        			$('#consultContentInsert').modal('hide');
 					},
 	        		error: function(e) {
