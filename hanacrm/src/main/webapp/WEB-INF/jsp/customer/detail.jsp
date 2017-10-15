@@ -217,8 +217,40 @@ input.hidden {
 									<label for="grade">
 										<span>고객등급</span>
 									</label>
-									<input id="grade" type="text" class="myInput" name="grade" value="${customer.grade }" readonly="readonly"/> 
-								</div>
+								        <!--  <select class="myInput" id="grade" name="grade"> -->
+								         <select class="myInput myGrade" id="grade" name="grade" onFocus='this.initialSelect = this.selectedIndex;' onChange='this.selectedIndex = this.initialSelect;'>
+											    <option value="">등급선택</option>
+											 	<c:choose>
+													<c:when test="${customer.grade=='잠재'}">
+														<option value="잠재" selected="selected">잠재</option>
+													    <option value="신규" >신규</option>
+													    <option value="기존" >기존</option>
+													    <option value="핵심" >핵심</option>
+													</c:when>
+													<c:when test="${customer.grade=='신규'}">
+														<option value="잠재" >잠재</option>
+													    <option value="신규" selected="selected">신규</option>
+													    <option value="기존" >기존</option>
+													    <option value="핵심" >핵심</option>
+													</c:when>
+													<c:when test="${customer.grade=='기존'}">
+														<option value="잠재" >잠재</option>
+													    <option value="신규" >신규</option>
+													    <option value="기존" selected="selected">기존</option>
+													    <option value="핵심" >핵심</option>
+													</c:when>
+													<c:when test="${customer.grade=='핵심'}">
+														<option value="잠재" >잠재</option>
+													    <option value="신규" >신규</option>
+													    <option value="기존" >기존</option>
+													    <option value="핵심" selected="selected">핵심</option>
+													</c:when>
+													<c:otherwise>
+													</c:otherwise>
+												</c:choose>
+										 </select>
+									<%-- <input id="grade" type="text" class="myInput" name="grade" value="${customer.grade }" readonly="readonly"/> --%> 
+								</div> 
 								<div class="tital">
 									<label for="regDate">
 										<span>고객등록일</span>
@@ -325,7 +357,7 @@ input.hidden {
 	
 	<script>
 		function modifyForm(){
-			//readonly속성가져와서 readonly면 클래스가져와서 속성변경, 아니면 수정한 폼 전송 
+			//readonly속성가져와서 readonly면 클래스가져와서 속성변경, 아니면 수정한 폼 전송
 			if($('.myInput').attr("readonly")==true){
 				$('.myInput').attr("readonly",false);
 				console.log("readonly");
@@ -342,11 +374,15 @@ input.hidden {
 			
 			$('#modifyBtn').click(function(){
 				console.log("click");
+			
+				
 				console.log($('.myInput')[0].value);
 				console.log($('input.myInput')[0].readOnly);
 				
 				if($('input.myInput')[0].readOnly==true){
 					$('.myInput').attr("readonly",false);
+					$('.myGrade').attr("onChange","");
+					$('.myGrade').attr("onFocus","");
 					$('.myInput').addClass('modifyInput');
 					console.log("readonly");
 				}else{
