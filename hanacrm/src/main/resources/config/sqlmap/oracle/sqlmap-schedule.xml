@@ -64,7 +64,7 @@
 	
 	<!-- 일정 상세 정보 -->
 	<select id="selectByNo" parameterType="int" resultMap="scheduleMap">
-		select *
+		select <include refid="selectAll"/>
 		from schedule s		<!--  join customer c on (s.customer_no = c.no) -->
 		where s.no = #{no}
 	</select>
@@ -159,7 +159,6 @@
 	<update id="updateReservation" parameterType="schedule">
 		update reservation set status = #{status}, comments = #{comments}
 		where no = #{no}
-		order by reg_date desc
 	</update>
 	
 	<!-- 처리해야 할 예약 개수 -->
@@ -167,5 +166,6 @@
 		select count(*)
 		from reservation
 		where employee_no = #{no} and status='D'
+		order by reg_date desc
 	</select>
 </mapper>

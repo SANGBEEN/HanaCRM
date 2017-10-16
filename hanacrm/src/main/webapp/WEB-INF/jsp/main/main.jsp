@@ -304,9 +304,10 @@
 				switch(v.importance){
 				case 1:
 				case 2:
+					var typeString = v.customer.name!=null? '('+v.customer.name+')':'';
 					str += '<div class="task high">';
 					str += '	<div class="desc">';
-					str += 			'<div class="title">'+v.type+'</div>'; //+v.customer.name!=""?' ('+v.customer.name+')':''+'</div>';
+					str += 			'<div class="title">'+v.type+' '+typeString+'</div>'; //+v.customer.name!=""?' ('+v.customer.name+')':''+'</div>';
 					str += 			'<div>'+v.comments+'</div>';
 					str += '	</div>';
 					str += 		'<div class="time">';
@@ -317,9 +318,10 @@
 					$('.priority.high').append(str);
 					break;
 				case 3:
+					var typeString = v.customer.name!=null? '('+v.customer.name+')':'';
 					str += '<div class="task medium">';
 					str += '	<div class="desc">';
-					str += 			'<div class="title">'+v.type+'</div>';
+					str += 			'<div class="title">'+v.type+' '+typeString+'</div>';
 					str += 			'<div>'+v.comments+'</div>';
 					str += '	</div>';
 					str += 		'<div class="time">';
@@ -329,9 +331,10 @@
 					$('.priority.medium').append(str);
 					break;
 				default:
+					var typeString = v.customer.name!=null? '('+v.customer.name+')':'';
 					str += '<div class="task low">';
 					str += '	<div class="desc">';
-					str += 			'<div class="title">'+v.type+'</div>';
+					str += 			'<div class="title">'+v.type+' '+typeString+'</div>';
 					str += 			'<div>'+v.comments+'</div>';
 					str += '	</div>';
 					str += 		'<div class="time">';
@@ -362,7 +365,7 @@
         		type: "get",
         		dataType: "json",
         		success: function(visitsList){
-        			console.log(visitsList);
+        			//console.log(visitsList);
         			$('div[id=number-of-visits-hs]').text(visitsList.length);
         			$('div[id=visits-IP-list-hs]').html(visitsList);
         	    },

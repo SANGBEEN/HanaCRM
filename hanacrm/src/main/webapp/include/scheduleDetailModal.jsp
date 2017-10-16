@@ -44,10 +44,10 @@
 							<label class="control-label" for="focusedInput"><b>소요시간</b></label>
 							<div class="controls">
 								<div class="btn-group btn-overlap btn-corner">
-									<button value="1" class="btn btn-sm btn-white btn-info dduration">1</button>
-									<button value="2" class="btn btn-sm btn-white btn-info dduration">2</button>
-									<button value="3" class="btn btn-sm btn-white btn-info dduration">3</button>
-									<button value="4" class="btn btn-sm btn-white btn-info dduration">4</button>
+									<button id="duration1" value="1" class="btn btn-sm btn-white btn-info dduration">1</button>
+									<button id="duration2" value="2" class="btn btn-sm btn-white btn-info dduration">2</button>
+									<button id="duration3" value="3" class="btn btn-sm btn-white btn-info dduration">3</button>
+									<button id="duration4" value="4" class="btn btn-sm btn-white btn-info dduration">4</button>
 								</div>
 							</div>
 						</div>

@@ -73,10 +73,14 @@
 						</a>
 					</div>
 					
+					<div>
+						<span class="from" style="display: inline-block; width:25%; padding-left:10px"><b>등록 날짜</b></span><span class="title" style="    display: inline-block; width:55%;"><b>내용</b></span>
+						<hr style="background-color:black;">
+					</div>
 					<ul class="messagesList">
 						<c:forEach items="${ memoList }" var="memoVO" varStatus="status">
 							<li id="li${memoVO.no}">
-								<span class="from">${memoVO.regDate}</span><span id="memo${memoVO.no}" class="title"  onclick="clickTitle('${memoVO.no}','${memoVO.regDate}')">${memoVO.content}</span><span class="date"><a id="memo-delete" href="#" style="margin-left:10px" onclick="clickDelete('${memoVO.no}')"><i class="halflings-icon remove-sign"></i></a></span>
+								<span class="from">${memoVO.regDate}</span><span id="memo${memoVO.no}" class="title"  onclick="clickTitle('${memoVO.no}','${memoVO.regDate}')">${memoVO.content}</span><span class="pull-right"><a id="memo-delete" href="#" style="margin-left:10px" onclick="clickDelete('${memoVO.no}')"><i class="halflings-icon remove-sign"></i></a></span>
 								<%-- <span id="memo${memoVO.no}" class="title">${memoVO.content}</span><span class="from">${memoVO.regDate}</span><span class="date"><a class="btn memo-delete" id="memo-delete" href="#" style="align:right"><i class="halflings-icon remove-sign"></i></a></span> --%>
 							</li>
 						</c:forEach>
@@ -215,14 +219,18 @@
 	<script>
 	
 		var firstCheck = false;
+		var keyupCheck = true;
 		var memoList = ${memoList};
-		var memoNo = 0;
+		var memoNo = memoList[0].no;
 		
 		console.dir(memoList[0].no);
 		
 		// 시작 시 첫번째 메모 보여주기
 		$('document').ready(function(){
-			clickTitle(memoList[0].no, memoList[0].regDate);
+			$('#thisMemo').css('visibility','visible');
+			$('#thisMessage').val($('#memo'+memoList[0].no).text());
+			$('#thisDate').text(memoList[0].regDate);
+			$('#thisTitle').text(subString($('#memo'+memoList[0].no).text()));
 		});
 		
 		// 기본 셋팅 - 클릭 이벤트
@@ -254,9 +262,10 @@
 		$('#memo-insert').on('click', function(){
 			
 			firstCheck = true;
+			keyupCheck = true;
 			
 			var d = new Date();
-			var today = d.getFullYear()+"-"+(d.getMonth()<9?'0'+(d.getMonth()+1):d.getMonth())+"-"+d.getDate();
+			var today = d.getFullYear()+"-"+(d.getMonth()<9?'0'+(d.getMonth()+1):(d.getMonth()+1))+"-"+d.getDate();
 
 			$('#thisMemo').css('visibility','visible');
 			$('#thisTitle').text(' ');
@@ -284,10 +293,6 @@
 		//	console.dir(e);
 		//	console.log(memoNo);
 			if(firstCheck) console.log(firstCheck);
-			
-			$('#memo'+memoNo).text($('#thisMessage').val());
-			$('#thisTitle').text(subString($('#thisMessage').val()));
-			
 			
 		/*	if(!firstCheck){
 				// 첫 작성이 아니면 수정 요청
@@ -353,22 +358,30 @@
 					}
 				}); */
 				
-				if(firstCheck){
+				if(firstCheck && keyupCheck){
 					 $.ajax({
 							url: '${pageContext.request.contextPath}/sales/memoSeq',
 							type: 'get',
 							success: function(no){
 							//	console.log(no);
 								memoNo = no;
-							//	console.log(memoNo);
+								$('#memo'+memoNo).text($('#thisMessage').val());
+								console.log("first! " +memoNo);
+								keyupCheck = false;
 							//	console.log(firstCheck);
 							},
 							error: function(){
 								alert('error');
 							}
 						}); 
+				}else {
+					keyupCheck = false;
+					console.log("memoNo is "+memoNo);
+					$('#memo'+memoNo).text($('#thisMessage').val());
 				}
 				
+				$('#thisTitle').text(subString($('#thisMessage').val()));
+								
 			//}
 		});
 		
@@ -400,7 +413,7 @@
 			} else {
 				// 첫 작성일 경우
 				var d = new Date();
-				var today = d.getFullYear()+"-"+(d.getMonth()<9?'0'+(d.getMonth()+1):d.getMonth())+"-"+d.getDate();
+				var today = d.getFullYear()+"-"+(d.getMonth()<9?'0'+(d.getMonth()+1):(d.getMonth()+1))+"-"+d.getDate();
 				var memoData = {
 						no: memoNo,
 						content: $('#thisMessage').val(),
@@ -412,12 +425,13 @@
 					success: function(data){
 						// console.log('post: '+data);
 						firstCheck = false;
+						keyupCheck = true;
 						
 						// 메모리스트에 동적 추가
 						// 1. append 추가하기 테스트
-						addHtml = '<li id="li'+memoData.no+'"><span class="from">뉴메모</span><span id="memo'
+						addHtml = '<li id="li'+memoData.no+'"><span class="from">'+today+'</span><span id="memo'
 									+ memoData.no + '" class="title">'
-									+ memoData.content + '</span><span class="date">'+today+'<a id="memo-delete" href="#" style="margin-left:10px" onclick="clickDelete(\''+memoData.no+'\')"><i class="halflings-icon remove-sign"></i></a></span></li>';
+									+ memoData.content + '</span><span class="pull-right"><a id="memo-delete" href="#" style="margin-left:10px" onclick="clickDelete(\''+memoData.no+'\')"><i class="halflings-icon remove-sign"></i></a></span></li>';
 						$('.messagesList').prepend(addHtml);
 
 					//	var element = document.getElementById(""+memoData.no);

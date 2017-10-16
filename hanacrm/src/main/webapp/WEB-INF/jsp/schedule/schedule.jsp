@@ -223,8 +223,6 @@
 						
 						<br/>
 						<br/>
-						<br/>
-						<br/>
 						
 							<!-- 오늘 일정 간략하게 -->
 							<div class="box">
@@ -235,7 +233,7 @@
 										<a href="#" class="btn-close"><i class="halflings-icon remove"></i></a>
 									</div>
 								</div>
-								<div id="div_todayList" class="box-content">
+								<div id="div_todayList" class="box-content" style="overflow: auto; height:540px;">
 								<%--	<ul class="dashboard-list">
 										
 										 <c:forEach var="schedule" items="${scheduleList}">
@@ -284,7 +282,11 @@
 		 start = new Date(2010, 10, 21).getTime();
 		console.log(start);
 		
-		getTodayList();
+		var addModal = $('#addModal');
+		var detailModal = $('#detailModal');
+		
+		var datetimepicker = $('#datetimepicker');
+		var detail_datetimepicker = $('#detail_datetimepicker');
 		
 		function getTodayList(){
 			
@@ -294,9 +296,10 @@
 				success: function(data){
 					var todayList = JSON.parse(data);
 					var html = '<ul class="dashboard-list">';
+					var size = todayList.length; //<5?todayList.length:5;
 					
-					for(var i=0; i<todayList.length; i++){
-						html += '<li><strong>일정분류: </strong>';
+					for(var i=0; i<size; i++){
+						html += '<li class="todaySchedule" id="today'+todayList[i].no+'" value="'+todayList[i].no+'"><strong>일정분류: </strong>';
 						
 						type = 'Meeting';
 						switch(todayList[i].type){
@@ -328,7 +331,7 @@
 						
 						if(todayList[i].type!='Task'){
 							html += '<br/><strong>고객 이름: </strong>'+todayList[i].customer.name;
-							//html += '('+todatyList[i].customer.grade+')<br>';
+							html = html + ' ('+todayList[i].customer.grade+')';
 						}
 						html += '<br><strong>장소: </strong>'+todayList[i].location+'<br>';
 						html += '<strong>시간: </strong>'+todayList[i].startDate+'<br>';
@@ -339,16 +342,17 @@
 					}
 				}
 			});
+			
+			
+			$(document).on('click', '.todaySchedule', function(e){
+				console.log('무다냐');
+				console.log(e);
+				getDetailSchedule($(this).val());
+			});
 		}
 		 
 		 jQuery(function($) {
-				
-			var addModal = $('#addModal');
-			var detailModal = $('#detailModal');
-			
-			var datetimepicker = $('#datetimepicker');
-			var detail_datetimepicker = $('#detail_datetimepicker');
-			
+			 
 			addModal.on('hidden.bs.modal', function (e) {
 		 	//	console.log('dismiss');
 		 		 $(this)
@@ -360,6 +364,8 @@
 		 	       .end()
 		 	    .find("button.clicked").removeClass('clicked');
 		 	});
+			
+			getTodayList();
 	
 			 
 				/************************** initialize the external events
@@ -698,7 +704,7 @@
 							//	 $(".modal-body").val("");							
 							
 							} else{
-							//	alert(check);
+								alert(check);
 							}  // check else end
 						}); // click end
 						
@@ -755,7 +761,7 @@
 							success: function(data){
 								var schedule = JSON.parse(data);
 								s = schedule;
-								console.dir(schedule);
+								// console.dir(schedule);
 								detailModal.find('span[id=scheduleType]').text(schedule.type);
 								detailModal.find('input[id=location]').val(schedule.location);
 								detailModal.find('textarea[id=comments]').val(schedule.comments);
@@ -767,6 +773,19 @@
 									detailModal.find('div[id=div_customerName]').hide();
 								}
 								detailModal.find('select[id=importance]').val(schedule.importance);
+								
+							
+								var d = ((moment(schedule.endDate)-moment(schedule.startDate))/60)/60/1000;
+
+								if(schedule.type=='Call'){
+									d = d*2;
+									dtype = 'minuites';
+								}else {
+									dtype = 'hours';
+								}
+								
+								detailModal.find('.dduration').removeClass('clicked');
+								detailModal.find('#duration'+d).addClass('clicked');
 								
 								detailModal.modal('show');
 								
@@ -864,7 +883,7 @@
 				        		dataType: "json",
 				        		data: JSON.stringify(scheduleData), 
 				        		success: function(data){
-				        	//		alert('수정'+data);
+				        			alert('수정되었습니다.');
 				        			detailModal.modal("hide");
 									
 				        			// 달력 객체 정보 수정
@@ -925,15 +944,11 @@
 		 // 날짜 변환 (moment -> moment/string)
 		 function getDate(date){
 			 
-			// console.log('getDate() first date is '+date);
-			 
 			 if(date!=null){
 				// date.stripTime();
 				if(date.hasZone()){
 					 date.stripZone();
 				}
-			//	 console.log('getDate() last date is '+date);
-			//	 console.log('getDate() last format date is '+$.fullCalendar.moment(date).format());
 				 return $.fullCalendar.moment(date).format('YYYY-MM-DD HH:mm');  // 'YYYY-MM-DD HH:mm'
 			 } else { // null일 경우
 				 return '';
@@ -1066,27 +1081,218 @@
 		 		var msg = 'ok';
 		 		
 		 		if($("#scheduleType").val()!='Task' && $('span.checked').length==0){ // $("input[name='customerNo']:checked").val()==null){
-		 			return 'customer is not checked';
+		 			return '고객을 선택해주세요.';
 		 		}
 		 		
 		 		if($('#location').val()==''){
-		 			return 'location is empty';
+		 			return '장소를 입력해주세요.';
 		 		}
 
 		 		if($('#comments').val()=='' || $('#comments').val()==null){
-		 			return 'comments is empty';
+		 			return '일정 내용을 입력해주세요.';
 		 		}
 		 		
 		 		if($('#repetition').val()==''){
-		 			return 'repetition is empty';
+		 			return '반복 여부를 선택해주세요.';
 		 		}
 		 		
 		 		if($('#importance').val()==''){
-		 			return 'importance is empty';
+		 			return '중요도를 선택해주세요.';
 		 		}
 
     			return msg;
 		 	}
+		 		
+		 		
+		 	function getDetailSchedule(no){
+		 		var dduration = 1;
+				var dtype = 'hours';
+				console.log(no);
+				
+				var todayModal = $('#detailModal');
+				var today_datetimepicker = $('#detail_datetimepicker');
+				
+				$.ajax({
+					url: "${pageContext.request.contextPath}/schedule/"+no,
+					type: "get",
+					success: function(data){
+						var schedule = JSON.parse(data);
+						s = schedule;
+						 console.log(schedule);
+						todayModal.find('span[id=scheduleType]').text(schedule.type);
+						todayModal.find('input[id=location]').val(schedule.location);
+						todayModal.find('textarea[id=comments]').val(schedule.comments);
+						todayModal.find('input[id=repetition]').val(schedule.repetition);
+						if(schedule.customerNo!=null || schedule.customerNo!=""){
+							todayModal.find('span[id=customerName]').text(schedule.customer.name);									
+							todayModal.find('div[id=div_customerName]').show();
+						}else {
+							todayModal.find('div[id=div_customerName]').hide();
+						}
+						todayModal.find('select[id=importance]').val(schedule.importance);
+						
+					
+						var d = ((moment(schedule.endDate)-moment(schedule.startDate))/60)/60/1000;
+
+						if(schedule.type=='Call'){
+							d = d*2;
+							dtype = 'minuites';
+						}else {
+							dtype = 'hours';
+						}
+						
+						todayModal.find('.dduration').removeClass('clicked');
+						todayModal.find('#duration'+d).addClass('clicked');
+						
+						todayModal.modal('show');
+						
+						// 데이트피커
+						/*  https://xdsoft.net/jqplugins/datetimepicker/ */
+					 	today_datetimepicker.datetimepicker({
+					 		defaultDate: schedule.startDate,
+					 		 allowTimes:[
+					 			'10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00', '13:30',
+					 			'14:00', '14:30', '15:00', '15:30', '16:00', '16:30', '17:00', '17:30',
+					 			'18:00', '18:30', '19:00', '19:30', '20:00', '20:30', '21:00', '21:30', '22:00'
+				 			],
+				 			yearStart: '2017',
+				 			/* minTime: '10:00',
+				 			maxTime: '22:00',
+				 			step: 30, */
+					 		value: schedule.startDate,
+					 		format:'Y-m-d H:i',
+					 		onChangeDateTime:function(dp,$input){
+					 			todayModal.find('#endDate').text(getDate(moment(dp).add(dduration,dtype)));
+					 		}
+					 	});
+						
+						todayModal.find('#endDate').text(schedule.endDate);
+						
+						if(schedule.type=='Event'){
+							todayModal.find('#div_duration').hide();
+						}else {
+							todayModal.find('#div_duration').show();
+						}
+
+					},
+					error: function(){
+					//	alert('error');
+					}
+				});
+				
+				todayModal.find('.dduration').off().on('click', function(ev){
+
+					dduration = 1;
+					dtype = 'hours';
+					
+					$('.dduration').removeClass('clicked');
+					$(this).addClass('clicked');
+					
+					if(calEvent.className=='Call'){
+						dduration = 30;
+						dtype = 'minutes';
+					}
+					
+					dduration = dduration * Number($(this).val());
+			//		console.log(dduration);
+
+					var endDate = moment(today_datetimepicker.datetimepicker('getValue'));
+					endDate.add(dduration, dtype);
+					todayModal.find('#endDate').text(getDate(endDate));
+					
+				});
+				
+				// 수정 버튼
+				todayModal.find('a[id=modalSave]').off().on('click', function(ev){
+					
+					ev.preventDefault();
+					ev.stopPropagation();  // 이벤트버블링 방지
+					
+					// 캘린더에 쓰일 Data (변경사항 저장 - type, end 날짜)						
+					 var selectedDate_s = moment(today_datetimepicker.datetimepicker('getValue'));
+					/* var selectedDate_e = selectedDate_s.add(dduration,dtype); */
+
+					 var startData = getDate(selectedDate_s);
+					 var endData = todayModal.find('#endDate').text();
+					 
+		//			console.log(calEvent);
+        //			console.log(name);
+        			
+					// 서버에 보낼 Data
+					var scheduleData = {
+							no: calEvent.id,
+		        			comments: todayModal.find('textarea[id=comments]').val(),
+		        			customerNo: s.customer.no,
+		        			type: todayModal.find('span[id=scheduleType]').text(),
+		        			location: todayModal.find('input[id=location]').val(),
+		        			importance: todayModal.find('select[id=importance]').val(),
+		        			repetition: todayModal.find('select[id=repetition]').val(),
+		        			startDate: startData,
+		        			endDate: endData
+		        		};
+					
+			//		console.log(scheduleData);
+					
+					  $.ajax({
+		        		url: "${pageContext.request.contextPath}/schedule",
+		        		type: "put",
+		        		contentType: "application/json; charset=uft-8",
+		        		dataType: "json",
+		        		data: JSON.stringify(scheduleData), 
+		        		success: function(data){
+		        			alert('수정되었습니다.');
+		        			todayModal.modal("hide");
+							
+		        			// 달력 객체 정보 수정
+		        			calEvent.className = scheduleData.type;
+							calEvent.start = startData;
+							calEvent.end = endData;
+							
+							calendar.fullCalendar('updateEvent', calEvent);
+							
+					//		if(startDate==moment().format('YYYY-MM-DD HH:mm')){
+								getTodayList();
+					//		}
+		        		},
+		        		error: function(){
+		        	//		alert('error');
+		        		}
+		        	}); 
+					
+				});
+				
+				// 삭제 버튼
+				todayModal.find('a[id=modalDelete]').off().on('click', function(){
+					
+					if(confirm("일정을 삭제하시겠습니까?")){
+						
+						$.ajax({
+							url: '${pageContext.request.contextPath}/schedule/'+no,
+							type: 'delete',
+							success: function(data){
+								if(data==1){										
+									calendar.fullCalendar('removeEvents' , function(ev){
+										return (ev._id == calEvent._id);
+									});
+									alert('삭제 완료');
+									todayModal.modal("hide");
+									
+							//		if(startDate==moment().format('YYYY-MM-DD HH:mm')){
+										getTodayList();
+							//		}
+									
+								}else {
+							//		console.log('디비에러');
+								}
+							},
+							error: function(e){
+								console.dir(e);
+						//		alert('error');
+							}
+						});
+					}
+				});  // 삭제 버튼 끝
+			}
 		 
 		 
 	</script>

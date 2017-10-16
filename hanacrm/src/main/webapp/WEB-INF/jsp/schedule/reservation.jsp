@@ -309,13 +309,13 @@
 			
 			console.log(reservationData);
 	
-			 /*  $.ajax({
+			   $.ajax({
 					url: "${pageContext.request.contextPath}/schedule/reservation",
 					type: "put",
 					contentType: "application/json; charset=uft-8",
 					data: JSON.stringify(reservationData),
 					success: function(data){
-						if(data==1){ */
+						if(data==1){ 
 							if(reservationData.status=='N'){
 								$('#commentsModal').modal('hide');
 								$('#actionColum'+reservationData.no).empty();
@@ -323,12 +323,12 @@
 							}else {
 								$('#'+reservationData.no).remove();						
 							}
-						/*}
+						}
 					},
 					error: function(e){
-						alert('error');
+					//	alert('error');
 					}
-				}); */
+				}); 
 						 console.log(reservationData);
 			
 		};
