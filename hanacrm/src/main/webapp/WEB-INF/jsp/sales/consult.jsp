@@ -572,13 +572,13 @@
 			$(document).on('change', 'input[id=product-checkbox]', function() {
 			//$('input:checkbox[id="product-checkbox"]').on('click', function(){
 				if ($(this).prop("checked")) {
-					$('#product-count').html('상품 선택 <span class="label label-important" id="selected-product-detail-hs"> ' + 
+					$('#product-count').html('상품 선택 <span class="badge badge-important" id="selected-product-detail-hs"> ' + 
 							selectedProduct.push({
 								type : $('li[class=active]').find('a[id=type-select-hs]').data('product_type'),
 								productJson : $(this).data('product_json')
 							})					
 							+ ' </span>');				
-				} else {		
+				} else {
 					console.dir($(this).data('product_json'));
 					
 					var selectedLength = selectedProduct.length;
