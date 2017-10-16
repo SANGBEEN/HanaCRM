@@ -130,7 +130,7 @@
 
 		
 	<!-- 상담 내역 상세 -->
-	<c:forEach items="${ consultList }" var="consultVO">
+	<%-- <c:forEach items="${ consultList }" var="consultVO">
 		<div class="modal hide fade" id="consultDetail${ consultVO.no }">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">×</button>
@@ -158,7 +158,7 @@
 				<a href="#" class="btn" data-dismiss="modal">닫기</a>
 			</div>
 		</div>
-	</c:forEach>	
+	</c:forEach> --%>	
 	
 	<!-- 일정  선택 -->
 	<div class="modal hide fade" id="consultScheduleSelect">
@@ -276,7 +276,7 @@
 			<h3>상세보기</h3>
 		</div>
 		<div class="modal-body">
-			<div id="consult-update-table-hs">
+			<div id="consult-detail-table-hs">
 			
 			</div>			
 		</div>
@@ -646,7 +646,7 @@
 				var content = $('textarea[id="consult-content-hs"]').val();
 				
 				consultJson["content"] = content;
-				consultJson["title"] = content.length > 15 ? content.substring(0, 15) + "..." : content;
+				consultJson["title"] = content.length > 20 ? content.substring(0, 20) + "..." : content;
 				consultJson["consultProduct"] = productListJson;
 				
 				console.log(consultJson);
@@ -662,7 +662,6 @@
 	        			selectedProduct = [];	        		
 	        			$('#consultContentInsert').modal('hide');
 	        			location.href = '${pageContext.request.contextPath}/sales/consult';
-
 					},
 	        		error: function(e) {
 	        			console.log(e);
@@ -676,8 +675,6 @@
 				
 				$(this).removeData();
 			});
-			
-			var consultDetailNo = null;
 		
 			/* 상세보기 및 수정 */
 			//$('a[id=consult-update-hs]').click(function(e) {
@@ -685,26 +682,49 @@
 				e.preventDefault();
 				e.stopPropagation();
 				
-				consultDetailNo = $(this).data('consult_no');
+				var consultDetailNo = $(this).data('consult_no');
 				
 				$.ajax({	
 	        		url: "${pageContext.request.contextPath}/sales/consult/" + consultDetailNo,
 	        		type: "get",
 	        		dataType: "json",
 	        		success: function(consult) {
-	        			console.log(typeof consult);
+	        			console.log(consult);
 	        			
 	        			var html = '<table class="table table-striped table-bordered">' 
 	        			+ '<tr><th>상담 일시</th><td>' + consult.regDate + '</td></tr>' 
 	        			+ '<tr><th>고객명</th><td>' + consult.customerVO.name + ' <a class="btn btn-success" id="customer-detail-hs" data-customer_no="' + consult.customerVO.no + '">상세정보</a></td></tr>'
 	        			+ '<tr><th>상담 요약</th><td>' + consult.title + '</td></tr>'
-	        			+ '<tr><th>상담 상품</th><td>' + '</td></tr>'
-	        			+ '<tr><th>상담 내용</th><td><textarea rows="3" cols="20">' + consult.content + '</textarea></td></tr>' 
+	        			+ '<tr><th>상담 상품</th><td><div><ul class="messagesList">';
+	        			
+	        			/* var productMapList = [];
+	        			
+	        			for (var i = 0; i < consult.consultProduct.length; i++) {
+	        				productMapList.push({
+	        					"type" : consult.consultProduct[i].type,
+	        					"productNo" : consult.consultProduct[i].productNo
+	        				});				
+						} */
+	        			
+	        			//console.log(productMapList);
+	        			//var productList = getProductDetailList(productMapList);
+	        			console.log(consult.consultProduct);
+	        			var productList = getProductDetailList(consult.consultProduct);
+	        			console.log(productList);
+	        			
+	        			for (var i = 0; i < productList.length; i++) {
+							html += '<li><span><input type="checkbox" id="productList-checkbox" data-product_type="' + consult.consultProduct[i].type + '" data-product_no="' + consult.consultProduct[i].productNo + '"></span><span>' + productList[i].finPrdtNm + '</span></li>';
+						}
+	        			
+	        			html += '</ul></div></td></tr>'
+	        			+ '<tr><th>상담 내용</th><td><textarea id="consult-content-update-hs" rows="3" cols="20">' + consult.content + '</textarea></td></tr>' 
 	        			+ '</table>';
 	        			
-	        			$('div[id=consult-update-table-hs]').html(html);
+	        			$('div[id=consult-detail-table-hs]').html(html);
 	        			
-	        			/* var div = $('div[id=consult-update-table-hs]');
+	        			$('a[id=consult-update-complete-hs]').data("consult_no", consult.no);
+	        			
+	        			/* var div = $('div[id=consult-detail-table-hs]');
 	        			var table = $('<table class="table table-striped table-bordered">');
 	        			var tr = $('<tr>');
 	        			var th = $('<th>');
@@ -747,13 +767,32 @@
 				
 				//consult-content-update-hs consultVO-content-hs
 				
-				
-				
-				$('#consultDetail' + consultDetailNo)
-				
 				$('#consultDetail').modal();
 				console.log("상세보기");
 			});
+			
+			function getProductDetailList(consultProductList) {
+				var returnProductList;
+				
+				$.ajax({	
+	        		url: "${pageContext.request.contextPath}/sales/product",
+	        		type: "post",
+	        		contentType: "application/json; charset=utf-8",
+	        		dataType: "json",
+	        		data: JSON.stringify(consultProductList),
+	        		async: false,
+	        		success: function(productDetailList) {
+	        			returnProductList = productDetailList;
+	        		},
+	        		error: function(e) {
+	        			console.log(e);
+	        			alert('error');
+					}
+				});
+				
+				console.log(typeof returnProductList);
+				return returnProductList;
+			}
 			
 			/* 고객정보 상세보기 */
 			$(document).on('click', 'a[id=customer-detail-hs]', function(e) {
@@ -800,15 +839,23 @@
 				
 				console.log("수정 완료");
 				
+				var content = $('textarea[id="consult-content-update-hs"]').val();
+				var title = content.length > 20 ? content.substring(0, 20) + "..." : content;
+				var consultUpdateNo = $('a[id=consult-update-complete-hs]').data("consult_no");
+				
 				$.ajax({	
 	        		url: "${pageContext.request.contextPath}/sales/consult",
 	        		type: "put",
 	        		contentType: "application/json; charset=utf-8",
-	        		//data: JSON.stringify(consultJson),
+	        		data: JSON.stringify({ 
+        				"no"		:	consultUpdateNo, 
+        				"content"	:	content,
+        				"title"		:	title
+        			}),
 	        		success: function(consultNo) {
-	        			console.log(consultNo + "번 추가 완료");
-	        			consultDetailNo = null;
-	        			$('#consultContentInsert').modal('hide');
+	        			console.log(consultNo + "번 수정 완료");
+	        			$('#consultDetail').modal('hide');
+	        			location.href = '${pageContext.request.contextPath}/sales/consult';
 					},
 	        		error: function(e) {
 	        			console.log(e);
@@ -817,14 +864,14 @@
 				});			
 			});
 			
-			var consultDeleteNo = null;
-			
 			/* 삭제 */
 			$('a[id=consult-delete-hs]').click(function(e) {
 				e.preventDefault();
 				e.stopPropagation();
 				
-				consultDeleteNo = $(this).data('consult_no');
+				var consultDeleteNo = $(this).data('consult_no');
+				
+				$('a[id=consult-delete-complete-hs]').data("consult_delete_no", consultDeleteNo);
 				
 				$('#consultDelete').modal();
 				console.log("삭제");
@@ -834,6 +881,8 @@
 			$('a[id=consult-delete-complete-hs]').click(function(e) {
 				e.preventDefault();
 				e.stopPropagation();
+				
+				var consultDeleteNo = $('a[id=consult-delete-complete-hs]').data("consult_delete_no");
 				
 				$.ajax({	
 	        		url: "${pageContext.request.contextPath}/sales/consult/" + consultDeleteNo,

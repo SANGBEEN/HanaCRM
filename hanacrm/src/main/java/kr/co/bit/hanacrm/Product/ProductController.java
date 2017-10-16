@@ -18,6 +18,7 @@ import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -49,11 +50,13 @@ public class ProductController {
 	
 	@RequestMapping(value="/sales/product/{type}/{no}", method=RequestMethod.GET)
 	public ModelAndView selectByNo(@PathVariable int type, @PathVariable int no) throws JsonProcessingException{
-		System.out.println("productSelectByNo");
-		
-		ObjectMapper mapper = new ObjectMapper();	
-		
-		return new ModelAndView("/sales/product/detail", "productDetail", mapper.writeValueAsString(productService.selectByNo(type, no)));
+		return new ModelAndView("/sales/product/detail", "productDetail", new ObjectMapper().writeValueAsString(productService.selectByNo(type, no)));
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/sales/product", method=RequestMethod.POST, produces="application/json")
+	public List<ProductVO> selectByNoList(@RequestBody List<Map<String, Integer>> consultProductList){
+		return productService.selectByNoList(consultProductList);
 	}
 	
 	@ResponseBody

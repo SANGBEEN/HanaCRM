@@ -54,7 +54,7 @@ public class ConsultController {
 	
 	@ResponseBody
 	@RequestMapping(value="/sales/consult", method=RequestMethod.PUT)
-	public int update(ConsultVO consultVO){
+	public int update(@RequestBody ConsultVO consultVO){
 		return consultService.update(consultVO);
 	}
 	

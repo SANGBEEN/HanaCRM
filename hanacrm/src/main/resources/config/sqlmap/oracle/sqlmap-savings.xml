@@ -30,7 +30,7 @@
 	</select>
 	
 	<select id="selectByNo" parameterType="int" resultMap="savingsMap">
-		select * from savings_info where no=#{no}
+		select no, to_char(dcls_month, 'YYYY-MM') as dcls_month, fin_co_no, kor_co_nm, fin_prdt_cd, fin_prdt_nm, join_way, mtrt_int, spcl_cnd, join_deny, join_member, etc_note, max_limit, to_char(dcls_strt_day, 'YYYY-MM-DD') as dcls_strt_day, to_char(dcls_end_day, 'YYYY-MM-DD') as dcls_end_day, to_char(fin_co_subm_day, 'YYYY-MM-DD hh24:mi') as fin_co_subm_day from savings_info where no=#{no}
 	</select>
 	
 	<select id="selectLog" resultType="String">
