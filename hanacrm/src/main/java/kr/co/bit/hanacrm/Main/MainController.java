@@ -119,7 +119,15 @@ public class MainController {
 		
 		//알림
 		int reservationCount = scheduleService.selectReservationCount(emp.getNo());
-		//System.out.println("예약수 " +reservationCount);
+		/*List<ScheduleVO> reservationList = scheduleService.selectReservation(emp.getNo());
+		String jsonReservationList = "";
+		//VO to JSON
+		mapper = new ObjectMapper();
+		try {
+			jsonReservationList = mapper.writeValueAsString(reservationList);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}*/
 		
 		//고객수
 		int customerCount = cusService.selectCount(emp.getNo());
@@ -145,6 +153,7 @@ public class MainController {
 		model.addAttribute("contractList", json);
 		model.addAttribute("customerCount", customerCount);
 		model.addAttribute("customerCountList", jsonCustomerCountList);
+	//	model.addAttribute("reservationList", jsonReservationList);
 		return "/main/main";
 	}
 	
