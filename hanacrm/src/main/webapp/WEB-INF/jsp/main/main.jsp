@@ -306,7 +306,7 @@
 				case 2:
 					str += '<div class="task high">';
 					str += '	<div class="desc">';
-					str += 			'<div class="title">'+v.type+'</div>';
+					str += 			'<div class="title">'+v.type+'</div>'; //+v.customer.name!=""?' ('+v.customer.name+')':''+'</div>';
 					str += 			'<div>'+v.comments+'</div>';
 					str += '	</div>';
 					str += 		'<div class="time">';

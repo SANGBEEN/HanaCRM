@@ -221,51 +221,44 @@
 							<div class="external-event badge drag-event-div">Event</div>
 							<div class="external-event badge badge-inverse drag-event-div">Other</div>
 						
+						<br/>
+						<br/>
+						<br/>
+						<br/>
+						
 							<!-- 오늘 일정 간략하게 -->
-							<div class="todo metro">
-								<ul class="todo-list">
-									<li class="red">
-										<a class="action icon-check-empty" href="#"></a>	
-										Windows Phone 8 App 
-										<strong>today</strong>
-									</li>
-									<li class="red">
-										<a class="action icon-check-empty" href="#"></a>
-										New frontend layout
-										<strong>today</strong>
-									</li>
-									<li class="yellow">
-										<a class="action icon-check-empty" href="#"></a>
-										Hire developers
-										<strong>tommorow</strong>
-									</li>
-									<li class="yellow">
-										<a class="action icon-check-empty" href="#"></a>
-										Windows Phone 8 App
-										<strong>tommorow</strong>
-									</li>
-									<li class="green">
-										<a class="action icon-check-empty" href="#"></a>
-										New frontend layout
-										<strong>this week</strong>
-									</li>
-									<li class="green">
-										<a class="action icon-check-empty" href="#"></a>
-										Hire developers
-										<strong>this week</strong>
-									</li>
-									<li class="blue">
-										<a class="action icon-check-empty" href="#"></a>
-										New frontend layout
-										<strong>this month</strong>
-									</li>
-									<li class="blue">
-										<a class="action icon-check-empty" href="#"></a>
-										Hire developers
-										<strong>this month</strong>
-									</li>
-								</ul>
-							</div>	
+							<div class="box">
+								<div class="box-header">
+									<h2><i class="halflings-icon calendar"></i><span class="break"></span>오늘 일정</h2>
+									<div class="box-icon">
+										<a href="#" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
+										<a href="#" class="btn-close"><i class="halflings-icon remove"></i></a>
+									</div>
+								</div>
+								<div id="div_todayList" class="box-content">
+								<%--	<ul class="dashboard-list">
+										
+										 <c:forEach var="schedule" items="${scheduleList}">
+											<li>
+												<strong>일정분류:</strong>
+												<c:choose>
+													<c:when test="">
+														<span class="label-success">Approved</span>                                  
+													</c:when>
+													<c:when test="">
+														<span class="label-warning">Pending</span>                                 
+														<span class="label-important">Banned</span>                                  
+														<span class="label-info">Updates</span>  
+													</c:when>
+												</c:choose>
+												<strong>고객 이름:</strong> <a href="#">Dennis Ji</a><br>
+												<strong>시간:</strong> Jul 25, 2012 11:09<br>
+												                                
+											</li>
+										</c:forEach> 
+									</ul>--%>
+								</div>
+							</div>
 						</div>
 						<div id="calendar" class="span9"></div>
 						<div class="clearfix"></div>
@@ -290,6 +283,63 @@
 		 
 		 start = new Date(2010, 10, 21).getTime();
 		console.log(start);
+		
+		getTodayList();
+		
+		function getTodayList(){
+			
+			$.ajax({
+				url: "${pageContext.request.contextPath}/schedule/listForConsult",
+				type: "get",
+				success: function(data){
+					var todayList = JSON.parse(data);
+					var html = '<ul class="dashboard-list">';
+					
+					for(var i=0; i<todayList.length; i++){
+						html += '<li><strong>일정분류: </strong>';
+						
+						type = 'Meeting';
+						switch(todayList[i].type){
+							case 'Important':
+								html += '<span class="label-important" style="padding:3px">Important</span>';
+								type = 'Important';
+								break;
+							case 'Meeting':
+								html += '<span class="label-success" style="padding:3px">Meeting</span>';
+								type = 'Meeting';
+								break;
+							case 'Call':
+								html += '<span class="label-warning" style="padding:3px">Call</span>';
+								type= 'Call';
+								break;
+							case 'Task':
+								html += '<span class="label-info" style="padding:3px">Task</span>';
+								type = 'Task';
+								break;
+							case 'Event':
+								html += '<span style="background-color:#646464; color:#fff; padding:3px">Event</span>';
+								type = 'Event';
+								break;
+							case 'Other':
+								html += '<span style="background-color:#333333; color:#fff; padding:3px">Other</span>';
+								type = 'Other';
+								break;
+						}
+						
+						if(todayList[i].type!='Task'){
+							html += '<br/><strong>고객 이름: </strong>'+todayList[i].customer.name;
+							//html += '('+todatyList[i].customer.grade+')<br>';
+						}
+						html += '<br><strong>장소: </strong>'+todayList[i].location+'<br>';
+						html += '<strong>시간: </strong>'+todayList[i].startDate+'<br>';
+						html += '&emsp;&emsp;&emsp;~ '+todayList[i].endDate+'<br>';
+						html += '</li>';
+						
+						$('#div_todayList').html(html);
+					}
+				}
+			});
+		}
 		 
 		 jQuery(function($) {
 				
@@ -300,7 +350,7 @@
 			var detail_datetimepicker = $('#detail_datetimepicker');
 			
 			addModal.on('hidden.bs.modal', function (e) {
-		 		console.log('dismiss');
+		 	//	console.log('dismiss');
 		 		 $(this)
 		 	    .find("input,textarea,select")
 		 	       .val('')
@@ -484,14 +534,14 @@
 						copiedEventObject.className = originalEventObject.title;
 						copiedEventObject.title = "Title";
 					
-						console.log(copiedEventObject);
+				//		console.log(copiedEventObject);
 						
 						/* 3. 추가할 이벤트 정보 모달에 셋팅
 							1) type 설정 (originalEventObject.title)
 							2) 시작 날짜 설정 (date 이용)
 						**************************/
 						
-						console.log('1: '+copiedEventObject.className);
+				//		console.log('1: '+copiedEventObject.className);
 							
 		 				// 1) type 설정
 		 				var duration = 1;
@@ -538,7 +588,8 @@
 					 		value: getDate(date),
 					 		format:'Y-m-d H:i',
 					 		onChangeDateTime:function(dp,$input){
-					 			addModal.find('#endDate').text($input.val());
+					 			// console.log(dp);
+					 			addModal.find('#endDate').text(getDate(moment(dp).add(duration,type))); //$input.val());
 					 		}
 				 		});
 						
@@ -570,10 +621,9 @@
 							// We don't want this to act as a link so cancel the link action
 							ev.preventDefault();
 							ev.stopPropagation();  // 이벤트버블링 방지
-							console.log("클릭 메서드");
 							var check = addCheck();
 							
-							console.log(duration);
+					//		console.log(duration);
 														
 							if(check=='ok'){
 							
@@ -586,16 +636,18 @@
 								 var endData = addModal.find('#endDate').text(); //getDate(selectedDate_e); // getDate(moment(endDatepicker.toString()));
 								 var cNo = $('span.checked').parent().parent().parent().data('no')!=null?$('span.checked').parent().parent().parent().data('no'):null;
 								 var name = cNo!=null?document.getElementById(cNo).innerText:addModal.find('input[id=location]').val();
-								 console.log('modalSave start output : '+startData);
-								 console.log('modalSave end output : '+endData);
+						//		 console.log('modalSave start output : '+startData);
+						//		 console.log('modalSave end output : '+endData);
+								 
+								 console.log(startDate==moment().format('YYYY-MM-DD HH:mm'));
 								
 								copiedEventObject.title = name;
 								copiedEventObject.start = startData;
 								copiedEventObject.end = endData;
 		
-								console.log(copiedEventObject);
-			        			console.log(name);
-			        			console.log(cNo);
+					//			console.log(copiedEventObject);
+			        //			console.log(name);
+			        //			console.log(cNo);
 								
 								// 서버에 보낼 Data
 								var scheduleData = {
@@ -618,7 +670,7 @@
 					        			endDate: endData */
 					        		};
 								
-								console.log(scheduleData);
+						//		console.log(scheduleData);
 								
 								  $.ajax({
 					        		url: "${pageContext.request.contextPath}/schedule",
@@ -634,6 +686,9 @@
 										// render the event on the calendar
 										// the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
 										$('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
+									//	if(startDate==moment().format('YYYY-MM-DD HH:mm')){
+											getTodayList();
+									//	}
 					        		},
 					        		error: function(){
 					        	//		alert('error');
@@ -682,13 +737,16 @@
 						
 						/*
 						기본 셋팅
-						1. type 설정 (어딨지)
+						1. type 설정
 						2. 시작 날짜 설정 (date 이용)
 						*/
 			
 						var s;
 						var start = getDate(calEvent.start);
 						var end = getDate(calEvent.end)!=''? getDate(calEvent.end):start;
+						
+						var dduration = 1;
+						var dtype = 'hours';
 						
 						$.ajax({
 							url: "${pageContext.request.contextPath}/schedule/"+calEvent.id,
@@ -728,7 +786,7 @@
 							 		value: schedule.startDate,
 							 		format:'Y-m-d H:i',
 							 		onChangeDateTime:function(dp,$input){
-							 			detailModal.find('#endDate').text($input.val());
+							 			detailModal.find('#endDate').text(getDate(moment(dp).add(dduration,dtype)));
 							 		}
 							 	});
 								
@@ -746,9 +804,6 @@
 							}
 						});
 						
-						var dduration = 1;
-						var dtype = 'hours';
-						
 						detailModal.find('.dduration').off().on('click', function(ev){
 
 							dduration = 1;
@@ -763,7 +818,7 @@
 							}
 							
 							dduration = dduration * Number($(this).val());
-							console.log(dduration);
+					//		console.log(dduration);
 
 							var endDate = moment(detail_datetimepicker.datetimepicker('getValue'));
 							endDate.add(dduration, dtype);
@@ -784,8 +839,8 @@
 							 var startData = getDate(selectedDate_s);
 							 var endData = detailModal.find('#endDate').text();
 							 
-							console.log(calEvent);
-		        			console.log(name);
+				//			console.log(calEvent);
+		        //			console.log(name);
 		        			
 							// 서버에 보낼 Data
 							var scheduleData = {
@@ -800,7 +855,7 @@
 				        			endDate: endData
 				        		};
 							
-							console.log(scheduleData);
+					//		console.log(scheduleData);
 							
 							  $.ajax({
 				        		url: "${pageContext.request.contextPath}/schedule",
@@ -818,6 +873,10 @@
 									calEvent.end = endData;
 									
 									calendar.fullCalendar('updateEvent', calEvent);
+									
+							//		if(startDate==moment().format('YYYY-MM-DD HH:mm')){
+										getTodayList();
+							//		}
 				        		},
 				        		error: function(){
 				        	//		alert('error');
@@ -841,6 +900,11 @@
 											});
 											alert('삭제 완료');
 											detailModal.modal("hide");
+											
+									//		if(startDate==moment().format('YYYY-MM-DD HH:mm')){
+												getTodayList();
+									//		}
+											
 										}else {
 									//		console.log('디비에러');
 										}
@@ -865,9 +929,11 @@
 			 
 			 if(date!=null){
 				// date.stripTime();
-				 date.stripZone();
+				if(date.hasZone()){
+					 date.stripZone();
+				}
 			//	 console.log('getDate() last date is '+date);
-				 console.log('getDate() last format date is '+$.fullCalendar.moment(date).format());
+			//	 console.log('getDate() last format date is '+$.fullCalendar.moment(date).format());
 				 return $.fullCalendar.moment(date).format('YYYY-MM-DD HH:mm');  // 'YYYY-MM-DD HH:mm'
 			 } else { // null일 경우
 				 return '';
@@ -930,7 +996,7 @@
 			        		},
 			        		error: function(e){
 			      				console.log(e);
-			        			alert('error');
+			        		//	alert('error');
 					        	revertFunc();	
 			        		}
 			        	});							
@@ -949,15 +1015,15 @@
 				console.dir(event);
 				console.dir(delta);
 				
-				var start = getDate(event.start);
-				var end = getDate(event.end)!=''? getDate(event.end):start;
+				var startDate = getDate(event.start);
+				var endDate = getDate(event.end)!=''? getDate(event.end):startDate;
 				
-		        alert(event.title + " was dropped on "+start+"-"+end);
+		        alert(event.title + " was dropped on "+startDate+"-"+endDate);
 		        				
 				var scheduleData = {
 						no: event.id,
-	        			startDate: start,
-	        			endDate: end,
+	        			startDate: startDate,
+	        			endDate: endDate,
 	        			employeeNo: null,
 	        			comments: null,
 	        			customerNo: null,
@@ -969,7 +1035,7 @@
 	        			regDate: null
 				}
 				
-				console.log(scheduleData);
+			//	console.log(scheduleData);
 
 		         if (confirm("날짜를 변경하시겠습니까?")) {
 		        	$.ajax({
@@ -979,7 +1045,10 @@
 		        		dataType: "json",
 		        		data: JSON.stringify(scheduleData), 
 		        		success: function(data){
-		        			alert('날짜 수정됨');
+		        			// alert('날짜 수정됨');
+		        		//	if(startDate==moment().format('YYYY-MM-DD HH:mm')){
+								getTodayList();
+					//		}
 		        		},
 		        		error: function(e){
 		      				console.log(e);

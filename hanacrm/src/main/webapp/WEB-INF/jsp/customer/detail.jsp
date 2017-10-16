@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -183,19 +183,20 @@ input.hidden {
 									<label for="name">
 										<span>이름</span>
 									</label>
-									<input id="name" type="text" class="myInput" name="name" value="${customer.name }" readonly="readonly"/> 
+									<input id="name" type="text" class="myInput" name="name" value="${customer.name }" readonly="readonly" required/> 
 								</div>
 								<div class="tital">
 									<label for="phone">
 										<span>전화번호</span>
 									</label> 
-									<input id="phone" type="text" class="myInput" name="phone" value="${customer.phone }" readonly="readonly"/> 
+									<input class="myInput" id="phone" type="text" name="phone" value="${customer.phone}" maxlength="11" size="20"
+							 			placeholder='- 없이 입력하세요.' readonly="readonly" required="required" /> 
 								</div>
 								<div class="tital">
 									<label for="birthDate">
 										<span>생년월일</span>
 									</label> 
-									<input id="birthDate" type="text" class="myInput" name="birthDate" value="${customer.birthDate }" readonly="readonly"/> 
+									<input id="birthDate" type="date" class="myInput" name="birthDate" value="${customer.birthDate }" readonly="readonly"/> 
 								</div>
 								<div class="tital">
 									<label for="post">
@@ -207,7 +208,7 @@ input.hidden {
 									<label for="address">
 										<span>주소</span>
 									</label> 
-									<input id="address" type="text" class="myInput" name="address" value="${customer.address }" readonly="readonly"/> 
+									<input id="address" type="text" class="myInput" name="address" value="${customer.address }"readonly="readonly"/> 
 								</div>
 								
 								<div class="division-tital">
@@ -400,6 +401,11 @@ input.hidden {
 						}
 					});
 					console.dir(JSON.stringify(data));
+					var phoneCheck = data.phone;
+					if(/(0)(1)(0)[0-9]{8}/.exec(phoneCheck.toString())==null){
+						alert('연락처 형식이 틀렸습니다.');
+						return;
+					}
 					
 					//json을 문자열로 바꿔서 컨트롤러에서 RequestBody로 받음 
 					$.ajax({
