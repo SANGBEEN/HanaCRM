@@ -159,6 +159,7 @@
 	<update id="updateReservation" parameterType="schedule">
 		update reservation set status = #{status}, comments = #{comments}
 		where no = #{no}
+		order by reg_date desc
 	</update>
 	
 	<!-- 처리해야 할 예약 개수 -->
