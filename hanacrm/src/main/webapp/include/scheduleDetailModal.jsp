@@ -20,35 +20,28 @@
 						<fieldset>
 						
 						<div class="control-group" id="div_customerName">
-							<label class="control-label">고객명</label>
+							<label class="control-label"><b>고객명</b></label>
 							<div class="controls" style="padding-left: 5px; height: 30px; line-height: 30px;">
 								<span id="customerName"></span>
 							</div>
 						</div>
 						<!-- Type select -->
 						  <div class="control-group">
-							<label class="control-label" for="selectError3">이벤트타입</label>
-							<div class="controls">
-							  <select id="scheduleType"> <!-- name="scheduleType" -->
-								<option value="Meeting">Meeting</option>
-							  	<option value="Call">Call</option>
-							  	<option value="Task">Task</option>
-							  	<option value="Event">Event</option>
-							  	<option value="Other">Other</option>	
-							  	<option value="Important">Important</option>
-							  </select>
+							<label class="control-label" for="selectError3"><b>일정분류</b></label>
+							<div class="controls" style="padding-left: 5px; height: 30px; line-height: 30px;">
+							 	 <span id="scheduleType"></span>
 							</div>
 						  </div>
 						  
 						  <div class="control-group">
-						  	<label class="control-label" for="focusedInput">시작일시</label>
+						  	<label class="control-label" for="focusedInput"><b>시작일시</b></label>
 						  	<div class="controls">
 								<input id="detail_datetimepicker" type="text" >
 							</div>	
 						</div>
 						
 						<div class="control-group" id="div_duration">
-							<label class="control-label" for="focusedInput">기간</label>
+							<label class="control-label" for="focusedInput"><b>소요시간</b></label>
 							<div class="controls">
 								<div class="btn-group btn-overlap btn-corner">
 									<button value="1" class="btn btn-sm btn-white btn-info dduration">1</button>
@@ -60,29 +53,29 @@
 						</div>
 						
 						<div class="control-group">
-							<label class="control-label" for="focusedInput">종료일시</label>
+							<label class="control-label" for="focusedInput"><b>종료일시</b></label>
 							<div class="controls" style="padding-left: 5px; height: 30px; line-height: 30px;">
 								<span id="endDate"></span>
 							</div>					
 						</div>
 						  
 						  <div class="control-group">
-							<label class="control-label" for="focusedInput">장소</label>
+							<label class="control-label" for="focusedInput"><b>장소</b></label>
 							<div class="controls">
-							  <input class="input-xlarge" id="location" type="text" value=""> <!-- name="location" -->
+							  <input class="focused" id="location" type="text" value=""> <!-- name="location" -->
 							</div>
 						  </div>
 			
 						  <!-- Comment -->
 						  <div class="control-group">
-							<label class="control-label" for="focusedInput">일정사항</label>
+							<label class="control-label" for="focusedInput"><b>일정사항</b></label>
 							<div class="controls">
-							  <input class="input-xlarge focused" id="comments" type="text" value=""> <!-- name="comments" -->
+							   <textarea id="comments"></textarea> <!-- name="comments" -->
 							</div>
 						  </div>
 			
 						  <div class="control-group">
-							<label class="control-label" for="selectError3">반복</label>
+							<label class="control-label" for="selectError3"><b>반복</b></label>
 							<div class="controls">
 							  <select id="repetition"> <!-- name="repetition" -->
 							  	<option value="한번">한번</option>
@@ -95,7 +88,7 @@
 						  </div>
 						  
 						   <div class="control-group">
-							<label class="control-label" for="selectError3">중요도</label>
+							<label class="control-label" for="selectError3"><b>중요도</b></label>
 							<div class="controls">
 							  <select id="importance">
 							  	<option value="1">매우중요</option>
@@ -113,8 +106,8 @@
 		</div><!--/row-->
 	</div>
 	<div class="modal-footer">
-		<a href="#" id="modalSave" class="btn btn-primary" id="modalSave" data-dismiss="modal">수정</a>
-		<a href="#" class="btn btn-danger" id="modalDelete">일정삭제</a>
-		<a href="#" class="btn" id="modalCancle" data-dismiss="modal">취소</a>
+		<a href="#" id="modalSave" class="btn schedule-edit-btn" id="modalSave" data-dismiss="modal">수정</a>
+		<a href="#" class="btn schedule-delete-btn" id="modalDelete">일정삭제</a>
+		<a href="#" class="btn schedule-cancle-btn" id="modalCancle" data-dismiss="modal">취소</a>
 	</div>
 </div>

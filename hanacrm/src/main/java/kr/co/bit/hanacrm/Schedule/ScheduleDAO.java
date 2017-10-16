@@ -67,4 +67,9 @@ public class ScheduleDAO {
 	public int updateReservation(ScheduleVO reservation) {
 		return sqlSessionTemplate.update("schedule.ScheduleDAO.updateReservation", reservation);
 	}
+
+	// 예약 개수
+	public int selectReservationCount(int no) {
+		return sqlSessionTemplate.selectOne("schedule.ScheduleDAO.selectReservationCount", no);
+	}
 }

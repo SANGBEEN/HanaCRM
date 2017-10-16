@@ -61,3 +61,7 @@ set	status = 'D'
 where no = 0
 
 delete from schedule where no=333
+
+select count(status)
+from reservation
+where employee_no = #{no} and status=='D'

@@ -1174,8 +1174,8 @@ function charts() {
 	/* ---------- Chart with points ---------- */
 	if($("#salesChart").length)
 	{	
-		console.log('chart'); 
-		console.log(contract); 
+		//console.log('chart'); 
+		//console.log(contract); 
 		var likes = [];
 		for(var i = 0;i<contract.length;i++){
 			var temp = [];
@@ -1712,7 +1712,7 @@ function charts() {
 	/* ---------- Donut chart ---------- */
 	if($("#donutchart").length)
 	{
-		$.plot($("#donutchart"), data,
+		$.plot($("#donutchart"), customerData,
 		{
 				series: {
 						pie: {

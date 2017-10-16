@@ -149,7 +149,8 @@
 		select no, employee_no, customer_no, name, phone, location, type, msg,
 				to_char(start_date, 'yyyy-mm-dd hh24:mi') as start_date,
 				to_char(end_date, 'yyyy-mm-dd hh24:mi') as end_date,
-				status, reg_date, comments
+				to_char(reg_date, 'yyyy-mm-dd hh24:mi') as reg_date,
+				status, comments
 		from reservation
 		where employee_no = #{no} and status!='Y'
 	</select>
@@ -158,6 +159,13 @@
 	<update id="updateReservation" parameterType="schedule">
 		update reservation set status = #{status}, comments = #{comments}
 		where no = #{no}
+		order by reg_date desc
 	</update>
 	
+	<!-- 처리해야 할 예약 개수 -->
+	<select id="selectReservationCount" parameterType="int" resultType="int">
+		select count(*)
+		from reservation
+		where employee_no = #{no} and status='D'
+	</select>
 </mapper>

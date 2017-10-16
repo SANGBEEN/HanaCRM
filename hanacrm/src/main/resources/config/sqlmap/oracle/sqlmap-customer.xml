@@ -61,4 +61,17 @@
 	<delete id="deleteByNo" parameterType="int">
 		delete from customer where no=#{no}
 	</delete>
+	
+	<select id="selectCount" parameterType="int" resultType="int">
+		select count(*)
+		from customer
+		where employee_no = #{no}
+	</select>
+	
+	<select id="selectCountByType" parameterType="int" resultType="map">
+		select grade, count(*) as count
+		from customer
+		where employee_no = #{no}
+		group by grade
+	</select>
 </mapper>
