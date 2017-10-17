@@ -5,19 +5,54 @@
 <html>
 <head>
 <title>영업지원 시스템</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<meta name="description" content="Bootstrap Metro Dashboard">
-<meta name="author" content="Dennis Ji">
-<meta name="keyword" content="Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link id="bootstrap-style" href="css/bootstrap.min.css" rel="stylesheet">
-<link href="css/bootstrap-responsive.min.css" rel="stylesheet">
-<link id="base-style" href="css/style.css" rel="stylesheet">
-<link id="base-style-responsive" href="css/style-responsive.css" rel="stylesheet">
-<link href='http://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Bungee+Inline' rel='stylesheet' type='text/css'>
-<link rel="shortcut icon" href="img/favicon.ico">
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<meta name="description" content="Bootstrap Metro Dashboard">
+	<meta name="author" content="Dennis Ji">
+	<meta name="keyword" content="Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<script src="${pageContext.request.contextPath}/js/jquery-1.9.1.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery-migrate-1.0.0.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery-ui-1.10.0.custom.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.ui.touch-punch.js"></script>
+	<script src="${pageContext.request.contextPath}/js/modernizr.js"></script>
+	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.cookie.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
+	<script src='${pageContext.request.contextPath}/js/fullcalendar.min.js'></script>
+	<script src='${pageContext.request.contextPath}/js/jquery.dataTables.min.js'></script>
+	<script src="${pageContext.request.contextPath}/js/excanvas.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.flot.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.flot.pie.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.flot.stack.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.flot.resize.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.chosen.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.uniform.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.cleditor.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.noty.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.elfinder.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.raty.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.iphone.toggle.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.uploadify-3.1.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.gritter.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.imagesloaded.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.masonry.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.knob.modified.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.sparkline.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/counter.js"></script>
+	<script src="${pageContext.request.contextPath}/js/retina.js"></script>
+	<script src="${pageContext.request.contextPath}/js/custom.js"></script>
+
+	<link id="bootstrap-style" href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/bootstrap-responsive.min.css" rel="stylesheet">
+	<link id="base-style" href="css/style.css" rel="stylesheet">
+	<link id="base-style-responsive" href="css/style-responsive.css" rel="stylesheet">
+	<link href='http://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Bungee+Inline' rel='stylesheet' type='text/css'>
+	<link rel="shortcut icon" href="img/favicon.ico">
+	
 </head>
 <body>
 	<jsp:include page="/include/header.jsp" />
@@ -49,6 +84,11 @@
 					<div class="span4" style="height: 65vh; border: 1px solid lightgray;">
 						<div class="box-header">
 							<span>내 명함</span>
+							<div class="box-icon">
+								<a id="share" style="cursor: pointer;">
+									<i class="halflings-icon share-alt white"></i>
+								</a>
+							</div>
 						</div>
 						<div class="box-content">
 							<iframe src="https://m.naver.com" frameborder="0" width="100%" height="500" style="margin: 0 auto"></iframe>
@@ -187,46 +227,31 @@
 			</div>
 		</div>
 		<div class="modal-footer">
-			<a href="#" class="btn" data-dismiss="modal">Close</a> 
+			<a href="#" class="btn" data-dismiss="modal">취소</a> 
 		</div>
-	</div>	
+	</div>
+	
+	<!-- 명함 내보내기 모달 -->
+	<div class="modal hide fade" id="shareModal">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">×</button>
+			<h3>명함 내보내기</h3>
+		</div>
+		<div class="modal-body">
+			<div id="share-hs">
+				연락처: <input class="input-xlarge" id="phone" type="tel" pattern="[0][1][0][0-9]{8}" title="잘못된 형식입니다."/>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<a id="shareBtn" href="#" class="btn" data-dismiss="modal">전송</a> 
+			<a href="#" class="btn" data-dismiss="modal">취소</a> 
+		</div>
+	</div>
 	
 	<div class="clearfix"></div>
 	<jsp:include page="/include/footer.jsp" />
 
-	<!-- start: JavaScript-->
-
-	<script src="${pageContext.request.contextPath}/js/jquery-1.9.1.min.js"></script>
-	<script src="${pageContext.request.contextPath}/js/jquery-migrate-1.0.0.min.js"></script>
-	<script src="${pageContext.request.contextPath}/js/jquery-ui-1.10.0.custom.min.js"></script>
-	<script src="${pageContext.request.contextPath}/js/jquery.ui.touch-punch.js"></script>
-	<script src="${pageContext.request.contextPath}/js/modernizr.js"></script>
-	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-	<script src="${pageContext.request.contextPath}/js/jquery.cookie.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
-	<script src='${pageContext.request.contextPath}/js/fullcalendar.min.js'></script>
-	<script src='${pageContext.request.contextPath}/js/jquery.dataTables.min.js'></script>
-	<script src="${pageContext.request.contextPath}/js/excanvas.js"></script>
-	<script src="${pageContext.request.contextPath}/js/jquery.flot.js"></script>
-	<script src="${pageContext.request.contextPath}/js/jquery.flot.pie.js"></script>
-	<script src="${pageContext.request.contextPath}/js/jquery.flot.stack.js"></script>
-	<script src="${pageContext.request.contextPath}/js/jquery.flot.resize.min.js"></script>
-	<script src="${pageContext.request.contextPath}/js/jquery.chosen.min.js"></script>
-	<script src="${pageContext.request.contextPath}/js/jquery.uniform.min.js"></script>
-	<script src="${pageContext.request.contextPath}/js/jquery.cleditor.min.js"></script>
-	<script src="${pageContext.request.contextPath}/js/jquery.noty.js"></script>
-	<script src="${pageContext.request.contextPath}/js/jquery.elfinder.min.js"></script>
-	<script src="${pageContext.request.contextPath}/js/jquery.raty.min.js"></script>
-	<script src="${pageContext.request.contextPath}/js/jquery.iphone.toggle.js"></script>
-	<script src="${pageContext.request.contextPath}/js/jquery.uploadify-3.1.min.js"></script>
-	<script src="${pageContext.request.contextPath}/js/jquery.gritter.min.js"></script>
-	<script src="${pageContext.request.contextPath}/js/jquery.imagesloaded.js"></script>
-	<script src="${pageContext.request.contextPath}/js/jquery.masonry.min.js"></script>
-	<script src="${pageContext.request.contextPath}/js/jquery.knob.modified.js"></script>
-	<script src="${pageContext.request.contextPath}/js/jquery.sparkline.min.js"></script>
-	<script src="${pageContext.request.contextPath}/js/counter.js"></script>
-	<script src="${pageContext.request.contextPath}/js/retina.js"></script>
-	<script src="${pageContext.request.contextPath}/js/custom.js"></script>
+	<!-- start: JavaScript  -->
 
 	<script>
 		// custom.js chart() 부분에 들어갈 데이터
@@ -376,10 +401,19 @@
         	});
 		}
 		
-		// 알림수
+		$('#share').on('click',function(){
+			$('#shareModal').modal('show');
+			$('#shareBtn').off().on('click', function(){
+				alert('명함 전송이 완료되었습니다.');
+			});
+		});
+		
+		// 알림 수
 		$('div[id=number-of-reservation-hy]').text('${reservationCount}');
-		// 고객수
+		// 고객 수
 		$('div[id=number-of-customer-hy]').text('${customerCount}');
+		// 이번달 상담 수
+		$('div[id=number-of-consult-hs]').text('${consultCount}');
 		
 		
 	</script>

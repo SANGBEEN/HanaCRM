@@ -127,6 +127,14 @@ public class ScheduleController {
 		return "/schedule/reservation";
 	}
 	
+	// 예약 신청 내역
+	@ResponseBody
+	@RequestMapping(value="/schedule/reservation/listForAlarm", method=RequestMethod.GET)
+	public List<ScheduleVO> getReservation(HttpSession session){
+		EmpVO emp = (EmpVO) session.getAttribute("emp");
+		return scheduleService.selectReservation(emp.getNo());
+	}
+	
 	// 예약 처리
 	@ResponseBody
 	@RequestMapping(value="/schedule/reservation", method=RequestMethod.PUT)

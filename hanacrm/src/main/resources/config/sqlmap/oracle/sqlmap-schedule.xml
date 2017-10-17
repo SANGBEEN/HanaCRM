@@ -153,6 +153,7 @@
 				status, comments
 		from reservation
 		where employee_no = #{no} and status!='Y'
+		order by reg_date desc
 	</select>
 	
 	<!-- 예약 처리 -->
@@ -166,6 +167,5 @@
 		select count(*)
 		from reservation
 		where employee_no = #{no} and status='D'
-		order by reg_date desc
 	</select>
 </mapper>

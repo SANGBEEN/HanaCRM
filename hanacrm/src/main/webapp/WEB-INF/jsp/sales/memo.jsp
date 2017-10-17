@@ -11,6 +11,40 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- end: Mobile Specific -->
 	
+	<!-- start: JavaScript-->
+	<script src="${pageContext.request.contextPath}/js/jquery-1.9.1.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery-migrate-1.0.0.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery-ui-1.10.0.custom.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.ui.touch-punch.js"></script>
+	<script src="${pageContext.request.contextPath}/js/modernizr.js"></script>
+	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.cookie.js"></script>
+	<script src='${pageContext.request.contextPath}/js/moment.min.js'></script> <!-- for calendar -->
+	<script src='${pageContext.request.contextPath}/js/fullcalendar.min.js'></script>
+	<script src='${pageContext.request.contextPath}/js/jquery.dataTables.min.js'></script>
+	<script src="${pageContext.request.contextPath}/js/excanvas.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.flot.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.flot.pie.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.flot.stack.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.flot.resize.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.chosen.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.uniform.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.cleditor.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.noty.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.elfinder.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.raty.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.iphone.toggle.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.uploadify-3.1.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.gritter.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.imagesloaded.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.masonry.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.knob.modified.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.sparkline.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/counter.js"></script>
+	<script src="${pageContext.request.contextPath}/js/retina.js"></script>
+	<script src="${pageContext.request.contextPath}/js/custom.js"></script>
+	<!-- end: JavaScript-->
+	
 	<!-- start: CSS -->
 	<link id="bootstrap-style" href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 	<link href="${pageContext.request.contextPath}/css/bootstrap-responsive.min.css" rel="stylesheet">
@@ -21,13 +55,13 @@
 
 	<style>
 		.memo-insert {
-			background-color: #008485;
-			border-color: #008485;
+			background-color: rgba(175, 10, 51, 0.78);
+			border-color: rgba(175, 10, 51, 0.78);
 		}
 		
 		.memo-insert:hover{
-			background-color: #008485;
-			border-color: #008485;
+			background-color: rgba(175, 10, 51, 0.78);
+			border-color: rgba(175, 10, 51, 0.78);
 			opacity: 0.7
 		}
 	</style>
@@ -67,24 +101,30 @@
 				
 				<h1>메모</h1>
 				<div class="span6" style="padding-right:20px">					
-					<div align="right">
+				<!-- 	<div align="right" style="margin-bottom:10px">
 						<a class="btn btn-info memo-insert" id="memo-insert" href="#" style="align:right; padding:12px">
 							<i class="halflings-icon white edit"></i>  
 						</a>
-					</div>
+					</div> -->
 					
-					<div>
-						<span class="from" style="display: inline-block; width:25%; padding-left:10px"><b>등록 날짜</b></span><span class="title" style="    display: inline-block; width:55%;"><b>내용</b></span>
-						<hr style="background-color:black;">
+					<div style="border:solid 2px #eee;">
+						<div style="background-color:#aaa; color:white; padding:10px;">
+							<span class="from" style="display: inline-block; width:25%; padding-left:10px;"><b>등록 날짜</b></span><span class="title" style="display: inline-block; width:55%;"><b>내용</b></span>
+								<a id="memo-insert" class="pull-right" style="cursor: pointer;">
+									<i class="halflings-icon plus white"></i>
+								</a>
+						</div>
+						<div style="overflow:auto; height:680px">
+							<ul class="messagesList">
+								<c:forEach items="${ memoList }" var="memoVO" varStatus="status">
+									<li id="li${memoVO.no}">
+										<span class="from">${memoVO.regDate}</span><span id="memo${memoVO.no}" class="title"  onclick="clickTitle('${memoVO.no}','${memoVO.regDate}')">${memoVO.content}</span><span class="pull-right"><a id="memo-delete" href="#" style="margin-left:10px" onclick="clickDelete('${memoVO.no}')"><i class="halflings-icon remove-sign"></i></a></span>
+										<%-- <span id="memo${memoVO.no}" class="title">${memoVO.content}</span><span class="from">${memoVO.regDate}</span><span class="date"><a class="btn memo-delete" id="memo-delete" href="#" style="align:right"><i class="halflings-icon remove-sign"></i></a></span> --%>
+									</li>
+								</c:forEach>
+							</ul>
+						</div>
 					</div>
-					<ul class="messagesList">
-						<c:forEach items="${ memoList }" var="memoVO" varStatus="status">
-							<li id="li${memoVO.no}">
-								<span class="from">${memoVO.regDate}</span><span id="memo${memoVO.no}" class="title"  onclick="clickTitle('${memoVO.no}','${memoVO.regDate}')">${memoVO.content}</span><span class="pull-right"><a id="memo-delete" href="#" style="margin-left:10px" onclick="clickDelete('${memoVO.no}')"><i class="halflings-icon remove-sign"></i></a></span>
-								<%-- <span id="memo${memoVO.no}" class="title">${memoVO.content}</span><span class="from">${memoVO.regDate}</span><span class="date"><a class="btn memo-delete" id="memo-delete" href="#" style="align:right"><i class="halflings-icon remove-sign"></i></a></span> --%>
-							</li>
-						</c:forEach>
-					</ul>
 						
 				</div>
 					
@@ -93,7 +133,7 @@
 						<div class="message dark" style="top:0px; right:5px; margin-right:20px">
 
 							<div class="header" style="margin-bottom:20px">
-								<h1 id="thisTitle" class="title"> </h1>
+								<h1 id="thisTitle" class="title" style="background-color:#008485"> </h1>
 								<div class="from"><i class="halflings-icon user"></i><!--  <b>Dennis Ji</b> / jiguofei@msn.com --></div>
 								<span class="date"><i class="halflings-icon time"></i><span id="thisDate" ></span><!--  Today, <b>3:47 PM</b> --></span>
 								
@@ -157,65 +197,6 @@
 
 	<jsp:include page="/include/footer.jsp" />
 	
-	<!-- start: JavaScript-->
-
-		<script src="${pageContext.request.contextPath}/js/jquery-1.9.1.min.js"></script>
-		<script src="${pageContext.request.contextPath}/js/jquery-migrate-1.0.0.min.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/jquery-ui-1.10.0.custom.min.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/jquery.ui.touch-punch.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/modernizr.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/jquery.cookie.js"></script>
-	
-		<script src='${pageContext.request.contextPath}/js/moment.min.js'></script> <!-- for calendar -->
-		<script src='${pageContext.request.contextPath}/js/fullcalendar.min.js'></script>
-	
-		<script src='${pageContext.request.contextPath}/js/jquery.dataTables.min.js'></script>
-
-		<script src="${pageContext.request.contextPath}/js/excanvas.js"></script>
-		<script src="${pageContext.request.contextPath}/js/jquery.flot.js"></script>
-		<script src="${pageContext.request.contextPath}/js/jquery.flot.pie.js"></script>
-		<script src="${pageContext.request.contextPath}/js/jquery.flot.stack.js"></script>
-		<script src="${pageContext.request.contextPath}/js/jquery.flot.resize.min.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/jquery.chosen.min.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/jquery.uniform.min.js"></script>
-		
-		<script src="${pageContext.request.contextPath}/js/jquery.cleditor.min.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/jquery.noty.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/jquery.elfinder.min.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/jquery.raty.min.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/jquery.iphone.toggle.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/jquery.uploadify-3.1.min.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/jquery.gritter.min.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/jquery.imagesloaded.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/jquery.masonry.min.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/jquery.knob.modified.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/jquery.sparkline.min.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/counter.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/retina.js"></script>
-
-		<script src="${pageContext.request.contextPath}/js/custom.js"></script>
-	<!-- end: JavaScript-->
-
 	<script>
 	
 		var firstCheck = false;

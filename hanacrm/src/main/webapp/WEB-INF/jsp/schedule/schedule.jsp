@@ -199,7 +199,7 @@
 					<a href="${pageContext.request.contextPath}/main">Home</a> 
 					<i class="icon-angle-right"></i>
 				</li>
-				<li><a href="${pageContext.request.contextPath}/schedule">일정 관리</a></li>
+				<li><a href="${pageContext.request.contextPath}/schedule/list">일정 관리</a></li>
 			</ul>
 
 			<div class="row-fluid">
@@ -282,19 +282,14 @@
 		 start = new Date(2010, 10, 21).getTime();
 		console.log(start);
 		
-		var addModal = $('#addModal');
-		var detailModal = $('#detailModal');
-		
-		var datetimepicker = $('#datetimepicker');
-		var detail_datetimepicker = $('#detail_datetimepicker');
-		
 		function getTodayList(){
 			
 			$.ajax({
 				url: "${pageContext.request.contextPath}/schedule/listForConsult",
 				type: "get",
-				success: function(data){
-					var todayList = JSON.parse(data);
+				dataType: "json",
+				success: function(todayList){
+					// var todayList = JSON.parse(data);
 					var html = '<ul class="dashboard-list">';
 					var size = todayList.length; //<5?todayList.length:5;
 					
@@ -352,6 +347,12 @@
 		}
 		 
 		 jQuery(function($) {
+			 
+			 var addModal = $('#addModal');
+			var detailModal = $('#detailModal');
+			
+			var datetimepicker = $('#datetimepicker');
+			var detail_datetimepicker = $('#detail_datetimepicker');
 			 
 			addModal.on('hidden.bs.modal', function (e) {
 		 	//	console.log('dismiss');

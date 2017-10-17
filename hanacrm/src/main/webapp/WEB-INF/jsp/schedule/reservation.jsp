@@ -13,6 +13,41 @@
 	content="Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid,
         Retina">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- start: JavaScript-->
+	<script src="${pageContext.request.contextPath}/js/jquery-1.9.1.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery-migrate-1.0.0.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery-ui-1.10.0.custom.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.ui.touch-punch.js"></script>
+	<script src="${pageContext.request.contextPath}/js/modernizr.js"></script>
+	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.cookie.js"></script>
+	<script src='${pageContext.request.contextPath}/js/moment.min.js'></script>
+	<script src='${pageContext.request.contextPath}/js/fullcalendar.min.js'></script>
+	<script src='${pageContext.request.contextPath}/js/jquery.dataTables.min.js'></script>
+	<script src="${pageContext.request.contextPath}/js/excanvas.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.flot.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.flot.pie.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.flot.stack.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.flot.resize.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.chosen.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.uniform.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.cleditor.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.noty.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.elfinder.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.raty.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.iphone.toggle.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.uploadify-3.1.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.gritter.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.imagesloaded.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.masonry.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.knob.modified.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.sparkline.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/counter.js"></script>
+	<script src="${pageContext.request.contextPath}/js/retina.js"></script>
+	<script src="${pageContext.request.contextPath}/js/custom.js"></script>
+	<!--  end: JavaScript -->
+	
 <link id="bootstrap-style" href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/bootstrap-responsive.min.css" rel="stylesheet">
 <link id="base-style" href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
@@ -148,65 +183,7 @@
 	
 	<jsp:include page="/include/footer.jsp"/>
 
-	<!-- start: JavaScript-->
-	<script src="${pageContext.request.contextPath}/js/jquery-1.9.1.min.js"></script>
-	<script src="${pageContext.request.contextPath}/js/jquery-migrate-1.0.0.min.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/jquery-ui-1.10.0.custom.min.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/jquery.ui.touch-punch.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/modernizr.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/jquery.cookie.js"></script>
-
-	<script src='${pageContext.request.contextPath}/js/moment.min.js'></script>
-	<script src='${pageContext.request.contextPath}/js/fullcalendar.min.js'></script>
-
-	<script src='${pageContext.request.contextPath}/js/jquery.dataTables.min.js'></script>
-
-	<script src="${pageContext.request.contextPath}/js/excanvas.js"></script>
-	<script src="${pageContext.request.contextPath}/js/jquery.flot.js"></script>
-	<script src="${pageContext.request.contextPath}/js/jquery.flot.pie.js"></script>
-	<script src="${pageContext.request.contextPath}/js/jquery.flot.stack.js"></script>
-	<script src="${pageContext.request.contextPath}/js/jquery.flot.resize.min.js"></script>
-	
-	<script src="${pageContext.request.contextPath}/js/jquery.chosen.min.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/jquery.uniform.min.js"></script>
-	
-	<script src="${pageContext.request.contextPath}/js/jquery.cleditor.min.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/jquery.noty.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/jquery.elfinder.min.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/jquery.raty.min.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/jquery.iphone.toggle.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/jquery.uploadify-3.1.min.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/jquery.gritter.min.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/jquery.imagesloaded.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/jquery.masonry.min.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/jquery.knob.modified.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/jquery.sparkline.min.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/counter.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/retina.js"></script>
-
-	<script src="${pageContext.request.contextPath}/js/custom.js"></script>
-	
 	<script>
-		
 		function sleep(num){	//[1/1000초]
 			 var now = new Date();
 			   var stop = now.getTime() + num;
