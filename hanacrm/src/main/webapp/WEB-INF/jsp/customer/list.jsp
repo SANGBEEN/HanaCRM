@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,6 +43,7 @@
 	<script src="${pageContext.request.contextPath}/js/counter.js"></script>
 	<script src="${pageContext.request.contextPath}/js/retina.js"></script>
 	<script src="${pageContext.request.contextPath}/js/custom.js"></script>
+	<script src="${pageContext.request.contextPath}/js/KoAddress.js"></script>
 	
 	<link id="bootstrap-style" href="css/bootstrap.css" rel="stylesheet">
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -55,47 +56,45 @@
 	<link rel="shortcut icon" href="img/favicon.ico">
 	
 <style>
-
-.form-group{
-    margin: 15px auto;
+.form-group {
+	margin: 15px auto;
 }
 
-.form-group input{
-    width: 350px !important;
-    padding-left: 7px;
+.form-group input {
+	width: 350px !important;
+	padding-left: 7px;
 }
 
-.form-group label{
+.form-group label {
 	text-align: center !important;
 	font-weight: 600;
 }
 
-.customer-submit-btn{
+.customer-submit-btn {
 	background-color: #008485;
 	border-color: #008485;
 }
 
-.customer-submit-btn:hover{
+.customer-submit-btn:hover {
 	background-color: #008485;
 	border-color: #008485;
-	opacity:0.7;
+	opacity: 0.7;
 }
 
-.customer-cancel-btn{
+.customer-cancel-btn {
 	background-color: #a7a9aa;
 }
 
-.customer-cancel-btn:hover{
+.customer-cancel-btn:hover {
 	background-color: #a7a9aa;
-	opacity:0.7;
+	opacity: 0.7;
 }
 
-.modal-header{
-    margin: 1vh 2vw 3vh 2vw;
-    border-bottom: 2px solid gray;
-    padding: 9px 0;
+.modal-header {
+	margin: 1vh 2vw 3vh 2vw;
+	border-bottom: 2px solid gray;
+	padding: 9px 0;
 }
-
 </style>
 </head>
 
@@ -107,7 +106,8 @@
 			<jsp:include page="/include/sideMenu.jsp" />
 			<div id="content" class="span10">
 				<ul class="breadcrumb">
-					<li><i class="icon-home"></i> <a href="${pageContext.request.contextPath}/main">Home</a> <i
+					<li><i class="icon-home"></i> <a
+						href="${pageContext.request.contextPath}/main">Home</a> <i
 						class="icon-angle-right"></i></li>
 					<li><a href="${pageContext.request.contextPath}/customer">고객목록</a></li>
 				</ul>
@@ -115,9 +115,7 @@
 				<div class="row-fluid">
 					<div class="box span12">
 						<div class="box-header" data-original-title>
-							<h2>
-								고객 리스트
-							</h2>
+							<h2>고객 리스트</h2>
 							<div class="box-icon">
 								<a id="addModal" style="cursor: pointer;">
 									<i class="halflings-icon plus white"></i>
@@ -125,26 +123,26 @@
 							</div>
 						</div>
 						<div class="box-content">
-							<table class="table table-striped table-bordered bootstrap-datatable datatable">
+							<table
+								class="table table-striped table-bordered bootstrap-datatable datatable">
 								<thead>
 									<tr>
-										<th style="width:10%; text-align:center">이름</th>
-										<th style="width:15%; text-align:center">등록일</th>
-										<th style="width:20%; text-align:center">전화번호</th>
-										<th style="width:6%; text-align:center">고객등급</th>
-										<th style="width:35%; text-align:center">주소</th>
-										<th style="width:7%; text-align:center">상세보기</th>
-										<th style="width:7%; text-align:center">삭제</th>
+										<th style="width: 10%; text-align: center">이름</th>
+										<th style="width: 15%; text-align: center">등록일</th>
+										<th style="width: 20%; text-align: center">전화번호</th>
+										<th style="width: 6%; text-align: center">고객등급</th>
+										<th style="width: 35%; text-align: center">주소</th>
+										<th style="width: 7%; text-align: center">상세보기</th>
+										<th style="width: 7%; text-align: center">삭제</th>
 									</tr>
 								</thead>
 								<tbody id="table-data">
 									<c:forEach var="cus" items="${cusList}">
 										<tr>
-											<td style="text-align:center">${cus.name}</td>
-											<td style="text-align:center">${cus.regDate}</td>
-											<td style="text-align:center">${cus.phone }</td>
-											<td style="text-align:center">
-												<c:choose>
+											<td style="text-align: center">${cus.name}</td>
+											<td style="text-align: center">${cus.regDate}</td>
+											<td style="text-align: center">${cus.phone }</td>
+											<td style="text-align: center"><c:choose>
 													<c:when test="${cus.grade=='잠재'}">
 														<span class="label">${cus.grade}</span>
 													</c:when>
@@ -159,21 +157,18 @@
 													</c:when>
 													<c:otherwise>
 													</c:otherwise>
-												</c:choose>
-											</td>
+												</c:choose></td>
 											<td>${cus.address}</td>
-											<td style="text-align:center">
-												<script>
+											<td style="text-align: center"><script>
 													function goDetail(customerNo){
 														location.href = "${pageContext.request.contextPath}/customer/"+customerNo;
 													}
 												</script>
-												<div class="btn btn-success" onClick="goDetail(${cus.no})" style="margin: 0 auto">
+												<div class="btn btn-success" onClick="goDetail(${cus.no})"
+													style="margin: 0 auto">
 													<i class="halflings-icon white zoom-in"></i>
-												</div>
-											</td>
-											<td style="text-align:center">
-												<script>
+												</div></td>
+											<td style="text-align: center"><script>
 													function deleteCustomer(cusNo){
 														if(window.confirm('삭제하시겠습니까?')==true){
 															var form = $('<form></form>');
@@ -188,10 +183,10 @@
 														}
 													}
 												</script>
-												<div class="btn btn-danger" onClick="deleteCustomer(${cus.no})">
-												    <i class="halflings-icon white trash"></i>
-												 </div>
-											</td>
+												<div class="btn btn-danger"
+													onClick="deleteCustomer(${cus.no})">
+													<i class="halflings-icon white trash"></i>
+												</div></td>
 										</tr>
 									</c:forEach>
 								</tbody>
@@ -204,66 +199,88 @@
 					<div class="modal-dialog">
 						<div class="modal-content">
 							<div class="modal-header" align="center">
-								<h1 style="font-weight: 600; text-align: left; margin: 1vh auto;">고객등록</h1>
+								<h1
+									style="font-weight: 600; text-align: left; margin: 1vh auto;">고객등록</h1>
 								<button type="button" class="close" data-dismiss="modal"
 									aria-label="Close">
 									<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 								</button>
 							</div>
-							
+
 							<div id="div-forms">
-								<form class="form-horizontal" action="${pageContext.request.contextPath}/customer" method="POST">
+								<form class="form-horizontal"
+									action="${pageContext.request.contextPath}/customer"
+									method="POST">
 									<div class="form-group">
 										<label class="col-sm-3 control-label" for="inputName">이름</label>
 										<input class="form-control" id="inputName" type="text"
 											name="name" placeholder="이름" required>
 									</div>
-									
+
 									<div class="form-group">
 										<label class="col-sm-3 control-label" for="inputPhone">전화번호</label>
-										<input class="form-control" id="inputPhone" type="tel" 
-											name="phone" maxlength="11" size="20" pattern="[0][1][0][0-9]{8}" title="잘못된 형식입니다." placeholder="- 없이 입력해 주세요" required>
+										<input class="form-control" id="inputPhone" type="tel"
+											name="phone" maxlength="11" size="20"
+											pattern="[0][1][0][0-9]{8}" title="잘못된 형식입니다."
+											placeholder="- 없이 입력해 주세요" required>
 									</div>
-									
+
 									<div class="form-group">
 										<label class="col-sm-3 control-label" for="inputAddress">주소</label>
-										<input class="form-control" id="inputAddress" type="text"
-											name="address" placeholder="주소">
+										<input class="form-control" type="hidden" id="inputAddress" name="address"/>
+										<select id="selectSido" name="sido" style="width: 100px;">
+											<option value="">시도</option>
+										</select>
+										<select id="selectGugun" name="gugun" style="width: 120px;">
+											<option value="">구군</option>
+										</select>
+										<select id="selectDong" name="dong" style="width: 120px;">
+											<option value="">동</option>
+										</select>
+										<!-- <input class="form-control" id="inputAddress" type="text"
+											name="address" placeholder="주소" > -->
 									</div>
-									
+
 									<div class="form-group">
-							            <label class="col-sm-3 control-label" for="inputGrade">고객등급</label>
-								         <select class="form-control" id="inputGrade" name="grade">
-											    <option value="">등급선택</option>
-											    <option value="잠재">잠재</option>
-											    <option value="신규">신규</option>
-											    <option value="기존">기존</option>
-											    <option value="핵심">핵심</option>
-										 </select>
-							        </div>
-							        
-							        <div class="form-group">
-							            <label class="col-sm-3 control-label" for="inputPost">우편번호</label>
-						                <input type="text" class="form-control" id="inputPost" name="post" placeholder=" - 없이 입력해 주세요" />
-							        </div>
+										<label class="col-sm-3 control-label" for="inputGrade">고객등급</label>
+										<select class="form-control" id="inputGrade" name="grade">
+											<option value="">등급선택</option>
+											<option value="잠재" selected="selected">잠재</option>
+											<option value="신규">신규</option>
+											<option value="기존">기존</option>
+											<option value="핵심">핵심</option>
+										</select>
+									</div>
+
+									<div class="form-group">
+										<label class="col-sm-3 control-label" for="inputPost">우편번호</label>
+										<input type="text" class="form-control" id="inputPost"
+											name="post" placeholder=" - 없이 입력해 주세요" />
+									</div>
 
 									<div class="form-group">
 										<label class="col-sm-3 control-label" for="inputBirthDate">생년월일</label>
-										<input class="form-control" id="inputBirthDate" type="date" name="birthDate" placeholder=" ex) 1999.01.01">
+										<input class="form-control" id="inputBirthDate" type="date"
+											name="birthDate" placeholder=" ex) 1999.01.01">
 									</div>
-									
+
 									<div class="form-group">
 										<label class="col-sm-3 control-label" for="inputComments">Comments</label>
-										<textarea name="comments" onkeydown="resize(this)" onkeyup="resize(this)" style="width: 350px !important; padding: 5px;"></textarea>
+										<textarea name="comments" onkeydown="resize(this)"
+											onkeyup="resize(this)"
+											style="width: 350px !important; padding: 5px;"></textarea>
 									</div>
-									
+
 									<div class="form-group">
-										<div class="col-sm-12 text-right" style="margin: 30px auto; padding-right:20px">
-										  <button class="btn customer-submit-btn" type="submit">등록<!-- <i class="fa fa-check spaceLeft"></i> --></button>
-										  <button class="btn customer-cancel-btn" data-dismiss="modal" aria-hidden="Close">취소<!-- <i class="fa fa-times spaceLeft"></i> --></button>
+										<!-- <div class="col-sm-12 text-right" style="margin: 30px auto; padding-right:20px">
+										  <button class="btn customer-submit-btn" type="submit">등록<i class="fa fa-check spaceLeft"></i></button>
+										  <button class="btn customer-cancel-btn" data-dismiss="modal" aria-hidden="Close">취소<i class="fa fa-times spaceLeft"></i></button> -->
+										<div class="col-sm-12 text-right" style="margin: 30px auto; padding-right: 20px">
+											<button class="btn customer-submit-btn" id="submitBtn" type="submit">등록<i class="fa fa-check spaceLeft"></i></button>
+											<button class="btn customer-cancel-btn" data-dismiss="modal" aria-hidden="Close">취소<i class="fa fa-times spaceLeft"></i></button>
 										</div>
-							        </div>
-						        </form>
+									</div>
+								</form>
 							</div>
 						</div>
 					</div>
@@ -342,7 +359,56 @@
 	}); */
 	
 	$(document).ready(function(){
+		$('#selectSido').on('change', function(){
+			$('#selectDong').html('<option value="">동</option>');
+			var selectSido = $('#selectSido').val();
+			console.log(gugun[selectSido]);
+			var htmlStr ="";
+			htmlStr+='<option value="">구군</option>';
+			for(var i=0;i<gugun[selectSido].length;i++){
+				htmlStr+='<option value="'+gugun[selectSido][i]+'">'+gugun[selectSido][i]+'</option>';
+    	 		//document.getElementById("selectGugun").innerHTML += '<option value="'+gugun[selectSido][i]+'">'+gugun[selectSido][i]+'</option>';
+    	 		
+   			}
+			$('#selectGugun').html(htmlStr);
+		});
+		$('#selectGugun').on('change', function(){
+			console.log($('#selectSido').val());
+			var selectSido = $('#selectSido').val();
+			var selectGugun = $('#selectGugun').val();
+			var selectDong = selectSido+'-'+selectGugun;
+			console.log(dong[selectDong]);
+			var htmlStr ="";
+			htmlStr+='<option value="">동</option>';
+			for(var i=0;i<dong[selectDong].length;i++){
+				htmlStr+='<option value="'+dong[selectDong][i]+'">'+dong[selectDong][i]+'</option>';
+    	 		//document.getElementById("selectGugun").innerHTML += '<option value="'+gugun[selectSido][i]+'">'+gugun[selectSido][i]+'</option>';
+    	 		
+   			}
+			$('#selectDong').html(htmlStr);
+		});
+		
+		$('#submitBtn').on('click', function(){
+			var addr = "";
+			if($('#selectDong').val()==""){
+			 addr =  $('#selectSido').val()+' '+$('#selectGugun').val();
+			}else{
+			 addr =  $('#selectSido').val()+' '+$('#selectGugun').val()+' '+$('#selectDong').val();
+			}
+			if(addr!=""){
+				$('#inputAddress').val(addr);
+			}
+			console.log($('#inputAddress').val());
+		});
+		
 		$('#addModal').on('click',function(){
+			//showSelectedAddr();
+			for(var i=0;i<sido.length;i++){
+	    	 	document.getElementById("selectSido").innerHTML += '<option value="'+sido[i]+'">'+sido[i]+'</option>';
+	   		}
+			$('#selectGugun').html('<option value="">구군</option>');
+			$('#selectDong').html('<option value="">동</option>');
+			//console.log($('#selectSido').val())
 			$('#add-modal').modal();
 		});
 	});
