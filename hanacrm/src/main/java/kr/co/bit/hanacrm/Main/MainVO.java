@@ -1,7 +1,5 @@
 package kr.co.bit.hanacrm.Main;
 
-import java.math.BigDecimal;
-
 public class MainVO {
 	private int no;
 	private String name;

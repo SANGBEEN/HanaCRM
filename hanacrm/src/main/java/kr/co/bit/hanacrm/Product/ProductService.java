@@ -3,6 +3,7 @@ package kr.co.bit.hanacrm.Product;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +53,37 @@ public class ProductService {
 		default:
 			return null;
 		}		
+	}
+	
+	public List<ProductVO> selectByNoList(List<Map<String, Integer>> consultProductList) {
+		System.out.println(consultProductList);
+		List<ProductVO> productList = new LinkedList<>();
+		
+		for(int i = 0; i < consultProductList.size(); i++)
+		{
+			Map<String, Integer> consultProduct = consultProductList.get(i);
+			
+			switch (consultProduct.get("type")) {
+			case 1:
+				System.out.println("selectDepositByNo");
+				DepositVO depositVO = productDAO.selectDepositByNo(consultProduct.get("productNo"));
+				depositVO.setOptionList(productDAO.selectDepositOption(depositVO.getFinPrdtCd()));
+				productList.add(depositVO);
+				break;
+			case 2:
+				System.out.println("selectSavingsByNo");
+				SavingsVO savingsVO = productDAO.selectSavingsByNo(consultProduct.get("productNo"));
+				savingsVO.setOptionList(productDAO.selectDepositOption(savingsVO.getFinPrdtCd()));
+				productList.add(savingsVO);
+				break;
+			case 3:
+				System.out.println("selectCardByNo");
+				productDAO.selectCardByNo(consultProduct.get("productNo"));
+				break;
+			}		
+		}
+		
+		return productList;
 	}
 	
 	public List<String> selectVisitsList() {
@@ -110,6 +142,6 @@ public class ProductService {
 
 	public List<MainVO> selectTopSavings() {
 		return productDAO.selectTopSavings();
-	}
+	}	
 	
 }

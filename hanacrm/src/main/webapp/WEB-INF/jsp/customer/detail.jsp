@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -183,19 +183,20 @@ input.hidden {
 									<label for="name">
 										<span>이름</span>
 									</label>
-									<input id="name" type="text" class="myInput" name="name" value="${customer.name }" readonly="readonly"/> 
+									<input id="name" type="text" class="myInput" name="name" value="${customer.name }" readonly="readonly" required/> 
 								</div>
 								<div class="tital">
 									<label for="phone">
 										<span>전화번호</span>
 									</label> 
-									<input id="phone" type="text" class="myInput" name="phone" value="${customer.phone }" readonly="readonly"/> 
+									<input class="myInput" id="phone" type="text" name="phone" value="${customer.phone}" maxlength="11" size="20"
+							 			placeholder='- 없이 입력하세요.' readonly="readonly" required="required" /> 
 								</div>
 								<div class="tital">
 									<label for="birthDate">
 										<span>생년월일</span>
 									</label> 
-									<input id="birthDate" type="text" class="myInput" name="birthDate" value="${customer.birthDate }" readonly="readonly"/> 
+									<input id="birthDate" type="date" class="myInput" name="birthDate" value="${customer.birthDate }" readonly="readonly"/> 
 								</div>
 								<div class="tital">
 									<label for="post">
@@ -207,7 +208,7 @@ input.hidden {
 									<label for="address">
 										<span>주소</span>
 									</label> 
-									<input id="address" type="text" class="myInput" name="address" value="${customer.address }" readonly="readonly"/> 
+									<input id="address" type="text" class="myInput" name="address" value="${customer.address }"readonly="readonly"/> 
 								</div>
 								
 								<div class="division-tital">
@@ -217,8 +218,40 @@ input.hidden {
 									<label for="grade">
 										<span>고객등급</span>
 									</label>
-									<input id="grade" type="text" class="myInput" name="grade" value="${customer.grade }" readonly="readonly"/> 
-								</div>
+								        <!--  <select class="myInput" id="grade" name="grade"> -->
+								         <select class="myInput myGrade" id="grade" name="grade" onFocus='this.initialSelect = this.selectedIndex;' onChange='this.selectedIndex = this.initialSelect;'>
+											    <option value="">등급선택</option>
+											 	<c:choose>
+													<c:when test="${customer.grade=='잠재'}">
+														<option value="잠재" selected="selected">잠재</option>
+													    <option value="신규" >신규</option>
+													    <option value="기존" >기존</option>
+													    <option value="핵심" >핵심</option>
+													</c:when>
+													<c:when test="${customer.grade=='신규'}">
+														<option value="잠재" >잠재</option>
+													    <option value="신규" selected="selected">신규</option>
+													    <option value="기존" >기존</option>
+													    <option value="핵심" >핵심</option>
+													</c:when>
+													<c:when test="${customer.grade=='기존'}">
+														<option value="잠재" >잠재</option>
+													    <option value="신규" >신규</option>
+													    <option value="기존" selected="selected">기존</option>
+													    <option value="핵심" >핵심</option>
+													</c:when>
+													<c:when test="${customer.grade=='핵심'}">
+														<option value="잠재" >잠재</option>
+													    <option value="신규" >신규</option>
+													    <option value="기존" >기존</option>
+													    <option value="핵심" selected="selected">핵심</option>
+													</c:when>
+													<c:otherwise>
+													</c:otherwise>
+												</c:choose>
+										 </select>
+									<%-- <input id="grade" type="text" class="myInput" name="grade" value="${customer.grade }" readonly="readonly"/> --%> 
+								</div> 
 								<div class="tital">
 									<label for="regDate">
 										<span>고객등록일</span>
@@ -325,7 +358,7 @@ input.hidden {
 	
 	<script>
 		function modifyForm(){
-			//readonly속성가져와서 readonly면 클래스가져와서 속성변경, 아니면 수정한 폼 전송 
+			//readonly속성가져와서 readonly면 클래스가져와서 속성변경, 아니면 수정한 폼 전송
 			if($('.myInput').attr("readonly")==true){
 				$('.myInput').attr("readonly",false);
 				console.log("readonly");
@@ -342,11 +375,15 @@ input.hidden {
 			
 			$('#modifyBtn').click(function(){
 				console.log("click");
+			
+				
 				console.log($('.myInput')[0].value);
 				console.log($('input.myInput')[0].readOnly);
 				
 				if($('input.myInput')[0].readOnly==true){
 					$('.myInput').attr("readonly",false);
+					$('.myGrade').attr("onChange","");
+					$('.myGrade').attr("onFocus","");
 					$('.myInput').addClass('modifyInput');
 					console.log("readonly");
 				}else{
@@ -364,6 +401,11 @@ input.hidden {
 						}
 					});
 					console.dir(JSON.stringify(data));
+					var phoneCheck = data.phone;
+					if(/(0)(1)(0)[0-9]{8}/.exec(phoneCheck.toString())==null){
+						alert('연락처 형식이 틀렸습니다.');
+						return;
+					}
 					
 					//json을 문자열로 바꿔서 컨트롤러에서 RequestBody로 받음 
 					$.ajax({

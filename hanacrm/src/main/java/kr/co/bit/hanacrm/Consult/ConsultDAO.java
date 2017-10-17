@@ -6,8 +6,6 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import kr.co.bit.hanacrm.Customer.CusVO;
-
 @Repository
 public class ConsultDAO {
 	
@@ -52,6 +50,10 @@ public class ConsultDAO {
 
 	public int delete(int consultNo) {
 		return sqlSessionTemplate.delete("consult.ConsultDAO.delete", consultNo);
+	}
+	
+	public int selectConsultCount(int employeeNo) {
+		return sqlSessionTemplate.selectOne("consult.ConsultDAO.selectConsultCount", employeeNo);
 	}
 
 	public List<ConsultVO> selectByCusNo(int customerNo) {

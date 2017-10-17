@@ -1,8 +1,6 @@
 package kr.co.bit.hanacrm.Product;
 
-import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +27,7 @@ public class ProductDAO {
 	}
 	
 	public DepositVO selectDepositByNo(int no) {
+		System.out.println(no);
 		return sqlSessionTemplate.selectOne("deposit.DepositDAO.selectByNo", no);
 	}
 	
@@ -37,6 +36,7 @@ public class ProductDAO {
 	}
 
 	public SavingsVO selectSavingsByNo(int no) {
+		System.out.println(no);
 		return sqlSessionTemplate.selectOne("savings.SavingsDAO.selectByNo", no);
 	}
 	

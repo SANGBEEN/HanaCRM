@@ -216,13 +216,13 @@
 									<div class="form-group">
 										<label class="col-sm-3 control-label" for="inputName">이름</label>
 										<input class="form-control" id="inputName" type="text"
-											name="name" placeholder="이름">
+											name="name" placeholder="이름" required>
 									</div>
 									
 									<div class="form-group">
 										<label class="col-sm-3 control-label" for="inputPhone">전화번호</label>
-										<input class="form-control" id="inputPhone" type="text"
-											name="phone" placeholder="- 없이 입력해 주세요">
+										<input class="form-control" id="inputPhone" type="tel" 
+											name="phone" maxlength="11" size="20" pattern="[0][1][0][0-9]{8}" title="잘못된 형식입니다." placeholder="- 없이 입력해 주세요" required>
 									</div>
 									
 									<div class="form-group">
@@ -249,7 +249,7 @@
 
 									<div class="form-group">
 										<label class="col-sm-3 control-label" for="inputBirthDate">생년월일</label>
-										<input class="form-control" id="inputBirthDate" type="text" name="birthDate" placeholder=" ex) 1999.01.01">
+										<input class="form-control" id="inputBirthDate" type="date" name="birthDate" placeholder=" ex) 1999.01.01">
 									</div>
 									
 									<div class="form-group">
@@ -335,7 +335,11 @@
 				console.dir(data);
 			},
 		});
-	})
+	});
+	
+/* 	$('#inputBirthDate').click(function(){
+		
+	}); */
 	
 	$(document).ready(function(){
 		$('#addModal').on('click',function(){

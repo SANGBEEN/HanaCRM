@@ -23,7 +23,7 @@
 <!-- 쿼리 -->
 	<!-- 상담 내역 받아오기 -->
 	<select id="selectListByEmployeeNo" parameterType="int" resultMap="consultMap">
-		select no, customer_no, employee_no, content, to_char(reg_date, 'yyyy-mm-dd') as reg_date, title from consult where employee_no=#{employeeNo}
+		select no, customer_no, employee_no, content, to_char(reg_date, 'YYYY-MM-DD hh24:mi') as reg_date, title from consult where employee_no=#{employeeNo}
 	</select>
 	
 	<!-- 상담 내역의 상품 받아오기 -->
@@ -37,7 +37,7 @@
 	
 	<!-- 상담 내역의 상세 정보 받아오기 -->
 	<select id="selectByNo" parameterType="int" resultMap="consultMap">
-		select * from consult where no=#{consultNo}
+		select no, customer_no, employee_no, content, to_char(reg_date, 'YYYY-MM-DD hh24:mi') as reg_date, title from consult where no=#{consultNo}
 	</select>
 	
 	<select id="select" parameterType="int" resultMap="consultMap">
@@ -55,21 +55,30 @@
 		values(#{no}, #{customerNo}, #{employeeNo}, #{content}, to_date(#{regDate},'YYYY-MM-DD hh24:mi'), #{title})
 	</insert>
 	
+	<!-- 상담 상품 추가하기 -->
 	<insert id="insertProduct" parameterType="consultProduct">
 		insert into consult_product(no, consult_no, type, product_no) 
 		values(consult_product_seq.nextval, #{consultNo}, #{type}, #{productNo})
 	</insert>
 	
+	<!-- 상담 내역 수정하기 -->
 	<update id="update" parameterType="consult">
-		update into consult set content=#{content}, title=#{title} where no=#{no}
+		update consult set content=#{content}, title=#{title} where no=#{no}
 	</update>
 	
+	<!-- 상담 상품 수정하기 -->
 	<update id="updateProduct" parameterType="consultProduct">
-		update into consult_product set type=#{type}, product_no=#{productNo} where consult_no=#{consultNo}
+		update consult_product set type=#{type}, product_no=#{productNo} where consult_no=#{consultNo}
 	</update>
 	
+	<!-- 상담 내역 삭제하기 -->
 	<delete id="delete" parameterType="int">
 		delete from consult where no=#{consultNo}
 	</delete>
+	
+	<!-- 한 달의 상담 수 가져오기 -->
+	<select id="selectConsultCount" parameterType="int" resultType="int">
+		select count(*) from consult where employee_no=#{employeeNo} and to_char(reg_date, 'yyyy-mm')=to_char(sysdate, 'yyyy-mm')
+	</select>
 		
 </mapper>
