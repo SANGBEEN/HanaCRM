@@ -1189,7 +1189,7 @@
 					$('.dduration').removeClass('clicked');
 					$(this).addClass('clicked');
 					
-					if(calEvent.className=='Call'){
+					if(schedule.type=='Call'){
 						dduration = 30;
 						dtype = 'minutes';
 					}
@@ -1203,7 +1203,8 @@
 					
 				});
 				
-				// 수정 버튼
+				/*
+				 // 수정 버튼
 				todayModal.find('a[id=modalSave]').off().on('click', function(ev){
 					
 					ev.preventDefault();
@@ -1211,7 +1212,7 @@
 					
 					// 캘린더에 쓰일 Data (변경사항 저장 - type, end 날짜)						
 					 var selectedDate_s = moment(today_datetimepicker.datetimepicker('getValue'));
-					/* var selectedDate_e = selectedDate_s.add(dduration,dtype); */
+					// var selectedDate_e = selectedDate_s.add(dduration,dtype);
 
 					 var startData = getDate(selectedDate_s);
 					 var endData = todayModal.find('#endDate').text();
@@ -1221,9 +1222,9 @@
         			
 					// 서버에 보낼 Data
 					var scheduleData = {
-							no: calEvent.id,
+							no: schedule.no,
 		        			comments: todayModal.find('textarea[id=comments]').val(),
-		        			customerNo: s.customer.no,
+		        			customerNo: schedule.customer.no,
 		        			type: todayModal.find('span[id=scheduleType]').text(),
 		        			location: todayModal.find('input[id=location]').val(),
 		        			importance: todayModal.find('select[id=importance]').val(),
@@ -1292,7 +1293,7 @@
 							}
 						});
 					}
-				});  // 삭제 버튼 끝
+				});  // 삭제 버튼 끝 */
 			}
 		 
 		 

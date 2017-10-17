@@ -94,6 +94,10 @@
 						<a href="${pageContext.request.contextPath}/main">Home</a> 
 						<i class="icon-angle-right"></i>
 					</li>
+					<li>
+						<a href="${pageContext.request.contextPath}/sales/memo">영업 관리</a> 
+						<i class="icon-angle-right"></i>
+					</li>
 					<li><a href="${pageContext.request.contextPath}/sales/memo">메모</a></li>
 				</ul>
 				
@@ -133,7 +137,7 @@
 						<div class="message dark" style="top:0px; right:5px; margin-right:20px">
 
 							<div class="header" style="margin-bottom:20px">
-								<h1 id="thisTitle" class="title" style="background-color:#008485"> </h1>
+								<h1 id="thisTitle" class="title" style="background-color:#3c4379"> </h1>
 								<div class="from"><i class="halflings-icon user"></i><!--  <b>Dennis Ji</b> / jiguofei@msn.com --></div>
 								<span class="date"><i class="halflings-icon time"></i><span id="thisDate" ></span><!--  Today, <b>3:47 PM</b> --></span>
 								
