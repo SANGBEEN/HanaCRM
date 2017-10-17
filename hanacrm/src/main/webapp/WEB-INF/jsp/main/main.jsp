@@ -240,10 +240,14 @@
 		<div class="modal-body">
 			<div id="share-hs">
 				연락처: <input class="input-xlarge" id="phone" type="tel" pattern="[0][1][0][0-9]{8}" title="잘못된 형식입니다."/>
+				<a href="#" id="search-customer-hs"><i class="glyphicons-icon zoom_in"></i></a>
+			</div>
+			<div id="search-customer-table-hs">
+			
 			</div>
 		</div>
 		<div class="modal-footer">
-			<a id="shareBtn" href="#" class="btn" data-dismiss="modal">전송</a> 
+			<a id="shareBtn" href="#" class="btn" data-dismiss="modal">전송</a>
 			<a href="#" class="btn" data-dismiss="modal">취소</a> 
 		</div>
 	</div>
@@ -339,7 +343,7 @@
 					str += 			'<div>'+v.endDate+'</div>';
 					str += 		'</div>';
 					str += '</div>';
-					console.log(1);
+					//console.log(1);
 					$('.priority.high').append(str);
 					break;
 				case 3:
@@ -415,6 +419,10 @@
 		// 이번달 상담 수
 		$('div[id=number-of-consult-hs]').text('${consultCount}');
 		
+		$('#search-customer-hs').click(function(e) {
+			selectListForSearch
+			$('div[id=search-customer-table-hs]').html();
+		});
 		
 	</script>
 </body>

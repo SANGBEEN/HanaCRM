@@ -3,7 +3,6 @@ package kr.co.bit.hanacrm.Customer;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import kr.co.bit.hanacrm.Consult.ConsultService;
 import kr.co.bit.hanacrm.Consult.ConsultVO;
@@ -43,30 +39,11 @@ public class CusController {
 		return "customer/list";	
 	}
 	
-	//전체조회
+	//내 고객 리스트
 	@ResponseBody
-	@RequestMapping(value="/listForModal", method=RequestMethod.GET)
-	public String listForModal(Model model, HttpServletRequest req, HttpSession session){
-//		int page = (int)req.getAttribute("page");
-		
-		EmpVO emp = (EmpVO) session.getAttribute("emp");
-		// emp.getNo();
-		
-		List<CusVO> cusList = new ArrayList<>();
-		cusList = cusService.list(emp.getNo());
-		for(CusVO cus : cusList){
-			System.out.println(cus);
-		}
-		
-		//VO to JSON
-		String json = "";
-		ObjectMapper mapper = new ObjectMapper();
-		try {
-			json = mapper.writeValueAsString(cusList);
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
-		}
-		return json;	
+	@RequestMapping(value="/listForSearch", method=RequestMethod.GET, produces="application/json")
+	public List<CusVO> selectListForSearch(HttpSession session){
+		return cusService.list(((EmpVO) session.getAttribute("emp")).getNo());	
 	}
 	
 	//상세조회
