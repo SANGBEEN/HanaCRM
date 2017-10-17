@@ -13,6 +13,39 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- end: Mobile Specific -->
 	
+	<!-- start: JavaScript-->
+	<script src="${pageContext.request.contextPath}/js/jquery-1.9.1.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery-migrate-1.0.0.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery-ui-1.10.0.custom.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.ui.touch-punch.js"></script>
+	<script src="${pageContext.request.contextPath}/js/modernizr.js"></script>
+	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.cookie.js"></script>
+	<script src='${pageContext.request.contextPath}/js/moment.min.js'></script>
+	<script src='${pageContext.request.contextPath}/js/fullcalendar.min.js'></script>
+	<script src='${pageContext.request.contextPath}/js/jquery.dataTables.min.js'></script>
+	<script src="${pageContext.request.contextPath}/js/excanvas.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.flot.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.flot.pie.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.flot.stack.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.flot.resize.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.chosen.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.uniform.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.cleditor.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.noty.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.elfinder.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.raty.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.iphone.toggle.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.uploadify-3.1.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.gritter.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.imagesloaded.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.masonry.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.knob.modified.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.sparkline.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/counter.js"></script>
+	<script src="${pageContext.request.contextPath}/js/retina.js"></script>
+	<script src="${pageContext.request.contextPath}/js/custom.js"></script>
+	
 	<!-- start: CSS -->
 	<link id="bootstrap-style" href="${pageContext.request.contextPath}/css/bootstrap.css" rel="stylesheet">
 	<link href="${pageContext.request.contextPath}/css/bootstrap-responsive.min.css" rel="stylesheet">
@@ -22,6 +55,19 @@
 	<link href='https://fonts.googleapis.com/css?family=Bungee+Inline' rel='stylesheet' type='text/css'>
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 	<link rel="shortcut icon" href="img/favicon.ico">
+	
+	<style>
+		#consult-update-complete-hs{
+			background-color: #008485;
+			border-color:#008485;
+		}
+
+		#consult-update-complete-hs:hover{
+			background-color: #008485;
+			border-color:#008485;
+			opacity:0.7;
+		}
+	</style>
 </head>
 <body>
 	<jsp:include page="/include/header.jsp"/>
@@ -172,8 +218,8 @@
 			</div>			
 		</div>
 		<div class="modal-footer">
-			<a class="btn btn-success" id="customer-detail-hs">고객 정보</a>	
-			<a href="#" class="btn btn-primary" id="consult-update-complete-hs">수정</a>
+			<!-- <a class="btn btn-success" id="customer-detail-hs">고객 정보</a> -->	
+			<a href="#" class="btn" id="consult-update-complete-hs">수정</a>
 			<a href="#" class="btn" id="consult-insert-cancel-hs" data-dismiss="modal">닫기</a>
 		</div>
 	</div>
@@ -351,64 +397,6 @@
 	
 	<jsp:include page="/include/footer.jsp"/>
 	
-	<!-- start: JavaScript-->
-
-		<script src="${pageContext.request.contextPath}/js/jquery-1.9.1.min.js"></script>
-	<script src="${pageContext.request.contextPath}/js/jquery-migrate-1.0.0.min.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/jquery-ui-1.10.0.custom.min.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/jquery.ui.touch-punch.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/modernizr.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/jquery.cookie.js"></script>
-	
-		<script src='${pageContext.request.contextPath}/js/moment.min.js'></script>
-		<script src='${pageContext.request.contextPath}/js/fullcalendar.min.js'></script>
-	
-		<script src='${pageContext.request.contextPath}/js/jquery.dataTables.min.js'></script>
-
-		<script src="${pageContext.request.contextPath}/js/excanvas.js"></script>
-	<script src="${pageContext.request.contextPath}/js/jquery.flot.js"></script>
-	<script src="${pageContext.request.contextPath}/js/jquery.flot.pie.js"></script>
-	<script src="${pageContext.request.contextPath}/js/jquery.flot.stack.js"></script>
-	<script src="${pageContext.request.contextPath}/js/jquery.flot.resize.min.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/jquery.chosen.min.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/jquery.uniform.min.js"></script>
-		
-		<script src="${pageContext.request.contextPath}/js/jquery.cleditor.min.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/jquery.noty.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/jquery.elfinder.min.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/jquery.raty.min.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/jquery.iphone.toggle.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/jquery.uploadify-3.1.min.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/jquery.gritter.min.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/jquery.imagesloaded.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/jquery.masonry.min.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/jquery.knob.modified.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/jquery.sparkline.min.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/counter.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/retina.js"></script>
-
-		<script src="${pageContext.request.contextPath}/js/custom.js"></script>
-		
 		<script>		
 			/* 상세 보기 */
 			/* $('.row-minimize-hs').click(function(e){
@@ -755,7 +743,7 @@
 	        			
 	        			var html = '<table class="table table-striped table-bordered">' 
 	        			+ '<tr><th>상담 일시</th><td>' + consult.regDate + '</td></tr>' 
-	        			+ '<tr><th>고객명</th><td>' + consult.customerVO.name + '</td></tr>'
+	        			+ '<tr><th>고객명</th><td><a id="customer-detail-hs" href="#">' + consult.customerVO.name + '<i class="halflings-icon user"></i></a></td></tr>'
 	        			+ '<tr><th>상담 요약</th><td>' + consult.title + '</td></tr>'
 	        			+ '<tr><th>상담 상품 <button id="product-reselect-hs">선택</button></th><td><div><ul class="messagesList">';
 	        			

@@ -116,7 +116,7 @@
 					<div class="box span12">
 						<div class="box-header" data-original-title>
 							<h2>
-								고객 리스트
+								고객 목록
 							</h2>
 							<div class="box-icon">
 								<a id="addModal" style="cursor: pointer;">

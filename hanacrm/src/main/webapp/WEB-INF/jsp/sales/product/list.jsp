@@ -16,6 +16,40 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- end: Mobile Specific -->
 	
+	<!-- start: JavaScript-->
+	<script src="${pageContext.request.contextPath}/js/jquery-1.9.1.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery-migrate-1.0.0.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery-ui-1.10.0.custom.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.ui.touch-punch.js"></script>
+	<script src="${pageContext.request.contextPath}/js/modernizr.js"></script>
+	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.cookie.js"></script>
+	<script src='${pageContext.request.contextPath}/js/moment.min.js'></script>
+	<script src='${pageContext.request.contextPath}/js/fullcalendar.min.js'></script>		
+	<script src='${pageContext.request.contextPath}/js/jquery.dataTables.min.js'></script>
+	<script src="${pageContext.request.contextPath}/js/excanvas.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.flot.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.flot.pie.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.flot.stack.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.flot.resize.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.chosen.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.uniform.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.cleditor.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.noty.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.elfinder.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.raty.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.iphone.toggle.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.uploadify-3.1.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.gritter.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.imagesloaded.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.masonry.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.knob.modified.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.sparkline.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/counter.js"></script>
+	<script src="${pageContext.request.contextPath}/js/retina.js"></script>
+	<script src="${pageContext.request.contextPath}/js/custom.js"></script>
+	<!--  end: JavaScript -->
+	
 	<!-- start: CSS -->
 	<link id="bootstrap-style" href="${pageContext.request.contextPath}/css/bootstrap.css" rel="stylesheet">
 	<link href="${pageContext.request.contextPath}/css/bootstrap-responsive.min.css" rel="stylesheet">
@@ -70,7 +104,7 @@
 					<i class="icon-angle-right"></i>
 				</li>
 				<li>
-					<a>상품 정보</a>
+					<a href="${pageContext.request.contextPath}/sales/product">상품 정보</a>
 				</li>
 			</ul>
 			
@@ -155,64 +189,6 @@
 	
 	<jsp:include page="/include/footer.jsp"/>	
 	
-	<!-- start: JavaScript-->
-
-		<script src="${pageContext.request.contextPath}/js/jquery-1.9.1.min.js"></script>
-	<script src="${pageContext.request.contextPath}/js/jquery-migrate-1.0.0.min.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/jquery-ui-1.10.0.custom.min.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/jquery.ui.touch-punch.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/modernizr.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/jquery.cookie.js"></script>
-	
-		<script src='${pageContext.request.contextPath}/js/moment.min.js'></script>
-		<script src='${pageContext.request.contextPath}/js/fullcalendar.min.js'></script>		
-	
-		<script src='${pageContext.request.contextPath}/js/jquery.dataTables.min.js'></script>
-
-		<script src="${pageContext.request.contextPath}/js/excanvas.js"></script>
-	<script src="${pageContext.request.contextPath}/js/jquery.flot.js"></script>
-	<script src="${pageContext.request.contextPath}/js/jquery.flot.pie.js"></script>
-	<script src="${pageContext.request.contextPath}/js/jquery.flot.stack.js"></script>
-	<script src="${pageContext.request.contextPath}/js/jquery.flot.resize.min.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/jquery.chosen.min.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/jquery.uniform.min.js"></script>
-		
-		<script src="${pageContext.request.contextPath}/js/jquery.cleditor.min.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/jquery.noty.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/jquery.elfinder.min.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/jquery.raty.min.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/jquery.iphone.toggle.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/jquery.uploadify-3.1.min.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/jquery.gritter.min.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/jquery.imagesloaded.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/jquery.masonry.min.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/jquery.knob.modified.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/jquery.sparkline.min.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/counter.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/retina.js"></script>
-
-		<script src="${pageContext.request.contextPath}/js/custom.js"></script>
-		
 	<!-- inline scripts related to this page -->
 		<script>
 		$(document).ready(function(e){			
@@ -250,18 +226,18 @@
         			$('h2[id=tab-name-hs]').html('<i class="halflings-icon book"></i><span class="break"></span>' + $('li[class=active]').find('a[id=type-select-hs]').text());
         			
         	        html = '<table class="table table-striped table-bordered bootstrap-datatable datatable">';
-        	        html += '<thead><tr><th>금융상품코드</th><th>금융상품명</th><th>가입대상</th><th>상세보기</th></tr></thead><tbody>'; /* <th>적립유형명</th></tr></thead><tbody>'; */
+        	        html += '<thead><tr><th style="text-align:center">금융상품코드</th><th style="text-align:center">금융상품명</th><th style="text-align:center">가입대상</th><th style="text-align:center">상세보기</th></tr></thead><tbody>'; /* <th>적립유형명</th></tr></thead><tbody>'; */
         	        
         	        for (var i = 0; i < product.length; i++) {
         	        	
         	        	//console.log(product[i].finPrdtNm + " : ");
-        	            html += '<tr><td>' + product[i].finPrdtCd + 
-        	            '</td><td>' + product[i].finPrdtNm + 
+        	            html += '<tr><td style="text-align:center">' + product[i].finPrdtCd + 
+        	            '</td><td style="text-align:center">' + product[i].finPrdtNm + 
         	            '</td><td>' + product[i].joinMember + 
-        	            '</td><td><a href="${pageContext.request.contextPath}/sales/product/' + type + '/' + product[i].no + '" class="btn btn-primary">상세보기</a></td></tr>';
+        	            '</td><td style="text-align:center"><a href="${pageContext.request.contextPath}/sales/product/' + type + '/' + product[i].no + '" class="btn btn-success"><i class="halflings-icon white zoom-in"></i></a></td></tr>';
         	            		/* + '<td><span class="input-xlarge uneditable-input">' + product[i].comments + '</span></td></tr>'; */
        	        	}
-        	        
+					
         	        html += '</tbody></table>';
         	 
         	        document.querySelector('#product-list').innerHTML = html;

@@ -15,6 +15,40 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- end: Mobile Specific -->
 	
+	<!-- start: JavaScript-->
+	<script src="${pageContext.request.contextPath}/js/jquery-1.9.1.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery-migrate-1.0.0.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery-ui-1.10.0.custom.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.ui.touch-punch.js"></script>
+	<script src="${pageContext.request.contextPath}/js/modernizr.js"></script>
+	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.cookie.js"></script>
+	<script src='${pageContext.request.contextPath}/js/moment.min.js'></script>
+	<script src='${pageContext.request.contextPath}/js/fullcalendar.min.js'></script>		
+	<script src='${pageContext.request.contextPath}/js/jquery.dataTables.min.js'></script>
+	<script src="${pageContext.request.contextPath}/js/excanvas.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.flot.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.flot.pie.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.flot.stack.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.flot.resize.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.chosen.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.uniform.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.cleditor.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.noty.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.elfinder.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.raty.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.iphone.toggle.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.uploadify-3.1.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.gritter.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.imagesloaded.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.masonry.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.knob.modified.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.sparkline.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/counter.js"></script>
+	<script src="${pageContext.request.contextPath}/js/retina.js"></script>
+	<script src="${pageContext.request.contextPath}/js/custom.js"></script>
+	<!--  end: JavaScript -->
+	
 	<!-- start: CSS -->
 	<link id="bootstrap-style" href="${pageContext.request.contextPath}/css/bootstrap.css" rel="stylesheet">
 	<link href="${pageContext.request.contextPath}/css/bootstrap-responsive.min.css" rel="stylesheet">
@@ -78,7 +112,7 @@
 				</li>
 			</ul>
 			
-			<div class="row-fluid sortable">
+			<div class="row-fluid">
 				<div class="box span12">
 					<div class="box-header" data-original-title>
 						<h2 id="product-name-hs"></h2>
@@ -243,63 +277,6 @@
 	
 	<jsp:include page="/include/footer.jsp"/>
 	
-	<!-- start: JavaScript-->
-
-		<script src="${pageContext.request.contextPath}/js/jquery-1.9.1.min.js"></script>
-	<script src="${pageContext.request.contextPath}/js/jquery-migrate-1.0.0.min.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/jquery-ui-1.10.0.custom.min.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/jquery.ui.touch-punch.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/modernizr.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/jquery.cookie.js"></script>
-		<script src='${pageContext.request.contextPath}/js/moment.min.js'></script>
-		<script src='${pageContext.request.contextPath}/js/fullcalendar.min.js'></script>
-	
-		<script src='${pageContext.request.contextPath}/js/jquery.dataTables.min.js'></script>
-
-		<script src="${pageContext.request.contextPath}/js/excanvas.js"></script>
-	<script src="${pageContext.request.contextPath}/js/jquery.flot.js"></script>
-	<script src="${pageContext.request.contextPath}/js/jquery.flot.pie.js"></script>
-	<script src="${pageContext.request.contextPath}/js/jquery.flot.stack.js"></script>
-	<script src="${pageContext.request.contextPath}/js/jquery.flot.resize.min.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/jquery.chosen.min.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/jquery.uniform.min.js"></script>
-		
-		<script src="${pageContext.request.contextPath}/js/jquery.cleditor.min.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/jquery.noty.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/jquery.elfinder.min.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/jquery.raty.min.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/jquery.iphone.toggle.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/jquery.uploadify-3.1.min.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/jquery.gritter.min.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/jquery.imagesloaded.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/jquery.masonry.min.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/jquery.knob.modified.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/jquery.sparkline.min.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/counter.js"></script>
-	
-		<script src="${pageContext.request.contextPath}/js/retina.js"></script>
-
-		<script src="${pageContext.request.contextPath}/js/custom.js"></script>
-		
 		<script type="text/javascript">
 		$(document).ready(function(){
 			var url = location.pathname;		

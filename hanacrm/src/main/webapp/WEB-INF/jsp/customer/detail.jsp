@@ -142,8 +142,8 @@ input.hidden {
 				<ul class="breadcrumb">
 					<li><i class="icon-home"></i> <a href="${pageContext.request.contextPath}/main">Home</a> 
 					<i class="icon-angle-right"></i></li>
-					<li><a href="${pageContext.request.contextPath}/customer">고객목록</a><i class="icon-angle-right"></i></li>
-					<li><a href="${pageContext.request.contextPath}/customer">고객정보</a></li>
+					<li><a href="${pageContext.request.contextPath}/customer">고객 목록</a><i class="icon-angle-right"></i></li>
+					<li><a href="${pageContext.request.contextPath}/customer">고객 정보</a></li>
 				</ul>
 				<div class="row-fluid">
 					<div class="span5">
