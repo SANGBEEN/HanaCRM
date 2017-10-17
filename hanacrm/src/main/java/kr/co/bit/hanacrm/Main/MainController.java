@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import kr.co.bit.hanacrm.Consult.ConsultService;
 import kr.co.bit.hanacrm.Contract.ContractService;
 import kr.co.bit.hanacrm.Customer.CusService;
 import kr.co.bit.hanacrm.Employee.EmpService;
@@ -41,6 +42,8 @@ public class MainController {
 	private ProductService productService;
 	@Autowired
 	private CusService cusService;
+	@Autowired
+	private ConsultService consultService;
 
 	// 로그인
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -94,8 +97,7 @@ public class MainController {
 		}
 		
 		//상담 많은 예금 상품
-		List<MainVO> savingsList = new ArrayList<>();
-		savingsList = productService.selectTopSavings();
+		List<MainVO> savingsList = productService.selectTopSavings();
 		String jsonSavingsList = "";
 		//VO to JSON
 		mapper = new ObjectMapper();
@@ -106,8 +108,7 @@ public class MainController {
 		}
 		
 		//상담 많은 적금 상품
-		List<MainVO> depositList = new ArrayList<>();
-		depositList = productService.selectTopDeposit();
+		List<MainVO> depositList = productService.selectTopDeposit();
 		String jsonDepositList = "";
 		//VO to JSON
 		mapper = new ObjectMapper();
@@ -145,15 +146,19 @@ public class MainController {
 		
 		System.out.println(jsonCustomerCountList);
 		
+		//한 달 상담 건수
+		int consultCount = consultService.selectConsultCount(emp.getNo());
+		
 		model.addAttribute("savingsList", jsonSavingsList);
 		model.addAttribute("depositList", jsonDepositList);
 		model.addAttribute("reservationCount",reservationCount);
-		session.setAttribute("reservationCount", reservationCount);
+		//session.setAttribute("reservationCount", reservationCount);
 		model.addAttribute("scheduleList",scheduleList);
 		model.addAttribute("contractList", json);
 		model.addAttribute("customerCount", customerCount);
 		model.addAttribute("customerCountList", jsonCustomerCountList);
 	//	model.addAttribute("reservationList", jsonReservationList);
+		model.addAttribute("consultCount", consultCount);
 		return "/main/main";
 	}
 	

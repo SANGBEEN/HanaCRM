@@ -62,19 +62,19 @@
 			<ul class="breadcrumb">
 				<li>
 					<i class="icon-home"></i>
-					<a href="${pageContext.request.contextPath}/main">Dashboard</a> 
+					<a href="${pageContext.request.contextPath}/main">Home</a> 
 					<i class="icon-angle-right"></i>
 				</li>
 				<li>
-					<a href="#">영업 관리</a>
+					<a href="${pageContext.request.contextPath}/sales/product">영업 관리</a>
 					<i class="icon-angle-right"></i>
 				</li>
 				<li>
-					<a href="#">상품 정보</a>
+					<a href="${pageContext.request.contextPath}/sales/product">상품 정보</a>
 					<i class="icon-angle-right"></i>
 				</li>
 				<li>
-					<a href="#" id="product-name-a-hs"></a>
+					<a id="product-name-a-hs"></a>
 				</li>
 			</ul>
 			

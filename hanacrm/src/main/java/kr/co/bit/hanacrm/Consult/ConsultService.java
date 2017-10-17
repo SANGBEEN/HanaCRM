@@ -86,6 +86,10 @@ public class ConsultService {
 		return consultDAO.delete(consultNo) == 1 ? consultNo : 0;
 	}
 	
+	public int selectConsultCount(int employeeNo) {		
+		return consultDAO.selectConsultCount(employeeNo);
+	}
+	
 	public List<ConsultVO> selectList(int customerNo) {
 		List<ConsultVO> consultList = consultDAO.selectByCusNo(customerNo);
 		
