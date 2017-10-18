@@ -210,7 +210,7 @@
 	<div class="modal hide fade" id="consultDetail">
 		<div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal">×</button>
-			<h3>상세보기</h3>
+			<h3>상담 상세 보기</h3>
 		</div>
 		<div class="modal-body">
 			<div id="consult-detail-table-hs">
@@ -890,7 +890,7 @@
 	        			+ '<tr><th>주소</th><td>' + customer.address + '</td></tr>' 
 	        			+ '<tr><th>고객등급</th><td>' + customer.grade + '</td></tr>' 
 	        			+ '<tr><th>고객등록일</th><td>' + customer.regDate + '</td></tr>' 
-	        			+ '<tr><th>comments</th><td>' + customer.comments + '</td></tr>' 
+	        			+ '<tr><th>비고</th><td>' + customer.comments + '</td></tr>' 
 	        			+ '</table>';
 	        			
 	        			$('div[id=customer-detail-table-hs]').html(html);        			

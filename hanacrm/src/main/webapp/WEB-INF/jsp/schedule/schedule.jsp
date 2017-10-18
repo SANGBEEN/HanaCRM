@@ -340,8 +340,7 @@
 			
 			
 			$(document).on('click', '.todaySchedule', function(e){
-				console.log('무다냐');
-				console.log(e);
+				// console.log(e);
 				getDetailSchedule($(this).val());
 			});
 		}
@@ -1110,8 +1109,8 @@
 				var dtype = 'hours';
 				console.log(no);
 				
-				var todayModal = $('#detailModal');
-				var today_datetimepicker = $('#detail_datetimepicker');
+				var todayModal = $('#todayDetailModal');
+				var today_datetimepicker = $('#today_detail_datetimepicker');
 				
 				$.ajax({
 					url: "${pageContext.request.contextPath}/schedule/"+no,
@@ -1123,17 +1122,40 @@
 						todayModal.find('span[id=scheduleType]').text(schedule.type);
 						todayModal.find('input[id=location]').val(schedule.location);
 						todayModal.find('textarea[id=comments]').val(schedule.comments);
-						todayModal.find('input[id=repetition]').val(schedule.repetition);
+						todayModal.find('#startDate').text(schedule.startDate);
+						todayModal.find('#endDate').text(schedule.endDate);
+
+						todayModal.find('span[id=repetition]').text(schedule.repetition);
 						if(schedule.customerNo!=null || schedule.customerNo!=""){
 							todayModal.find('span[id=customerName]').text(schedule.customer.name);									
 							todayModal.find('div[id=div_customerName]').show();
 						}else {
 							todayModal.find('div[id=div_customerName]').hide();
 						}
-						todayModal.find('select[id=importance]').val(schedule.importance);
+						
+						var importance = '보통';
+						switch(schedule.importance){
+						case 1:
+							importance = '매우 중요';
+							break;
+						case 2:
+							importance = '중요';
+							break;
+						case 3:
+							importance = '보통';
+							break;
+						case 4:
+							importance = '낮음';
+							break;
+						case 5:
+							importance = '매우 낮음';
+							break;
+						
+						}
+						todayModal.find('span[id=importance]').text(importance);
 						
 					
-						var d = ((moment(schedule.endDate)-moment(schedule.startDate))/60)/60/1000;
+						/* var d = ((moment(schedule.endDate)-moment(schedule.startDate))/60)/60/1000;
 
 						if(schedule.type=='Call'){
 							d = d*2;
@@ -1143,13 +1165,13 @@
 						}
 						
 						todayModal.find('.dduration').removeClass('clicked');
-						todayModal.find('#duration'+d).addClass('clicked');
+						todayModal.find('#duration'+d).addClass('clicked'); */
 						
 						todayModal.modal('show');
 						
 						// 데이트피커
 						/*  https://xdsoft.net/jqplugins/datetimepicker/ */
-					 	today_datetimepicker.datetimepicker({
+					 	 /* today_datetimepicker.datetimepicker({
 					 		defaultDate: schedule.startDate,
 					 		 allowTimes:[
 					 			'10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00', '13:30',
@@ -1157,23 +1179,19 @@
 					 			'18:00', '18:30', '19:00', '19:30', '20:00', '20:30', '21:00', '21:30', '22:00'
 				 			],
 				 			yearStart: '2017',
-				 			/* minTime: '10:00',
-				 			maxTime: '22:00',
-				 			step: 30, */
 					 		value: schedule.startDate,
 					 		format:'Y-m-d H:i',
 					 		onChangeDateTime:function(dp,$input){
 					 			todayModal.find('#endDate').text(getDate(moment(dp).add(dduration,dtype)));
 					 		}
-					 	});
+					 	}); */
 						
-						todayModal.find('#endDate').text(schedule.endDate);
 						
-						if(schedule.type=='Event'){
+						/* if(schedule.type=='Event'){
 							todayModal.find('#div_duration').hide();
 						}else {
 							todayModal.find('#div_duration').show();
-						}
+						} */
 
 					},
 					error: function(){
@@ -1181,7 +1199,7 @@
 					}
 				});
 				
-				todayModal.find('.dduration').off().on('click', function(ev){
+				/* todayModal.find('.dduration').off().on('click', function(ev){
 
 					dduration = 1;
 					dtype = 'hours';
@@ -1201,7 +1219,7 @@
 					endDate.add(dduration, dtype);
 					todayModal.find('#endDate').text(getDate(endDate));
 					
-				});
+				}); */
 				
 				/*
 				 // 수정 버튼
@@ -1300,6 +1318,7 @@
 	</script>
 	<%@ include file="/include/addScheduleModal.jsp"%>
 	<jsp:include page="/include/scheduleDetailModal.jsp"/>
+	<jsp:include page="/include/todayScheduleDetailModal.jsp"/>
 	
 </body>
 </html>

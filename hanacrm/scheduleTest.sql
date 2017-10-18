@@ -65,3 +65,8 @@ delete from schedule where no=333
 select count(status)
 from reservation
 where employee_no = #{no} and status=='D'
+
+select sysdate
+from dual
+
+select 
