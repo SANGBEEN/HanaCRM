@@ -210,7 +210,6 @@ input.hidden {
 									</label> 
 									<input id="address" type="text" class="myInput" name="address" value="${customer.address }"readonly="readonly"/> 
 								</div>
-								
 								<div class="division-tital">
 									특이사항
 								</div>
@@ -371,6 +370,42 @@ input.hidden {
 		$().ready(function() {
 			$('#profile-image1').on('click', function() {
 				$('#profile-image-upload').click();
+			});
+			
+			$('#selectSido').on('change', function(){
+				$('#selectDong').html('<option value="">동</option>');
+				var selectSido = $('#selectSido').val();
+				console.log(gugun[selectSido]);
+				var htmlStr ="";
+				htmlStr+='<option value="">구군</option>';
+				for(var i=0;i<gugun[selectSido].length;i++){
+					htmlStr+='<option value="'+gugun[selectSido][i]+'">'+gugun[selectSido][i]+'</option>';
+	    	 		//document.getElementById("selectGugun").innerHTML += '<option value="'+gugun[selectSido][i]+'">'+gugun[selectSido][i]+'</option>';
+	    	 		
+	   			}
+				$('#selectGugun').html(htmlStr);
+			});
+			
+			$('#selectGugun').on('change', function(){
+				console.log($('#selectSido').val());
+				var selectSido = $('#selectSido').val();
+				var selectGugun = $('#selectGugun').val();
+				var selectDong = selectSido+'-'+selectGugun;
+				console.log(dong[selectDong]);
+				var htmlStr ="";
+				htmlStr+='<option value="">동</option>';
+				for(var i=0;i<dong[selectDong].length;i++){
+					htmlStr+='<option value="'+dong[selectDong][i]+'">'+dong[selectDong][i]+'</option>';
+	    	 		//document.getElementById("selectGugun").innerHTML += '<option value="'+gugun[selectSido][i]+'">'+gugun[selectSido][i]+'</option>';
+	    	 		
+	   			}
+				$('#selectDong').html(htmlStr);
+			});
+			
+			$('#submitBtn').on('click', function(){
+				var addr =  $('#selectSido').val()+' '+$('#selectGugun').val()+' '+$('#selectDong').val();
+				$('#inputAddress').val(addr);
+				console.log($('#inputAddress').val());
 			});
 			
 			$('#modifyBtn').click(function(){
