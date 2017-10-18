@@ -196,7 +196,7 @@ input.hidden {
 									<label for="birthDate">
 										<span>생년월일</span>
 									</label> 
-									<input id="birthDate" type="date" class="myInput" name="birthDate" value="${customer.birthDate }" readonly="readonly"/> 
+									<input id="birthDate" type="date" class="myInput" name="birthDate" value="${customer.birthDate}" readonly="readonly"/> 
 								</div>
 								<div class="tital">
 									<label for="post">
@@ -454,7 +454,11 @@ input.hidden {
 						},
 						success:function(data){
 							console.dir(data);
-							alert(data);
+							if(data=='success'){
+								alert('수정되었습니다.');
+							}else {
+									
+							}
 							$('.myInput').attr("readonly",true);
 							$('.myInput').removeClass('modifyInput');
 						},
