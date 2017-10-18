@@ -7,7 +7,6 @@
 <head>
 <meta charset="utf-8">
 <title>영업지원 시스템 - 고객관리</title>
-<<<<<<< HEAD
 	<meta name="description" content="Bootstrap Metro Dashboard">
 	<meta name="author" content="Dennis Ji">
 	<meta name="keyword" content="Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
@@ -56,27 +55,6 @@
 	<link href='https://fonts.googleapis.com/css?family=Bungee+Inline' rel='stylesheet' type='text/css'>
 	<link rel="shortcut icon" href="img/favicon.ico">
 	
-=======
-<meta name="description" content="Bootstrap Metro Dashboard">
-<meta name="author" content="Dennis Ji">
-<meta name="keyword"
-	content="Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link id="bootstrap-style" href="css/bootstrap.css" rel="stylesheet">
-<link
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-	rel="stylesheet">
-<link href="css/bootstrap-responsive.min.css" rel="stylesheet">
-<link href="css/addModal.css" rel="stylesheet">
-<link id="base-style" href="css/style.css" rel="stylesheet">
-<link id="base-style-responsive" href="css/style-responsive.css"
-	rel="stylesheet">
-<link href='http://fonts.googleapis.com/css?family=Noto+Sans'
-	rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Bungee+Inline'
-	rel='stylesheet' type='text/css'>
-<link rel="shortcut icon" href="img/favicon.ico">
->>>>>>> 189383119ec1de7b54d6180b1f9a3aef8b205b57
 <style>
 .form-group {
 	margin: 15px auto;
