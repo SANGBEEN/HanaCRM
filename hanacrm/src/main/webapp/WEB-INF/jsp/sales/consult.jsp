@@ -556,7 +556,7 @@
     				"bRetrieve": true,
     				//"bDestroy": true,
     				"oLanguage": {
-    				"sLengthMenu": "_MENU_ records per page"
+    				"sLengthMenu": "_MENU_ 페이지 수"
     				}
     			} );
 				

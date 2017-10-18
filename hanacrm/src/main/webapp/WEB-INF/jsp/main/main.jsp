@@ -150,7 +150,7 @@
 						<div class="number" id="number-of-consult-hs"></div>
 						<div class="title">consult</div>
 						<div class="footer">
-							<a>상담</a>
+							<a>이번 달 상담</a>
 						</div>
 					</div>
 					<div class="span3 statbox yellow" style="height: 120px;" id="refresh-visits-hs">
@@ -158,7 +158,7 @@
 						<div class="number" id="number-of-visits-hs"></div>
 						<div class="title">visit</div>
 						<div class="footer">
-							<a>오늘방문자수</a>
+							<a>오늘 방문자 수</a>
 						</div>
 					</div>
 					<div class="span3 statbox blue" style="height: 120px;">
@@ -166,7 +166,7 @@
 						<div class="number" id="number-of-reservation-hy"></div>
 						<div class="title">alarm</div>
 						<div class="footer">
-							<a>신청예약수</a>
+							<a>신청 예약 수</a>
 						</div>
 					</div>
 				</div>
