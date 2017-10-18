@@ -506,7 +506,7 @@
 	        				"bRetrieve": true,
 	        				//"bDestroy": true,
 	        				"oLanguage": {
-	        				"sLengthMenu": "_MENU_ records per page"
+	        				"sLengthMenu": "_MENU_ 개씩 보기"
 	        				}
 	        			} );
 	        	    },
@@ -556,7 +556,7 @@
     				"bRetrieve": true,
     				//"bDestroy": true,
     				"oLanguage": {
-    				"sLengthMenu": "_MENU_ 페이지 수"
+    				"sLengthMenu": "_MENU_ 개씩 보기"
     				}
     			} );
 				
@@ -580,7 +580,7 @@
     				"bRetrieve": true,
     				//"bDestroy": true,
     				"oLanguage": {
-    				"sLengthMenu": "_MENU_ records per page"
+    				"sLengthMenu": "_MENU_ 개씩 보기"records per page"
     				}
     			} );
 			});
@@ -621,7 +621,7 @@
 	        				"bRetrieve": true,
 	        				//"bDestroy": true,
 	        				"oLanguage": {
-	        				"sLengthMenu": "_MENU_ records per page"
+	        				"sLengthMenu": "_MENU_ 개씩 보기"
 	        				}
 	        			} ); */
 	        			
@@ -914,7 +914,7 @@
     				"bRetrieve": true,
     				//"bDestroy": true,
     				"oLanguage": {
-    				"sLengthMenu": "_MENU_ records per page"
+    				"sLengthMenu": "_MENU_ 개씩 보기"
     				}
     			} );
 				

@@ -309,7 +309,6 @@
 						 console.log(reservationData);
 			
 		};
-	
 	</script>
 	<!-- end: JavaScript-->
 </body>

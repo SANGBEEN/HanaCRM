@@ -815,7 +815,7 @@
 
         function oa(a) {
             var b = j.defaults.oLanguage;
-            !a.sEmptyTable && (a.sZeroRecords && "No data available in table" === b.sEmptyTable) &&
+            !a.sEmptyTable && (a.sZeroRecords && "내역이 존재하지 않습니다." === b.sEmptyTable) &&
                 p(a, a, "sZeroRecords", "sEmptyTable");
             !a.sLoadingRecords && (a.sZeroRecords && "Loading..." === b.sLoadingRecords) && p(a, a, "sZeroRecords", "sLoadingRecords")
         }
