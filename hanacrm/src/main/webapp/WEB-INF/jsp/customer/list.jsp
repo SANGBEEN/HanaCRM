@@ -21,7 +21,7 @@
 	<script src="${pageContext.request.contextPath}/js/jquery.cookie.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
 	<script src='${pageContext.request.contextPath}/js/fullcalendar.min.js'></script>
-	<script src='${pageContext.request.contextPath}/js/jquery.dataTables.min.js'></script>
+	<script src='${pageContext.request.contextPath}/js/jquery.dataTables.js'></script>
 	<script src="${pageContext.request.contextPath}/js/excanvas.js"></script>
 	<script src="${pageContext.request.contextPath}/js/jquery.flot.js"></script>
 	<script src="${pageContext.request.contextPath}/js/jquery.flot.pie.js"></script>

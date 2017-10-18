@@ -24,7 +24,7 @@
 	<script src="${pageContext.request.contextPath}/js/jquery.cookie.js"></script>
 	<script src='${pageContext.request.contextPath}/js/moment.min.js'></script>
 	<script src='${pageContext.request.contextPath}/js/fullcalendar.min.js'></script>
-	<script src='${pageContext.request.contextPath}/js/jquery.dataTables.min.js'></script>
+	<script src='${pageContext.request.contextPath}/js/jquery.dataTables.js'></script>
 	<script src="${pageContext.request.contextPath}/js/excanvas.js"></script>
 	<script src="${pageContext.request.contextPath}/js/jquery.flot.js"></script>
 	<script src="${pageContext.request.contextPath}/js/jquery.flot.pie.js"></script>

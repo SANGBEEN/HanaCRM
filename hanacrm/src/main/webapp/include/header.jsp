@@ -252,7 +252,7 @@
 							break;
 					}
 					
-					html += '<li><a><span class="from" style="margin-bottom:1px"><b>' + title +
+					html += '<li><a href="${pageContext.request.contextPath}/schedule/reservation"><span class="from" style="margin-bottom:1px"><b>' + title +
 	                   '</b></span><span class="header">' + reservationList[i].location +
 	                   '<span class="time">' + reservationList[i].regDate +
 	                   '</span></span><span class="message">' + msg +

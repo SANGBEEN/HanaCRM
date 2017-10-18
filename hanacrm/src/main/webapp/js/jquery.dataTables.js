@@ -2199,21 +2199,21 @@
             oPaginate: {
                 sFirst: "First",
                 sLast: "Last",
-                sNext: "Next",
-                sPrevious: "Previous"
+                sNext: "",
+                sPrevious: ""
             },
-            sEmptyTable: "No data available in table",
-            sInfo: "Showing _START_ to _END_ of _TOTAL_ entries",
-            sInfoEmpty: "Showing 0 to 0 of 0 entries",
+            sEmptyTable: "내역이 존재하지 않습니다.",
+            sInfo: "",
+            sInfoEmpty: "",
             sInfoFiltered: "(filtered from _MAX_ total entries)",
             sInfoPostFix: "",
             sInfoThousands: ",",
             sLengthMenu: "Show _MENU_ entries",
             sLoadingRecords: "Loading...",
             sProcessing: "Processing...",
-            sSearch: "Search:",
+            sSearch: "검색:",
             sUrl: "",
-            sZeroRecords: "No matching records found"
+            sZeroRecords: "검색 결과가 없습니다."
         },
         oSearch: i.extend({}, j.models.oSearch),
         sAjaxDataProp: "aaData",
