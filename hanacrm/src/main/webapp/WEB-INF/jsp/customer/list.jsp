@@ -44,6 +44,7 @@
 	<script src="${pageContext.request.contextPath}/js/counter.js"></script>
 	<script src="${pageContext.request.contextPath}/js/retina.js"></script>
 	<script src="${pageContext.request.contextPath}/js/custom.js"></script>
+	<script src="${pageContext.request.contextPath}/js/KoAddress.js"></script>
 	
 	<link id="bootstrap-style" href="css/bootstrap.css" rel="stylesheet">
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -295,11 +296,6 @@
 									</div>
 
 									<div class="form-group">
-<<<<<<< HEAD
-										<div class="col-sm-12 text-right" style="margin: 30px auto; padding-right:20px">
-										  <button class="btn customer-submit-btn" type="submit">등록<!-- <i class="fa fa-check spaceLeft"></i> --></button>
-										  <button class="btn customer-cancel-btn" data-dismiss="modal" aria-hidden="Close">취소<!-- <i class="fa fa-times spaceLeft"></i> --></button>
-=======
 										<div class="col-sm-12 text-right"
 											style="margin: 30px auto; padding-right: 20px">
 											<button class="btn customer-submit-btn" id="submitBtn" type="submit">
@@ -309,7 +305,6 @@
 												aria-hidden="Close">
 												취소<i class="fa fa-times spaceLeft"></i>
 											</button>
->>>>>>> 189383119ec1de7b54d6180b1f9a3aef8b205b57
 										</div>
 									</div>
 								</form>
@@ -344,43 +339,6 @@
 		</p>
 	</footer>
 
-<<<<<<< HEAD
-=======
-	<script src="js/jquery-1.9.1.min.js"></script>
-	<script src="js/jquery-migrate-1.0.0.min.js"></script>
-	<script src="js/jquery-ui-1.10.0.custom.min.js"></script>
-	<script src="js/jquery.ui.touch-punch.js"></script>
-	<script src="js/modernizr.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/jquery.cookie.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
-	<script src='js/fullcalendar.min.js'></script>
-	<script src='js/jquery.dataTables.min.js'></script>
-	<script src="js/excanvas.js"></script>
-	<script src="js/jquery.flot.js"></script>
-	<script src="js/jquery.flot.pie.js"></script>
-	<script src="js/jquery.flot.stack.js"></script>
-	<script src="js/jquery.flot.resize.min.js"></script>
-	<script src="js/jquery.chosen.min.js"></script>
-	<script src="js/jquery.uniform.min.js"></script>
-	<script src="js/jquery.cleditor.min.js"></script>
-	<script src="js/jquery.noty.js"></script>
-	<script src="js/jquery.elfinder.min.js"></script>
-	<script src="js/jquery.raty.min.js"></script>
-	<script src="js/jquery.iphone.toggle.js"></script>
-	<script src="js/jquery.uploadify-3.1.min.js"></script>
-	<script src="js/jquery.gritter.min.js"></script>
-	<script src="js/jquery.imagesloaded.js"></script>
-	<script src="js/jquery.masonry.min.js"></script>
-	<script src="js/jquery.knob.modified.js"></script>
-	<script src="js/jquery.sparkline.min.js"></script>
-	<script src="js/counter.js"></script>
-	<script src="js/retina.js"></script>
-	<script src="js/custom.js"></script>
-	<script src="js/KoAddress.js"></script>
-
->>>>>>> 189383119ec1de7b54d6180b1f9a3aef8b205b57
 	<script>
 	function resize(obj) {
 		  obj.style.height = "1px";
