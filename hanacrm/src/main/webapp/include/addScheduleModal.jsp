@@ -12,7 +12,7 @@
 			<jsp:include page="/include/scheduleInfo.jsp" />
 	 </div>
 	 <div class="modal-footer">
-		 <button type="button" id="modalSave" class="btn btn-sm schedule-add-btn" data-dismiss="modal">일정 추가</button>
+		 <button type="button" id="modalSave" class="btn btn-sm schedule-add-btn" data-dismiss="modal">추가</button>
 		<button type="button" id="modalCancle" class="btn btn-sm schedule-cancle-btn" data-dismiss="modal">취소</button>
 	 </div>
 	 

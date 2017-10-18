@@ -252,23 +252,120 @@
 							break;
 					}
 					
-					html += '<li><a href="${pageContext.request.contextPath}/schedule/reservation"><span class="from" style="margin-bottom:1px"><b>'+title+
-	                   '</b></span><span class="header">'+reservationList[i].location+
-	                   '<span class="time">'+reservationList[i].regDate+
-	                   '</span></span><span class="message">'+msg+
+					html += '<li><a><span class="from" style="margin-bottom:1px"><b>' + title +
+	                   '</b></span><span class="header">' + reservationList[i].location +
+	                   '<span class="time">' + reservationList[i].regDate +
+	                   '</span></span><span class="message">' + msg +
 	                   '</span></a></li>';
+	                   /* <dir align="center"><span class="btn" id="agree" style="background-color:#5bc0de; height:34px; width:54px; padding:3px" data-reservation=\'' + JSON.stringify(reservationList[i]) + '\'>수락</span>' +
+	                   '<span class="btn yellow" id="disagree" style="height:34px; width:54px; padding:3px" data-dismiss="modal">거절</span></div> */
 				}
 	                   
 	              html += '<li><a class="dropdown-menu-sub-footer" href="${pageContext.request.contextPath}/schedule/reservation">모든 메시지 보기</a></li>';
 				
 				$('#reservationCount').text(reservationList.length);
 	            $('#ui_reservationList').html(html);
-				
+	            
 			}
 		});
 		 
 		//  $('#li_reservationList').addClass('open');
 	}
+	
+	 $('document').ready(function(){
+		
+		refresh();
+		
+	/*	$('.agree').on('click', function(){
+			var reservation = $(this).data('reservation');
+			
+			console.log('agree');
+			
+				var reservationData = {
+						no: reservation.no,
+						status: 'Y',
+						comments: "예약되었습니다.",
+						location: reservation.location,
+						phone: reservation.phone,
+						customerNo: reservation.customerNo,
+						startDate: reservation.startDate,
+						endDate: reservation.endDate,
+						regDate: reservation.regDate,
+						type: reservation.type,
+						employeeNo: reservation.employeeNo,
+						msg: reservation.msg
+					};
+				
+				if(window.confirm('등록하시겠습니까?')==true){
+					updateReservation(reservationData);
+				}
+		});
+	
+		$('a[id=disagree]').click(function(){
+			
+			console.log('disagree');
+			var reservation = $(this).data('reservation');
+			var reservationData = {
+					no: reservation.no,
+					status: 'N',
+					comments: $('input[id=comments]')[0].placeholder
+				};
+			
+			$('#commentsModal').modal('show');
+			
+			$('#commentsModal').find('a[id=updateBtn]').click(function(){
+				if($('input[id=comments]').val()!=null || $('input[id=comments]').val()!=""){
+					reservationData.comments = $('input[id=comments]').val();
+					console.log(reservationData.comments);
+				}
+				updateReservation(reservationData);
+			});
+		});
+	});
+	
+	function updateReservation(reservationData){
+		
+		console.log(reservationData);
 
-	refresh();
+		   $.ajax({
+				url: "${pageContext.request.contextPath}/schedule/reservation",
+				type: "put",
+				contentType: "application/json; charset=uft-8",
+				data: JSON.stringify(reservationData),
+				success: function(data){
+					if(data==1){ 
+						if(reservationData.status=='N'){
+							$('#commentsModal').modal('hide');
+						}
+						refresh();
+					}
+				},
+				error: function(e){
+				//	alert('error');
+				}
+			}); 
+	}; */
+	
+	});
+	
 </script>
+
+<!-- comments 입력 -->
+	<!-- <div class="modal hide fade" id="commentsModal">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">×</button>
+			<h3>전달 메시지 입력</h3>
+		</div>
+		<div class="modal-body">
+			<div class="control-group">
+				<label class="control-label" for="focusedInput">전달할 메시지</label>
+				<div class="controls">
+					<input class="input-xlarge focused" id="comments" type="text" placeholder="연락드리겠습니다."></input>
+				</div>
+			</div>
+		</div>		
+		<div class="modal-footer">
+			<a href="#" class="btn btn-primary" id="updateBtn">전송</a>
+			<a href="#" class="btn" data-dismiss="modal">취소</a>
+		</div>
+	</div> -->

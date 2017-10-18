@@ -107,7 +107,7 @@
 	</div>
 	<div class="modal-footer">
 		<a href="#" id="modalSave" class="btn schedule-edit-btn" id="modalSave" data-dismiss="modal">수정</a>
-		<a href="#" class="btn schedule-delete-btn" id="modalDelete">일정삭제</a>
+		<a href="#" class="btn schedule-delete-btn" id="modalDelete">삭제</a>
 		<a href="#" class="btn schedule-cancle-btn" id="modalCancle" data-dismiss="modal">취소</a>
 	</div>
 </div>

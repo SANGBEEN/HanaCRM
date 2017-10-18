@@ -20,7 +20,7 @@
 	<script src="${pageContext.request.contextPath}/js/jquery-ui-1.10.0.custom.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/jquery.ui.touch-punch.js"></script>
 	<script src="${pageContext.request.contextPath}/js/modernizr.js"></script>
-	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/bootstrap.js"></script>
 	<script src="${pageContext.request.contextPath}/js/jquery.cookie.js"></script>
 	<script src='${pageContext.request.contextPath}/js/moment.min.js'></script>
 	<script src='${pageContext.request.contextPath}/js/fullcalendar.min.js'></script>
@@ -80,6 +80,7 @@
 								class="table table-striped table-bordered bootstrap-datatable datatable">
 								<thead>
 									<tr>
+										<th style="width:7%; text-align:center">분류</th>
 										<th style="width:5%; text-align:center">이름</th>
 										<th style="width:10%; text-align:center">전화번호</th>
 										<th style="width:5%; text-align:center">고객등급</th>
@@ -87,7 +88,6 @@
 										<th style="width:7%; text-align:center">희망시작일시</th>
 										<th style="width:7%; text-align:center">희망종료일시</th>
 										<th style="width:20%; text-align:center">메세지</th>
-										<th style="width:7%; text-align:center">예약등록일</th>
 										<th style="width:10%; text-align:center">수락/거절</th>
 									</tr>
 								</thead>
@@ -95,6 +95,7 @@
 								<tbody id="table-data">
 									<c:forEach var="reservation" items="${reservationList}">
 										<tr id="${reservation.no}">
+											<td style="text-align:center; vertical-align:middle">${reservation.type}</td>
 											<td style="text-align:center; vertical-align:middle"> ${reservation.name}</td>
 											<td class="center" style="text-align:center; vertical-align:middle">${reservation.phone }</td>
 											<td class="center" style="text-align:center; vertical-align:middle">
@@ -120,7 +121,6 @@
 											<td style="text-align:center; vertical-align:middle">${reservation.startDate}</td>
 											<td style="text-align:center; vertical-align:middle">${reservation.endDate}</td>
 											<td style="text-align:center; vertical-align:middle">${reservation.msg}</td>
-											<td style="text-align:center; vertical-align:middle">${reservation.regDate}</td>
 											<td style="text-align:center; vertical-align:middle" id="actionColum${reservation.no}">
 												 <c:choose>
 													<c:when test="${reservation.status=='N'}">
