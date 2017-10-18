@@ -15,21 +15,21 @@
 				class="table table-striped table-bordered bootstrap-datatable datatable">
 				<thead>
 					<tr>
-						<th>선택</th>
-						<th>Name</th>
-						<th>Phone</th>
-						<th>Reg_date</th>
-						<th>Grade</th> 
+						<th style="text-align:center">선택</th>
+						<th style="text-align:center">이름</th>
+						<th style="text-align:center">전화번호</th>
+						<th style="text-align:center">등록일</th>
+						<th style="text-align:center">고객등급</th> 
 					</tr>
 				</thead>
 				<tbody id="table-data" class="customerBody">
 					<c:forEach var="cus" items="${cusList}">
 						<tr class="tr_radio" data-no="${cus.no}" >
 							<td class="center"><input type="radio" name="customerNo" value="${cus.no}" id="radio${cus.no}"/></td>
-							<td class="center" id="${cus.no}">${cus.name}</td>
-							<td class="center">${cus.phone }</td>
-							<td class="center">${cus.regDate}</td>
-							<td class="center">
+							<td style="text-align:center" id="${cus.no}">${cus.name}</td>
+							<td style="text-align:center">${cus.phone }</td>
+							<td style="text-align:center">${cus.regDate}</td>
+							<td style="text-align:center">
 								<c:choose>
 									<c:when test="${cus.grade=='잠재'}">
 										<span class="label">${cus.grade}</span>

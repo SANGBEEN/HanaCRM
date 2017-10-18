@@ -19,7 +19,7 @@
 	<script src="${pageContext.request.contextPath}/js/jquery-ui-1.10.0.custom.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/jquery.ui.touch-punch.js"></script>
 	<script src="${pageContext.request.contextPath}/js/modernizr.js"></script>
-	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/bootstrap.js"></script>
 	<script src="${pageContext.request.contextPath}/js/jquery.cookie.js"></script>
 	<script src='${pageContext.request.contextPath}/js/fullcalendar.js'></script>
 	<script src='${pageContext.request.contextPath}/js/jquery.dataTables.min.js'></script>
@@ -45,6 +45,8 @@
 	<script src="${pageContext.request.contextPath}/js/retina.js"></script>
 	<script src="${pageContext.request.contextPath}/js/custom.js"></script>
 	<script src="${pageContext.request.contextPath}/js/jquery.datetimepicker.full.js"></script>
+	<script src="${pageContext.request.contextPath}/js/KoAddress.js"></script>
+	
 	<link id="bootstrap-style" href="${pageContext.request.contextPath}/css/bootstrap.css" rel="stylesheet">
 	<link href="${pageContext.request.contextPath}/css/bootstrap-responsive.min.css" rel="stylesheet">
 	<link id="base-style" href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
@@ -282,12 +284,17 @@
 		 start = new Date(2010, 10, 21).getTime();
 		console.log(start);
 		
-		function getTodayList(){
+		function getTodayList(date){
+			
+			console.log(moment(date).format('YYYY-MM-DD'));
 			
 			$.ajax({
 				url: "${pageContext.request.contextPath}/schedule/listForConsult",
 				type: "get",
 				dataType: "json",
+				data: {
+					date: moment(date).format('YYYY-MM-DD')
+				},
 				success: function(todayList){
 					// var todayList = JSON.parse(data);
 					var html = '<ul class="dashboard-list">';
@@ -365,7 +372,7 @@
 		 	    .find("button.clicked").removeClass('clicked');
 		 	});
 			
-			getTodayList();
+			getTodayList(new Date());
 	
 			 
 				/************************** initialize the external events
@@ -693,7 +700,7 @@
 										// the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
 										$('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
 									//	if(startDate==moment().format('YYYY-MM-DD HH:mm')){
-											getTodayList();
+											getTodayList(new Date());
 									//	}
 					        		},
 					        		error: function(){
@@ -713,6 +720,8 @@
 					selectable: true,
 					selectHelper: true,
 					select: function(start, end, allDay) {
+						
+						getTodayList(start);
 						
 						/* bootbox.prompt("New Event Title:", function(title) {
 							if (title !== null) {
@@ -894,7 +903,7 @@
 									calendar.fullCalendar('updateEvent', calEvent);
 									
 							//		if(startDate==moment().format('YYYY-MM-DD HH:mm')){
-										getTodayList();
+										getTodayList(new Date());
 							//		}
 				        		},
 				        		error: function(){
@@ -921,7 +930,7 @@
 											detailModal.modal("hide");
 											
 									//		if(startDate==moment().format('YYYY-MM-DD HH:mm')){
-												getTodayList();
+												getTodayList(new Date());
 									//		}
 											
 										}else {
@@ -1062,7 +1071,7 @@
 		        		success: function(data){
 		        			// alert('날짜 수정됨');
 		        		//	if(startDate==moment().format('YYYY-MM-DD HH:mm')){
-								getTodayList();
+								getTodayList(new Date());
 					//		}
 		        		},
 		        		error: function(e){
@@ -1075,7 +1084,8 @@
 		        	revertFunc();	
 		        }
 	        }
-		 		
+		 	
+		 	// 빈 칸 체크
 		 	function addCheck(){
 
 		 		var msg = 'ok';
@@ -1103,7 +1113,8 @@
     			return msg;
 		 	}
 		 		
-		 		
+		 	
+		 	// 오늘 일정 상세 보기 모달
 		 	function getDetailSchedule(no){
 		 		var dduration = 1;
 				var dtype = 'hours';
