@@ -122,129 +122,132 @@
 							<a href="#" class="btn-close"><i class="halflings-icon remove"></i></a>
 						</div> -->
 					</div>
-					<div class="box-content" align="center" style="padding-top:50px">
-						<fieldset>
-							<div id="base-info">
-							  
-						  	</div>
-						  <div class="control-group">
-							<label class="control-label" for="productOption">옵션</label>
-							<div class="controls">
-							  <select id="productOption">
-								<option></option>
-								<option>Option 2</option>
-								<option>Option 3</option>
-								<option>Option 4</option>
-								<option>Option 5</option>
-							  </select>								  
-							</div>
-						  </div>
-						  <div id="option-info">
-						  	
-						  </div>
-						  <%-- <ul>
-							  	<li>공시제출월
-							  		<ul>
-							  			<li>${ productDetail.dclsMonth }</li>
-							  		</ul>
-							  	</li>
-							  	<li>금융회사코드
-							  		<ul>
-							  			<li>${ productDetail.finCoNo }</li>
-							  		</ul>
-							  	</li>
-							  	<li>금융상품코드
-							  		<ul>
-							  			<li>${ productDetail.finPrdtCd }</li>
-							  		</ul>
-							  	</li>
-							  	<li>저축금리유형
-							  		<ul>
-							  			<li>${ productDetail.intrRateType }</li>
-							  		</ul>
-							  	</li>
-							  	<li>저축금리유형명
-							  		<ul>
-							  			<li>${ productDetail.intrRateTypeNm }</li>
-							  		</ul>
-							  	</li>
-							  	<li>저축 기간(개월)
-							  		<ul>
-							  			<li>${ productDetail.saveTrm }</li>
-							  		</ul>
-							  	</li>
-							  	<li>저축 금리
-							  		<ul>
-							  			<li>${ productDetail. }</li>
-							  		</ul>
-							  	</li>
-							  	<li>최고 우대 금리
-							  		<ul>
-							  			<li>${ productDetail. }</li>
-							  		</ul>
-							  	</li>
-							  </ul> --%>
-						  <div class="control-group">
-							<label class="control-label" for="selectError2">Group Select</label>
-							<div class="controls">
-								<select data-placeholder="Your Favorite Football Team" id="selectError2" data-rel="chosen">
-									<option value=""></option>
-									<optgroup label="NFC EAST">
-									  <option>Dallas Cowboys</option>
-									  <option>New York Giants</option>
-									  <option>Philadelphia Eagles</option>
-									  <option>Washington Redskins</option>
-									</optgroup>
-									<optgroup label="NFC NORTH">
-									  <option>Chicago Bears</option>
-									  <option>Detroit Lions</option>
-									  <option>Green Bay Packers</option>
-									  <option>Minnesota Vikings</option>
-									</optgroup>
-									<optgroup label="NFC SOUTH">
-									  <option>Atlanta Falcons</option>
-									  <option>Carolina Panthers</option>
-									  <option>New Orleans Saints</option>
-									  <option>Tampa Bay Buccaneers</option>
-									</optgroup>
-									<optgroup label="NFC WEST">
-									  <option>Arizona Cardinals</option>
-									  <option>St. Louis Rams</option>
-									  <option>San Francisco 49ers</option>
-									  <option>Seattle Seahawks</option>
-									</optgroup>
-									<optgroup label="AFC EAST">
-									  <option>Buffalo Dennis Jis</option>
-									  <option>Miami Dolphins</option>
-									  <option>New England Patriots</option>
-									  <option>New York Jets</option>
-									</optgroup>
-									<optgroup label="AFC NORTH">
-									  <option>Baltimore Ravens</option>
-									  <option>Cincinnati Bengals</option>
-									  <option>Cleveland Browns</option>
-									  <option>Pittsburgh Steelers</option>
-									</optgroup>
-									<optgroup label="AFC SOUTH">
-									  <option>Houston Texans</option>
-									  <option>Indianapolis Colts</option>
-									  <option>Jacksonville Jaguars</option>
-									  <option>Tennessee Titans</option>
-									</optgroup>
-									<optgroup label="AFC WEST">
-									  <option>Denver Broncos</option>
-									  <option>Kansas City Chiefs</option>
-									  <option>Oakland Raiders</option>
-									  <option>San Diego Chargers</option>
-									</optgroup>
-							  </select>
-							</div>
-						  </div>
-						  <div class="form-actions" align="right">
-							<a class="btn" style="background-color:#008584" href="javascript:history.back();">확인</a>
-							<!-- <button class="btn">닫기</button> -->
-						  </div>
-						</fieldset>
+					<div class="box-content">
+						<form class="form-horizontal">
+							<fieldset>
+								<div id="base-info">
+								  
+							  	</div>
+							  <div class="control-group">
+								<label class="control-label" for="productOption">옵션</label>
+								<div class="controls">
+								  <select id="productOption">
+									<option></option>
+									<option>Option 2</option>
+									<option>Option 3</option>
+									<option>Option 4</option>
+									<option>Option 5</option>
+								  </select>								  
+								</div>
+							  </div>
+							  <div id="option-info">
+							  	
+							  </div>
+							  <%-- <ul>
+								  	<li>공시제출월
+								  		<ul>
+								  			<li>${ productDetail.dclsMonth }</li>
+								  		</ul>
+								  	</li>
+								  	<li>금융회사코드
+								  		<ul>
+								  			<li>${ productDetail.finCoNo }</li>
+								  		</ul>
+								  	</li>
+								  	<li>금융상품코드
+								  		<ul>
+								  			<li>${ productDetail.finPrdtCd }</li>
+								  		</ul>
+								  	</li>
+								  	<li>저축금리유형
+								  		<ul>
+								  			<li>${ productDetail.intrRateType }</li>
+								  		</ul>
+								  	</li>
+								  	<li>저축금리유형명
+								  		<ul>
+								  			<li>${ productDetail.intrRateTypeNm }</li>
+								  		</ul>
+								  	</li>
+								  	<li>저축 기간(개월)
+								  		<ul>
+								  			<li>${ productDetail.saveTrm }</li>
+								  		</ul>
+								  	</li>
+								  	<li>저축 금리
+								  		<ul>
+								  			<li>${ productDetail. }</li>
+								  		</ul>
+								  	</li>
+								  	<li>최고 우대 금리
+								  		<ul>
+								  			<li>${ productDetail. }</li>
+								  		</ul>
+								  	</li>
+								  </ul> --%>
+							  <div class="control-group">
+								<label class="control-label" for="selectError2">Group Select</label>
+								<div class="controls">
+									<select data-placeholder="Your Favorite Football Team" id="selectError2" data-rel="chosen">
+										<option value=""></option>
+										<optgroup label="NFC EAST">
+										  <option>Dallas Cowboys</option>
+										  <option>New York Giants</option>
+										  <option>Philadelphia Eagles</option>
+										  <option>Washington Redskins</option>
+										</optgroup>
+										<optgroup label="NFC NORTH">
+										  <option>Chicago Bears</option>
+										  <option>Detroit Lions</option>
+										  <option>Green Bay Packers</option>
+										  <option>Minnesota Vikings</option>
+										</optgroup>
+										<optgroup label="NFC SOUTH">
+										  <option>Atlanta Falcons</option>
+										  <option>Carolina Panthers</option>
+										  <option>New Orleans Saints</option>
+										  <option>Tampa Bay Buccaneers</option>
+										</optgroup>
+										<optgroup label="NFC WEST">
+										  <option>Arizona Cardinals</option>
+										  <option>St. Louis Rams</option>
+										  <option>San Francisco 49ers</option>
+										  <option>Seattle Seahawks</option>
+										</optgroup>
+										<optgroup label="AFC EAST">
+										  <option>Buffalo Dennis Jis</option>
+										  <option>Miami Dolphins</option>
+										  <option>New England Patriots</option>
+										  <option>New York Jets</option>
+										</optgroup>
+										<optgroup label="AFC NORTH">
+										  <option>Baltimore Ravens</option>
+										  <option>Cincinnati Bengals</option>
+										  <option>Cleveland Browns</option>
+										  <option>Pittsburgh Steelers</option>
+										</optgroup>
+										<optgroup label="AFC SOUTH">
+										  <option>Houston Texans</option>
+										  <option>Indianapolis Colts</option>
+										  <option>Jacksonville Jaguars</option>
+										  <option>Tennessee Titans</option>
+										</optgroup>
+										<optgroup label="AFC WEST">
+										  <option>Denver Broncos</option>
+										  <option>Kansas City Chiefs</option>
+										  <option>Oakland Raiders</option>
+										  <option>San Diego Chargers</option>
+										</optgroup>
+								  </select>
+								</div>
+							  </div>
+							  <div class="form-actions" align="right">
+								<a class="btn" style="background-color:#008584" href="javascript:history.back();">확인</a>
+								<!-- <button class="btn">닫기</button> -->
+							  </div>
+							</fieldset>
+						  </form>
+					
 					</div>
 				</div><!--/span-->
 			
@@ -303,7 +306,7 @@
 					"공시 종료일", 
 					"금융회사 제출일"]);
 				
-			//	console.log(productHeader);
+				console.log(productHeader);
 				
 				$('h2[id=product-name-hs]').html('<i class="halflings-icon book"></i><span class="break"></span>' + productDetail.finPrdtNm);
 				$('a[id=product-name-a-hs]').text(productDetail.finPrdtNm);
@@ -370,27 +373,17 @@
 				break;
 			}
 	    	
-	    //	console.log(productHeader.length);
+	    	console.log(productHeader.length);
 	    	
-	    	var html = '<h2><i class="glyphicons-icon building" style="width:30px; height:30px; vertical-align:text-bottom; margin-right:5px"></i>금융회사 정보</h2>';
-	    	html += '<table class="table table-striped" style="width:70%; margin-bottom:20px">';
+	    	var html = '<ul>';
 	    	
-	    	for(var i = 0; i < 3; i++) {
-	    		html += '<tr><th style="width:40%; text-align:center">' + productHeader[i] + '</th><td>' + 
-	    		productBody[i] + '</td></tr>';
+	    	for(var i = 0; i < productHeader.length; i++) {
+	    		html += '<li>' + productHeader[i] + '<ul><li>' + 
+	    		productBody[i] + '</li></ul></li>';
 	    	}
 	    	
-	    	html += '</table>';
-	    	html += '<h2><i class="glyphicons-icon folder_open" style="width:30px; height:30px; vertical-align:text-bottom; margin-right:5px"></i>금융상품 정보</h2>';
-	    	html += '<table class="table table-striped" style="width:70%">';
-	    	
-	    	for(var i = 3; i < productHeader.length; i++) {
-	    		html += '<tr><th style="width:40%; text-align:center">' + productHeader[i] + '</th><td>' + 
-	    		productBody[i] + '</td></tr>';
-	    	}
-	    	
-	    	html += '</table>';
-	  //  	console.log(html);
+	    	html += '</ul>';
+	    	console.log(html);
 	    	document.querySelector('#base-info').innerHTML = html;
 		});    	
 		</script>

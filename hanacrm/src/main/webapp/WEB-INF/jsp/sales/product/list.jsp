@@ -108,7 +108,7 @@
 				</li>
 			</ul>
 			
-			<div class="row-fluid sortable">		
+			<div class="row-fluid">		
 				<div class="box span12">
 					<!-- <div class="tabbable">
 					<ul id="inbox-tabs" class="inbox-tabs nav nav-tabs padding-16 tab-size-bigger tab-space-1">
@@ -146,7 +146,7 @@
 							<a href="#" class="btn-close"><i class="halflings-icon remove"></i></a>
 						</div> -->
 					</div>
-					<div class="box-content" id="product-list">
+					<div class="box-content" id="product-list">  <!-- style="padding:20px" -->
 						<!-- <table class="table table-striped table-bordered bootstrap-datatable datatable">
 						  <thead>
 							  <tr>
@@ -226,15 +226,16 @@
         			$('h2[id=tab-name-hs]').html('<i class="halflings-icon book"></i><span class="break"></span>' + $('li[class=active]').find('a[id=type-select-hs]').text());
         			
         	        html = '<table class="table table-striped table-bordered bootstrap-datatable datatable">';
-        	        html += '<thead><tr><th style="text-align:center">금융상품코드</th><th style="text-align:center">금융상품명</th><th style="text-align:center">가입대상</th><th style="text-align:center">상세보기</th></tr></thead><tbody>'; /* <th>적립유형명</th></tr></thead><tbody>'; */
+        	        html += '<thead><tr><th style="text-align:center">금융상품코드</th><th style="text-align:center">금융회사명</th><th style="text-align:center">금융상품명</th><th style="text-align:center">가입대상</th><th style="text-align:center">상세보기</th></tr></thead><tbody>'; /* <th>적립유형명</th></tr></thead><tbody>'; */
         	        
         	        for (var i = 0; i < product.length; i++) {
         	        	
         	        	//console.log(product[i].finPrdtNm + " : ");
         	            html += '<tr><td style="text-align:center">' + product[i].finPrdtCd + 
-        	            '</td><td style="text-align:center">' + product[i].finPrdtNm + 
-        	            '</td><td>' + product[i].joinMember + 
-        	            '</td><td style="text-align:center"><a href="${pageContext.request.contextPath}/sales/product/' + type + '/' + product[i].no + '" class="btn btn-success"><i class="halflings-icon white zoom-in"></i></a></td></tr>';
+        	            		'<td style="text-align:center">' + product[i].korCoNm + 
+		        	            '</td><td style="text-align:center">' + product[i].finPrdtNm + 
+		        	            '</td><td>' + product[i].joinMember + 
+		        	            '</td><td style="text-align:center"><a href="${pageContext.request.contextPath}/sales/product/' + type + '/' + product[i].no + '" class="btn btn-success"><i class="halflings-icon white zoom-in"></i></a></td></tr>';
         	            		/* + '<td><span class="input-xlarge uneditable-input">' + product[i].comments + '</span></td></tr>'; */
        	        	}
 					
