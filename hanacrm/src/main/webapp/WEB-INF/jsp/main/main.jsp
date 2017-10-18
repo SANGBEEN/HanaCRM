@@ -240,7 +240,7 @@
 		<div class="modal-body">
 			<div id="share-hs">
 				연락처: <input class="input-xlarge" id="phone" type="tel" pattern="[0][1][0][0-9]{8}" title="잘못된 형식입니다."/>
-				<a href="#" id="search-customer-hs"><i class="glyphicons-icon zoom_in"></i></a>
+				<a href="#" id="search-customer-hs" data-table_flag="off"><i class="glyphicons-icon zoom_in"></i></a>
 			</div>
 			<div id="search-customer-table-hs">
 			
@@ -408,7 +408,7 @@
 		$('#share').on('click',function(){
 			$('#shareModal').modal('show');
 			$('#shareBtn').off().on('click', function(){
-				alert('명함 전송이 완료되었습니다.');
+				alert($('#phone').val() + ' (으)로 명함 전송이 완료되었습니다.');
 			});
 		});
 		
@@ -419,10 +419,90 @@
 		// 이번달 상담 수
 		$('div[id=number-of-consult-hs]').text('${consultCount}');
 		
-		$('#search-customer-hs').click(function(e) {
-			selectListForSearch
-			$('div[id=search-customer-table-hs]').html();
+		$('a[id=search-customer-hs]').click(function(e) {
+			var tableFlag = $(this).data("table_flag");
+			if (tableFlag == "on") {				
+				$('div[id=search-customer-table-hs]').empty();
+				tableFlag = "off";
+				console.log(tableFlag);
+			} else if (tableFlag == "off") {				
+				$.ajax({
+	        		url: "${pageContext.request.contextPath}/customer/listForSearch",
+	        		type: "get",
+	        		dataType: "json",
+	        		async: false,
+	        		success: function(customerList) 	{
+	        			tableFlag = "on";
+	        			console.log(tableFlag);
+	        			var html = '<table class="table table-striped table-bordered bootstrap-datatable datatable">' 
+	        			+ '<thead><tr><th>선택</th><th>이름</th><th>전화번호</th><th>등록일</th><th>고객 등급</th></tr></thead>' 
+	        			+ '<tbody id="table-data" class="customerBody">';
+	        			
+	        			for (var i = 0; i < customerList.length; i++) {
+							customerList[i];
+							
+							html += '<tr><td style="text-align: center;"><a class="btn" href="#" id="customer-select-button-hs" data-customer_select="' + customerList[i].no + '">선택</a></td>' 
+							+ '<td style="text-align: center;">' + customerList[i].name + '</td>' 
+							+ '<td style="text-align: center;" id="customer-phone-hs">' + customerList[i].phone + '</td>' 
+							+ '<td style="text-align: center;">' + customerList[i].regDate + '</td>' 
+							+ '<td style="text-align: center;">';
+							
+							switch (customerList[i].grade) {
+							case "잠재":
+								html += '<span class="label">';
+								break;
+							case "신규":
+								html += '<span class="label label-success">';
+								break;
+							case "기존":
+								html += '<span class="label label-warning">';
+								break;
+							case "핵심":
+								html += '<span class="label label-important">';
+								break;
+							}
+							
+							html += customerList[i].grade + '</span></td>';
+							
+						}
+	        			
+	        			html += '</tbody></table>';
+	        			
+	        			$('div[id=search-customer-table-hs]').html(html);
+	        			
+	        			$('.datatable').dataTable({
+	        				"sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span12'i><'span12 center'p>>",
+	        				"sPaginationType": "bootstrap",
+	        				"bRetrieve": true,
+	        				//"bDestroy": true,
+	        				"oLanguage": {
+	        				"sLengthMenu": "_MENU_ records per page"
+	        				}
+	        			} );	        			
+	        	    },
+	        		error: function(e){
+	      				console.log(e);
+	        			alert('error');
+	        		}
+	        	});
+			}
+			
+			$(this).data("table_flag", tableFlag);
 		});
+		
+		$(document).on('click', 'a[id=customer-select-button-hs]', function(e) {
+			var phone = $(this).parent().next('td').next('td').text();
+			console.log(phone);
+			$('input[id=phone]').val(phone);
+		});
+		
+		$('div[id=shareModal]').on('hidden.bs.modal', function(e) {
+			console.log("모달 사라진다")
+			//$(this).find('#phone').val('Default Value');
+			$(this).find('#phone').val('');
+			$(this).find('a[id=search-customer-hs]').data("table_flag", "off");
+			$('div[id=search-customer-table-hs]').empty();
+		});	
 		
 	</script>
 </body>
