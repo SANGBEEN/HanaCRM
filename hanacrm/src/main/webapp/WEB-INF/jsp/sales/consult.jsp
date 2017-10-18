@@ -67,6 +67,28 @@
 			border-color:#008485;
 			opacity:0.7;
 		}
+		
+		/* .modal-dialog.modal-fullsize {
+			width: 100%;
+  			height: 100%;
+  			margin: 0;
+  			padding: 0;
+  		}
+  		
+  		.modal-content.modal-fullsize {
+		  	height: auto;
+		  	min-height: 100%;
+		  	border-radius: 0; 
+		}
+		
+		.modal {
+			width: 80%;
+			height: auto;
+			min-height: 50%;
+			margin: 0;
+  			padding: 0;
+		} */
+
 	</style>
 </head>
 <body>
@@ -117,7 +139,7 @@
 						<table class="table table-striped table-bordered bootstrap-datatable datatable">
 						  <thead>
 							  <tr>
-								<th style="width:5%; text-align:center">번호</th>	
+								<th style="width:5%; text-align:center">상담 번호</th>	
 								<th style="width:15%; text-align:center">고객 이름</th>
 								<th style="width:30%; text-align:center">요약</th>
 								<th style="width:15%; text-align:center">상담 날짜</th>
@@ -208,19 +230,23 @@
 	
 	<!-- 상세보기 및 수정 -->
 	<div class="modal hide fade" id="consultDetail">
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal">×</button>
-			<h3>상담 상세 보기</h3>
-		</div>
-		<div class="modal-body">
-			<div id="consult-detail-table-hs">
-			
-			</div>			
-		</div>
-		<div class="modal-footer">
-			<!-- <a class="btn btn-success" id="customer-detail-hs">고객 정보</a> -->	
-			<a href="#" class="btn" id="consult-update-complete-hs">수정</a>
-			<a href="#" class="btn" id="consult-insert-cancel-hs" data-dismiss="modal">닫기</a>
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">×</button>
+					<h3>상담 상세 보기</h3>
+				</div>
+				<div class="modal-body">
+					<div id="consult-detail-table-hs">
+					
+					</div>			
+				</div>
+				<div class="modal-footer">
+					<!-- <a class="btn btn-success" id="customer-detail-hs">고객 정보</a> -->	
+					<a href="#" class="btn" id="consult-update-complete-hs">수정</a>
+					<a href="#" class="btn" id="consult-insert-cancel-hs" data-dismiss="modal">닫기</a>
+				</div>
+			</div>
 		</div>
 	</div>
 	
@@ -303,35 +329,25 @@
 	
 	<!-- 상담 내용 입력 -->
 	<div class="modal hide fade" id="consultContentInsert">
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal">×</button>
-			<h3>상담 내용 입력</h3>
-		</div>
-		<div class="modal-body">
-			<div class="control-group">
-				<label class="control-label">상담 일시</label>
-				<div class="controls">
-			  		<span class="input-xlarge uneditable-input" id="consult-date-input-hs">내용</span>
+	
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">×</button>
+					<h3>상담 내용 입력</h3>
 				</div>
-		  	</div>
-		  	<div class="control-group">
-				<label class="control-label">선택된 상품</label>
-				<div class="controls" id="consult-product-input-hs">
-				
+				<div class="modal-body">
+					<div id="consult-insert-table-hs">
+					
+					</div>			
 				</div>
-		  	</div>
-			<div class="control-group hidden-phone">
-			  	<label class="control-label" for="consult-content-hs">상담 내용</label>
-			  	<div class="controls">
-					<textarea id="consult-content-hs"></textarea>
-			 	</div>
+				<div class="modal-footer">
+					<a href="#" class="btn btn-primary" id="consult-insert-complete-hs">확인</a>
+					<a href="#" class="btn" id="consult-insert-cancel-hs" data-dismiss="modal">취소</a>
+				</div>
 			</div>
-		</div>
-		<div class="modal-footer">
-			<a href="#" class="btn btn-primary" id="consult-insert-complete-hs">확인</a>
-			<a href="#" class="btn" id="consult-insert-cancel-hs" data-dismiss="modal">취소</a>			
-		</div>
-	</div>		
+		</div>							
+	</div>	
 	
 	<!-- 고객정보 상세보기 -->
 	<div class="modal hide fade" id="customerDetail">
@@ -471,7 +487,7 @@
 	        	        html += '<thead><tr><th>선택</th><th>고객 이름</th><th>장소</th><th>일정 내용</th><th>일시</th></tr></thead><tbody>';
 	        	        
 	        	        for (var i = 0; i < schedule.length; i++) {
-		        	            html += '<tr><td><input type="radio" name="optionsRadios" data-schedule_no="' + schedule[i].no + '" data-customer_no="' + schedule[i].customer.no + '" data-reg_date="' + schedule[i].startDate + '"></td>' 
+		        	            html += '<tr><td><input type="radio" name="optionsRadios" data-schedule_no="' + schedule[i].no + '" data-customer_no="' + schedule[i].customer.no + '"></td>' 
 		        	            		+ '<td>' + schedule[i].customer.name + '</td>' 
 		        	            		+ '<td>' + schedule[i].location + '</td>' 
 		        	            		+ '<td>' + schedule[i].comments + '</td>'
@@ -517,8 +533,12 @@
 				]; */
 				
 				consultJson = {
+						"customerVO": {
+							"no": $('input[name="optionsRadios"]:checked').data('customer_no'),
+							"name": $('input[name="optionsRadios"]:checked').parent().next('td').text(),
+						},
 						"customerNo": $('input[name="optionsRadios"]:checked').data('customer_no'),
-						"regDate": $('input[name="optionsRadios"]:checked').data('reg_date'),
+						"regDate": $('input[name="optionsRadios"]:checked').parent().next('td').next('td').next('td').next('td').text(),
 						"content": null,
 						"title": null,
 						"consultProduct": {}
@@ -667,13 +687,49 @@
 				e.preventDefault();
 				e.stopPropagation();
 				
+				var html = '<table class="table table-striped table-bordered">' 
+       				+ '<tr><th>상담 일시</th><td>' + consultJson['regDate'] + '</td></tr>' 
+       				+ '<tr><th>고객명</th><td>' + consultJson.customerVO.name + '</td></tr>'
+       				//+ '<tr><th>상담 요약</th><td>' + consult.title + '</td></tr>'
+       				+ '<tr><th>상담 상품</th><td><div><ul class="messagesList">';
+       			
+       			for (var i = 0; i < selectedProduct.length; i++) {
+   					//$('<span class="input-xlarge uneditable-input">' + selectedProduct[i]['productJson']['finPrdtNm'] + '</span>').appendTo('div[id=consult-product-input-hs]');
+       				html += '<li><span id="product-span-hs" data-product_type="' + selectedProduct[i].type + '" data-product_no="' + selectedProduct[i]['productJson']['no'] + '">' + selectedProduct[i]['productJson']['finPrdtNm'] + '</span></li>';
+   				}
+       			
+       			html += '</ul></div></td></tr>'
+       				+ '<tr><th>상담 내용</th><td><textarea id="consult-content-hs"></textarea></td></tr>' 
+       				+ '</table>';
+       			
+       			$('div[id=consult-insert-table-hs]').html(html);
+        			
+        			
+        			
+        			
+        			
+        			
+        			
+    			/* 	<div class="control-group">
+    					<label class="control-label">상담 일시</label>
+    					<div class="controls">
+    				  		<span class="input-xlarge uneditable-input" id="consult-date-input-hs">내용</span>
+    					</div>
+    			  	</div>
+    			  	<div class="control-group">
+    					<label class="control-label">선택된 상품</label>
+    					<div class="controls" id="consult-product-input-hs">
+    					
+    					</div>
+    			  	</div>
+				
 				for (var i = 0; i < selectedProduct.length; i++) {
 					$('<span class="input-xlarge uneditable-input">' + selectedProduct[i]['productJson']['finPrdtNm'] + '</span>').appendTo('div[id=consult-product-input-hs]');
 				}
 				
 				selectedProduct = [];
 				
-				$('span[id=consult-date-input-hs]').text(consultJson['regDate']);
+				$('span[id=consult-date-input-hs]').text(consultJson['regDate']); */
 				
 				$('#consultProductSelect').modal('hide');
 				$('#consultContentInsert').modal();
@@ -744,7 +800,7 @@
 	        			var html = '<table class="table table-striped table-bordered">' 
 	        			+ '<tr><th>상담 일시</th><td>' + consult.regDate + '</td></tr>' 
 	        			+ '<tr><th>고객명</th><td><a id="customer-detail-hs" href="#">' + consult.customerVO.name + '<i class="halflings-icon user"></i></a></td></tr>'
-	        			+ '<tr><th>상담 요약</th><td>' + consult.title + '</td></tr>'
+	        			//+ '<tr><th>상담 요약</th><td>' + consult.title + '</td></tr>'
 	        			+ '<tr><th>상담 상품 <button id="product-reselect-hs">선택</button></th><td><div><ul class="messagesList">';
 	        			
 	        			var productMapList = [];

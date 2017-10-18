@@ -48,6 +48,7 @@ public class ConsultController {
 	@ResponseBody
 	@RequestMapping(value="/sales/consult", method=RequestMethod.POST)
 	public int insert(HttpSession session, @RequestBody ConsultVO consultVO){
+		System.out.println(consultVO);
 		consultVO.setEmployeeNo(((EmpVO) session.getAttribute("emp")).getNo());
 		return consultService.insert(consultVO);
 	}

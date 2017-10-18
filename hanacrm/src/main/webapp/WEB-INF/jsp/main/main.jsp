@@ -53,6 +53,18 @@
 	<link href='https://fonts.googleapis.com/css?family=Bungee+Inline' rel='stylesheet' type='text/css'>
 	<link rel="shortcut icon" href="img/favicon.ico">
 	
+	<style>
+		#shareBtn{
+			background-color: #008485;
+			border-color:#008485;
+		}
+
+		#shareBtn:hover{
+			background-color: #008485;
+			border-color:#008485;
+			opacity:0.7;
+		}
+	</style>
 </head>
 <body>
 	<jsp:include page="/include/header.jsp" />
@@ -435,13 +447,13 @@
 	        			tableFlag = "on";
 	        			console.log(tableFlag);
 	        			var html = '<table class="table table-striped table-bordered bootstrap-datatable datatable">' 
-	        			+ '<thead><tr><th>선택</th><th>이름</th><th>전화번호</th><th>등록일</th><th>고객 등급</th></tr></thead>' 
+	        			+ '<thead><tr><th style="text-align: center;">선택</th><th style="text-align: center;">이름</th><th style="text-align: center;">전화번호</th><th style="text-align: center;">등록일</th><th style="text-align: center;">고객 등급</th></tr></thead>' 
 	        			+ '<tbody id="table-data" class="customerBody">';
 	        			
 	        			for (var i = 0; i < customerList.length; i++) {
 							customerList[i];
 							
-							html += '<tr><td style="text-align: center;"><a class="btn" href="#" id="customer-select-button-hs" data-customer_select="' + customerList[i].no + '">선택</a></td>' 
+							html += '<tr><td style="text-align: center;"><a class="btn btn-primary" href="#" id="customer-select-button-hs" data-customer_select="' + customerList[i].no + '">선택</a></td>' 
 							+ '<td style="text-align: center;">' + customerList[i].name + '</td>' 
 							+ '<td style="text-align: center;" id="customer-phone-hs">' + customerList[i].phone + '</td>' 
 							+ '<td style="text-align: center;">' + customerList[i].regDate + '</td>' 

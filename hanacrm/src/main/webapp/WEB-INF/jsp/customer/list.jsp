@@ -273,10 +273,10 @@
 											style="width: 350px !important; padding: 5px;"></textarea>
 									</div>
 
-									<div class="form-group">
+									<div class="form-group">						
 										<div class="col-sm-12 text-right" style="margin: 30px auto; padding-right: 20px">
-											<button class="btn customer-submit-btn" id="submitBtn" type="submit">등록<i class="fa fa-check spaceLeft"></i></button>
-											<button class="btn customer-cancel-btn" data-dismiss="modal" aria-hidden="Close">취소<i class="fa fa-times spaceLeft"></i></button>
+											<button class="btn customer-submit-btn" id="submitBtn" type="submit">등록</button>
+											<button class="btn customer-cancel-btn" data-dismiss="modal" aria-hidden="Close">취소</button>
 										</div>
 									</div>
 								</form>
