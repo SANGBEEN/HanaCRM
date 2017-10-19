@@ -70,6 +70,19 @@
 		order by start_date
 	</select>
 	
+	<!-- 사원의 m월d일 Type 일정 for 상담내역 -->
+	<select id="selectListByTypeForConsult" parameterType="schedule" resultMap="scheduleMap">
+		select <include refid="selectAll"/> 
+		from schedule s left join consult c 
+			on (s.customer_no=c.customer_no 
+				and to_char(s.start_date, 'yyyy-mm-dd')=to_char(c.reg_date, 'yyyy-mm-dd'))
+		where s.employee_no=#{employeeNo} 
+			and s.type='Meeting' 
+			and to_char(s.start_date, 'yyyy-mm-dd')=#{date} 
+			and c.no is null
+		order by s.start_date
+	</select>
+	
 	<!-- 일정 상세 정보 -->
 	<select id="selectByNo" parameterType="int" resultMap="scheduleMap">
 		select <include refid="selectAll"/>

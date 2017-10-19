@@ -267,7 +267,7 @@
 						<label class="control-label" for="consult-date-hs">상담 날짜</label>
 						<div class="controls">
 							<input class="input-xlarge focused" id="consult-date-hs" type="date" style="vertical-align: baseline;">
-							<a href="#" class="btn yellow" id="date-select-hs">선택</a>					
+							<!-- <a href="#" class="btn yellow" id="date-select-hs">선택</a> -->					
 						</div>
 					</div>				
 					<div id="schedule-list-hs">
@@ -487,7 +487,7 @@
 				console.log(inputDate);
 
 				$.ajax({
-	        		url: "${pageContext.request.contextPath}/schedule/listForConsult",
+	        		url: "${pageContext.request.contextPath}/schedule/listByTypeForConsult",
 	        		type: "get",
 	        		/* contentType: "application/json; charset=uft-8", */
 	        		dataType: "json",

@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="emp.EmpDAO">
 	<select id="empLogin" parameterType="emp" resultType="emp">
-		select no, id, name, email from employee where id=#{id} and password=#{password}
+		select no, id, name, email, code from employee where id=#{id} and password=#{password}
 	</select>
 	<select id="selectByNo" parameterType="int" resultType="emp">
 		select no, id, name, email, password, phone, sns, fax, code, dept_no as deptNo, region_no as regionNo, position

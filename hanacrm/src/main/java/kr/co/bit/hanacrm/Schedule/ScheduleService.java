@@ -107,6 +107,21 @@ public class ScheduleService {
 		}
 		return list;
 	}
+	
+	// 타입별 일정 리스트
+	public List<ScheduleVO> selectListByTypeForConsult(ScheduleVO schedule) {
+		List<ScheduleVO> list = scheduleDAO.selectListByTypeForConsult(schedule);
+		
+		for(int i=0; i<list.size(); i++) {
+			ScheduleVO s = list.get(i);
+			if(s.getCustomerNo()!=null) {
+				s.setCustomer(cusDAO.detail(s.getCustomerNo()));
+			} else {
+				s.setCustomer(new CusVO());
+			}
+		}
+		return list;
+	}
 
 	// 날짜별 일정 가능한 시간대
 	public List<String> selectTimeList(ScheduleVO schedule) {

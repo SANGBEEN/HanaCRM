@@ -103,7 +103,7 @@
 							</div>
 						</div>
 						<div class="box-content">
-							<iframe src="https://m.naver.com" frameborder="0" width="100%" height="500" style="margin: 0 auto"></iframe>
+							<iframe src="http://104.198.112.172:3000/${ sessionScope.emp.code }/" frameborder="0" width="100%" height="500" style="margin: 0 auto"></iframe>
 						</div>
 					</div>
 				</div>
