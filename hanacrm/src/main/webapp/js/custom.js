@@ -381,7 +381,8 @@ function template_functions(){
 
 	/* ---------- Datable ---------- */
 	$('.datatable').dataTable({
-			"sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span12'i><'span12 center'p>>",
+			//"sDom": "<'row-fluid'<'span6'f><'span6'l>r>t<'row-fluid'<'span12'i><'span12 center'p>>",
+			"sDom": "<'row-fluid'<'span6'f><'span6'l>r>t<'row-fluid'<'span12 center'p>>",
 			"sPaginationType": "bootstrap",
 			"oLanguage": {
 			"sLengthMenu": "_MENU_ 개씩 보기"

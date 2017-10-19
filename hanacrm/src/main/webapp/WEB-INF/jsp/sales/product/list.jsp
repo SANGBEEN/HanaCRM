@@ -134,18 +134,18 @@
 						</li>						
 					</ul> -->
 					<ul class="nav nav-tabs">
-						<li class="active"><a data-toggle="tab" id="type-select-hs" data-product_type="1" href="#product-list">예금</a></li>
-						<li><a data-toggle="tab" id="type-select-hs" data-product_type="2" href="#product-list">적금</a></li>
-						<li><a data-toggle="tab" id="type-select-hs" data-product_type="3" href="#product-list">카드</a></li>
+						<li class="active"><a data-toggle="tab" id="type-select-hs" data-product_type="1" href="#product-list" style="font-size: 20px;">예금</a></li>
+						<li><a data-toggle="tab" id="type-select-hs" data-product_type="2" href="#product-list" style="font-size: 20px;">적금</a></li>
+						<li><a data-toggle="tab" id="type-select-hs" data-product_type="3" href="#product-list" style="font-size: 20px;">카드</a></li>
 					</ul>				
-					<div class="box-header" data-original-title>
-						<h2 id="tab-name-hs"></h2>
+					<!-- <div class="box-header" data-original-title>
+						<h2 id="tab-name-hs"></h2> -->
 						<!-- <div class="box-icon">
 							<a href="#" class="btn-setting"><i class="halflings-icon wrench"></i></a>
 							<a href="#" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
 							<a href="#" class="btn-close"><i class="halflings-icon remove"></i></a>
 						</div> -->
-					</div>
+					<!-- </div> -->
 					<div class="box-content" id="product-list">  <!-- style="padding:20px" -->
 						<!-- <table class="table table-striped table-bordered bootstrap-datatable datatable">
 						  <thead>
@@ -223,7 +223,7 @@
         		dataType: "json",
         		success: function(product) {
         			        			
-        			$('h2[id=tab-name-hs]').html('<i class="halflings-icon book"></i><span class="break"></span>' + $('li[class=active]').find('a[id=type-select-hs]').text());
+        			//$('h2[id=tab-name-hs]').html('<i class="halflings-icon book"></i><span class="break"></span>' + $('li[class=active]').find('a[id=type-select-hs]').text());
         			
         	        html = '<table class="table table-striped table-bordered bootstrap-datatable datatable">';
         	        html += '<thead><tr><th style="text-align:center">금융상품코드</th><th style="text-align:center">금융회사명</th><th style="text-align:center">금융상품명</th><th style="text-align:center">가입대상</th><th style="text-align:center">상세보기</th></tr></thead><tbody>'; /* <th>적립유형명</th></tr></thead><tbody>'; */
@@ -245,7 +245,8 @@
         	        //console.log("html: " + html);
         	        
         	        $('.datatable').dataTable({
-        				"sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span12'i><'span12 center'p>>",
+        				//"sDom": "<'row-fluid'<'span6'f><'span6'l>r>t<'row-fluid'<'span12'i><'span12 center'p>>",
+        				"sDom": "<'row-fluid'<'span6'f><'span6'l>r>t<'row-fluid'<'span12 center'p>>",
         				"sPaginationType": "bootstrap",
         				"oLanguage": {
         				"sLengthMenu": "_MENU_ 개씩 보기"

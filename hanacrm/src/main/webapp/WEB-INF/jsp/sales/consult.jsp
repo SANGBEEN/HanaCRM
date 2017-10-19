@@ -260,10 +260,10 @@
 				</div>
 				<div class="modal-body">
 					<div class="control-group">
-						<label class="control-label" for="focusedInput">상담 날짜</label>
+						<label class="control-label" for="consult-date-hs">상담 날짜</label>
 						<div class="controls">
 							<input class="input-xlarge focused" id="consult-date-hs" type="date">
-							<a href="#" class="btn yellow" id="date-select-hs">선택</a>					
+							<!-- <a href="#" class="btn yellow" id="date-select-hs">선택</a> -->					
 						</div>
 					</div>				
 					<div id="schedule-list-hs">
@@ -468,6 +468,15 @@
 				console.log("일정 선택");
 			});
 			
+			$(document).on('change', 'input[id=consult-date-hs]', function(e) {
+				e.preventDefault();
+				e.stopPropagation();
+				
+				selectDate();
+				
+				console.log("날짜 바뀜");
+			});
+			
 			function selectDate() {
 				var inputDate = $('#consult-date-hs').val();
 				
@@ -501,7 +510,8 @@
 	        	        $('div[id=schedule-list-hs]').html(html);
 	        	        
 	        	        $('.datatable').dataTable({
-	        				"sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span12'i><'span12 center'p>>",
+	        				//"sDom": "<'row-fluid'<'span6'f><'span6'l>r>t<'row-fluid'<'span12'i><'span12 center'p>>",
+	        				"sDom": "<'row-fluid'<'span6'f><'span6'l>r>t<'row-fluid'<'span12 center'p>>",
 	        				"sPaginationType": "bootstrap",
 	        				"bRetrieve": true,
 	        				//"bDestroy": true,
@@ -527,42 +537,49 @@
 				e.preventDefault();
 				e.stopPropagation();
 				
-				/* var selectedSchedule = [
-					$('input[name="optionsRadios"]:checked').data('schedule_no'),
-					$('input[name="optionsRadios"]:checked').data('customer_no')
-				]; */
+				var radioChecked = $('input[name="optionsRadios"]:checked').val();
 				
-				consultJson = {
-						"customerVO": {
-							"no": $('input[name="optionsRadios"]:checked').data('customer_no'),
-							"name": $('input[name="optionsRadios"]:checked').parent().next('td').text(),
-						},
-						"customerNo": $('input[name="optionsRadios"]:checked').data('customer_no'),
-						"regDate": $('input[name="optionsRadios"]:checked').parent().next('td').next('td').next('td').next('td').text(),
-						"content": null,
-						"title": null,
-						"consultProduct": {}
-				};
-				
-				console.log("스케줄 넘버버버: " + consultJson);
-				
-				//getList(1);
-////////////////////				
-				$('div[id=product-list-hs]').html(getList(1));
-    	        
-    	        $('.datatable').dataTable({
-    				"sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span12'i><'span12 center'p>>",
-    				"sPaginationType": "bootstrap",
-    				"bRetrieve": true,
-    				//"bDestroy": true,
-    				"oLanguage": {
-    				"sLengthMenu": "_MENU_ 개씩 보기"
-    				}
-    			} );
-				
-				$('#consultScheduleSelect').modal("hide");
-				$('#consultProductSelect').modal();
-				console.log("상품 선택");
+				if (radioChecked == "on") {
+					/* var selectedSchedule = [
+						$('input[name="optionsRadios"]:checked').data('schedule_no'),
+						$('input[name="optionsRadios"]:checked').data('customer_no')
+					]; */
+					
+					consultJson = {
+							"customerVO": {
+								"no": $('input[name="optionsRadios"]:checked').data('customer_no'),
+								"name": $('input[name="optionsRadios"]:checked').parent().next('td').text(),
+							},
+							"customerNo": $('input[name="optionsRadios"]:checked').data('customer_no'),
+							"regDate": $('input[name="optionsRadios"]:checked').parent().next('td').next('td').next('td').next('td').text(),
+							"content": null,
+							"title": null,
+							"consultProduct": {}
+					};
+					
+					console.log("스케줄 넘버버버: " + consultJson);
+					
+					//getList(1);
+	////////////////////				
+					$('div[id=product-list-hs]').html(getList(1));
+	    	        
+	    	        $('.datatable').dataTable({
+	    				//"sDom": "<'row-fluid'<'span6'f><'span6'l>r>t<'row-fluid'<'span12'i><'span12 center'p>>",
+	    				"sDom": "<'row-fluid'<'span6'f><'span6'l>r>t<'row-fluid'<'span12 center'p>>",
+	    				"sPaginationType": "bootstrap",
+	    				"bRetrieve": true,
+	    				//"bDestroy": true,
+	    				"oLanguage": {
+	    				"sLengthMenu": "_MENU_ 개씩 보기"
+	    				}
+	    			} );
+					
+					$('#consultScheduleSelect').modal("hide");
+					$('#consultProductSelect').modal();
+					console.log("상품 선택");
+				} else {
+					alert("일정을 선택하세요.");
+				}				
 			});
 			
 			/* 탭에 따른 상품 목록 출력 */
@@ -575,12 +592,13 @@
 				$('div[id=' + e.target.id + ']').html(getList($(this).data('product_type')));
     	        
     	        $('.datatable').dataTable({
-    				"sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span12'i><'span12 center'p>>",
+    				//"sDom": "<'row-fluid'<'span6'f><'span6'l>r>t<'row-fluid'<'span12'i><'span12 center'p>>",
+    				"sDom": "<'row-fluid'<'span6'f><'span6'l>r>t<'row-fluid'<'span12 center'p>>",
     				"sPaginationType": "bootstrap",
     				"bRetrieve": true,
     				//"bDestroy": true,
     				"oLanguage": {
-    				"sLengthMenu": "_MENU_ 개씩 보기"records per page"
+    				"sLengthMenu": "_MENU_ 개씩 보기"
     				}
     			} );
 			});
@@ -616,7 +634,8 @@
 	        	        /* $('div[id=product-list-hs]').html(html);
 	        	        
 	        	        $('.datatable').dataTable({
-	        				"sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span12'i><'span12 center'p>>",
+	        				//"sDom": "<'row-fluid'<'span6'f><'span6'l>r>t<'row-fluid'<'span12'i><'span12 center'p>>",
+	        				"sDom": "<'row-fluid'<'span6'f><'span6'l>r>t<'row-fluid'<'span12 center'p>>",
 	        				"sPaginationType": "bootstrap",
 	        				"bRetrieve": true,
 	        				//"bDestroy": true,
@@ -909,7 +928,8 @@
 				//$('div[id=product-list-hs]').html(getList($('span[id=product-span-hs]').data("product_type")));
 				
 				$('.datatable').dataTable({
-    				"sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span12'i><'span12 center'p>>",
+    				//"sDom": "<'row-fluid'<'span6'f><'span6'l>r>t<'row-fluid'<'span12'i><'span12 center'p>>",
+    				"sDom": "<'row-fluid'<'span6'f><'span6'l>r>t<'row-fluid'<'span12 center'p>>",
     				"sPaginationType": "bootstrap",
     				"bRetrieve": true,
     				//"bDestroy": true,

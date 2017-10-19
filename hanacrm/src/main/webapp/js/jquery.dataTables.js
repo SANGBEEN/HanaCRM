@@ -625,8 +625,8 @@
         function za(a) {
             var b = a.oPreviousSearch,
                 c = a.oLanguage.sSearch,
-                c = -1 !== c.indexOf("_INPUT_") ? c.replace("_INPUT_", '<input type="text" />') :
-                "" === c ? '<input type="text" />' : c + ' <input type="text" />',
+                c = -1 !== c.indexOf("_INPUT_") ? c.replace("_INPUT_", '<input type="text" style="width: 50%;" />') :
+                "" === c ? '<input type="text" style="width: 50%;" />' : c + ' <input type="text" style="width: 50%;" />',
                 d = l.createElement("div");
             d.className = a.oClasses.sFilter;
             d.innerHTML = "<label>" + c + "</label>";
@@ -822,7 +822,7 @@
 
         function ya(a) {
             if (a.oScroll.bInfinite) return null;
-            var b = '<select size="1" ' + ('name="' + a.sTableId + '_length"') + ">",
+            var b = '<select size="1" ' + ('name="' + a.sTableId + '_length"') + " style='width: 100px;'>",
                 c, d, g = a.aLengthMenu;
             if (2 == g.length && "object" === typeof g[0] && "object" === typeof g[1]) {
                 c = 0;
@@ -836,7 +836,7 @@
             g = l.createElement("div");
             a.aanFeatures.l || (g.id = a.sTableId + "_length");
             g.className = a.oClasses.sLength;
-            g.innerHTML = "<label>" + a.oLanguage.sLengthMenu.replace("_MENU_", b) + "</label>";
+            g.innerHTML = "<label style='text-align: right;'>" + a.oLanguage.sLengthMenu.replace("_MENU_", b) + "</label>";
             i('select option[value="' + a._iDisplayLength + '"]', g).attr("selected", !0);
             i("select", g).bind("change.DT", function() {
                 var b = i(this).val(),
