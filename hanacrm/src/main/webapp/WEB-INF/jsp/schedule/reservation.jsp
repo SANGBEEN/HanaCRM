@@ -82,6 +82,7 @@
 								class="table table-striped table-bordered bootstrap-datatable datatable">
 								<thead>
 									<tr>
+										<th style="width:3%; text-align:center">번호</th>
 										<th style="width:7%; text-align:center">분류</th>
 										<th style="width:5%; text-align:center">이름</th>
 										<th style="width:10%; text-align:center">전화번호</th>
@@ -95,8 +96,9 @@
 								</thead>
 								
 								<tbody id="table-data">
-									<c:forEach var="reservation" items="${reservationList}">
+									<c:forEach var="reservation" items="${reservationList}" varStatus="status">
 										<tr id="${reservation.no}">
+											<td style="text-align:center; vertical-align:middle">${status.count}</td>
 											<td style="text-align:center; vertical-align:middle">${reservation.type}</td>
 											<td style="text-align:center; vertical-align:middle"> ${reservation.name}</td>
 											<td class="center" style="text-align:center; vertical-align:middle">${reservation.phone }</td>

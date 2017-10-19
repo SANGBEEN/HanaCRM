@@ -21,7 +21,7 @@
 	</select>
 	
 	<insert id="insert" parameterType="cus">
-		insert into customer values(customer_seq.nextval, #{name}, #{birthDate}, #{phone}, #{employeeNo}, #{comments,jdbcType=VARCHAR}, #{grade}, #{post,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, sysdate)
+		insert into customer values(#{no}, #{name}, #{birthDate}, #{phone}, #{employeeNo}, #{comments,jdbcType=VARCHAR}, #{grade}, #{post,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, sysdate)
 	</insert>
 	
 	<update id="update" parameterType="cus">
@@ -73,5 +73,10 @@
 		from customer
 		where employee_no = #{no}
 		group by grade
+	</select>
+	
+	<select id="selectSeq" resultType="int">
+		select customer_seq.nextval
+		from dual
 	</select>
 </mapper>

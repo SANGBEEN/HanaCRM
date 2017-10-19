@@ -341,9 +341,15 @@
 								html += '<br/><strong>고객 이름: </strong>'+todayList[i].customer.name;
 								html = html + ' ('+todayList[i].customer.grade+')';
 							}
-							html += '<br><strong>장소: </strong>'+todayList[i].location+'<br>';
-							html += '<strong>시간: </strong>'+todayList[i].startDate;
-							html += ' ~ '+todayList[i].endDate+'<br>';
+							
+							if(todayList[i].type!='Event'){
+								html += '<br><strong>장소: </strong>'+todayList[i].location;
+								html += '<br><strong>시간: </strong>'+todayList[i].startDate;
+								html += ' ~ '+todayList[i].endDate;
+							}
+							
+							html += '<br><strong>내용: </strong>'+todayList[i].comments;
+							
 							html += '</li>';
 							
 						}  // for문 끝
