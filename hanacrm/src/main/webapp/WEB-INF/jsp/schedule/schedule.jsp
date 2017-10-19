@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- start: Meta -->
 	<meta charset="utf-8">
-	<title>일정 관리</title>
+	<title>영업지원 시스템 - 일정 관리</title>
 	<meta name="description" content="Bootstrap Metro Dashboard">
 	<meta name="author" content="Dennis Ji">
 	<meta name="keyword" content="Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
@@ -202,6 +202,8 @@
 					<i class="icon-angle-right"></i>
 				</li>
 				<li><a href="${pageContext.request.contextPath}/schedule/list">일정 관리</a></li>
+				<li><i class="icon-angle-right"></i>
+					<a href="${pageContext.request.contextPath}/schedule/list">일정</a></li>
 			</ul>
 
 			<div class="row-fluid">
@@ -232,7 +234,6 @@
 									<h2><i class="halflings-icon calendar"></i><span class="break"></span>오늘 일정</h2>
 									<div class="box-icon">
 										<a href="#" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
-										<a href="#" class="btn-close"><i class="halflings-icon remove"></i></a>
 									</div>
 								</div>
 								<div id="div_todayList" class="box-content" style="overflow: auto; height:540px;">
@@ -1045,7 +1046,7 @@
 				var startDate = getDate(event.start);
 				var endDate = getDate(event.end)!=''? getDate(event.end):startDate;
 				
-		        alert(event.title + " was dropped on "+startDate+"-"+endDate);
+		    //    alert(event.title + " was dropped on "+startDate+"-"+endDate);
 		        				
 				var scheduleData = {
 						no: event.id,

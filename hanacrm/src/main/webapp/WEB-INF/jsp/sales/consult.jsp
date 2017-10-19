@@ -6,7 +6,7 @@
 <head>
 <!-- start: Meta -->
 	<meta charset="utf-8">
-	<title>영업 관리 - 상담 내역</title>
+	<title>영업지원 시스템 - 상담 내역</title>
 	<meta name="description" content="Bootstrap Metro Dashboard">
 	<meta name="author" content="Dennis Ji">
 	<meta name="keyword" content="Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
@@ -57,15 +57,19 @@
 	<link rel="shortcut icon" href="img/favicon.ico">
 	
 	<style>
-		#consult-update-complete-hs{
+		.basicColor{
 			background-color: #008485;
 			border-color:#008485;
 		}
 
-		#consult-update-complete-hs:hover{
+		.basicColor:hover{
 			background-color: #008485;
 			border-color:#008485;
 			opacity:0.7;
+		}
+		
+		th {
+			text-align: center;
 		}
 		
 		/* .modal-dialog.modal-fullsize {
@@ -243,7 +247,7 @@
 				</div>
 				<div class="modal-footer">
 					<!-- <a class="btn btn-success" id="customer-detail-hs">고객 정보</a> -->	
-					<a href="#" class="btn" id="consult-update-complete-hs">수정</a>
+					<a href="#" class="btn basicColor" id="consult-update-complete-hs">수정</a>
 					<a href="#" class="btn" id="consult-insert-cancel-hs" data-dismiss="modal">닫기</a>
 				</div>
 			</div>
@@ -262,7 +266,7 @@
 					<div class="control-group">
 						<label class="control-label" for="focusedInput">상담 날짜</label>
 						<div class="controls">
-							<input class="input-xlarge focused" id="consult-date-hs" type="date">
+							<input class="input-xlarge focused" id="consult-date-hs" type="date" style="vertical-align: baseline;">
 							<a href="#" class="btn yellow" id="date-select-hs">선택</a>					
 						</div>
 					</div>				
@@ -271,7 +275,7 @@
 					</div>							
 				</div>
 				<div class="modal-footer">
-					<a href="#" class="btn btn-primary" id="schedule-select-hs">확인</a>
+					<a href="#" class="btn basicColor" id="schedule-select-hs" >다음</a>
 					<a href="#" class="btn" id="consult-insert-cancel-hs" data-dismiss="modal">취소</a>					
 				</div>
 			</div>
@@ -287,12 +291,12 @@
 					<h3 id="product-count">상품 선택</h3>					
 				</div>
 				<div class="modal-body">				
-					<div class="row-fluid sortable">		
+					<div class="row-fluid">		
 						<div class="box span12">					
 							<ul class="nav nav-tabs">
 								<li class="active"><a data-toggle="tab" id="type-select-hs" data-product_type="1" href="#product-list-hs">예금</a></li>
 								<li><a data-toggle="tab" id="type-select-hs" data-product_type="2" href="#product-list-hs">적금</a></li>
-								<li><a data-toggle="tab" id="type-select-hs" data-product_type="3" href="#product-list-hs">카드</a></li>
+								<!-- <li><a data-toggle="tab" id="type-select-hs" data-product_type="3" href="#product-list-hs">카드</a></li> -->
 							</ul>				
 							<!-- <div class="box-header" data-original-title>
 								<h2 id="tab-name-hs"></h2>								
@@ -304,7 +308,7 @@
 					</div><!--/row-->
 				</div>
 				<div class="modal-footer">
-					<a href="#" class="btn btn-primary" id="product-select-hs">확인</a>
+					<a href="#" class="btn basicColor" id="product-select-hs">다음</a>
 					<a href="#" class="btn" id="consult-insert-cancel-hs" data-dismiss="modal">취소</a>					
 				</div>
 			</div>
@@ -342,7 +346,7 @@
 					</div>			
 				</div>
 				<div class="modal-footer">
-					<a href="#" class="btn btn-primary" id="consult-insert-complete-hs">확인</a>
+					<a href="#" class="btn basicColor" id="consult-insert-complete-hs">확인</a>
 					<a href="#" class="btn" id="consult-insert-cancel-hs" data-dismiss="modal">취소</a>
 				</div>
 			</div>
@@ -372,12 +376,12 @@
 			<h3>상품 선택</h3>
 		</div>
 		<div class="modal-body">
-			<div class="row-fluid sortable">		
+			<div class="row-fluid">		
 				<div class="box span12">					
 					<ul class="nav nav-tabs">
 						<li class="active"><a data-toggle="tab" id="type-select-hs" data-product_type="1" href="#product-reselect-list-hs">예금</a></li>
 						<li><a data-toggle="tab" id="type-select-hs" data-product_type="2" href="#product-reselect-list-hs">적금</a></li>
-						<li><a data-toggle="tab" id="type-select-hs" data-product_type="3" href="#product-reselect-list-hs">카드</a></li>
+						<!-- <li><a data-toggle="tab" id="type-select-hs" data-product_type="3" href="#product-reselect-list-hs">카드</a></li> -->
 					</ul>				
 					<!-- <div class="box-header" data-original-title>
 						<h2 id="tab-name-hs"></h2>								
@@ -389,7 +393,7 @@
 			</div><!--/row-->
 		</div>
 		<div class="modal-footer">
-			<a href="#" class="btn btn-primary">확인</a>
+			<a href="#" class="btn basicColor">다음</a>
 			<a href="#" class="btn" data-dismiss="modal">취소</a>			
 		</div>
 	</div>
@@ -404,7 +408,7 @@
 			<p>삭제하시겠습니까?</p>
 		</div>
 		<div class="modal-footer">
-			<a href="#" class="btn btn-primary" id="consult-delete-complete-hs">확인</a>
+			<a href="#" class="btn btn-important" id="consult-delete-complete-hs">삭제</a>
 			<a href="#" class="btn" data-dismiss="modal">취소</a>			
 		</div>
 	</div>
@@ -484,10 +488,10 @@
 	        		}, 
 	        		success: function(schedule) {
 	        	        var html = '<table class="table table-striped table-bordered bootstrap-datatable datatable">';
-	        	        html += '<thead><tr><th>선택</th><th>고객 이름</th><th>장소</th><th>일정 내용</th><th>일시</th></tr></thead><tbody>';
+	        	        html += '<thead><tr><th style="text-align:center;">선택</th><th style="text-align:center;">고객 이름</th><th style="text-align:center;">장소</th><th style="text-align:center;">일정 내용</th><th style="text-align:center;">일시</th></tr></thead><tbody>';
 	        	        
 	        	        for (var i = 0; i < schedule.length; i++) {
-		        	            html += '<tr><td><input type="radio" name="optionsRadios" data-schedule_no="' + schedule[i].no + '" data-customer_no="' + schedule[i].customer.no + '"></td>' 
+		        	            html += '<tr><td style="text-align: center;"><input type="radio" name="optionsRadios" style="vertical-align: baseline;" data-schedule_no="' + schedule[i].no + '" data-customer_no="' + schedule[i].customer.no + '"></td>' 
 		        	            		+ '<td>' + schedule[i].customer.name + '</td>' 
 		        	            		+ '<td>' + schedule[i].location + '</td>' 
 		        	            		+ '<td>' + schedule[i].comments + '</td>'
@@ -538,7 +542,7 @@
 							"name": $('input[name="optionsRadios"]:checked').parent().next('td').text(),
 						},
 						"customerNo": $('input[name="optionsRadios"]:checked').data('customer_no'),
-						"regDate": $('input[name="optionsRadios"]:checked').parent().next('td').next('td').next('td').next('td').text(),
+						"regDate": $('input[id=consult-date-hs]').val()+' '+$('input[name="optionsRadios"]:checked').parent().next('td').next('td').next('td').next('td').text(),
 						"content": null,
 						"title": null,
 						"consultProduct": {}
@@ -580,7 +584,7 @@
     				"bRetrieve": true,
     				//"bDestroy": true,
     				"oLanguage": {
-    				"sLengthMenu": "_MENU_ 개씩 보기"records per page"
+    				"sLengthMenu": "_MENU_ 개씩 보기"
     				}
     			} );
 			});
@@ -598,10 +602,10 @@
 	        			//$('h2[id=tab-name-hs]').html('<i class="halflings-icon book"></i><span class="break"></span>' + $('li[class=active]').find('a[id=type-select-hs]').text());
 	        			
 	        	        var html = '<table class="table table-striped table-bordered bootstrap-datatable datatable">';
-	        	        html += '<thead><tr><th>선택</th><th>금융상품코드</th><th>금융상품명</th></tr></thead><tbody>'; /* <th>적립유형명</th></tr></thead><tbody>'; */
+	        	        html += '<thead><tr><th style="text-align:center;">선택</th><th style="text-align:center;">금융상품코드</th><th style="text-align:center;">금융상품명</th></tr></thead><tbody>'; /* <th>적립유형명</th></tr></thead><tbody>'; */
 	        	        
 	        	        for (var i = 0; i < product.length; i++) {		        	        	
-	        	            html += '<tr><td><input type="checkbox" id="product-checkbox" data-product_type="' + type + '" data-product_json=\'' + JSON.stringify(product[i]) + '\'>' + 
+	        	            html += '<tr><td style="text-align: center;"><input type="checkbox" id="product-checkbox" style="vertical-align: baseline;" data-product_type="' + type + '" data-product_json=\'' + JSON.stringify(product[i]) + '\'>' + 
 	        	            '</td><td>' + product[i].finPrdtCd + 
 	        	            '</td><td>' + product[i].finPrdtNm + 
 	        	            '</td></tr>';
@@ -629,7 +633,7 @@
 	        	    },
 	        		error: function(e) {
 	      				console.log(e);
-	        			alert('error');
+	        			alert('준비중입니다.');
 	        		}
 	        	});
 				
@@ -642,7 +646,7 @@
 			$(document).on('change', 'input[id=product-checkbox]', function(e) {
 			//$('input:checkbox[id="product-checkbox"]').on('click', function(){
 				if ($(this).prop("checked")) {
-					$('#product-count').html('상품 선택 <span class="badge badge-important" id="selected-product-detail-hs"> ' + 
+					$('#product-count').html('상품 선택 <span class="badge-important" id="selected-product-detail-hs" style="padding-left:6px; padding-right:6px; padding-top:2px; padding-bottom:2px; font-size:0.7rem; border-radius: 10px;"> ' + 
 							selectedProduct.push({
 								type : $('li[class=active]').find('a[id=type-select-hs]').data('product_type'),
 								productJson : $(this).data('product_json')
@@ -688,10 +692,10 @@
 				e.stopPropagation();
 				
 				var html = '<table class="table table-striped table-bordered">' 
-       				+ '<tr><th>상담 일시</th><td>' + consultJson['regDate'] + '</td></tr>' 
-       				+ '<tr><th>고객명</th><td>' + consultJson.customerVO.name + '</td></tr>'
+       				+ '<tr><th style="text-align:center;">상담 일시</th><td>' + consultJson['regDate'] + '</td></tr>' 
+       				+ '<tr><th style="text-align:center;">고객명</th><td>' + consultJson.customerVO.name + '</td></tr>'
        				//+ '<tr><th>상담 요약</th><td>' + consult.title + '</td></tr>'
-       				+ '<tr><th>상담 상품</th><td><div><ul class="messagesList">';
+       				+ '<tr><th style="text-align:center;">상담 상품</th><td><div><ul class="messagesList">';
        			
        			for (var i = 0; i < selectedProduct.length; i++) {
    					//$('<span class="input-xlarge uneditable-input">' + selectedProduct[i]['productJson']['finPrdtNm'] + '</span>').appendTo('div[id=consult-product-input-hs]');
@@ -699,7 +703,7 @@
    				}
        			
        			html += '</ul></div></td></tr>'
-       				+ '<tr><th>상담 내용</th><td><textarea id="consult-content-hs"></textarea></td></tr>' 
+       				+ '<tr><th style="text-align:center;">상담 내용</th><td><textarea id="consult-content-hs"></textarea></td></tr>' 
        				+ '</table>';
        			
        			$('div[id=consult-insert-table-hs]').html(html);
@@ -798,10 +802,10 @@
 	        			console.log(consult);
 	        			
 	        			var html = '<table class="table table-striped table-bordered">' 
-	        			+ '<tr><th>상담 일시</th><td>' + consult.regDate + '</td></tr>' 
-	        			+ '<tr><th>고객명</th><td><a id="customer-detail-hs" href="#">' + consult.customerVO.name + '<i class="halflings-icon user"></i></a></td></tr>'
+	        			+ '<tr><th style="text-align:center;">상담 일시</th><td>' + consult.regDate + '</td></tr>' 
+	        			+ '<tr><th style="text-align:center;">고객명</th><td><a id="customer-detail-hs" href="#">' + consult.customerVO.name + '<i class="halflings-icon user"></i></a></td></tr>'
 	        			//+ '<tr><th>상담 요약</th><td>' + consult.title + '</td></tr>'
-	        			+ '<tr><th>상담 상품 <button id="product-reselect-hs">선택</button></th><td><div><ul class="messagesList">';
+	        			+ '<tr><th style="text-align:center;">상담 상품 <button id="product-reselect-hs">선택</button></th><td><div><ul class="messagesList">';
 	        			
 	        			var productMapList = [];
 	        			
@@ -823,7 +827,7 @@
 						}
 	        			
 	        			html += '</ul></div></td></tr>'
-	        			+ '<tr><th>상담 내용</th><td><textarea id="consult-content-update-hs" rows="3" cols="20">' + consult.content + '</textarea></td></tr>' 
+	        			+ '<tr><th style="text-align:center;">상담 내용</th><td><textarea id="consult-content-update-hs" rows="3" cols="20">' + consult.content + '</textarea></td></tr>' 
 	        			+ '</table>';
 	        			
 	        			$('div[id=consult-detail-table-hs]').html(html);
@@ -939,14 +943,14 @@
 	        			console.log(customer);
 	        			
 	        			var html = '<table class="table table-striped table-bordered">' 
-	        			+ '<tr><th>고객명</th><td>' + customer.name + '</td></tr>' 
-	        			+ '<tr><th>연락처</th><td>' + customer.phone + '</td></tr>'
-	        			+ '<tr><th>생년월일</th><td>' + customer.birthDate + '</td></tr>'
-	        			+ '<tr><th>우편번호</th><td>' + customer.post + '</td></tr>'
-	        			+ '<tr><th>주소</th><td>' + customer.address + '</td></tr>' 
-	        			+ '<tr><th>고객등급</th><td>' + customer.grade + '</td></tr>' 
-	        			+ '<tr><th>고객등록일</th><td>' + customer.regDate + '</td></tr>' 
-	        			+ '<tr><th>비고</th><td>' + customer.comments + '</td></tr>' 
+	        			+ '<tr><th style="text-align:center;">고객명</th><td>' + customer.name + '</td></tr>' 
+	        			+ '<tr><th style="text-align:center;">연락처</th><td>' + customer.phone + '</td></tr>'
+	        			+ '<tr><th style="text-align:center;">생년월일</th><td>' + customer.birthDate + '</td></tr>'
+	        			+ '<tr><th style="text-align:center;">우편번호</th><td>' + customer.post + '</td></tr>'
+	        			+ '<tr><th style="text-align:center;">주소</th><td>' + customer.address + '</td></tr>' 
+	        			+ '<tr><th style="text-align:center;">고객등급</th><td>' + customer.grade + '</td></tr>' 
+	        			+ '<tr><th style="text-align:center;">고객등록일</th><td>' + customer.regDate + '</td></tr>' 
+	        			+ '<tr><th style="text-align:center;">비고</th><td>' + customer.comments + '</td></tr>' 
 	        			+ '</table>';
 	        			
 	        			$('div[id=customer-detail-table-hs]').html(html);        			

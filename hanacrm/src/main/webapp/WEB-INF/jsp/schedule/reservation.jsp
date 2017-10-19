@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>영업지원 시스템-예약관리</title>
+<title>영업지원 시스템 - 상담 예약 관리</title>
 <meta name="description" content="Bootstrap Metro Dashboard">
 <meta name="author" content="Dennis Ji">
 <meta name="keyword"
@@ -63,16 +63,18 @@
 			<jsp:include page="/include/sideMenu.jsp" />
 			<div id="content" class="span10">
 				<ul class="breadcrumb">
-					<li><i class="icon-home"></i> <a href="${pageContext.request.contextPath}/main">Home</a> <i
-						class="icon-angle-right"></i></li>
-					<li><a href="${pageContext.request.contextPath}/schedule/reservation">신청 목록</a></li>
+					<li><i class="icon-home"></i> <a href="${pageContext.request.contextPath}/main">Home</a>
+					<i class="icon-angle-right"></i></li>
+					<li><a href="${pageContext.request.contextPath}/schedule/list">일정 관리</a>
+					<i class="icon-angle-right"></i></li>
+					<li><a href="${pageContext.request.contextPath}/schedule/reservation">상담 예약 관리</a></li>
 				</ul>
 
 				<div class="row-fluid">
 					<div class="box span12">
 						<div class="box-header" data-original-title>
 							<h2>
-								예약신청 내역
+								상담 예약 내역
 							</h2>
 						</div>
 						<div class="box-content">

@@ -380,8 +380,8 @@
 	    		productBody[i] + '</td></tr>';
 	    	}
 	    	
-	    	html += '</table>';
-	    	html += '<h2>금융상품 정보</h2><hr>';
+	    	html += '</table><br/><br/>';
+	    	html += '<h2>금융상품 정보</h2>';
 	    	html += '<table class="table table-striped" style="width:70%">';
 	    	
 	    	for(var i = 3; i < productHeader.length; i++) {

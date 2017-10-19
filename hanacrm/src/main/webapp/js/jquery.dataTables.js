@@ -822,7 +822,7 @@
 
         function ya(a) {
             if (a.oScroll.bInfinite) return null;
-            var b = '<select size="1" ' + ('name="' + a.sTableId + '_length"') + ">",
+            var b = '<select size="1" ' + ('name="' + a.sTableId + '_length"') + " style='width:100px;'>",
                 c, d, g = a.aLengthMenu;
             if (2 == g.length && "object" === typeof g[0] && "object" === typeof g[1]) {
                 c = 0;
@@ -2205,7 +2205,7 @@
             sEmptyTable: "내역이 존재하지 않습니다.",
             sInfo: "",
             sInfoEmpty: "",
-            sInfoFiltered: "(filtered from _MAX_ total entries)",
+            sInfoFiltered: "",
             sInfoPostFix: "",
             sInfoThousands: ",",
             sLengthMenu: "Show _MENU_ entries",

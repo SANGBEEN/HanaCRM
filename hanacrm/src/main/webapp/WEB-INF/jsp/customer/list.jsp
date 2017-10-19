@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>영업지원 시스템 - 고객관리</title>
+<title>영업지원 시스템 - 고객 관리</title>
 	<meta name="description" content="Bootstrap Metro Dashboard">
 	<meta name="author" content="Dennis Ji">
 	<meta name="keyword" content="Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
@@ -109,7 +109,7 @@
 					<li><i class="icon-home"></i> <a
 						href="${pageContext.request.contextPath}/main">Home</a> <i
 						class="icon-angle-right"></i></li>
-					<li><a href="${pageContext.request.contextPath}/customer">고객목록</a></li>
+					<li><a href="${pageContext.request.contextPath}/customer">고객 관리</a></li>
 				</ul>
 
 				<div class="row-fluid">

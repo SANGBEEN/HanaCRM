@@ -27,6 +27,13 @@
 		to_char(reg_date, 'yyyy-mm-dd hh24:mi') as reg_date, importance, repetition
 	</sql>
 	
+	<sql id="selectTime">
+		no, employee_no, customer_no, location, type, comments,
+		to_char(start_date, 'hh24:mi') as start_date,
+		to_char(end_date, 'hh24:mi') as end_date,
+		to_char(reg_date, 'hh24:mi') as reg_date, importance, repetition
+	</sql>
+	
 	<!-- 사원의 일정 전체 리스트 -->
 	<select id="selectListAll" parameterType="int" resultMap="scheduleMap">
 		select <include refid="selectAll"/>
@@ -44,7 +51,7 @@
 	
 	<!-- 사원의 m월d일 Type 일정 -->
 	<select id="selectListByType" parameterType="schedule" resultMap="scheduleMap">
-		select <include refid="selectAll"/>
+		select <include refid="selectTime"/>
 		from schedule
 		<where>
 			employee_no = #{employeeNo}
