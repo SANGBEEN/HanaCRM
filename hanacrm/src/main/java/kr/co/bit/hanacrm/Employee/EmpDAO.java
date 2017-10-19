@@ -20,7 +20,7 @@ public class EmpDAO {
 
 	public EmpVO selectByNo(EmpVO emp) {
 		// TODO Auto-generated method stub
-		return sql.selectOne("emp.EmpDAO.selectByNo", emp.getNo());
+		return sql.selectOne("emp.EmpDAO.selectByNo", emp);
 	}
 
 	public int update(EmpVO emp) {

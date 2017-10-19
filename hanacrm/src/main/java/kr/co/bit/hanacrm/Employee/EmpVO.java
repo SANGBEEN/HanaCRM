@@ -31,12 +31,32 @@ public class EmpVO {
     private String code;
 
     private String position;
+    
+    private String deptName;
+    
+    private String regionName;
 
     public Integer getNo() {
         return no;
     }
 
-    public void setNo(Integer no) {
+    public String getDeptName() {
+		return deptName;
+	}
+
+	public void setDeptName(String deptName) {
+		this.deptName = deptName;
+	}
+
+	public String getRegionName() {
+		return regionName;
+	}
+
+	public void setRegionName(String regionName) {
+		this.regionName = regionName;
+	}
+
+	public void setNo(Integer no) {
         this.no = no;
     }
 
@@ -134,7 +154,8 @@ public class EmpVO {
 	}
 
 	public EmpVO(Integer no, String id, String password, String name, String email, String phone, String sns,
-			String fax, Integer deptNo, Integer regionNo, String code, String position) {
+			String fax, Integer deptNo, Integer regionNo, String code, String position, String deptName,
+			String regionName) {
 		super();
 		this.no = no;
 		this.id = id;
@@ -148,6 +169,8 @@ public class EmpVO {
 		this.regionNo = regionNo;
 		this.code = code;
 		this.position = position;
+		this.deptName = deptName;
+		this.regionName = regionName;
 	}
 
 	@Override
@@ -157,8 +180,11 @@ public class EmpVO {
 				.append(", name=").append(name).append(", email=").append(email).append(", phone=").append(phone)
 				.append(", sns=").append(sns).append(", fax=").append(fax).append(", deptNo=").append(deptNo)
 				.append(", regionNo=").append(regionNo).append(", code=").append(code).append(", position=")
-				.append(position).append("]");
+				.append(position).append(", deptName=").append(deptName).append(", regionName=").append(regionName)
+				.append("]");
 		return builder.toString();
 	}
+
+	
     
 }
