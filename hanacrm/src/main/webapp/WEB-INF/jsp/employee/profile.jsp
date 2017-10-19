@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -190,7 +190,8 @@
 										<label class="control-label" for="phoneInput"><b>전화번호</b></label>
 										<div class="controls">
 											<input class="input-xlarge focused" id="phoneInput"
-												type="text" value="${empProfile.phone }" name="phone"
+												type="tel" value="${empProfile.phone }" maxlength="11" name="phone" pattern="[0][1][0][0-9]{8}" title="잘못된 형식입니다."
+											placeholder="- 없이 입력해 주세요"
 												required>
 										</div>
 									</div>
@@ -211,7 +212,8 @@
 									<div class="control-group">
 										<label class="control-label" for="faxInput"><b>팩스</b></label>
 										<div class="controls">
-											<input class="input-xlarge focused" id="faxInput" type="text"
+											<input class="input-xlarge focused" id="faxInput" type="tel" maxlength="11" pattern="[0-9]{9,11}" title="잘못된 형식입니다."
+											placeholder="- 없이 입력해 주세요"
 												value="${empProfile.fax }" name="fax">
 										</div>
 									</div>
@@ -219,14 +221,14 @@
 										<label class="control-label"><b>부서</b></label>
 										<div class="controls">
 											<input type="text" class="input-xlarge uneditable-input"
-												value="${empProfile.deptNo }" name="deptNo" readonly="readonly"/>
+												value="${empProfile.deptName }" name="deptName" readonly="readonly"/>
 										</div>
 									</div>
 									<div class="control-group">
 										<label class="control-label"><b>지역</b></label>
 										<div class="controls">
 											<input type="text" class="input-xlarge uneditable-input"
-												value="${empProfile.regionNo }" name="regionNo" readonly="readonly"/>
+												value="${empProfile.regionName }" name="regionName" readonly="readonly"/>
 										</div>
 									</div>
 									<div class="control-group">

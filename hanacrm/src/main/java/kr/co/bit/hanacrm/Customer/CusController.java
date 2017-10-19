@@ -1,6 +1,7 @@
 package kr.co.bit.hanacrm.Customer;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import kr.co.bit.hanacrm.Consult.ConsultService;
 import kr.co.bit.hanacrm.Consult.ConsultVO;
 import kr.co.bit.hanacrm.Employee.EmpVO;
+import kr.co.bit.hanacrm.Schedule.ScheduleService;
+import kr.co.bit.hanacrm.Schedule.ScheduleVO;
 
 @Controller
 @RequestMapping("/customer")
@@ -25,6 +28,8 @@ public class CusController {
 	private CusService cusService;
 	@Autowired
 	private ConsultService conService;
+	@Autowired
+	private ScheduleService scheduleService;
 	
 	//전체조회
 	@RequestMapping(method=RequestMethod.GET)
@@ -74,10 +79,30 @@ public class CusController {
 		EmpVO emp = (EmpVO) session.getAttribute("emp");
 		cus.setEmployeeNo(emp.getNo());
 		
-		if(cusService.create(cus)==1){
-			model.addAttribute("msg", "등록성공");
+		int cusNo = cusService.create(cus);
+		if(cusNo > 1){
+			int result = 1;
+			// 고객 추가 시 생일 이벤트 자동 추가
+			if(cus.getBirthDate()!=null || cus.getBirthDate()!="") {
+				
+				String birthDay = "2017"+cus.getBirthDate().substring(4,10);
+			//	System.out.println(birthDay);
+				
+				/* (Integer no, Integer employeeNo, Integer customerNo, String location, String type, String comments,
+				 String startDate, String endDate, String regDate, Integer importance, String repetition) */
+				ScheduleVO schedule = new ScheduleVO(0, emp.getNo(), cusNo , "", "Event", "생일", 
+													birthDay, birthDay, "", 3, "매년");
+				result = scheduleService.insert(schedule);
+			}
+
+			if(result>0) {
+				model.addAttribute("msg", "등록 성공");
+			}else {
+				model.addAttribute("msg", "이벤트 추가 등록 실패");
+			}
 		}else
-			model.addAttribute("msg", "등록실패");
+			model.addAttribute("msg", "고객 등록 실패");
+		
 		model.addAttribute("url", "/customer");
 		return "process/alertProcess";
 	}

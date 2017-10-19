@@ -69,4 +69,9 @@ where employee_no = #{no} and status=='D'
 select sysdate
 from dual
 
-select 
+select *
+from schedule
+order by start_date
+
+select *
+from customer

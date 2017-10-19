@@ -49,6 +49,10 @@ public class CusDAO {
 		// TODO Auto-generated method stub
 		return sql.selectList("cus.CusDAO.selectCountByType", no);
 	}
+
+	public int selectSeq() {
+		return sql.selectOne("cus.CusDAO.selectSeq");
+	}
 	
 	
 	

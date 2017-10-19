@@ -20,7 +20,16 @@ public class CusService {
 	}
 
 	public int create(CusVO cus) {
-		return cusDao.create(cus);
+		int cusNo = cusDao.selectSeq();
+		
+		if(cusNo>0) {
+			cus.setNo(cusNo);
+			cusDao.create(cus);
+		}else {
+			cusNo = 0;
+		}
+		
+		return cusNo;
 	}
 
 	public int update(CusVO cus) {
