@@ -58,6 +58,7 @@ public class EmpController {
 		//List<RegionVO> regionList = new ArrayList<>();
 		System.out.println(emp);
 		emp = empService.profile(emp);
+		System.out.println(emp);
 		//regionList = regionService.list();
 		model.addAttribute("empProfile", emp);
 		//model.addAttribute("regionList", regionList);
@@ -71,7 +72,7 @@ public class EmpController {
 		if(empService.update(emp)==1){
 			session.removeAttribute("emp");
 			session.setAttribute("emp", emp);
-			//return "redirect:/main";
+			return "redirect:/main";
 		}
 		//regionList = regionService.list();
 		//model.addAttribute("empProfile", emp);
