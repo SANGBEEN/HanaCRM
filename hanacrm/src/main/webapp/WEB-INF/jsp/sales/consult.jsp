@@ -143,7 +143,7 @@
 						<table class="table table-striped table-bordered bootstrap-datatable datatable">
 						  <thead>
 							  <tr>
-								<th style="width:5%; text-align:center">상담 번호</th>	
+								<th style="width:5%; text-align:center">번호</th>	
 								<th style="width:15%; text-align:center">고객 이름</th>
 								<th style="width:30%; text-align:center">요약</th>
 								<th style="width:15%; text-align:center">상담 날짜</th>
@@ -156,9 +156,9 @@
 							  </tr>
 						  </thead>   
 						<tbody>
-							<c:forEach items="${ consultList }" var="consultVO">						
+							<c:forEach items="${ consultList }" var="consultVO" varStatus="status">						
 							<tr id="tr${ consultVO.no }"> <!-- class="row-minimize-hs"> -->
-								<td id="row-no-hs" style="text-align:center">${ consultVO.no }</td>
+								<td id="row-no-hs" style="text-align:center">${ status.count }</td>
 								<td style="text-align:center">${ consultVO.customerVO.name }</td>
 								<td>${ consultVO.title }</td>
 								<td style="text-align:center">${ consultVO.regDate }</td>

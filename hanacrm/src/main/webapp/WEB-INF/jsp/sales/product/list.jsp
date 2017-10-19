@@ -226,13 +226,13 @@
         			//$('h2[id=tab-name-hs]').html('<i class="halflings-icon book"></i><span class="break"></span>' + $('li[class=active]').find('a[id=type-select-hs]').text());
         			
         	        html = '<table class="table table-striped table-bordered bootstrap-datatable datatable">';
-        	        html += '<thead><tr><th style="text-align:center; width:15%;">금융상품코드</th><th style="text-align:center; width:15%;">금융회사명</th><th style="text-align:cente; width:25%;">금융상품명</th><th style="text-align:center; width:35%;">가입대상</th><th style="text-align:center; width:5%;">상세보기</th></tr></thead><tbody>'; /* <th>적립유형명</th></tr></thead><tbody>'; */
+        	        html += '<thead><tr><th style="text-align:center; width:15%;">금융회사명</th><th style="text-align:center; width:15%;">금융상품코드</th><th style="text-align:center; width:25%;">금융상품명</th><th style="text-align:center; width:35%;">가입대상</th><th style="text-align:center; width:5%;">상세보기</th></tr></thead><tbody>'; /* <th>적립유형명</th></tr></thead><tbody>'; */
         	        
         	        for (var i = 0; i < product.length; i++) {
         	        	
         	        	//console.log(product[i].finPrdtNm + " : ");
-        	            html += '<tr><td style="text-align:center">' + product[i].finPrdtCd + 
-        	            		'<td style="text-align:center">' + product[i].korCoNm + 
+        	            html += '<tr><td style="text-align:center">' + product[i].korCoNm + 
+        	            		'<td style="text-align:center">' + product[i].finPrdtCd + 
 		        	            '</td><td style="text-align:center">' + product[i].finPrdtNm + 
 		        	            '</td><td>' + product[i].joinMember + 
 		        	            '</td><td style="text-align:center"><a href="${pageContext.request.contextPath}/sales/product/' + type + '/' + product[i].no + '" class="btn btn-success"><i class="halflings-icon white zoom-in"></i></a></td></tr>';

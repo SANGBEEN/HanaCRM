@@ -18,11 +18,12 @@ public class ProductService {
 	private ProductDAO productDAO;
 
 	public List<ProductVO> selectList(int type) {
-		System.out.println("productService");
 		switch (type) {
 		case 1:
 			System.out.println("selectDepositList");
-			return productDAO.selectDepositList();
+			List<ProductVO> temp = productDAO.selectDepositList();
+			System.out.println(temp);
+			return temp;
 		case 2:
 			System.out.println("selectSavingsList");
 			return productDAO.selectSavingsList();	

@@ -195,95 +195,7 @@
 							</table>
 						</div>
 					</div>
-				</div>
-
-				<div class="modal fade" id="add-modal" tabindex="-1" role="dialog">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<div class="modal-header" align="center">
-								<h1
-									style="font-weight: 600; text-align: left; margin: 1vh auto;">고객등록</h1>
-								<button type="button" class="close" data-dismiss="modal"
-									aria-label="Close">
-									<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-								</button>
-							</div>
-
-							<div id="div-forms">
-								<form class="form-horizontal"
-									action="${pageContext.request.contextPath}/customer"
-									method="POST">
-									<div class="form-group">
-										<label class="col-sm-3 control-label" for="inputName">이름</label>
-										<input class="form-control" id="inputName" type="text"
-											name="name" placeholder="이름" required>
-									</div>
-
-									<div class="form-group">
-										<label class="col-sm-3 control-label" for="inputPhone">전화번호</label>
-										<input class="form-control" id="inputPhone" type="tel"
-											name="phone" maxlength="11" size="20"
-											pattern="[0][1][0][0-9]{8}" title="잘못된 형식입니다."
-											placeholder="- 없이 입력해 주세요" required>
-									</div>
-
-									<div class="form-group">
-										<label class="col-sm-3 control-label" for="inputAddress">주소</label>
-										<input class="form-control" type="hidden" id="inputAddress" name="address"/>
-										<select id="selectSido" name="sido" style="width: 100px;">
-											<option value="">시도</option>
-										</select>
-										<select id="selectGugun" name="gugun" style="width: 120px;">
-											<option value="">구군</option>
-										</select>
-										<select id="selectDong" name="dong" style="width: 120px;">
-											<option value="">동</option>
-										</select>
-										<!-- <input class="form-control" id="inputAddress" type="text"
-											name="address" placeholder="주소" > -->
-									</div>
-
-									<div class="form-group">
-										<label class="col-sm-3 control-label" for="inputGrade">고객등급</label>
-										<select class="form-control" id="inputGrade" name="grade">
-											<option value="">등급선택</option>
-											<option value="잠재" selected="selected">잠재</option>
-											<option value="신규">신규</option>
-											<option value="기존">기존</option>
-											<option value="핵심">핵심</option>
-										</select>
-									</div>
-
-									<div class="form-group">
-										<label class="col-sm-3 control-label" for="inputPost">우편번호</label>
-										<input type="text" class="form-control" id="inputPost"
-											name="post" placeholder=" - 없이 입력해 주세요" />
-									</div>
-
-									<div class="form-group">
-										<label class="col-sm-3 control-label" for="inputBirthDate">생년월일</label>
-										<input class="form-control" id="inputBirthDate" type="date"
-											name="birthDate" placeholder=" ex) 1999.01.01">
-									</div>
-
-									<div class="form-group">
-										<label class="col-sm-3 control-label" for="inputComments">Comments</label>
-										<textarea name="comments" onkeydown="resize(this)"
-											onkeyup="resize(this)"
-											style="width: 350px !important; padding: 5px;"></textarea>
-									</div>
-
-									<div class="form-group">						
-										<div class="col-sm-12 text-right" style="margin: 30px auto; padding-right: 20px">
-											<button class="btn customer-submit-btn" id="submitBtn" type="submit">등록</button>
-											<button class="btn customer-cancel-btn" data-dismiss="modal" aria-hidden="Close">취소</button>
-										</div>
-									</div>
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
+				</div>				
 			</div>
 		</div>
 	</div>
@@ -299,6 +211,93 @@
 		<div class="modal-footer">
 			<a href="#" class="btn" data-dismiss="modal">Close</a> <a href="#"
 				class="btn btn-primary">Save changes</a>
+		</div>
+	</div>
+	<div class="modal fade" id="add-modal" tabindex="-1" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header" align="center">
+					<h1
+						style="font-weight: 600; text-align: left; margin: 1vh auto;">고객등록</h1>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+					</button>
+				</div>
+
+				<div id="div-forms">
+					<form class="form-horizontal"
+						action="${pageContext.request.contextPath}/customer"
+						method="POST">
+						<div class="form-group">
+							<label class="col-sm-3 control-label" for="inputName">이름</label>
+							<input class="form-control" id="inputName" type="text"
+								name="name" placeholder="이름" required>
+						</div>
+
+						<div class="form-group">
+							<label class="col-sm-3 control-label" for="inputPhone">전화번호</label>
+							<input class="form-control" id="inputPhone" type="tel"
+								name="phone" maxlength="11" size="20"
+								pattern="[0][1][0][0-9]{8}" title="잘못된 형식입니다."
+								placeholder="- 없이 입력해 주세요" required>
+						</div>
+
+						<div class="form-group">
+							<label class="col-sm-3 control-label" for="inputAddress">주소</label>
+							<input class="form-control" type="hidden" id="inputAddress" name="address"/>
+							<select id="selectSido" name="sido" style="width: 100px;">
+								<option value="">시도</option>
+							</select>
+							<select id="selectGugun" name="gugun" style="width: 120px;">
+								<option value="">구군</option>
+							</select>
+							<select id="selectDong" name="dong" style="width: 120px;">
+								<option value="">동</option>
+							</select>
+							<!-- <input class="form-control" id="inputAddress" type="text"
+								name="address" placeholder="주소" > -->
+						</div>
+
+						<div class="form-group">
+							<label class="col-sm-3 control-label" for="inputGrade">고객등급</label>
+							<select class="form-control" id="inputGrade" name="grade">
+								<option value="">등급선택</option>
+								<option value="잠재" selected="selected">잠재</option>
+								<option value="신규">신규</option>
+								<option value="기존">기존</option>
+								<option value="핵심">핵심</option>
+							</select>
+						</div>
+
+						<div class="form-group">
+							<label class="col-sm-3 control-label" for="inputPost">우편번호</label>
+							<input type="text" class="form-control" id="inputPost"
+								name="post" placeholder=" - 없이 입력해 주세요" />
+						</div>
+
+						<div class="form-group">
+							<label class="col-sm-3 control-label" for="inputBirthDate">생년월일</label>
+							<input class="form-control" id="inputBirthDate" type="date"
+								name="birthDate" placeholder=" ex) 1999.01.01">
+						</div>
+
+						<div class="form-group">
+							<label class="col-sm-3 control-label" for="inputComments">비고</label>
+							<textarea name="comments" onkeydown="resize(this)"
+								onkeyup="resize(this)"
+								style="width: 350px !important; padding: 5px;"></textarea>
+						</div>
+
+						<div class="form-group">						
+							<div class="col-sm-12 text-right" style="margin: 30px auto; padding-right: 20px">
+								<button class="btn customer-submit-btn" id="submitBtn" type="submit">등록</button>
+								<button class="btn customer-cancel-btn" data-dismiss="modal" aria-hidden="Close">취소</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
 		</div>
 	</div>
 	<div class="clearfix"></div>

@@ -14,7 +14,6 @@ public class ProductDAO {
 	private SqlSessionTemplate sqlSessionTemplate;
 	
 	public List<ProductVO> selectDepositList() {
-		System.out.println("selectDepositList");
 		return sqlSessionTemplate.selectList("deposit.DepositDAO.selectList");
 	}
 
@@ -27,7 +26,6 @@ public class ProductDAO {
 	}
 	
 	public DepositVO selectDepositByNo(int no) {
-		System.out.println(no);
 		return sqlSessionTemplate.selectOne("deposit.DepositDAO.selectByNo", no);
 	}
 	
@@ -36,7 +34,6 @@ public class ProductDAO {
 	}
 
 	public SavingsVO selectSavingsByNo(int no) {
-		System.out.println(no);
 		return sqlSessionTemplate.selectOne("savings.SavingsDAO.selectByNo", no);
 	}
 	
