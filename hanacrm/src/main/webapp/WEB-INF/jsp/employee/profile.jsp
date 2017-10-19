@@ -137,48 +137,41 @@
 						class="icon-angle-right"></i></li>
 					<li><a href="${pageContext.request.contextPath}/customer">고객정보</a></li>
 				</ul>
-				<div class="row-fluid sortable">
-					<div class="box span12">
+				<div class="row-fluid">
+					<div class="box span12" style="width:60%">
 						<div class="box-header" data-original-title>
 							<h2>
 								<i class="halflings-icon edit"></i> <span class="break"></span>
-								Profile
+								사원 정보
 							</h2>
-							<div class="box-icon">
-								<a href="#" class="btn-setting"><i
-									class="halflings-icon wrench"></i></a> <a href="#"
-									class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
-								<a href="#" class="btn-close"><i
-									class="halflings-icon remove"></i></a>
-							</div>
 						</div>
 						<div class="box-content">
 							<form class="form-horizontal" action="${pageContext.request.contextPath}/emp/profile" method="POST">
 								<fieldset>
 									<div class="control-group">
-										<label class="control-label">No</label>
+										<label class="control-label"><b>사원번호</b></label>
 										<div class="controls">
 											<input type="number" class="input-xlarge uneditable-input"
 												value="${empProfile.no }" name="no" readonly="readonly"/>
 										</div>
 									</div>
 									<div class="control-group">
-										<label class="control-label" for="nameInput">이름</label>
+										<label class="control-label" for="nameInput"><b>이름</b></label>
 										<div class="controls">
 											<input class="input-xlarge focused" id="nameInput"
 												type="text" value="${empProfile.name }" name="name" required>
 										</div>
 									</div>
 									<div class="control-group">
-										<label class="control-label">ID</label>
+										<label class="control-label"><b>계정</b></label>
 										<div class="controls">
 											<input type="text" class="input-xlarge uneditable-input"
 												value="${empProfile.id }" name="id" readonly="readonly"/>
 										</div>
 									</div>
 									<div class="control-group">
-										<label class="control-label" for="passwordInput">Password
-										</label>
+										<label class="control-label" for="passwordInput"><b>비밀번호
+										</b></label>
 										<div class="controls">
 											<input class="input-xlarge focused" id="passwordInput"
 												type="password" value="${empProfile.password }"
@@ -186,7 +179,7 @@
 										</div>
 									</div>
 									<div class="control-group">
-										<label class="control-label" for="emailInput">email</label>
+										<label class="control-label" for="emailInput"><b>이메일</b></label>
 										<div class="controls">
 											<input class="input-xlarge focused" id="emailInput"
 												type="text" value="${empProfile.email }" name="email"
@@ -194,7 +187,7 @@
 										</div>
 									</div>
 									<div class="control-group">
-										<label class="control-label" for="phoneInput">Phone</label>
+										<label class="control-label" for="phoneInput"><b>전화번호</b></label>
 										<div class="controls">
 											<input class="input-xlarge focused" id="phoneInput"
 												type="text" value="${empProfile.phone }" name="phone"
@@ -202,51 +195,50 @@
 										</div>
 									</div>
 									<div class="control-group">
-										<label class="control-label">Code</label>
+										<label class="control-label"><b>사원코드</b></label>
 										<div class="controls">
 											<input type="text" class="input-xlarge uneditable-input"
 												value="${empProfile.code }" name="code" readonly="readonly"/>
 										</div>
 									</div>
 									<div class="control-group">
-										<label class="control-label" for="phoneInput">SNS</label>
+										<label class="control-label" for="phoneInput"><b>SNS</b></label>
 										<div class="controls">
 											<input class="input-xlarge focused" id="snsInput" type="text"
 												name="sns" value="${empProfile.sns }">
 										</div>
 									</div>
 									<div class="control-group">
-										<label class="control-label" for="faxInput">FAX</label>
+										<label class="control-label" for="faxInput"><b>팩스</b></label>
 										<div class="controls">
 											<input class="input-xlarge focused" id="faxInput" type="text"
 												value="${empProfile.fax }" name="fax">
 										</div>
 									</div>
 									<div class="control-group">
-										<label class="control-label">부서</label>
+										<label class="control-label"><b>부서</b></label>
 										<div class="controls">
 											<input type="text" class="input-xlarge uneditable-input"
 												value="${empProfile.deptNo }" name="deptNo" readonly="readonly"/>
 										</div>
 									</div>
 									<div class="control-group">
-										<label class="control-label">지역</label>
+										<label class="control-label"><b>지역</b></label>
 										<div class="controls">
 											<input type="text" class="input-xlarge uneditable-input"
 												value="${empProfile.regionNo }" name="regionNo" readonly="readonly"/>
 										</div>
 									</div>
 									<div class="control-group">
-										<label class="control-label">직책</label>
+										<label class="control-label"><b>직책</b></label>
 										<div class="controls">
 											<input type="text" class="input-xlarge uneditable-input"
 												value="${empProfile.position }" name="position" readonly="readonly"/>
 										</div>
 									</div>
-									<div class="form-actions">
-										<button type="submit" class="btn btn-primary">Save
-											changes</button>
-										<button class="btn">Cancel</button>
+									<div class="form-actions" align="right">
+										<button type="submit" class="btn" style="background-color:#008485">수정</button>
+										<button class="btn">취소</button>
 									</div>
 								</fieldset>
 							</form>

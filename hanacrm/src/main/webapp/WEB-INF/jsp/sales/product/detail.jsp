@@ -21,7 +21,7 @@
 	<script src="${pageContext.request.contextPath}/js/jquery-ui-1.10.0.custom.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/jquery.ui.touch-punch.js"></script>
 	<script src="${pageContext.request.contextPath}/js/modernizr.js"></script>
-	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/bootstrap.js"></script>
 	<script src="${pageContext.request.contextPath}/js/jquery.cookie.js"></script>
 	<script src='${pageContext.request.contextPath}/js/moment.min.js'></script>
 	<script src='${pageContext.request.contextPath}/js/fullcalendar.min.js'></script>		
@@ -372,7 +372,7 @@
 	    	
 	    //	console.log(productHeader.length);
 	    	
-	    	var html = '<h2><i class="glyphicons-icon building" style="width:30px; height:30px; vertical-align:text-bottom; margin-right:5px"></i>금융회사 정보</h2>';
+	    	var html = '<h2>금융회사 정보</h2>';
 	    	html += '<table class="table table-striped" style="width:70%; margin-bottom:20px">';
 	    	
 	    	for(var i = 0; i < 3; i++) {
@@ -381,7 +381,7 @@
 	    	}
 	    	
 	    	html += '</table>';
-	    	html += '<h2><i class="glyphicons-icon folder_open" style="width:30px; height:30px; vertical-align:text-bottom; margin-right:5px"></i>금융상품 정보</h2>';
+	    	html += '<h2>금융상품 정보</h2><hr>';
 	    	html += '<table class="table table-striped" style="width:70%">';
 	    	
 	    	for(var i = 3; i < productHeader.length; i++) {

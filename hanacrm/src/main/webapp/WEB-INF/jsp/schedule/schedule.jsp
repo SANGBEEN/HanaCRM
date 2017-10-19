@@ -369,6 +369,9 @@
 		 	    .find("input[type=checkbox], input[type=radio]")
 		 	       .prop("checked", "")
 		 	       .end()
+		 	    .find("span[class=checked]")
+		 	    	.removeClass('checked')
+		 	    	.end()
 		 	    .find("button.clicked").removeClass('clicked');
 		 	});
 			
