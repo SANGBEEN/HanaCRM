@@ -67,6 +67,7 @@
 				and type = #{type}
 			</if> 
 		</where>
+		order by start_date
 	</select>
 	
 	<!-- 일정 상세 정보 -->

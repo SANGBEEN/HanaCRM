@@ -231,7 +231,7 @@
 							<!-- 오늘 일정 간략하게 -->
 							<div class="box">
 								<div class="box-header">
-									<h2><i class="halflings-icon calendar"></i><span class="break"></span>오늘 일정</h2>
+									<h2 id="todayTitle">일정</h2>
 									<div class="box-icon">
 										<a href="#" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
 									</div>
@@ -282,12 +282,15 @@
 	<script> 
 		 console.dir('${scheduleList}');
 		 
-		 start = new Date(2010, 10, 21).getTime();
-		console.log(start);
-		
 		function getTodayList(date){
 			
 			console.log(moment(date).format('YYYY-MM-DD'));
+			
+			if(moment(date).format('YYYY-MM-DD')==moment(new Date()).format('YYYY-MM-DD')){
+				$('#todayTitle').text('오늘 일정');
+			}else {
+				$('#todayTitle').text(moment(date).format('MM월 DD일')+' 일정');
+			}
 			
 			$.ajax({
 				url: "${pageContext.request.contextPath}/schedule/listForConsult",
@@ -298,52 +301,57 @@
 				},
 				success: function(todayList){
 					// var todayList = JSON.parse(data);
-					var html = '<ul class="dashboard-list">';
+					var html = '일정이 없습니다.';
 					var size = todayList.length; //<5?todayList.length:5;
 					
-					for(var i=0; i<size; i++){
-						html += '<li class="todaySchedule" id="today'+todayList[i].no+'" value="'+todayList[i].no+'"><strong>일정분류: </strong>';
-						
-						type = 'Meeting';
-						switch(todayList[i].type){
-							case 'Important':
-								html += '<span class="label-important" style="padding:3px">Important</span>';
-								type = 'Important';
-								break;
-							case 'Meeting':
-								html += '<span class="label-success" style="padding:3px">Meeting</span>';
-								type = 'Meeting';
-								break;
-							case 'Call':
-								html += '<span class="label-warning" style="padding:3px">Call</span>';
-								type= 'Call';
-								break;
-							case 'Task':
-								html += '<span class="label-info" style="padding:3px">Task</span>';
-								type = 'Task';
-								break;
-							case 'Event':
-								html += '<span style="background-color:#646464; color:#fff; padding:3px">Event</span>';
-								type = 'Event';
-								break;
-							case 'Other':
-								html += '<span style="background-color:#333333; color:#fff; padding:3px">Other</span>';
-								type = 'Other';
-								break;
-						}
-						
-						if(todayList[i].type!='Task'){
-							html += '<br/><strong>고객 이름: </strong>'+todayList[i].customer.name;
-							html = html + ' ('+todayList[i].customer.grade+')';
-						}
-						html += '<br><strong>장소: </strong>'+todayList[i].location+'<br>';
-						html += '<strong>시간: </strong>'+todayList[i].startDate+'<br>';
-						html += '&emsp;&emsp;&emsp;~ '+todayList[i].endDate+'<br>';
-						html += '</li>';
-						
-						$('#div_todayList').html(html);
+					if(size > 0){
+						html = '<ul class="dashboard-list">';
+						for(var i=0; i<size; i++){
+							html += '<li class="todaySchedule" id="today'+todayList[i].no+'" value="'+todayList[i].no+'"><strong>일정분류: </strong>';
+							
+							type = 'Meeting';
+							switch(todayList[i].type){
+								case 'Important':
+									html += '<span class="label-important" style="padding:3px">Important</span>';
+									type = 'Important';
+									break;
+								case 'Meeting':
+									html += '<span class="label-success" style="padding:3px">Meeting</span>';
+									type = 'Meeting';
+									break;
+								case 'Call':
+									html += '<span class="label-warning" style="padding:3px">Call</span>';
+									type= 'Call';
+									break;
+								case 'Task':
+									html += '<span class="label-info" style="padding:3px">Task</span>';
+									type = 'Task';
+									break;
+								case 'Event':
+									html += '<span style="background-color:#646464; color:#fff; padding:3px">Event</span>';
+									type = 'Event';
+									break;
+								case 'Other':
+									html += '<span style="background-color:#333333; color:#fff; padding:3px">Other</span>';
+									type = 'Other';
+									break;
+							}
+							
+							if(todayList[i].type!='Task'){
+								html += '<br/><strong>고객 이름: </strong>'+todayList[i].customer.name;
+								html = html + ' ('+todayList[i].customer.grade+')';
+							}
+							html += '<br><strong>장소: </strong>'+todayList[i].location+'<br>';
+							html += '<strong>시간: </strong>'+todayList[i].startDate;
+							html += ' ~ '+todayList[i].endDate+'<br>';
+							html += '</li>';
+							
+						}  // for문 끝
 					}
-				}
+					
+					$('#div_todayList').html(html);
+					
+				}  // success 끝
 			});
 			
 			
