@@ -77,17 +77,17 @@
 				<div class="row-fluid">
 					<div class="box span8" style="height: 65vh; overflow: auto; border: 1px solid lightgray">
 						<div class="box-header">
-							<span>오늘일정</span>
+							<span>오늘 일정</span>
 						</div>
 						<div class="box-content">
 							<div class="priority high">
-								<span>high priority</span>
+								<span>중요</span>
 							</div>
 							<div class="priority medium">
-								<span>medium priority</span>
+								<span>보통</span>
 							</div>
 							<div class="priority low">
-								<span>low priority</span>
+								<span>낮음</span>
 							</div>
 							<div class="clearfix"></div>
 						</div>
@@ -299,7 +299,7 @@
 		
 		for(var i=0; i<customerCountList.length; i++){
 			customerData.push({
-				label: customerCountList[i].GRADE,
+				label: customerCountList[i].GRADE+'('+customerCountList[i].COUNT+'명)',
 				data: customerCountList[i].COUNT
 			});
 		}
@@ -352,7 +352,7 @@
 					str += 			'<div>'+v.comments+'</div>';
 					str += '	</div>';
 					str += 		'<div class="time">';
-					str += 			'<div>'+v.endDate+'</div>';
+					str += 			'<div>'+v.startDate+' ~ '+v.endDate+'</div>';
 					str += 		'</div>';
 					str += '</div>';
 					//console.log(1);
@@ -366,7 +366,7 @@
 					str += 			'<div>'+v.comments+'</div>';
 					str += '	</div>';
 					str += 		'<div class="time">';
-					str += 			'<div>'+v.endDate+'</div>';
+					str += 			'<div>'+v.startDate+' ~ '+v.endDate+'</div>';
 					str += 		'</div>';
 					str += '</div>';
 					$('.priority.medium').append(str);
@@ -379,7 +379,7 @@
 					str += 			'<div>'+v.comments+'</div>';
 					str += '	</div>';
 					str += 		'<div class="time">';
-					str += 			'<div>'+v.endDate+'</div>';
+					str += 			'<div>'+v.startDate+' ~ '+v.endDate+'</div>';
 					str += 		'</div>';
 					str += '</div>';
 					$('.priority.low').append(str);
@@ -510,7 +510,7 @@
 		});
 		
 		$('div[id=shareModal]').on('hidden.bs.modal', function(e) {
-			console.log("모달 사라진다")
+			console.log("모달 사라진다");
 			//$(this).find('#phone').val('Default Value');
 			$(this).find('#phone').val('');
 			$(this).find('a[id=search-customer-hs]').data("table_flag", "off");

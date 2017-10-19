@@ -11,7 +11,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</a>
-				<a class="brand" href="${pageContext.request.contextPath}/main"><span style="font-family: Bungee Inline !important;">HANA CRM</span></a>
+				<a class="brand" href="${pageContext.request.contextPath}/main"><span style="font-family: Bungee Inline !important;">HANA SFA</span></a>
 								
 				<!-- start: Header Menu -->
 				<div class="nav-no-collapse header-nav">
@@ -20,8 +20,8 @@
 						<!-- start: Message Dropdown -->
 						<li id="li_reservationList" class="dropdown hidden-phone">
 							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-								<i class="halflings-icon white envelope"></i>
-								<span id="reservationCount" class="badge-important" style="padding:4px; font-size:0.7rem; border-radius: 10px;"></span>
+								<i class="halflings-icon white envelope" style="vertical-align: bottom;"></i>
+								<span id="reservationCount" class="badge-important" style="padding-left:6px; padding-right:6px; padding-top:2px; padding-bottom:2px; font-size:0.7rem; border-radius: 10px;"></span>
 							</a>
 							<ul class="dropdown-menu messages" id="ui_reservationList">
 							

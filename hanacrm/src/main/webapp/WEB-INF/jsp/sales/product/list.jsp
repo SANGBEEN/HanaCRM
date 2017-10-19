@@ -6,7 +6,7 @@
 <head>
 <!-- start: Meta -->
 	<meta charset="utf-8">
-	<title>영업 관리 - 상품 정보</title>
+	<title>영업지원 시스템 - 상품 정보</title>
 	<meta name="description" content="Bootstrap Metro Dashboard">
 	<meta name="author" content="Dennis Ji">
 	<meta name="keyword" content="Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
@@ -136,7 +136,7 @@
 					<ul class="nav nav-tabs">
 						<li class="active"><a data-toggle="tab" id="type-select-hs" data-product_type="1" href="#product-list" style="font-size: 20px;">예금</a></li>
 						<li><a data-toggle="tab" id="type-select-hs" data-product_type="2" href="#product-list" style="font-size: 20px;">적금</a></li>
-						<li><a data-toggle="tab" id="type-select-hs" data-product_type="3" href="#product-list" style="font-size: 20px;">카드</a></li>
+						<!-- <li><a data-toggle="tab" id="type-select-hs" data-product_type="3" href="#product-list" style="font-size: 20px;">카드</a></li> -->
 					</ul>				
 					<!-- <div class="box-header" data-original-title>
 						<h2 id="tab-name-hs"></h2> -->
@@ -226,7 +226,7 @@
         			//$('h2[id=tab-name-hs]').html('<i class="halflings-icon book"></i><span class="break"></span>' + $('li[class=active]').find('a[id=type-select-hs]').text());
         			
         	        html = '<table class="table table-striped table-bordered bootstrap-datatable datatable">';
-        	        html += '<thead><tr><th style="text-align:center">금융상품코드</th><th style="text-align:center">금융회사명</th><th style="text-align:center">금융상품명</th><th style="text-align:center">가입대상</th><th style="text-align:center">상세보기</th></tr></thead><tbody>'; /* <th>적립유형명</th></tr></thead><tbody>'; */
+        	        html += '<thead><tr><th style="text-align:center; width:15%;">금융상품코드</th><th style="text-align:center; width:15%;">금융회사명</th><th style="text-align:cente; width:25%;">금융상품명</th><th style="text-align:center; width:35%;">가입대상</th><th style="text-align:center; width:5%;">상세보기</th></tr></thead><tbody>'; /* <th>적립유형명</th></tr></thead><tbody>'; */
         	        
         	        for (var i = 0; i < product.length; i++) {
         	        	
@@ -255,7 +255,7 @@
         	    },
         		error: function(e){
       				console.log(e);
-        			alert('error');
+        			alert('준비중입니다.');
         		}
         	});
 			

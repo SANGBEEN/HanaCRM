@@ -2205,7 +2205,7 @@
             sEmptyTable: "내역이 존재하지 않습니다.",
             sInfo: "",
             sInfoEmpty: "",
-            sInfoFiltered: "(filtered from _MAX_ total entries)",
+            sInfoFiltered: "",
             sInfoPostFix: "",
             sInfoThousands: ",",
             sLengthMenu: "Show _MENU_ entries",
