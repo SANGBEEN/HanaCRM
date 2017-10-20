@@ -284,7 +284,10 @@
 							<ul class="nav nav-tabs">
 								<li class="active"><a data-toggle="tab" id="type-select-hs" data-product_type="1" href="#product-list-hs">예금</a></li>
 								<li><a data-toggle="tab" id="type-select-hs" data-product_type="2" href="#product-list-hs">적금</a></li>
-								<!-- <li><a data-toggle="tab" id="type-select-hs" data-product_type="3" href="#product-list-hs">카드</a></li> -->
+								<li><a data-toggle="tab" id="type-select-hs" data-product_type="3" href="#product-list-hs">보험</a></li>
+								<li><a data-toggle="tab" id="type-select-hs" data-product_type="4" href="#product-list-hs">대출</a></li>
+								<li><a data-toggle="tab" id="type-select-hs" data-product_type="5" href="#product-list-hs">펀드</a></li>
+								<li><a data-toggle="tab" id="type-select-hs" data-product_type="6" href="#product-list-hs">카드</a></li>
 							</ul>				
 							<!-- <div class="box-header" data-original-title>
 								<h2 id="tab-name-hs"></h2>								
@@ -369,7 +372,10 @@
 					<ul class="nav nav-tabs">
 						<li class="active"><a data-toggle="tab" id="type-select-hs" data-product_type="1" href="#product-reselect-list-hs">예금</a></li>
 						<li><a data-toggle="tab" id="type-select-hs" data-product_type="2" href="#product-reselect-list-hs">적금</a></li>
-						<!-- <li><a data-toggle="tab" id="type-select-hs" data-product_type="3" href="#product-reselect-list-hs">카드</a></li> -->
+						<li><a data-toggle="tab" id="type-select-hs" data-product_type="3" href="#product-reselect-list-hs">보험</a></li>
+						<li><a data-toggle="tab" id="type-select-hs" data-product_type="4" href="#product-reselect-list-hs">대출</a></li>
+						<li><a data-toggle="tab" id="type-select-hs" data-product_type="5" href="#product-reselect-list-hs">펀드</a></li>
+						<li><a data-toggle="tab" id="type-select-hs" data-product_type="6" href="#product-reselect-list-hs">카드</a></li>
 					</ul>				
 					<!-- <div class="box-header" data-original-title>
 						<h2 id="tab-name-hs"></h2>								

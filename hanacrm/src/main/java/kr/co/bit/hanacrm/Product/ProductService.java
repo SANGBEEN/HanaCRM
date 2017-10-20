@@ -21,9 +21,7 @@ public class ProductService {
 		switch (type) {
 		case 1:
 			System.out.println("selectDepositList");
-			List<ProductVO> temp = productDAO.selectDepositList();
-			System.out.println(temp);
-			return temp;
+			return productDAO.selectDepositList();
 		case 2:
 			System.out.println("selectSavingsList");
 			return productDAO.selectSavingsList();	
@@ -36,7 +34,6 @@ public class ProductService {
 	}
 
 	public ProductVO selectByNo(int type, int no) {
-		System.out.println("productSelectByNo - Service");
 		switch (type) {
 		case 1:
 			System.out.println("selectDepositByNo");
@@ -46,7 +43,7 @@ public class ProductService {
 		case 2:
 			System.out.println("selectSavingsByNo");
 			SavingsVO savingsVO = productDAO.selectSavingsByNo(no);
-			savingsVO.setOptionList(productDAO.selectDepositOption(savingsVO.getFinPrdtCd()));
+			savingsVO.setOptionList(productDAO.selectSavingsOption(savingsVO.getFinPrdtCd()));
 			return savingsVO;
 		case 3:
 			System.out.println("selectCardByNo");
