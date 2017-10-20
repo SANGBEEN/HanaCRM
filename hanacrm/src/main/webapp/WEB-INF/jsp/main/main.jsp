@@ -74,7 +74,7 @@
 		<div class="row-fluid">
 			<jsp:include page="/include/sideMenu.jsp" />
 
-			<div id="content" class="span10" style="padding: 10px">
+			<div id="content" class="span10" style="padding: 10px" onclick="goSchedule()">
 				<div class="row-fluid">
 					<div class="box span8" style="height: 65vh; overflow: auto; border: 1px solid lightgray">
 						<div class="box-header">
@@ -142,7 +142,7 @@
 				
 				<div class="row-fluid">
 					<div class="span3 statbox purple" style="height: 120px;">
-						<div class="boxchart">7,2,2,2,1,-4,-2,4,8,,0,3,3,5</div>
+						<div class="boxchart">2,2,1,7,2,-4,-2,4,8,,0,3,3,5</div>
 						<div class="number" id="number-of-customer-hy"></div>
 						<div class="title">customers</div>
 						<div class="footer">
@@ -150,7 +150,7 @@
 						</div>
 					</div>
 					<div class="span3 statbox green" style="height: 120px;">
-						<div class="boxchart">7,2,2,2,1,-4,-2,4,8,,0,3,3,5</div>
+						<div class="boxchart">3,5,7,2,5,,-3,1,4,8,,0,3,2,1</div>
 						<div class="number" id="number-of-consult-hs"></div>
 						<div class="title">consult</div>
 						<div class="footer">
@@ -158,7 +158,7 @@
 						</div>
 					</div>
 					<div class="span3 statbox yellow" style="height: 120px;" id="refresh-visits-hs">
-						<div class="boxchart">7,2,2,2,1,-4,-2,4,8,,0,3,3,5</div>
+						<div class="boxchart">7,2,6,2,2,1,0,4,0,,8,3,3,5</div>
 						<div class="number" id="number-of-visits-hs"></div>
 						<div class="title">visit</div>
 						<div class="footer">
@@ -166,7 +166,7 @@
 						</div>
 					</div>
 					<div class="span3 statbox blue" style="height: 120px;">
-						<div class="boxchart">7,2,2,2,1,-4,-2,4,8,,0,3,3,5</div>
+						<div class="boxchart">7,2,2,2,1,-1,-1,4,8,,0,3,3,5</div>
 						<div class="number" id="number-of-reservation-hy"></div>
 						<div class="title">reservation</div>
 						<div class="footer">
@@ -520,6 +520,10 @@
 			$(this).find('a[id=search-customer-hs]').data("table_flag", "off");
 			$('div[id=search-customer-table-hs]').empty();
 		});	
+		
+		function goSchedule(){
+			location.href = '${pageContext.request.contextPath}/schedule/list';
+		}
 		
 	</script>
 </body>
