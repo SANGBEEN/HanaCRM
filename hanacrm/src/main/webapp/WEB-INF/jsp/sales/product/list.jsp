@@ -137,7 +137,10 @@
 					<ul class="nav nav-tabs">
 						<li class="active"><a data-toggle="tab" id="type-select-hs" data-product_type="1" href="#product-list" style="font-size: 20px;">예금</a></li>
 						<li><a data-toggle="tab" id="type-select-hs" data-product_type="2" href="#product-list" style="font-size: 20px;">적금</a></li>
-						<!-- <li><a data-toggle="tab" id="type-select-hs" data-product_type="3" href="#product-list" style="font-size: 20px;">카드</a></li> -->
+						<li><a data-toggle="tab" id="type-select-hs" data-product_type="3" href="#product-list" style="font-size: 20px;">보험</a></li>
+						<li><a data-toggle="tab" id="type-select-hs" data-product_type="4" href="#product-list" style="font-size: 20px;">대출</a></li>
+						<li><a data-toggle="tab" id="type-select-hs" data-product_type="5" href="#product-list" style="font-size: 20px;">펀드</a></li>
+						<li><a data-toggle="tab" id="type-select-hs" data-product_type="6" href="#product-list" style="font-size: 20px;">카드</a></li>
 					</ul>				
 					<!-- <div class="box-header" data-original-title>
 						<h2 id="tab-name-hs"></h2> -->
@@ -227,7 +230,7 @@
         			//$('h2[id=tab-name-hs]').html('<i class="halflings-icon book"></i><span class="break"></span>' + $('li[class=active]').find('a[id=type-select-hs]').text());
         			
         	        html = '<table class="table table-striped table-bordered bootstrap-datatable datatable">';
-        	        html += '<thead><tr><th style="text-align:center; width:15%;">금융회사명</th><th style="text-align:center; width:15%;">금융상품코드</th><th style="text-align:center; width:25%;">금융상품명</th><th style="text-align:center; width:35%;">가입대상</th><th style="text-align:center; width:5%;">상세보기</th></tr></thead><tbody>'; /* <th>적립유형명</th></tr></thead><tbody>'; */
+        	        html += '<thead><tr><th style="text-align: center; width: 15%;">금융회사명</th><th style="text-align: center; width: 15%;">금융상품코드</th><th style="text-align: center; width: 25%;">금융상품명</th><th style="text-align: center; width: 35%;">가입대상</th><th style="text-align: center; width: 10%;">상세보기</th></tr></thead><tbody>'; /* <th>적립유형명</th></tr></thead><tbody>'; */
         	        
         	        for (var i = 0; i < product.length; i++) {
         	        	

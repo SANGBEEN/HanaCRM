@@ -127,120 +127,10 @@
 						<fieldset>
 							<div id="base-info">
 							  
-						  	</div>
-						  <div class="control-group">
-							<label class="control-label" for="productOption">옵션</label>
-							<div class="controls">
-							  <select id="productOption">
-								<option></option>
-								<option>Option 2</option>
-								<option>Option 3</option>
-								<option>Option 4</option>
-								<option>Option 5</option>
-							  </select>								  
-							</div>
-						  </div>
-						  <div id="option-info">
-						  	
-						  </div>
-						  <%-- <ul>
-							  	<li>공시제출월
-							  		<ul>
-							  			<li>${ productDetail.dclsMonth }</li>
-							  		</ul>
-							  	</li>
-							  	<li>금융회사코드
-							  		<ul>
-							  			<li>${ productDetail.finCoNo }</li>
-							  		</ul>
-							  	</li>
-							  	<li>금융상품코드
-							  		<ul>
-							  			<li>${ productDetail.finPrdtCd }</li>
-							  		</ul>
-							  	</li>
-							  	<li>저축금리유형
-							  		<ul>
-							  			<li>${ productDetail.intrRateType }</li>
-							  		</ul>
-							  	</li>
-							  	<li>저축금리유형명
-							  		<ul>
-							  			<li>${ productDetail.intrRateTypeNm }</li>
-							  		</ul>
-							  	</li>
-							  	<li>저축 기간(개월)
-							  		<ul>
-							  			<li>${ productDetail.saveTrm }</li>
-							  		</ul>
-							  	</li>
-							  	<li>저축 금리
-							  		<ul>
-							  			<li>${ productDetail. }</li>
-							  		</ul>
-							  	</li>
-							  	<li>최고 우대 금리
-							  		<ul>
-							  			<li>${ productDetail. }</li>
-							  		</ul>
-							  	</li>
-							  </ul> --%>
-						  <div class="control-group">
-							<label class="control-label" for="selectError2">Group Select</label>
-							<div class="controls">
-								<select data-placeholder="Your Favorite Football Team" id="selectError2" data-rel="chosen">
-									<option value=""></option>
-									<optgroup label="NFC EAST">
-									  <option>Dallas Cowboys</option>
-									  <option>New York Giants</option>
-									  <option>Philadelphia Eagles</option>
-									  <option>Washington Redskins</option>
-									</optgroup>
-									<optgroup label="NFC NORTH">
-									  <option>Chicago Bears</option>
-									  <option>Detroit Lions</option>
-									  <option>Green Bay Packers</option>
-									  <option>Minnesota Vikings</option>
-									</optgroup>
-									<optgroup label="NFC SOUTH">
-									  <option>Atlanta Falcons</option>
-									  <option>Carolina Panthers</option>
-									  <option>New Orleans Saints</option>
-									  <option>Tampa Bay Buccaneers</option>
-									</optgroup>
-									<optgroup label="NFC WEST">
-									  <option>Arizona Cardinals</option>
-									  <option>St. Louis Rams</option>
-									  <option>San Francisco 49ers</option>
-									  <option>Seattle Seahawks</option>
-									</optgroup>
-									<optgroup label="AFC EAST">
-									  <option>Buffalo Dennis Jis</option>
-									  <option>Miami Dolphins</option>
-									  <option>New England Patriots</option>
-									  <option>New York Jets</option>
-									</optgroup>
-									<optgroup label="AFC NORTH">
-									  <option>Baltimore Ravens</option>
-									  <option>Cincinnati Bengals</option>
-									  <option>Cleveland Browns</option>
-									  <option>Pittsburgh Steelers</option>
-									</optgroup>
-									<optgroup label="AFC SOUTH">
-									  <option>Houston Texans</option>
-									  <option>Indianapolis Colts</option>
-									  <option>Jacksonville Jaguars</option>
-									  <option>Tennessee Titans</option>
-									</optgroup>
-									<optgroup label="AFC WEST">
-									  <option>Denver Broncos</option>
-									  <option>Kansas City Chiefs</option>
-									  <option>Oakland Raiders</option>
-									  <option>San Diego Chargers</option>
-									</optgroup>
-							  </select>
-							</div>
-						  </div>
+						  	</div>						  
+							<div id="option-info">
+							  	
+							</div>						  
 						  <div class="form-actions" align="right">
 							<a class="btn" style="background-color:#008584" href="javascript:history.back();">확인</a>
 							<!-- <button class="btn">닫기</button> -->
@@ -280,82 +170,58 @@
 			var url = location.pathname;		
 	    	var urlArray = url.split("/");
 	    	var productType = urlArray[4];
-	    	console.log(productType);
+	    	//console.log(productType);
 	    	
 	    	var productDetail = ${ productDetail };
-	    	var productHeader = [];
-	    	var productBody;
+	    	var productHeader = [];	    	
+	    	var productBody = [];
+	    	
+	    	//console.log(productDetail);
+	    	
+	    	var optionFlag;
+	    	if (productDetail.optionList.length > 0) {
+	    		optionFlag = true;
+			} else {
+				optionFlag = false;
+			}
+	    	
+	    	var productOptionHeader = [];
+	    	var productOptionBody = [];
 	    	
 	    	switch (Number(productType)) {
 			case 1:
-				productHeader = productHeader.concat(["공시제출월", 
-					"금융회사코드", 
+				productHeader = productHeader.concat([
+					"공시 제출월", 
+					"금융회사 코드", 
 					"금융회사명", 
-					"금융상품코드", 
-					"금융상품명", 
+					"금융상품 코드", 
+					"금융 상품명", 
 					"가입 방법", 
 					"만기 후 이자율", 
 					"우대조건", 
-					"가입제한", 
+					"가입제한 Ex) 1:제한없음, 2:서민전용, 3:일부제한", 
 					"가입대상", 
 					"기타 유의사항", 
 					"최고한도", 
 					"공시 시작일", 
 					"공시 종료일", 
-					"금융회사 제출일"]);
+					"금융회사 제출일"
+					]);				
 				
 			//	console.log(productHeader);
 				
 				$('h2[id=product-name-hs]').html('<i class="halflings-icon book"></i><span class="break"></span>' + productDetail.finPrdtNm);
 				$('a[id=product-name-a-hs]').text(productDetail.finPrdtNm);
 				
-				productBody = [productDetail.dclsMonth, 
+				productBody = [
+					productDetail.dclsMonth, 
 					productDetail.finCoNo, 
 					productDetail.korCoNm, 
 					productDetail.finPrdtCd, 
 					productDetail.finPrdtNm, 
 					productDetail.joinWay, 
 					productDetail.mtrtInt, 
-					productDetail.spclCnd, 
-					productDetail.joinDeny, 
-					productDetail.joinMember, 
-					productDetail.etcNote, 
-					productDetail.maxLimit, 
-					productDetail.dclsStrtDay, 
-					productDetail.dclsEndDay, 
-					productDetail.finCoSubmDay
-					];		  		
-				break;
-			case 2:
-				productHeader = productHeader.concat(["공시제출월", 
-					"금융회사코드", 
-					"금융회사명", 
-					"금융상품코드", 
-					"금융상품명", 
-					"가입 방법", 
-					"만기 후 이자율", 
-					"우대조건", 
-					"가입제한", 
-					"가입대상", 
-					"기타 유의사항", 
-					"최고한도", 
-					"공시 시작일", 
-					"공시 종료일", 
-					"금융회사 제출일"]);
-				
-				console.log(productHeader);
-				
-				$('h2[id=product-name-hs]').html('<i class="halflings-icon book"></i><span class="break"></span>' + productDetail.finPrdtNm);
-				$('a[id=product-name-a-hs]').text(productDetail.finPrdtNm);
-				
-				productBody = [productDetail.dclsMonth, 
-					productDetail.finCoNo, 
-					productDetail.korCoNm, 
-					productDetail.finPrdtCd, 
-					productDetail.finPrdtNm, 
-					productDetail.joinWay, 
-					productDetail.mtrtInt, 
-					productDetail.spclCnd, 
+					productDetail.spclCnd === null ? '없음' : productDetail.spclCnd, 
 					productDetail.joinDeny, 
 					productDetail.joinMember, 
 					productDetail.etcNote, 
@@ -364,6 +230,97 @@
 					productDetail.dclsEndDay, 
 					productDetail.finCoSubmDay
 					];
+				
+				if(optionFlag) {
+					productOptionHeader = productOptionHeader.concat([
+						"저축 금리 유형", 
+						"저축 금리 유형명", 
+						"저축 기간 [단위: 개월]", 
+						"저축 금리 [소수점 2자리]", 
+						"최고 우대금리 [소수점 2자리]", 
+						]);
+					
+					for (var i = 0; i < productDetail.optionList.length; i++) {
+						var depositOption = productDetail.optionList[i];
+											
+						productOptionBody.push([
+							depositOption.intrRateType, 
+							depositOption.intrRateTypeNm, 
+							depositOption.saveTrm, 
+							depositOption.intrRate, 
+							depositOption.intrRate2
+							]);
+					} 
+				}			
+				
+				break;
+			case 2:
+				productHeader = productHeader.concat([
+					"공시 제출월", 
+					"금융회사 코드", 
+					"금융회사명", 
+					"금융상품 코드", 
+					"금융 상품명", 
+					"가입 방법", 
+					"만기 후 이자율", 
+					"우대조건", 
+					"가입제한 Ex) 1:제한없음, 2:서민전용, 3:일부제한", 
+					"가입대상", 
+					"기타 유의사항", 
+					"최고한도", 
+					"공시 시작일", 
+					"공시 종료일", 
+					"금융회사 제출일"
+					]);
+				
+				//console.log(productHeader);
+				
+				$('h2[id=product-name-hs]').html('<i class="halflings-icon book"></i><span class="break"></span>' + productDetail.finPrdtNm);
+				$('a[id=product-name-a-hs]').text(productDetail.finPrdtNm);
+				
+				productBody = [
+					productDetail.dclsMonth, 
+					productDetail.finCoNo, 
+					productDetail.korCoNm, 
+					productDetail.finPrdtCd, 
+					productDetail.finPrdtNm, 
+					productDetail.joinWay, 
+					productDetail.mtrtInt, 
+					productDetail.spclCnd === null ? '없음' : productDetail.spclCnd, 
+					productDetail.joinDeny, 
+					productDetail.joinMember, 
+					productDetail.etcNote, 
+					productDetail.maxLimit, 
+					productDetail.dclsStrtDay, 
+					productDetail.dclsEndDay, 
+					productDetail.finCoSubmDay
+					];
+				
+				if(optionFlag) {
+					productOptionHeader = productOptionHeader.concat([
+						"저축 금리 유형", 
+						"저축 금리 유형명", 
+						"적립 유형", 
+						"적립 유형명", 
+						"저축 기간 [단위: 개월]", 
+						"저축 금리 [소수점 2자리]", 
+						"최고 우대금리 [소수점 2자리]", 
+						]);
+					
+					for (var i = 0; i < productDetail.optionList.length; i++) {
+						var savingsOption = productDetail.optionList[i];
+											
+						productOptionBody.push([
+							savingsOption.intrRateType, 
+							savingsOption.intrRateTypeNm, 
+							savingsOption.rsrvType, 
+							savingsOption.rsrvTypeNm, 
+							savingsOption.saveTrm, 
+							savingsOption.intrRate, 
+							savingsOption.intrRate2
+							]);
+					}
+				}				
 				
 				break;
 			case 3:
@@ -377,7 +334,7 @@
 	    	html += '<table class="table table-striped" style="width:70%; margin-bottom:20px">';
 	    	
 	    	for(var i = 0; i < 3; i++) {
-	    		html += '<tr><th style="width:40%; text-align:center">' + productHeader[i] + '</th><td>' + 
+	    		html += '<tr><th style="width:40%;">' + productHeader[i] + '</th><td>' + 
 	    		productBody[i] + '</td></tr>';
 	    	}
 	    	
@@ -386,92 +343,32 @@
 	    	html += '<table class="table table-striped" style="width:70%">';
 	    	
 	    	for(var i = 3; i < productHeader.length; i++) {
-	    		html += '<tr><th style="width:40%; text-align:center">' + productHeader[i] + '</th><td>' + 
+	    		html += '<tr><th style="width:40%;>' + productHeader[i] + '</th><td>' + 
 	    		productBody[i] + '</td></tr>';
 	    	}
 	    	
-	    	html += '</table>';
-	  //  	console.log(html);
-	    	document.querySelector('#base-info').innerHTML = html;
+	    	html += '</table><br/><br/>';
+	    	
+	    	$('div[id=base-info]').html(html);
+	    	
+	    	if(optionFlag) {
+	    		var optionHtml = '<h2>금융상품 옵션 정보</h2>';		    	
+		    	
+		    	for(var i = 0; i < productOptionBody.length; i++) {
+		    		optionHtml += '<table class="table table-striped" style="width:70%">';
+		    		for (var j = 0; j < productOptionBody[i].length; j++) {
+		    			optionHtml += '<tr><th style="width:40%;>' + productOptionHeader[j] + '</th><td>' + 
+						productOptionBody[i][j] + '</td></tr>';
+		    		}
+		    		optionHtml += '</table><br/><br/>';
+		    	}
+		    	
+		    	
+		    	
+		    	$('div[id=option-info]').html(optionHtml);
+	    	}	    	
 		});    	
 		</script>
 	<!-- end: JavaScript-->
-<%-- <ul>
-  	<li>공시제출월
-  		<ul>
-  			<li>${ productDetail.dclsMonth }</li>
-  		</ul>
-  	</li>
-  	<li>금융회사코드
-  		<ul>
-  			<li>${ productDetail.finCoNo }</li>
-  		</ul>
-  	</li>
-  	<li>금융회사명
-  		<ul>
-  			<li>${ productDetail.korCoNm }</li>
-  		</ul>
-  	</li>
-  	<li>금융상품코드
-  		<ul>
-  			<li>${ productDetail.finPrdtCd }</li>
-  		</ul>
-  	</li>
-  	<li>금융상품명
-  		<ul>
-  			<li>${ productDetail.finPrdtNm }</li>
-  		</ul>
-  	</li>
-  	<li>가입 방법
-  		<ul>
-  			<li>${ productDetail.joinWay }</li>
-  		</ul>
-  	</li>
-  	<li>만기 후 이자율
-  		<ul>
-  			<li>${ productDetail.mtrtInt }</li>
-  		</ul>
-  	</li>
-  	<li>우대조건
-  		<ul>
-  			<li>${ productDetail.spclCnd }</li>
-  		</ul>
-  	</li>
-  	<li>가입제한
-  		<ul>
-  			<li>${ productDetail.joinDeny }</li>
-  		</ul>
-  	</li>
-  	<li>가입대상
-  		<ul>
-  			<li>${ productDetail.joinMember }</li>
-  		</ul>
-  	</li>
-  	<li>기타 유의사항
-  		<ul>
-  			<li>${ productDetail.etcNote }</li>
-  		</ul>
-  	</li>
-  	<li>최고한도
-  		<ul>
-  			<li>${ productDetail.maxLimit }</li>
-  		</ul>
-  	</li>
-  	<li>공시 시작일
-  		<ul>
-  			<li>${ productDetail.dclsStrtDay }</li>
-  		</ul>
-  	</li>
-  	<li>공시 종료일
-  		<ul>
-  			<li>${ productDetail.dclsEndDay }</li>
-  		</ul>
-  	</li>
-  	<li>금융회사 제출일
-  		<ul>
-  			<li>${ productDetail.finCoSubmDay }</li>
-  		</ul>
-  	</li>
-  </ul> --%>
 </body>
 </html>

@@ -35,7 +35,7 @@
 	
 	<select id="selectLog" resultType="String">
 		select ipv6 from deposit_log where to_char(reg_date, 'yyyy-mm-dd')=to_char(sysdate, 'yyyy-mm-dd')
-	</select>
+	</select>	
 	
 	<insert id="insert" parameterType="deposit">
 		insert into deposit_info values(deposit_info_seq.nextval, to_date(#{dclsMonth},'YYYY/MM'),#{finCoNo},#{korCoNm},#{finPrdtCd},#{finPrdtNm},#{joinWay},#{mtrtInt, jdbcType=VARCHAR},#{spclCnd, jdbcType=VARCHAR},#{joinDeny, jdbcType=NUMERIC},#{joinMember, jdbcType=VARCHAR},#{etcNote, jdbcType=VARCHAR},#{maxLimit, jdbcType=NUMERIC},to_date(#{dclsStrtDay, jdbcType=DATE},'YYYY/MM/DD'),to_date(#{dclsEndDay},'YYYY/MM/DD'),to_date(#{finCoSubmDay},'YYYY/MM/DD HH24:MI:SS'))
