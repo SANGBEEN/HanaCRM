@@ -20,7 +20,8 @@
 						<!-- start: Message Dropdown -->
 						<li id="li_reservationList" class="dropdown hidden-phone">
 							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-								<i class="halflings-icon white envelope" style="vertical-align: bottom;"></i>
+								<!-- <i class="halflings-icon white envelope" style="vertical-align: bottom;"></i> -->
+								<i class="fa fa-envelope-o" aria-hidden="true"></i>
 								<span id="reservationCount" class="badge-important" style="padding-left:6px; padding-right:6px; padding-top:2px; padding-bottom:2px; font-size:0.7rem; border-radius: 10px;"></span>
 							</a>
 							<ul class="dropdown-menu messages" id="ui_reservationList">

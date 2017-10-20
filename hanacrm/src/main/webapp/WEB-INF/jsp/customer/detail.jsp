@@ -11,7 +11,7 @@
 <meta name="author" content="Dennis Ji">
 <meta name="keyword" content="Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid,  Retina">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link id="bootstrap-style" href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
+<link id="bootstrap-style" href="${pageContext.request.contextPath}/css/bootstrap.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/bootstrap-responsive.min.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/addModal.css" rel="stylesheet">
 <link id="base-style" href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
@@ -50,6 +50,7 @@
 <script src="${pageContext.request.contextPath}/js/retina.js"></script>
 <script src="${pageContext.request.contextPath}/js/custom.js"></script>
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/favicon.ico">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <style>
 input.hidden {

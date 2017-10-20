@@ -22,7 +22,7 @@
 
 <!-- start: CSS -->
 <link id="bootstrap-style"
-	href="${pageContext.request.contextPath}/css/bootstrap.min.css"
+	href="${pageContext.request.contextPath}/css/bootstrap.css"
 	rel="stylesheet">
 <link
 	href="${pageContext.request.contextPath}/css/bootstrap-responsive.min.css"
@@ -116,6 +116,7 @@
 <link rel="shortcut icon"
 	href="${pageContext.request.contextPath}/img/favicon.ico">
 <!-- end: Favicon -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
 <body>

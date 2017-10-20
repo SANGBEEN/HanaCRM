@@ -37,6 +37,7 @@
 
 		<!-- ace settings handler -->
 		<script src="${pageContext.request.contextPath}/assets/js/ace-extra.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 		<!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
 

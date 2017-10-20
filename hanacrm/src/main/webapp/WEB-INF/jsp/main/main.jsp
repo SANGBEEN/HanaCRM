@@ -45,13 +45,14 @@
 	<script src="${pageContext.request.contextPath}/js/retina.js"></script>
 	<script src="${pageContext.request.contextPath}/js/custom.js"></script>
 
-	<link id="bootstrap-style" href="css/bootstrap.min.css" rel="stylesheet">
+	<link id="bootstrap-style" href="css/bootstrap.css" rel="stylesheet">
 	<link href="css/bootstrap-responsive.min.css" rel="stylesheet">
 	<link id="base-style" href="css/style.css" rel="stylesheet">
 	<link id="base-style-responsive" href="css/style-responsive.css" rel="stylesheet">
 	<link href='http://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
 	<link href='https://fonts.googleapis.com/css?family=Bungee+Inline' rel='stylesheet' type='text/css'>
 	<link rel="shortcut icon" href="img/favicon.ico">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	
 	<style>
 		#shareBtn{
@@ -93,7 +94,9 @@
 						</div>
 					</div>
 					
-					<div class="span4" style="height: 65vh; border: 1px solid lightgray;">
+					<div style="width: 50px; height: 60vh; display: block; float: left;"></div>
+					
+					<div class="span3" style="height: 65vh; border: 1px solid lightgray;">
 						<div class="box-header">
 							<span>내 명함</span>
 							<div class="box-icon">
@@ -102,10 +105,11 @@
 								</a>
 							</div>
 						</div>
-						<div class="box-content">
-							<iframe src="http://104.198.112.172:3000/${ sessionScope.emp.code }/" frameborder="0" width="100%" height="500" style="margin: 0 auto"></iframe>
+						<div class="box-content" style="padding:0 !important">
+							<iframe src="http://104.198.112.172:3000/${ sessionScope.emp.code }/" frameBorder=0 style="width:100%; height: 60vh; overflow:hidden; margin: 0 auto"></iframe>
 						</div>
 					</div>
+					
 				</div>
 					 
 				<!-- 

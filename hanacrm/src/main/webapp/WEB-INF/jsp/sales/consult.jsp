@@ -70,21 +70,9 @@
 		
 		th {
 			text-align: center;
-		}
+		}		
 		
-		/* .modal-dialog.modal-fullsize {
-			width: 100%;
-  			height: 100%;
-  			margin: 0;
-  			padding: 0;
-  		}
-  		
-  		.modal-content.modal-fullsize {
-		  	height: auto;
-		  	min-height: 100%;
-		  	border-radius: 0; 
-		}
-		
+		/*
 		.modal {
 			width: 80%;
 			height: auto;
@@ -590,10 +578,10 @@
 			$(document).on('click.tab.data-api', '[data-toggle="tab"]', function(e) {
 			    e.preventDefault();
 			    
-			    $(this)
 			    //getList($(this).data('product_type'));
 ////////////////////			    
-				$('div[id=' + e.target.id + ']').html(getList($(this).data('product_type')));
+				$(this).parent().parent().parent().find('div').html(getList($(this).data('product_type')));
+				//$('div[id=' + e.target.id + ']').html(getList($(this).data('product_type')));
     	        
     	        $('.datatable').dataTable({
     				//"sDom": "<'row-fluid'<'span6'f><'span6'l>r>t<'row-fluid'<'span12'i><'span12 center'p>>",
@@ -620,7 +608,7 @@
 	        			//$('h2[id=tab-name-hs]').html('<i class="halflings-icon book"></i><span class="break"></span>' + $('li[class=active]').find('a[id=type-select-hs]').text());
 	        			
 	        	        var html = '<table class="table table-striped table-bordered bootstrap-datatable datatable">';
-	        	        html += '<thead><tr><th style="text-align:center;">선택</th><th style="text-align:center;">금융상품코드</th><th style="text-align:center;">금융상품명</th></tr></thead><tbody>'; /* <th>적립유형명</th></tr></thead><tbody>'; */
+	        	        html += '<thead><tr><th style="text-align: center; width: 30px;">선택</th><th style="text-align:center; width: 156px;">금융상품코드</th><th style="text-align:center; width: 251px;		">금융상품명</th></tr></thead><tbody>'; /* <th>적립유형명</th></tr></thead><tbody>'; */
 	        	        
 	        	        for (var i = 0; i < product.length; i++) {		        	        	
 	        	            html += '<tr><td style="text-align: center;"><input type="checkbox" id="product-checkbox" style="vertical-align: baseline;" data-product_type="' + type + '" data-product_json=\'' + JSON.stringify(product[i]) + '\'>' + 
@@ -928,7 +916,7 @@
 			
 			/* 상품 다시 선택 */
 			$(document).on('click', 'button[id=product-reselect-hs]', function(e) {				
-				$('div[id=product-reselect-table-hs]').html(getList($('span[id=product-span-hs]').data("product_type")));
+				$('div[id=product-reselect-list-hs]').html(getList($('span[id=product-span-hs]').data("product_type")));
 				//$('div[id=product-list-hs]').html(getList($('span[id=product-span-hs]').data("product_type")));
 				
 				$('.datatable').dataTable({
