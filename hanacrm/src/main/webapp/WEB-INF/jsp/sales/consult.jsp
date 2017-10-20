@@ -58,14 +58,14 @@
 	
 	<style>
 		.basicColor{
-			background-color: #008485;
-			border-color:#008485;
+			background-color: #008485 !important;
+			border-color:#008485 !important;
 		}
 
 		.basicColor:hover{
-			background-color: #008485;
-			border-color:#008485;
-			opacity:0.7;
+			background-color: #008485 !important;
+			border-color:#008485 !important;
+			opacity:0.7 !important;
 		}
 		
 		th {

@@ -22,7 +22,7 @@
 	<script src="${pageContext.request.contextPath}/js/bootstrap.js"></script>
 	<script src="${pageContext.request.contextPath}/js/jquery.cookie.js"></script>
 	<script src='${pageContext.request.contextPath}/js/fullcalendar.js'></script>
-	<script src='${pageContext.request.contextPath}/js/jquery.dataTables.min.js'></script>
+	<script src='${pageContext.request.contextPath}/js/jquery.dataTables.js'></script>
 	<script src="${pageContext.request.contextPath}/js/excanvas.js"></script>
 	<script src="${pageContext.request.contextPath}/js/jquery.flot.js"></script>
 	<script src="${pageContext.request.contextPath}/js/jquery.flot.pie.js"></script>
@@ -116,8 +116,8 @@
 		}
 
 		.duration, .dduration{
-			background-color: #008485;
-			border-color:#008485;
+			background-color: #008485 !important;
+			border-color:#008485 !important;
 		}
 		
 		.duration:focus, .dduration:focus {
@@ -125,51 +125,51 @@
 		}
 		
 		.duration:hover, .dduration:hover {
-		  	background-color:  #008485;
-			border-color:  #008485;
-			opacity:0.7;
+		  	background-color:  #008485 !important;
+			border-color:  #008485 !important;
+			opacity:0.7 !important;
 		}
 		
 		.duration.clicked, .dduration.clicked{
 			background-color: #f9105b !important;
-			border-color: #f9105b;
+			border-color: #f9105b !important;
 		}
 		
 		.duration.clicked:hover, .dduration.clicked:hover {
 		  	background-color: #f9105b !important;
-			border-color: #f9105b;
-			opacity:0.7;
+			border-color: #f9105b !important;
+			opacity:0. !important;
 		}
 		
 		.schedule-add-btn, .schedule-edit-btn{
-			background-color: #008485;
-			border-color: #008485;
+			background-color: #008485 !important;
+			border-color: #008485 !important;
 		}
 		
 		.schedule-add-btn:hover, .schedule-edit-btn:hover{
-			background-color: #008485;
-			border-color: #008485;
-			opacity:0.7;
+			background-color: #008485 !important;
+			border-color: #008485 !important;
+			opacity:0.7 !important;
 		}
 		
 		.schedule-cancle-btn{
-			background-color: #a7a9aa;
+			background-color: #a7a9aa !important;
 		}
 		
 		.schedule-cancle-btn:hover{
-			background-color: #a7a9aa;
-			opacity:0.7;
+			background-color: #a7a9aa !important;
+			opacity:0.7 !important;
 		}
 		
 		.schedule-delete-btn{
-			background-color: #b94a48;
-			border-color: #b94a48;
+			background-color: #b94a48 !important;
+			border-color: #b94a48 !important;
 		}
 		
 		.schedule-delete-btn:hover{
-			background-color: #b94a48;
-			border-color: #b94a48;
-			opacity:0.7;
+			background-color: #b94a48 !important;
+			border-color: #b94a48 !important;
+			opacity:0.7 !important;
 		}
 		
 	</style>

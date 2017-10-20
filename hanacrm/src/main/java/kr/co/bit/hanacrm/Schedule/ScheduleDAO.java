@@ -77,4 +77,9 @@ public class ScheduleDAO {
 	public int selectReservationCount(int no) {
 		return sqlSessionTemplate.selectOne("schedule.ScheduleDAO.selectReservationCount", no);
 	}
+
+	// 처리 안 된 예약 조회
+	public List<ScheduleVO> selectReservationDefault(Integer no) {
+		return sqlSessionTemplate.selectList("schedule.ScheduleDAO.selectReservationDefault", no);
+	}
 }

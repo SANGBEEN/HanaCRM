@@ -145,7 +145,7 @@ public class ScheduleController {
 	@RequestMapping(value="/schedule/reservation/listForAlarm", method=RequestMethod.GET)
 	public List<ScheduleVO> getReservation(HttpSession session){
 		EmpVO emp = (EmpVO) session.getAttribute("emp");
-		return scheduleService.selectReservation(emp.getNo());
+		return scheduleService.selectReservationDefault(emp.getNo());
 	}
 	
 	// 예약 처리

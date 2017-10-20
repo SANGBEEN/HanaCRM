@@ -162,15 +162,15 @@
 						<div class="number" id="number-of-visits-hs"></div>
 						<div class="title">visit</div>
 						<div class="footer">
-							<a>오늘 방문자 수</a>
+							<a>오늘 명함 접속자</a>
 						</div>
 					</div>
 					<div class="span3 statbox blue" style="height: 120px;">
 						<div class="boxchart">7,2,2,2,1,-4,-2,4,8,,0,3,3,5</div>
 						<div class="number" id="number-of-reservation-hy"></div>
-						<div class="title">alarm</div>
+						<div class="title">reservation</div>
 						<div class="footer">
-							<a>신청 예약 수</a>
+							<a>상담 신청 예약</a>
 						</div>
 					</div>
 				</div>
@@ -178,7 +178,7 @@
 				<div class="row-fluid circleStats">
 					<div class="box span6">
 						<div class="box-header">
-							<span>월별실적</span>
+							<span>월별 실적</span>
 						</div>
 						<div class="box-content">
 							<div id="salesChart" style="height: 300px"></div>
@@ -187,7 +187,7 @@
 					
 					<div class="box span6">
 						<div class="box-header">
-							<span>예금상품</span>
+							<span>인기 예금 상품</span>
 						</div>
 						<div class="box-content">
 							<div id="piechart_deposit" style="height:300px"></div>
@@ -198,7 +198,7 @@
 				<div class="row-fluid circleStats">
 					<div class="box span6">
 						<div class="box-header">
-							<span>고객현황</span>
+							<span>고객 현황</span>
 						</div>
 						<div class="box-content">
 							<div id="donutchart" style="height: 300px;"></div>
@@ -207,7 +207,7 @@
 			
 					<div class="box span6">
 						<div class="box-header" data-original-title>
-							<span>적금상품</span>
+							<span>인기 적금 상품</span>
 						</div>
 						<div class="box-content">
 							 <div id="piechart_savings" style="height:300px"></div>
