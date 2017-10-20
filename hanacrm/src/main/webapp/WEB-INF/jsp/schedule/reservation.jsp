@@ -54,6 +54,19 @@
 <link id="base-style-responsive" href="${pageContext.request.contextPath}/css/style-responsive.css" rel="stylesheet">
 <link href='http://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Bungee+Inline' rel='stylesheet' type='text/css'>
+
+<style>
+	.basicBtn {
+		background-color: #008485 !important;
+		border: #008485 !important;
+	}
+	.basicBtn:hover {
+		background-color: #008485 !important;
+		border: #008485 !important;
+		opacity: 0.7 !important;
+	}
+</style>
+
 </head>
 
 <body>
@@ -177,7 +190,7 @@
 			</div>
 		</div>		
 		<div class="modal-footer">
-			<a href="#" class="btn btn-primary" id="updateBtn">전송</a>
+			<a href="#" class="btn basicBtn" id="updateBtn">전송</a>
 			<a href="#" class="btn" data-dismiss="modal">취소</a>
 			<!-- <a href="#" class="btn btn-primary" id="consult-insert-complete-hs" data-dismiss="modal">확인</a> -->			
 		</div>
@@ -246,6 +259,8 @@
 		});
 		
 		$('a[id=disagree]').click(function(){
+			console.dir($('input[id=comments]').val());
+			console.dir($('input[id=comments]')[0].placeholder);
 			var reservation = $(this).data('reservation');
 			var reservationData = {
 					no: reservation.no,
@@ -255,10 +270,12 @@
 			
 			$('#commentsModal').modal('show');
 			
-			$('#commentsModal').find('a[id=updateBtn]').click(function(){
-				if($('input[id=comments]').val()!=null || $('input[id=comments]').val()!=""){
-					reservationData.comments = $('input[id=comments]').val();
-					console.log(reservationData.comments);
+			$('#commentsModal').find('a[id=updateBtn]').off().on('click', function(){
+				var comment = $('input[id=comments]').val();
+				if(comment=="" || comment=='' || comment==null){
+					console.log('dfsagd '+reservationData.comments);
+				} else {
+					reservationData.comments = comment;
 				}
 				updateReservation(reservationData);
 			});

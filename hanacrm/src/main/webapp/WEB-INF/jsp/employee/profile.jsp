@@ -242,6 +242,8 @@
 										<button type="submit" class="btn" style="background-color:#008485">수정</button>
 										<button class="btn">취소</button>
 									</div>
+									<input type="hidden" name="deptNo" value="${empProfile.deptNo}"/>
+									<input type="hidden" name="regionNo" value="${empProfile.regionNo}"/>
 								</fieldset>
 							</form>
 

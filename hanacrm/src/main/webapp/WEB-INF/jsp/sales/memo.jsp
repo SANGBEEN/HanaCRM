@@ -43,6 +43,7 @@
 	<script src="${pageContext.request.contextPath}/js/counter.js"></script>
 	<script src="${pageContext.request.contextPath}/js/retina.js"></script>
 	<script src="${pageContext.request.contextPath}/js/custom.js"></script>
+	<script src="js/dropzone.min.js"></script>
 	<!-- end: JavaScript-->
 	
 	<!-- start: CSS -->
@@ -55,14 +56,14 @@
 
 	<style>
 		.memo-insert {
-			background-color: rgba(175, 10, 51, 0.78);
-			border-color: rgba(175, 10, 51, 0.78);
+			background-color: rgba(175, 10, 51, 0.78) !important;
+			border-color: rgba(175, 10, 51, 0.78) !important;
 		}
 		
 		.memo-insert:hover{
-			background-color: rgba(175, 10, 51, 0.78);
-			border-color: rgba(175, 10, 51, 0.78);
-			opacity: 0.7
+			background-color: rgba(175, 10, 51, 0.78) !important;
+			border-color: rgba(175, 10, 51, 0.78) !important;
+			opacity: 0.7 !important;
 		}
 	</style>
 	

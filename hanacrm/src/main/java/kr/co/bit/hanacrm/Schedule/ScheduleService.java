@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.co.bit.hanacrm.Customer.CusDAO;
 import kr.co.bit.hanacrm.Customer.CusVO;
@@ -152,6 +153,7 @@ public class ScheduleService {
 	}
 
 	// 신청 수락/거절
+	@Transactional
 	public int updateReservation(ScheduleVO reservation) {
 		// 1. 상태 변경
 		int result = scheduleDAO.updateReservation(reservation);
@@ -173,7 +175,7 @@ public class ScheduleService {
 				System.out.println("예약 신청 수락 시 일정 추가 에러");
 			}
 		}else {
-			System.out.println("예약 신청 수락 처리 에러");
+			System.out.println("예약 신청 거절");
 		}
 		
 		return result;
@@ -182,6 +184,21 @@ public class ScheduleService {
 	// 처리해야할 예약 수
 	public int selectReservationCount(int no){
 		return scheduleDAO.selectReservationCount(no);
+	}
+
+	public List<ScheduleVO> selectReservationDefault(Integer no) {
+		List<ScheduleVO> list = scheduleDAO.selectReservationDefault(no);
+		
+		for(int i=0; i<list.size(); i++) {
+			ScheduleVO s = list.get(i);
+			if(s.getCustomerNo()!=null) {
+				s.setCustomer(cusDAO.detail(s.getCustomerNo()));
+			} else {
+				s.setCustomer(new CusVO());
+			}
+		}
+		
+		return list;
 	}
 
 }
