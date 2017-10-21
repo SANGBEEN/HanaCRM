@@ -53,6 +53,10 @@ public class CusDAO {
 	public int selectSeq() {
 		return sql.selectOne("cus.CusDAO.selectSeq");
 	}
+
+	public int updateGrade(CusVO cus) {
+		return sql.update("cus.CusDAO.updateGrade",cus);
+	}
 	
 	
 	

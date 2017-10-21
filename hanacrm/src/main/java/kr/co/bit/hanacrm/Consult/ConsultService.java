@@ -5,8 +5,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.co.bit.hanacrm.Customer.CusDAO;
+import kr.co.bit.hanacrm.Customer.CusVO;
 import kr.co.bit.hanacrm.Product.ProductDAO;
 
 @Service
@@ -46,7 +48,8 @@ public class ConsultService {
 		
 		return consultVO;
 	} 
-
+	
+	@Transactional
 	public int insert(ConsultVO consultVO) {
 		int consultNo = consultDAO.selectSequence();
 		
@@ -55,6 +58,12 @@ public class ConsultService {
 		if(consultDAO.insert(consultVO) == 1)
 		{
 			System.out.println(consultVO.getNo() + "번 상담 성공");
+			CusVO cus = customerDAO.detail(consultVO.getCustomerNo());
+			System.out.println(cus.getGrade());
+			if(cus.getGrade().equals("잠재")){
+				cus.setGrade("신규");
+				customerDAO.updateGrade(cus);
+			}
 		}
 		else
 		{
