@@ -6,6 +6,7 @@
 	<select id="selectAll"  resultType="cus">
 		select no, name, to_char(birth_date,'yyyy-mm-dd') as birthDate, phone, employee_no as employeeNo, comments, grade, post, address, to_char(reg_date,'yyyy-mm-dd') as regDate
 		from customer
+		order by reg_date desc
 	</select>
 	
 	<select id="selectByNo"  parameterType="int" resultType="cus">

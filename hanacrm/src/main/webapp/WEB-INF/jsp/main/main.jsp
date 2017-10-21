@@ -74,9 +74,9 @@
 		<div class="row-fluid">
 			<jsp:include page="/include/sideMenu.jsp" />
 
-			<div id="content" class="span10" style="padding: 10px" onclick="goSchedule()">
+			<div id="content" class="span10" style="padding: 10px">
 				<div class="row-fluid">
-					<div class="box span8" style="height: 65vh; overflow: auto; border: 1px solid lightgray">
+					<div class="box span8" style="height: 65vh; overflow: auto; border: 1px solid lightgray" onclick="goSchedule()">
 						<div class="box-header">
 							<span>오늘 일정</span>
 						</div>
