@@ -22,7 +22,7 @@
 	<script src="${pageContext.request.contextPath}/js/jquery-ui-1.10.0.custom.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/jquery.ui.touch-punch.js"></script>
 	<script src="${pageContext.request.contextPath}/js/modernizr.js"></script>
-	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/bootstrap.js"></script>
 	<script src="${pageContext.request.contextPath}/js/jquery.cookie.js"></script>
 	<script src='${pageContext.request.contextPath}/js/moment.min.js'></script>
 	<script src='${pageContext.request.contextPath}/js/fullcalendar.min.js'></script>		
