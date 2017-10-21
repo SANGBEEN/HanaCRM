@@ -71,7 +71,20 @@ from dual
 
 select *
 from schedule
+where employee_no = 1 and type = 'Meeting' and to_char(start_date, 'YYYY-MM-DD') = '2017-10-14'
 order by start_date
 
 select *
 from customer
+
+select *
+from consult
+where to_char(reg_date, 'YYYY-MM-DD') = '2017-10-12'
+
+
+select *
+from schedule s, consult c
+where s.customer_no = c.customer_no and s.employee_no = 1
+and type = 'Meeting'
+
+

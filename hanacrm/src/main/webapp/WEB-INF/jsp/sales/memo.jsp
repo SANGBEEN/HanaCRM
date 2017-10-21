@@ -101,12 +101,13 @@
 						<i class="icon-angle-right"></i>
 					</li>
 					<li><a href="${pageContext.request.contextPath}/sales/memo">메모</a></li>
+					<br/>
 				</ul>
 				
 				<div class="row-fluid">
 				
 				<h1>메모</h1>
-				<div class="span6" style="padding-right:20px">					
+				<div class="span6" style="padding-right:25px">					
 				<!-- 	<div align="right" style="margin-bottom:10px">
 						<a class="btn btn-info memo-insert" id="memo-insert" href="#" style="align:right; padding:12px">
 							<i class="halflings-icon white edit"></i>  
@@ -120,7 +121,7 @@
 									<i class="halflings-icon plus white"></i>
 								</a>
 						</div>
-						<div style="overflow:auto; height:680px">
+						<div style="overflow:auto; height:575px">
 							<ul class="messagesList">
 								<c:forEach items="${ memoList }" var="memoVO" varStatus="status">
 									<li id="li${memoVO.no}">
@@ -148,13 +149,13 @@
 							</div>
 							
 							<div class="content">
-								<textarea tabindex="3" class="input-xlarge span12" id="thisMessage" name="body" rows="20" placeholder="메모를 입력하세요."></textarea>
+								<textarea tabindex="3" class="input-xlarge span12" id="thisMessage" name="body" rows="25" placeholder="메모를 입력하세요."></textarea>
 								<!-- <blockquote>
 									Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 								</blockquote> -->
 							</div>
 							
-							<div class="attachments">
+							<!-- <div class="attachments">
 								<ul>
 									<li>
 										<span class="label-important" style="padding:3px">zip</span> <b>bootstrap.zip</b> <i>(2,5MB)</i>
@@ -181,7 +182,7 @@
 										</span>
 									</li>
 								</ul>		
-							</div>
+							</div> -->
 							
 							<!-- <form class="replyForm"method="post" action="">
 								<fieldset>
@@ -391,7 +392,7 @@
 						$('#thisTitle').text(subString($('#memo'+memoNo).text()));
 					},
 					error: function(){
-						alert('put error');
+					//	alert('put error');
 					}
 				}); 
 				

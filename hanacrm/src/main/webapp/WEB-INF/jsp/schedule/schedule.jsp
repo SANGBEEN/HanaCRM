@@ -547,7 +547,7 @@
 							}
 							
 							// radio button
-							$('.tr_radio').on('click', function(ev){
+							$(document).on('click', '.tr_radio', function(ev){
 								//ev.preventDefault();
 								$('.radio').find('span').removeClass('checked');
 								$('#uniform-radio'+$(this).data('no')).find('span').addClass('checked');
@@ -667,7 +667,7 @@
 								 var startData = getDate(selectedDate_s); 
 								 var endData = addModal.find('#endDate').text(); //getDate(selectedDate_e); // getDate(moment(endDatepicker.toString()));
 								 var cNo = $('span.checked').parent().parent().parent().data('no')!=null?$('span.checked').parent().parent().parent().data('no'):null;
-								 var name = cNo!=null?document.getElementById(cNo).innerText:addModal.find('input[id=location]').val();
+								 var name = cNo!=null?document.getElementById(cNo).innerText:""; // addModal.find('input[id=location]').val();
 						//		 console.log('modalSave start output : '+startData);
 						//		 console.log('modalSave end output : '+endData);
 								 
