@@ -148,7 +148,7 @@
 				-->
 				
 				<div class="row-fluid">
-					<div class="span3 statbox purple" style="height: 120px; background: #816eb1 !important">
+					<div class="span3 statbox purple" id="go-customer-hs" style="height: 120px; background: #816eb1 !important">
 						<div class="boxchart">2,2,1,7,2,-4,-2,4,8,,0,3,3,5</div>
 						<div class="number" id="number-of-customer-hy"></div>
 						<div class="title">customers</div>
@@ -156,7 +156,7 @@
 							<a>총 고객</a>
 						</div>
 					</div>
-					<div class="span3 statbox green" style="height: 120px; background: #67ab68 !important">
+					<div class="span3 statbox green" id="go-consult-hs" style="height: 120px; background: #67ab68 !important">
 						<div class="boxchart">3,5,7,2,5,,-3,1,4,8,,0,3,2,1</div>
 						<div class="number" id="number-of-consult-hs"></div>
 						<div class="title">consult</div>
@@ -172,7 +172,7 @@
 							<a>오늘 명함 접속자</a>
 						</div>
 					</div>
-					<div class="span3 statbox blue" style="height: 120px; background: #5f8bbb !important">
+					<div class="span3 statbox blue" id="go-reservation-hs" style="height: 120px; background: #5f8bbb !important">
 						<div class="boxchart">7,2,2,2,1,-1,-1,4,8,,0,3,3,5</div>
 						<div class="number" id="number-of-reservation-hy"></div>
 						<div class="title">reservation</div>
@@ -398,6 +398,18 @@
 			});
 		});
 		
+		$('div[id=go-consult-hs]').click(function() {
+			location.href = '${pageContext.request.contextPath}/sales/consult';
+		});
+		
+		$('div[id=go-customer-hs]').click(function() {
+			location.href = '${pageContext.request.contextPath}/customer';
+		});
+		
+		$('div[id=go-reservation-hs]').click(function() {
+			location.href = '${pageContext.request.contextPath}/schedule/reservation';
+		});
+		
 		$(document).ready(function() {
 			getVisitsList();
 		});
@@ -409,7 +421,7 @@
 		$('a[id=visits-modal-hs]').click(function() {
 			getVisitsList();
 			$('#visits-detail-hs').modal();
-		})
+		});
 		
 		function getVisitsList() {
 			$.ajax({
