@@ -76,7 +76,7 @@
 
 			<div id="content" class="span10" style="padding: 10px">
 				<div class="row-fluid">
-					<div class="box span8" style="height: 65vh; overflow: auto; border: 1px solid lightgray" onclick="goSchedule()">
+					<div class="box span9" style="height: 65vh; overflow: auto; border: 1px solid lightgray" onclick="goSchedule()">
 						<div class="box-header">
 							<span>오늘 일정</span>
 						</div>
@@ -93,8 +93,6 @@
 							<div class="clearfix"></div>
 						</div>
 					</div>
-					
-					<div style="width: 50px; height: 60vh; display: block; float: left;"></div>
 					
 					<div class="span3" style="height: 65vh; border: 1px solid lightgray;">
 						<div class="box-header">
