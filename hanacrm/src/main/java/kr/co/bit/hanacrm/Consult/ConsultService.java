@@ -58,6 +58,21 @@ public class ConsultService {
 		if(consultDAO.insert(consultVO) == 1)
 		{
 			System.out.println(consultVO.getNo() + "번 상담 성공");
+			
+			List<ConsultProductVO> consultProductList = consultVO.getConsultProduct();
+			
+			for (ConsultProductVO consultProductVO : consultProductList) {
+				consultProductVO.setConsultNo(consultNo);
+				if(consultDAO.insertProduct(consultProductVO) == 1)
+				{
+					System.out.println(consultProductVO.getNo() + "번 상담 상품 성공");
+				}
+				else
+				{
+					System.out.println(consultProductVO.getNo() + "번 상담 상품 실패");
+				}
+			}
+			
 			CusVO cus = customerDAO.detail(consultVO.getCustomerNo());
 			System.out.println(cus.getGrade());
 			if(cus.getGrade().equals("잠재")){
@@ -69,20 +84,6 @@ public class ConsultService {
 		{
 			System.out.println(consultVO.getNo() + "번 상담 실패");
 		}
-		
-		List<ConsultProductVO> consultProductList = consultVO.getConsultProduct();
-		
-		for (ConsultProductVO consultProductVO : consultProductList) {
-			consultProductVO.setConsultNo(consultNo);
-			if(consultDAO.insertProduct(consultProductVO) == 1)
-			{
-				System.out.println(consultProductVO.getNo() + "번 상담 상품 성공");
-			}
-			else
-			{
-				System.out.println(consultProductVO.getNo() + "번 상담 상품 실패");
-			}
-		}	
 		
 		return consultNo;
 	}

@@ -302,23 +302,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
-	
-	<!-- 선택한 상품 출력 -->
-	<div class="modal hide fade" id="selectedProductList">
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal">×</button>
-			<h3>선택한 상품</h3>
-		</div>
-		<div class="modal-body">
-			<div id="selected-product-list-hs">
-			
-			</div>
-		</div>
-		<div class="modal-footer">
-			<a href="#" class="btn" data-dismiss="modal">닫기</a>
-		</div>
-	</div>
+	</div>	
 	
 	<!-- 상담 내용 입력 -->
 	<div class="modal hide fade" id="consultContentInsert">
@@ -392,6 +376,22 @@
 				</div>
 			</div>
 		</div>		
+	</div>
+	
+	<!-- 선택한 상품 출력 -->
+	<div class="modal hide fade" id="selectedProductList">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">×</button>
+			<h3>선택한 상품</h3>
+		</div>
+		<div class="modal-body">
+			<div id="selected-product-list-hs">
+			
+			</div>
+		</div>
+		<div class="modal-footer">
+			<a href="#" class="btn" data-dismiss="modal">닫기</a>
+		</div>
 	</div>
 	
 	<!-- 삭제 -->
@@ -563,7 +563,7 @@
 					console.log("스케줄 넘버버버: " + consultJson);
 					
 					//getList(1);
-	////////////////////		
+					
 					$('div[id=product-list-hs]').html(getList(1, []));
     	        
 	    	        $('.datatable').dataTable({
@@ -577,7 +577,7 @@
 	    				}
 	    			} );	
 	    	        
-	    	        selectProductFunction();
+	    	        selectProductFunction([]);
 					
 					$('#consultScheduleSelect').modal("hide");
 					$('#consultProductSelect').modal();					
@@ -590,12 +590,9 @@
 			
 			/* 상품 목록 출력하는 함수 */
 			function getList(type, selectedProduct) {
-				var productListByType;
-				//$(this).prop("checked")
-				
-				console.log(typeof selectedProduct);
 				console.log(selectedProduct);
-				
+				var productListByType;
+
 				$.ajax({
 	        		url: "${pageContext.request.contextPath}/sales/product/" + type,
 	        		type: "get",
@@ -605,8 +602,7 @@
 	        			//$('h2[id=tab-name-hs]').html('<i class="halflings-icon book"></i><span class="break"></span>' + $('li[class=active]').find('a[id=type-select-hs]').text());
 	        			
 	        	        var html = '<table class="table table-striped table-bordered bootstrap-datatable datatable">';
-	        	        html += '<thead><tr><th style="text-align: center; width: 30px;">선택</th><th style="text-align:center; width: 156px;">금융상품코드</th><th style="text-align:center; width: 251px;		">금융상품명</th></tr></thead><tbody>'; /* <th>적립유형명</th></tr></thead><tbody>'; */
-	        	        
+	        	        html += '<thead><tr><th style="text-align: center; width: 30px;">선택</th><th style="text-align: center; width: 156px;">금융상품코드</th><th style="text-align: center; width: 251px;">금융상품명</th></tr></thead><tbody>'; /* <th>적립유형명</th></tr></thead><tbody>'; */
 	        	        
 	        	        for (var i = 0; i < product.length; i++) {		        	        	
 	        	            html += '<tr><td style="text-align: center;">' + 
@@ -650,22 +646,20 @@
 	        		}
 	        	});
 				
-				console.log("탭 선택");
+				console.log("getList");
 				
 				return productListByType;
 			}		
 			
-			function selectProductFunction() {
+			function selectProductFunction(selectProductParam) {
 				/* 선택한 상품들 담는 배열 */
-				var selectedProduct = [];
-				$('#product-count').html('상품 선택');				
+				var selectedProduct = selectProductParam;
 				
 				/* 탭에 따른 상품 목록 출력 */
 				$(document).on('click.tab.data-api', '[data-toggle="tab"]', function(e) {
 				    e.preventDefault();
 				    
 				    //getList($(this).data('product_type'));
-				    
 				    console.log(selectedProduct);
 					$(this).parent().parent().parent().find('div').html(getList($(this).data('product_type'), selectedProduct));
 					//$('div[id=' + e.target.id + ']').html(getList($(this).data('product_type')));
@@ -680,18 +674,24 @@
 	    				"sLengthMenu": "_MENU_ 개씩 보기"
 	    				}
 	    			} );	    	        
-				});				
+				});
+				
+/////////////$('#product-count').html('상품 선택');	
 				
 				/* 선택한 상품 담아두기 */
 				$(document).on('change', 'input[id=product-checkbox]', function(e) {
+					e.preventDefault();
 				//$('input:checkbox[id="product-checkbox"]').on('click', function(){
+					//$('input[id=product-checkbox]:checked').parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().find('.modal-header').find('h3').html()
 					if ($(this).prop("checked")) {
-						$('#product-count').html('상품 선택 <span class="badge-important" id="selected-product-detail-hs" style="padding-left:6px; padding-right:6px; padding-top:2px; padding-bottom:2px; font-size:0.7rem; border-radius: 10px;"> ' + 
+						//$('#product-count').html('상품 선택 <span class="badge-important" id="selected-product-detail-hs" style="padding-left:6px; padding-right:6px; padding-top:2px; padding-bottom:2px; font-size:0.7rem; border-radius: 10px;"> ' + 
+						$(this).parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().find('.modal-header').find('h3').html('상품 선택 <span class="badge-important" id="selected-product-detail-hs" style="padding-left:6px; padding-right:6px; padding-top:2px; padding-bottom:2px; font-size:0.7rem; border-radius: 10px;"> ' + 
 								selectedProduct.push({
 									"type" : $('li[class=active]').find('a[id=type-select-hs]').data('product_type'),
 									"productJson" : $(this).data('product_json')
 								})					
-								+ ' </span>');				
+								+ ' </span>');
+						console.log(selectedProduct);
 					} else {
 						console.dir($(this).data('product_json'));
 						
@@ -702,7 +702,8 @@
 							var selectedProductJson = $(this).data('product_json');
 							console.log(shiftProduct['productJson']['no']);
 							if (shiftProduct['productJson']['no'] == selectedProductJson['no'] && shiftProduct['type'] == $('li[class=active]').find('a[id=type-select-hs]').data('product_type')){
-								$('#product-count').html(selectedProduct.length == 0 ? '상품 선택' : '상품 선택 <span class="badge-important" id="selected-product-detail-hs" style="padding-left:6px; padding-right:6px; padding-top:2px; padding-bottom:2px; font-size:0.7rem; border-radius: 10px;"> ' + selectedProduct.length + ' </span>');
+								//$('#product-count').html(selectedProduct.length == 0 ? '상품 선택' : '상품 선택 <span class="badge-important" id="selected-product-detail-hs" style="padding-left:6px; padding-right:6px; padding-top:2px; padding-bottom:2px; font-size:0.7rem; border-radius: 10px;"> ' + selectedProduct.length + ' </span>');
+								$(this).parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().find('.modal-header').find('h3').html(selectedProduct.length == 0 ? '상품 선택' : '상품 선택 <span class="badge-important" id="selected-product-detail-hs" style="padding-left:6px; padding-right:6px; padding-top:2px; padding-bottom:2px; font-size:0.7rem; border-radius: 10px;"> ' + selectedProduct.length + ' </span>');
 								console.log("selectedProductJson['no'] : " + selectedProductJson['no']);
 								//break;
 							} else {
@@ -725,6 +726,8 @@
 					
 					$('#selectedProductList').modal();
 				});
+				
+				var productListJson = [];
 				
 				/* 상품 선택 완료 및 내용 입력 */
 				$('a[id=product-select-hs]').click(function(e) {
@@ -771,6 +774,13 @@
 					
 					$('span[id=consult-date-input-hs]').text(consultJson['regDate']); */
 					
+					for (var i = 0; i < selectedProduct.length; i++) {
+						productListJson.push({
+								"type": selectedProduct[i]['type'],
+								"productNo": selectedProduct[i]['productJson']['no']
+						});
+					}
+					
 					selectedProduct = [];
 					
 					$('#consultProductSelect').modal('hide');
@@ -782,22 +792,19 @@
 					e.preventDefault();
 					e.stopPropagation();
 					
-					var productListJson = [];
-					
-					for (var i = 0; i < selectedProduct.length; i++) {
+					//var productListJson = [];
+					/* for (var i = 0; i < selectedProduct.length; i++) {
 						productListJson.push({
 								"type": selectedProduct[i]['type'],
 								"productNo": selectedProduct[i]['productJson']['no']
 						});
-					}
+					} */
 					
 					var content = $('textarea[id="consult-content-hs"]').val();
 					
 					consultJson["content"] = content;
 					consultJson["title"] = content.length > 20 ? content.substring(0, 20) + "..." : content;
 					consultJson["consultProduct"] = productListJson;
-					
-					console.log(consultJson);
 					
 					$.ajax({	
 		        		url: "${pageContext.request.contextPath}/sales/consult",
@@ -806,8 +813,6 @@
 		        		data: JSON.stringify(consultJson),
 		        		success: function(consultNo) {
 		        			console.log(consultNo + "번 추가 완료");
-		        			consultJson = null;
-		        			selectedProduct = [];	        		
 		        			$('#consultContentInsert').modal('hide');
 		        			location.href = '${pageContext.request.contextPath}/sales/consult';
 						},
@@ -818,9 +823,42 @@
 					});									
 				});
 				
+				/* 상품 재선택 완료 */
 				$('a[id=product-reselect-submit-hs]').click(function(e) {
 					e.preventDefault();
 					e.stopPropagation();
+				});
+				
+				/* 수정 확인 */
+				$('a[id=consult-update-complete-hs]').click(function(e) {
+					e.preventDefault();
+					e.stopPropagation();
+					
+					console.log("수정 완료");
+					
+					var content = $('textarea[id="consult-content-update-hs"]').val();
+					var title = content.length > 20 ? content.substring(0, 20) + "..." : content;
+					var consultUpdateNo = $('a[id=consult-update-complete-hs]').data("consult_no");
+					
+					$.ajax({	
+		        		url: "${pageContext.request.contextPath}/sales/consult",
+		        		type: "put",
+		        		contentType: "application/json; charset=utf-8",
+		        		data: JSON.stringify({ 
+	        				"no"		:	consultUpdateNo, 
+	        				"content"	:	content,
+	        				"title"		:	title
+	        			}),
+		        		success: function(consultNo) {
+		        			console.log(consultNo + "번 수정 완료");
+		        			$('#consultDetail').modal('hide');
+		        			location.href = '${pageContext.request.contextPath}/sales/consult';
+						},
+		        		error: function(e) {
+		        			console.log(e);
+		        			alert('error');
+						}
+					});			
 				});
 			}
 				
@@ -956,7 +994,6 @@
 				
 				/* 상품 다시 선택 */
 				$(document).on('click', 'button[id=product-reselect-hs]', function(e) {	
-					console.log(selectedProduct);
 					$('div[id=product-reselect-list-hs]').html(getList($('span[id=product-span-hs]').data("product_type"), selectedProduct));
 					//$('div[id=product-list-hs]').html(getList($('span[id=product-span-hs]').data("product_type")));
 					
@@ -971,7 +1008,7 @@
 	    				}
 	    			} );
 					
-					selectProductFunction();
+					selectProductFunction(selectedProduct);
 					
 					$('#productReselect').modal();
 					//$('#consultProductSelect').modal();
@@ -1019,39 +1056,7 @@
 				console.log("고객정보 상세보기");
 				
 				$('#customerDetail').modal();
-			});
-			
-			/* 수정 확인 */
-			$('a[id=consult-update-complete-hs]').click(function(e) {
-				e.preventDefault();
-				e.stopPropagation();
-				
-				console.log("수정 완료");
-				
-				var content = $('textarea[id="consult-content-update-hs"]').val();
-				var title = content.length > 20 ? content.substring(0, 20) + "..." : content;
-				var consultUpdateNo = $('a[id=consult-update-complete-hs]').data("consult_no");
-				
-				$.ajax({	
-	        		url: "${pageContext.request.contextPath}/sales/consult",
-	        		type: "put",
-	        		contentType: "application/json; charset=utf-8",
-	        		data: JSON.stringify({ 
-        				"no"		:	consultUpdateNo, 
-        				"content"	:	content,
-        				"title"		:	title
-        			}),
-	        		success: function(consultNo) {
-	        			console.log(consultNo + "번 수정 완료");
-	        			$('#consultDetail').modal('hide');
-	        			location.href = '${pageContext.request.contextPath}/sales/consult';
-					},
-	        		error: function(e) {
-	        			console.log(e);
-	        			alert('error');
-					}
-				});			
-			});
+			});			
 			
 			/* 삭제 */
 			$('a[id=consult-delete-hs]').click(function(e) {
