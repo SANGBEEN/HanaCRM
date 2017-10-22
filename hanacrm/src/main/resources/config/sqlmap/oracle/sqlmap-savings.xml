@@ -54,6 +54,6 @@
 				having type = 2
 				order by count desc, product_no desc)
 			 join savings_info si on (si.no = product_no)
-		where rownum <![CDATA[ <= ]]> 3
+		where rownum <![CDATA[ <= ]]> 5
 	</select>
 </mapper>

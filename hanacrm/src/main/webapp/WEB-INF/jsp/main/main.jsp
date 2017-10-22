@@ -68,6 +68,7 @@
 		
 		.pieLabel > div {
 			font-size: small !important;
+			font-weight:bold;
 		}
 		
 		.boxchart > canvas{
@@ -82,11 +83,11 @@
 		<div class="row-fluid">
 			<jsp:include page="/include/sideMenu.jsp" />
 
-			<div id="content" class="span10" style="padding: 10px">
+			<div id="content" class="span10" style="padding: 10px; background: #f9f9f9;">
 				<div class="row-fluid">
 					<div class="box span9" style="height: 65vh; overflow: auto; border: 1px solid lightgray" onclick="goSchedule()">
 						<div class="box-header">
-							<span>오늘 일정</span>
+							<span style="font-weight: bold;">오늘 일정</span>
 						</div>
 						<div class="box-content">
 							<div class="priority high">
@@ -104,7 +105,7 @@
 					
 					<div class="span3" style="height: 65vh; border: 1px solid lightgray;">
 						<div class="box-header">
-							<span>내 명함</span>
+							<span style="font-weight: bold;">내 명함</span>
 							<div class="box-icon">
 								<a id="share" style="cursor: pointer;">
 									<i class="halflings-icon share-alt white"></i>
@@ -183,8 +184,8 @@
 				
 				<div class="row-fluid circleStats">
 					<div class="box span6">
-						<div class="box-header">
-							<span>월별 실적</span>
+						<div class="box-header" style="text-align:left">
+							<span style="font-weight: bold;">월별 실적</span>
 						</div>
 						<div class="box-content">
 							<div id="salesChart" style="height: 300px"></div>
@@ -192,8 +193,8 @@
 					</div>
 					
 					<div class="box span6">
-						<div class="box-header">
-							<span>인기 예금 상품</span>
+						<div class="box-header" style="text-align:left">
+							<span style="font-weight: bold;">인기 예금 상품</span>
 						</div>
 						<div class="box-content">
 							<div id="piechart_deposit" style="height:300px"></div>
@@ -203,8 +204,8 @@
 				
 				<div class="row-fluid circleStats">
 					<div class="box span6">
-						<div class="box-header">
-							<span>고객 현황</span>
+						<div class="box-header" style="text-align:left">
+							<span style="font-weight: bold;">고객 현황</span>
 						</div>
 						<div class="box-content">
 							<div id="donutchart" style="height: 300px;"></div>
@@ -212,8 +213,8 @@
 					</div>
 			
 					<div class="box span6">
-						<div class="box-header" data-original-title>
-							<span>인기 적금 상품</span>
+						<div class="box-header" style="text-align:left">
+							<span style="font-weight: bold;">인기 적금 상품</span>
 						</div>
 						<div class="box-content">
 							 <div id="piechart_savings" style="height:300px"></div>
@@ -520,7 +521,7 @@
 		});
 		
 		$('div[id=shareModal]').on('hidden.bs.modal', function(e) {
-			console.log("모달 사라진다");
+			/* console.log("모달 사라진다"); */
 			//$(this).find('#phone').val('Default Value');
 			$(this).find('#phone').val('');
 			$(this).find('a[id=search-customer-hs]').data("table_flag", "off");

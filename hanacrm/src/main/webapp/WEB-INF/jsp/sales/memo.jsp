@@ -115,7 +115,7 @@
 					</div> -->
 					
 					<div style="border:solid 2px #eee;">
-						<div style="background-color:#aaa; color:white; padding:10px;">
+						<div style="background: #aebec7; color:white; padding:10px;">
 							<span class="from" style="display: inline-block; width:25%; padding-left:10px;"><b>등록 날짜</b></span><span class="title" style="display: inline-block; width:55%;"><b>내용</b></span>
 								<a id="memo-insert" class="pull-right" style="cursor: pointer;">
 									<i class="halflings-icon plus white"></i>
@@ -140,7 +140,7 @@
 						<div class="message dark" style="top:0px; right:5px; margin-right:20px; border: 0;">
 
 							<div class="header" style="margin-bottom:20px">
-								<h1 id="thisTitle" class="title" style="background-color:#3c4379"> </h1>
+								<h1 id="thisTitle" class="title" style="background-color:#333; font-size: 1.5rem;"> </h1>
 								<span class="date"><i class="halflings-icon time"></i><span id="thisDate" ></span><!--  Today, <b>3:47 PM</b> --></span>
 								<div class="menu"></div>
 							</div>
@@ -242,7 +242,6 @@
 		}
 		
 		$('#memo-insert').on('click', function(){
-			
 			firstCheck = true;
 			keyupCheck = true;
 			
@@ -417,10 +416,9 @@
 						$('.messagesList').prepend(addHtml);
 
 					//	var element = document.getElementById(""+memoData.no);
-						document.getElementById("memo"+memoData.no).addEventListener('click', function(){
-							console.log(this.innerText);
-							$('#thisMessage').val(this.innerText);
-							$('#thisTitle').text(subString(this.innerText));
+						document.getElementById("li"+memoData.no).addEventListener('click', function(){
+							$('#thisMessage').val($(this).find('#memo'+memoData.no).text());
+							$('#thisTitle').text(subString($(this).find('#memo'+memoData.no).text()));
 							$('#thisDate').text(today);
 							memoNo = memoData.no;
 						});
