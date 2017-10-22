@@ -260,7 +260,7 @@ input.hidden {
 								</div>
 								<div class="tital">
 									<label for="comments">
-										<span>Comments</span>
+										<span>비고</span>
 									</label> 
 									<input id="comments" type="text" class="myInput" name="comments" value="${customer.comments }" readonly="readonly"/> 
 								</div>

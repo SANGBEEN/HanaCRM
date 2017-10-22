@@ -88,9 +88,7 @@ public class ProductService {
 		Set<String> visitsList = new HashSet<>();
 		
 		visitsList.addAll(productDAO.depositVisits());
-		System.out.println(visitsList.size());
 		visitsList.addAll(productDAO.savingsVisits());
-		System.out.println(visitsList.size());
 		
 		return new LinkedList<>(visitsList);
 	}

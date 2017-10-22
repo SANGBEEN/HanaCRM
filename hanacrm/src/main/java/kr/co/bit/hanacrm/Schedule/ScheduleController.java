@@ -78,14 +78,10 @@ public class ScheduleController {
 	// 날짜, 타입별 일정 리스트
 		@ResponseBody
 		@RequestMapping(value="/schedule/listByTypeForConsult", method=RequestMethod.GET, produces="application/json")
-		public List<ScheduleVO> selectListByTypeForConsult(HttpSession session, ScheduleVO schedule){
+		//public List<ScheduleVO> selectListByTypeForConsult(HttpSession session, ScheduleVO schedule){
+		public List<ScheduleVO> selectListByTypeForConsult(HttpSession session){
 			EmpVO emp = (EmpVO) session.getAttribute("emp");
-			schedule.setEmployeeNo(emp.getNo());
-		//	model.addAttribute("scheduleList", scheduleService.selectListByType(schedule));
-				System.out.println(schedule);
-				List<ScheduleVO> list = scheduleService.selectListByTypeForConsult(schedule);
-				System.out.println(list);
-			return list; //scheduleService.selectListByType(schedule);
+			return scheduleService.selectListForConsult(emp.getNo());
 		}
 	
 	// 일정 추가

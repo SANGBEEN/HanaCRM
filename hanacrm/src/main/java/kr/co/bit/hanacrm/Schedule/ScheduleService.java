@@ -110,8 +110,8 @@ public class ScheduleService {
 	}
 	
 	// 타입별 일정 리스트
-	public List<ScheduleVO> selectListByTypeForConsult(ScheduleVO schedule) {
-		List<ScheduleVO> list = scheduleDAO.selectListByTypeForConsult(schedule);
+	public List<ScheduleVO> selectListForConsult(int employeeNo) {
+		List<ScheduleVO> list = scheduleDAO.selectListForConsult(employeeNo);
 		
 		for(int i=0; i<list.size(); i++) {
 			ScheduleVO s = list.get(i);

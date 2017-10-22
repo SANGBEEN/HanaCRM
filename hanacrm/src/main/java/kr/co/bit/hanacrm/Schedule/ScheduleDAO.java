@@ -49,8 +49,8 @@ public class ScheduleDAO {
 	}
 	
 	// 타입별 일정 리스트 - 상담 내역 없는거만
-	public List<ScheduleVO> selectListByTypeForConsult(ScheduleVO schedule) {
-		return sqlSessionTemplate.selectList("schedule.ScheduleDAO.selectListByTypeForConsult",schedule);
+	public List<ScheduleVO> selectListForConsult(int employeeNo) {
+		return sqlSessionTemplate.selectList("schedule.ScheduleDAO.selectListForConsult", employeeNo);
 	}
 
 	// 추가할 스케쥴 번호 받아오기

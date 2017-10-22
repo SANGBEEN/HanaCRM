@@ -166,11 +166,7 @@ public class MainController {
 	@ResponseBody
 	@RequestMapping(value="/visits", method=RequestMethod.GET)
 	public List<String> selectVisitsList() {
-		List<String> result = productService.selectVisitsList();
-		
-		System.out.println(result.size());
-		
-		return result;
+		return productService.selectVisitsList();
 	}
 	
 	//로그아웃 
