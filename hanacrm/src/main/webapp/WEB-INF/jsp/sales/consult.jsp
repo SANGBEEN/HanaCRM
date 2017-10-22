@@ -659,55 +659,9 @@
 				return productListByType;
 			}		
 			
-			/* 선택한 상품 담아두기 */
-			$(document).on('change', 'input[id=product-checkbox]', function(e) {
-			//$('input:checkbox[id="product-checkbox"]').on('click', function(){
-				if ($(this).prop("checked")) {
-					$('#product-count').html('상품 선택 <span class="badge-important" id="selected-product-detail-hs" style="padding-left:6px; padding-right:6px; padding-top:2px; padding-bottom:2px; font-size:0.7rem; border-radius: 10px;"> ' + 
-							selectedProduct.push({
-								type : $('li[class=active]').find('a[id=type-select-hs]').data('product_type'),
-								productJson : $(this).data('product_json')
-							})					
-							+ ' </span>');				
-				} else {
-					console.dir($(this).data('product_json'));
-					
-					var selectedLength = selectedProduct.length;
-					
-					for(var i = 0; i < selectedLength; i++){
-						var shiftProduct = selectedProduct.shift();
-						var selectedProductJson = $(this).data('product_json');
-						console.log(shiftProduct['productJson']['no']);
-						if (shiftProduct['productJson']['no'] == selectedProductJson['no'] && shiftProduct['type'] == $('li[class=active]').find('a[id=type-select-hs]').data('product_type')){
-							$('#product-count').html(selectedProduct.length == 0 ? '상품 선택 <span class="label label-important" id="selected-product-detail-hs" style="padding-left:6px; padding-right:6px; padding-top:2px; padding-bottom:2px; font-size:0.7rem; border-radius: 10px;"></span>' : '상품 선택 <span class="label label-important" id="selected-product-detail-hs"> ' + selectedProduct.length + ' </span>');
-							console.log("selectedProductJson['no'] : " + selectedProductJson['no']);
-							//break;
-						} else {
-							selectedProduct.push(shiftProduct);
-						}
-					}					
-				}				
-				//$('#product-count').html('상품 선택 <span class="label label-important"> ' + selectedProduct.length + ' </span>');								
-			});
-			
-			/* 선택한 상품 조회 */
-			$(document).on('click', 'span[id=selected-product-detail-hs]', function() {
-				var html = "<<<<<<<<<<선택한 상품들>>>>>>>>>> <br>";
-				
-				for (var i = 0; i < selectedProduct.length; i++) {
-					html += (selectedProduct[i]['productJson']['finPrdtNm'] + "<br>");					
-				}
-				
-				$('div[id=selected-product-list-hs]').html(html);
-				
-				$('#selectedProduct').modal();
-			});
->>>>>>> 77d2777419ea6989429e88f342678f0f2b66e37b
-			
 			function selectProductFunction() {
 				/* 선택한 상품들 담는 배열 */
 				var selectedProduct = [];
-				$('#product-count').html('상품 선택 <span class="label label-important" id="selected-product-detail-hs"></span>');
 				
 				/* 선택한 상품 담아두기 */
 				$(document).on('change', 'input[id=product-checkbox]', function(e) {
@@ -729,7 +683,7 @@
 							var selectedProductJson = $(this).data('product_json');
 							console.log(shiftProduct['productJson']['no']);
 							if (shiftProduct['productJson']['no'] == selectedProductJson['no'] && shiftProduct['type'] == $('li[class=active]').find('a[id=type-select-hs]').data('product_type')){
-								$('#product-count').html(selectedProduct.length == 0 ? '상품 선택 <span class="label label-important" id="selected-product-detail-hs"></span>' : '상품 선택 <span class="label label-important" id="selected-product-detail-hs"> ' + selectedProduct.length + ' </span>');
+								$('#product-count').html(selectedProduct.length == 0 ? '상품 선택' : '상품 선택 <span class="badge-important" id="selected-product-detail-hs" style="padding-left:6px; padding-right:6px; padding-top:2px; padding-bottom:2px; font-size:0.7rem; border-radius: 10px;"> ' + selectedProduct.length + ' </span>');
 								console.log("selectedProductJson['no'] : " + selectedProductJson['no']);
 								//break;
 							} else {
@@ -739,7 +693,7 @@
 					}				
 					//$('#product-count').html('상품 선택 <span class="label label-important"> ' + selectedProduct.length + ' </span>');								
 				});
-				
+								
 				/* 선택한 상품 조회 */
 				$(document).on('click', 'span[id=selected-product-detail-hs]', function() {
 					var html = "<<<<<<<<<<선택한 상품들>>>>>>>>>> <br>";
