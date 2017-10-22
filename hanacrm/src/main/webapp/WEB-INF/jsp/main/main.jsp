@@ -65,6 +65,15 @@
 			border-color:#008485;
 			opacity:0.7;
 		}
+		
+		.pieLabel > div {
+			font-size: small !important;
+			font-weight:bold;
+		}
+		
+		.boxchart > canvas{
+			float:left
+		}
 	</style>
 </head>
 <body>
@@ -74,11 +83,11 @@
 		<div class="row-fluid">
 			<jsp:include page="/include/sideMenu.jsp" />
 
-			<div id="content" class="span10" style="padding: 10px">
+			<div id="content" class="span10" style="padding: 10px; background: #f9f9f9;">
 				<div class="row-fluid">
-					<div class="box span8" style="height: 65vh; overflow: auto; border: 1px solid lightgray" onclick="goSchedule()">
+					<div class="box span9" style="height: 65vh; overflow: auto; border: 1px solid lightgray" onclick="goSchedule()">
 						<div class="box-header">
-							<span>오늘 일정</span>
+							<span style="font-weight: bold;">오늘 일정</span>
 						</div>
 						<div class="box-content">
 							<div class="priority high">
@@ -94,11 +103,9 @@
 						</div>
 					</div>
 					
-					<div style="width: 50px; height: 60vh; display: block; float: left;"></div>
-					
 					<div class="span3" style="height: 65vh; border: 1px solid lightgray;">
 						<div class="box-header">
-							<span>내 명함</span>
+							<span style="font-weight: bold;">내 명함</span>
 							<div class="box-icon">
 								<a id="share" style="cursor: pointer;">
 									<i class="halflings-icon share-alt white"></i>
@@ -141,35 +148,35 @@
 				-->
 				
 				<div class="row-fluid">
-					<div class="span3 statbox purple" style="height: 120px;">
+					<div class="span3 statbox purple" style="height: 120px; background: #816eb1 !important">
 						<div class="boxchart">2,2,1,7,2,-4,-2,4,8,,0,3,3,5</div>
 						<div class="number" id="number-of-customer-hy"></div>
 						<div class="title">customers</div>
-						<div class="footer">
+						<div class="footer" style="line-height:20px">
 							<a>총 고객</a>
 						</div>
 					</div>
-					<div class="span3 statbox green" style="height: 120px;">
+					<div class="span3 statbox green" style="height: 120px; background: #67ab68 !important">
 						<div class="boxchart">3,5,7,2,5,,-3,1,4,8,,0,3,2,1</div>
 						<div class="number" id="number-of-consult-hs"></div>
 						<div class="title">consult</div>
-						<div class="footer">
+						<div class="footer" style="line-height:20px">
 							<a>이번 달 상담</a>
 						</div>
 					</div>
-					<div class="span3 statbox yellow" style="height: 120px;" id="refresh-visits-hs">
+					<div class="span3 statbox yellow" style="height: 120px; background: #debd57 !important" id="refresh-visits-hs">
 						<div class="boxchart">7,2,6,2,2,1,0,4,0,,8,3,3,5</div>
 						<div class="number" id="number-of-visits-hs"></div>
 						<div class="title">visit</div>
-						<div class="footer">
+						<div class="footer" style="line-height:20px">
 							<a>오늘 명함 접속자</a>
 						</div>
 					</div>
-					<div class="span3 statbox blue" style="height: 120px;">
+					<div class="span3 statbox blue" style="height: 120px; background: #5f8bbb !important">
 						<div class="boxchart">7,2,2,2,1,-1,-1,4,8,,0,3,3,5</div>
 						<div class="number" id="number-of-reservation-hy"></div>
 						<div class="title">reservation</div>
-						<div class="footer">
+						<div class="footer" style="line-height:20px">
 							<a>상담 신청 예약</a>
 						</div>
 					</div>
@@ -177,8 +184,8 @@
 				
 				<div class="row-fluid circleStats">
 					<div class="box span6">
-						<div class="box-header">
-							<span>월별 실적</span>
+						<div class="box-header" style="text-align:left">
+							<span style="font-weight: bold;">월별 실적</span>
 						</div>
 						<div class="box-content">
 							<div id="salesChart" style="height: 300px"></div>
@@ -186,8 +193,8 @@
 					</div>
 					
 					<div class="box span6">
-						<div class="box-header">
-							<span>인기 예금 상품</span>
+						<div class="box-header" style="text-align:left">
+							<span style="font-weight: bold;">인기 예금 상품</span>
 						</div>
 						<div class="box-content">
 							<div id="piechart_deposit" style="height:300px"></div>
@@ -197,8 +204,8 @@
 				
 				<div class="row-fluid circleStats">
 					<div class="box span6">
-						<div class="box-header">
-							<span>고객 현황</span>
+						<div class="box-header" style="text-align:left">
+							<span style="font-weight: bold;">고객 현황</span>
 						</div>
 						<div class="box-content">
 							<div id="donutchart" style="height: 300px;"></div>
@@ -206,8 +213,8 @@
 					</div>
 			
 					<div class="box span6">
-						<div class="box-header" data-original-title>
-							<span>인기 적금 상품</span>
+						<div class="box-header" style="text-align:left">
+							<span style="font-weight: bold;">인기 적금 상품</span>
 						</div>
 						<div class="box-content">
 							 <div id="piechart_savings" style="height:300px"></div>
@@ -352,10 +359,10 @@
 					var typeString = v.customer.name!=null? '('+v.customer.name+')':'';
 					str += '<div class="task high">';
 					str += '	<div class="desc">';
-					str += 			'<div class="title">'+v.type+' '+typeString+'</div>'; //+v.customer.name!=""?' ('+v.customer.name+')':''+'</div>';
-					str += 			'<div>'+v.comments+'</div>';
+					str += 			'<div class="title" style="font-size: 0.8rem;font-weight: bold;">'+v.type+' '+typeString+'</div>'; //+v.customer.name!=""?' ('+v.customer.name+')':''+'</div>';
+					str += 			'<div style="font-size: 1rem;">'+v.comments+'</div>';
 					str += '	</div>';
-					str += 		'<div class="time">';
+					str += 		'<div class="time" style="font-size: 0.9rem;">';
 					str += 			'<div>'+v.startDate+' ~ '+v.endDate+'</div>';
 					str += 		'</div>';
 					str += '</div>';
@@ -366,10 +373,10 @@
 					var typeString = v.customer.name!=null? '('+v.customer.name+')':'';
 					str += '<div class="task medium">';
 					str += '	<div class="desc">';
-					str += 			'<div class="title">'+v.type+' '+typeString+'</div>';
-					str += 			'<div>'+v.comments+'</div>';
+					str += 			'<div class="title" style="font-size: 0.8rem;font-weight: bold;">'+v.type+' '+typeString+'</div>';
+					str += 			'<div style="font-size: 1rem;">'+v.comments+'</div>';
 					str += '	</div>';
-					str += 		'<div class="time">';
+					str += 		'<div class="time" style="font-size: 0.9rem;">';
 					str += 			'<div>'+v.startDate+' ~ '+v.endDate+'</div>';
 					str += 		'</div>';
 					str += '</div>';
@@ -379,10 +386,10 @@
 					var typeString = v.customer.name!=null? '('+v.customer.name+')':'';
 					str += '<div class="task low">';
 					str += '	<div class="desc">';
-					str += 			'<div class="title">'+v.type+' '+typeString+'</div>';
-					str += 			'<div>'+v.comments+'</div>';
+					str += 			'<div class="title" style="font-size: 0.8rem;font-weight: bold;">'+v.type+' '+typeString+'</div>';
+					str += 			'<div style="font-size: 1rem;">'+v.comments+'</div>';
 					str += '	</div>';
-					str += 		'<div class="time">';
+					str += 		'<div class="time" style="font-size: 0.9rem;">';
 					str += 			'<div>'+v.startDate+' ~ '+v.endDate+'</div>';
 					str += 		'</div>';
 					str += '</div>';
@@ -514,7 +521,7 @@
 		});
 		
 		$('div[id=shareModal]').on('hidden.bs.modal', function(e) {
-			console.log("모달 사라진다");
+			/* console.log("모달 사라진다"); */
 			//$(this).find('#phone').val('Default Value');
 			$(this).find('#phone').val('');
 			$(this).find('a[id=search-customer-hs]').data("table_flag", "off");

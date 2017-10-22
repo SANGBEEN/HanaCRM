@@ -120,6 +120,7 @@ input.hidden {
 
 .modifyInput{
 	border: 1px solid black !important;
+	padding: 0 0 0 5px !important;
 }
 
 .modify-submit-div{

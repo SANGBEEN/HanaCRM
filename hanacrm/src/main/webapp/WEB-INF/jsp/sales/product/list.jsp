@@ -134,7 +134,7 @@
 							</a>
 						</li>						
 					</ul> -->
-					<ul class="nav nav-tabs">
+					<ul class="nav nav-tabs" style="background-color:#ccdae2">
 						<li class="active"><a data-toggle="tab" id="type-select-hs" data-product_type="1" href="#product-list" style="font-size: 20px;">예금</a></li>
 						<li><a data-toggle="tab" id="type-select-hs" data-product_type="2" href="#product-list" style="font-size: 20px;">적금</a></li>
 						<li><a data-toggle="tab" id="type-select-hs" data-product_type="3" href="#product-list" style="font-size: 20px;">보험</a></li>

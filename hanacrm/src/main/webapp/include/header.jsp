@@ -11,7 +11,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</a>
-				<a class="brand" href="${pageContext.request.contextPath}/main"><span style="font-family: Bungee Inline !important;">HANA SFA</span></a>
+				<a class="brand" href="${pageContext.request.contextPath}/main" style="margin-top: 4px;"><span style="font-family: Bungee Inline !important;">HANA SFA</span></a>
 								
 				<!-- start: Header Menu -->
 				<div class="nav-no-collapse header-nav">
@@ -21,7 +21,7 @@
 						<li id="li_reservationList" class="dropdown hidden-phone">
 							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
 								<!-- <i class="halflings-icon white envelope" style="vertical-align: bottom;"></i> -->
-								<i class="fa fa-envelope-o" aria-hidden="true"></i>
+								<i class="fa fa-bell-o" aria-hidden="true"></i>
 								<span id="reservationCount" class="badge-important" style="padding-left:6px; padding-right:6px; padding-top:2px; padding-bottom:2px; font-size:0.7rem; border-radius: 10px;"></span>
 							</a>
 							<ul class="dropdown-menu messages" id="ui_reservationList">
@@ -32,7 +32,7 @@
 					
 						<!-- start: User Dropdown -->
 						<li class="dropdown">
-							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#" style="margin-top: 4px !important;">
 								<i class="halflings-icon white user"></i>${emp.name }
 								<span class="caret"></span>
 							</a>
@@ -80,27 +80,27 @@
 					
 					switch(reservationList[i].type){
 						case 'Important':
-							title += ' <span class="label-important" style="padding:3px">Important</span>';
+							title += ' <span class="label-important" style="padding:3px; font-size: 0.5rem;">Important</span>';
 							type = 'Important';
 							break;
 						case 'Meeting':
-							title += ' <span class="label-success" style="padding:3px">Meeting</span>';
+							title += ' <span class="label-success" style="padding:3px; font-size: 0.5rem;">Meeting</span>';
 							type = 'Meeting';
 							break;
 						case 'Call':
-							title += ' <span class="label-warning" style="padding:3px">Call</span>';
+							title += ' <span class="label-warning" style="padding:3px; font-size: 0.5rem;">Call</span>';
 							type= 'Call';
 							break;
 						case 'Task':
-							title += ' <span class="label-info" style="padding:3px">Task</span>';
+							title += ' <span class="label-info" style="padding:3px; font-size: 0.5rem;">Task</span>';
 							type = 'Task';
 							break;
 						case 'Event':
-							title += ' <span style="background-color:#646464; color:#fff; padding:3px">Event</span>';
+							title += ' <span style="background-color:#646464; color:#fff; padding:3px; font-size: 0.5rem;">Event</span>';
 							type = 'Event';
 							break;
 						case 'Other':
-							title += ' <span style="background-color:#333333; color:#fff; padding:3px">Other</span>';
+							title += ' <span style="background-color:#333333; color:#fff; padding:3px; font-size: 0.5rem;">Other</span>';
 							type = 'Other';
 							break;
 					}

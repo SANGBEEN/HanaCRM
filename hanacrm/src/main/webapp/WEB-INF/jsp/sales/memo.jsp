@@ -43,7 +43,6 @@
 	<script src="${pageContext.request.contextPath}/js/counter.js"></script>
 	<script src="${pageContext.request.contextPath}/js/retina.js"></script>
 	<script src="${pageContext.request.contextPath}/js/custom.js"></script>
-	<script src="js/dropzone.min.js"></script>
 	<!-- end: JavaScript-->
 	
 	<!-- start: CSS -->
@@ -66,6 +65,7 @@
 			border-color: rgba(175, 10, 51, 0.78) !important;
 			opacity: 0.7 !important;
 		}
+		
 	</style>
 	
 
@@ -104,9 +104,8 @@
 					<br/>
 				</ul>
 				
-				<div class="row-fluid">
+				<div class="row-fluid" style="padding: 0 0 30px 10px;">
 				
-				<h1>메모</h1>
 				<div class="span6" style="padding-right:25px">					
 				<!-- 	<div align="right" style="margin-bottom:10px">
 						<a class="btn btn-info memo-insert" id="memo-insert" href="#" style="align:right; padding:12px">
@@ -115,17 +114,17 @@
 					</div> -->
 					
 					<div style="border:solid 2px #eee;">
-						<div style="background-color:#aaa; color:white; padding:10px;">
+						<div style="background: #aebec7; color:white; padding:10px;">
 							<span class="from" style="display: inline-block; width:25%; padding-left:10px;"><b>등록 날짜</b></span><span class="title" style="display: inline-block; width:55%;"><b>내용</b></span>
 								<a id="memo-insert" class="pull-right" style="cursor: pointer;">
 									<i class="halflings-icon plus white"></i>
 								</a>
 						</div>
-						<div style="overflow:auto; height:575px">
+						<div style="overflow:auto; min-height:575px">
 							<ul class="messagesList">
 								<c:forEach items="${ memoList }" var="memoVO" varStatus="status">
-									<li id="li${memoVO.no}">
-										<span class="from">${memoVO.regDate}</span><span id="memo${memoVO.no}" class="title"  onclick="clickTitle('${memoVO.no}','${memoVO.regDate}')">${memoVO.content}</span><span class="pull-right"><a id="memo-delete" href="#" style="margin-left:10px" onclick="clickDelete('${memoVO.no}')"><i class="halflings-icon remove-sign"></i></a></span>
+									<li id="li${memoVO.no}" onclick="clickTitle('${memoVO.no}','${memoVO.regDate}')">
+										<span class="from">${memoVO.regDate}</span><span id="memo${memoVO.no}" class="title">${memoVO.content}</span><span class="pull-right"><a id="memo-delete" href="#" style="margin-left:10px" onclick="clickDelete('${memoVO.no}')"><i class="halflings-icon remove-sign"></i></a></span>
 										<%-- <span id="memo${memoVO.no}" class="title">${memoVO.content}</span><span class="from">${memoVO.regDate}</span><span class="date"><a class="btn memo-delete" id="memo-delete" href="#" style="align:right"><i class="halflings-icon remove-sign"></i></a></span> --%>
 									</li>
 								</c:forEach>
@@ -137,22 +136,16 @@
 					
 					<!-- visibility:hidden; -->
 					<div id="thisMemo" class="span6 noMarginLeft" style="padding-right:10px" >
-						<div class="message dark" style="top:0px; right:5px; margin-right:20px">
+						<div class="message dark" style="top:0px; right:5px; margin-right:20px; border: 0;">
 
 							<div class="header" style="margin-bottom:20px">
-								<h1 id="thisTitle" class="title" style="background-color:#3c4379"> </h1>
-								<div class="from"><i class="halflings-icon user"></i><!--  <b>Dennis Ji</b> / jiguofei@msn.com --></div>
+								<h1 id="thisTitle" class="title" style="background-color:#333; font-size: 1.5rem;"> </h1>
 								<span class="date"><i class="halflings-icon time"></i><span id="thisDate" ></span><!--  Today, <b>3:47 PM</b> --></span>
-								
 								<div class="menu"></div>
-								
 							</div>
 							
 							<div class="content">
 								<textarea tabindex="3" class="input-xlarge span12" id="thisMessage" name="body" rows="25" placeholder="메모를 입력하세요."></textarea>
-								<!-- <blockquote>
-									Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-								</blockquote> -->
 							</div>
 							
 							<!-- <div class="attachments">
@@ -211,7 +204,7 @@
 		var memoList = ${memoList};
 		var memoNo = memoList[0].no;
 		
-		console.dir(memoList[0].no);
+		console.log(memoList);
 		
 		// 시작 시 첫번째 메모 보여주기
 		$('document').ready(function(){
@@ -239,16 +232,18 @@
 					success: function(data){
 						alert('삭제되었습니다.');
 						$('#li'+no).remove();
-						$('#thisMessage').val('');
-						$('#thisDate').text('');
-						$('#thisTitle').text('');
+						var recentMemo = $('.messagesList').children()[0];
+						$('#thisMessage').val(recentMemo.children[1].innerText);
+						$('#thisDate').text(recentMemo.children[0].innerText);
+						$('#thisTitle').text(subString(recentMemo.children[1].innerText));
+						memoNo = recentMemo.id.substr(2);
+						// console.log(memoNo);
 					}
 				});
 			}
 		}
 		
 		$('#memo-insert').on('click', function(){
-			
 			firstCheck = true;
 			keyupCheck = true;
 			
@@ -280,7 +275,7 @@
 			
 		//	console.dir(e);
 		//	console.log(memoNo);
-			if(firstCheck) console.log(firstCheck);
+		//	if(firstCheck) console.log(firstCheck);
 			
 		/*	if(!firstCheck){
 				// 첫 작성이 아니면 수정 요청
@@ -354,7 +349,7 @@
 							//	console.log(no);
 								memoNo = no;
 								$('#memo'+memoNo).text($('#thisMessage').val());
-								console.log("first! " +memoNo);
+							//	console.log("first! " +memoNo);
 								keyupCheck = false;
 							//	console.log(firstCheck);
 							},
@@ -364,7 +359,7 @@
 						}); 
 				}else {
 					keyupCheck = false;
-					console.log("memoNo is "+memoNo);
+				//	console.log("memoNo is "+memoNo);
 					$('#memo'+memoNo).text($('#thisMessage').val());
 				}
 				
@@ -396,7 +391,7 @@
 					}
 				}); 
 				
-				console.log('수정요청');
+			//	console.log('수정요청');
 				
 			} else {
 				// 첫 작성일 경우
@@ -417,16 +412,15 @@
 						
 						// 메모리스트에 동적 추가
 						// 1. append 추가하기 테스트
-						addHtml = '<li id="li'+memoData.no+'"><span class="from">'+today+'</span><span id="memo'
+						addHtml = '<li id="li'+memoData.no+'" style="height: 25px; line-height: 25px;"><span class="from">'+today+'</span><span id="memo'
 									+ memoData.no + '" class="title">'
 									+ memoData.content + '</span><span class="pull-right"><a id="memo-delete" href="#" style="margin-left:10px" onclick="clickDelete(\''+memoData.no+'\')"><i class="halflings-icon remove-sign"></i></a></span></li>';
 						$('.messagesList').prepend(addHtml);
 
 					//	var element = document.getElementById(""+memoData.no);
-						document.getElementById("memo"+memoData.no).addEventListener('click', function(){
-							console.log(this.innerText);
-							$('#thisMessage').val(this.innerText);
-							$('#thisTitle').text(subString(this.innerText));
+						document.getElementById("li"+memoData.no).addEventListener('click', function(){
+							$('#thisMessage').val($(this).find('#memo'+memoData.no).text());
+							$('#thisTitle').text(subString($(this).find('#memo'+memoData.no).text()));
 							$('#thisDate').text(today);
 							memoNo = memoData.no;
 						});
