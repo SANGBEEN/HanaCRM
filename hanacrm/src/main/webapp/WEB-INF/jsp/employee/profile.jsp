@@ -5,10 +5,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>영업 지원시스템 - 사원정보</title>
 <!-- start: Meta -->
 <meta charset="utf-8">
-<title>Bootstrap Metro Dashboard by Dennis Ji for ARM demo</title>
 <meta name="description" content="Bootstrap Metro Dashboard">
 <meta name="author" content="Dennis Ji">
 <meta name="keyword"
@@ -52,7 +51,7 @@
 
 <script src="${pageContext.request.contextPath}/js/modernizr.js"></script>
 
-<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/bootstrap.js"></script>
 
 <script src="${pageContext.request.contextPath}/js/jquery.cookie.js"></script>
 <script
@@ -134,9 +133,7 @@
 					<li><i class="icon-home"></i> <a
 						href="${pageContext.request.contextPath}/main">Home</a> <i
 						class="icon-angle-right"></i></li>
-					<li><a href="${pageContext.request.contextPath}/customer">고객목록</a><i
-						class="icon-angle-right"></i></li>
-					<li><a href="${pageContext.request.contextPath}/customer">고객정보</a></li>
+					<li><a href="${pageContext.request.contextPath}/emp/profile">사원정보</a></li>
 				</ul>
 				<div class="row-fluid">
 					<div class="box span12" style="width:60%">

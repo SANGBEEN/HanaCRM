@@ -80,4 +80,7 @@
 		select customer_seq.nextval
 		from dual
 	</select>
+	<update id="updateGrade" parameterType="cus">
+		update customer set grade=#{grade} where no=#{no}
+	</update>
 </mapper>

@@ -581,6 +581,8 @@
 								 				
 						addModal.find("#scheduleType").val(originalEventObject.title);
 						addModal.find("#scheduleType").change(function(){
+							duration = 1;
+							type = 'hours';
 							if($(this).val()=='Task'){
 								$('#customerInfo').hide();
 							}else {
@@ -599,6 +601,32 @@
 									type = 'hours';
 								}
 							}
+							
+							duration = duration * Number(addModal.find('.duration.clicked').val());
+							var endDate = moment(datetimepicker.datetimepicker('getValue'));
+							endDate.add(duration, type); 
+							addModal.find('#endDate').text(getDate(endDate));
+							
+							addModal.find('.duration').off().on('click', function(ev){
+				
+								$('.duration').removeClass('clicked');
+								$(this).addClass('clicked');
+								
+								 if(addModal.find('#scheduleType').val()=='Call'){
+									duration = 30;
+									type = 'minutes';
+								}else {
+									duration = 1;
+									type = 'hours';
+								}
+								
+								duration = duration * Number($(this).val());
+								console.log(duration);
+								
+								endDate = moment(datetimepicker.datetimepicker('getValue'));
+								endDate.add(duration, type);
+								addModal.find('#endDate').text(getDate(endDate));
+							});
 						});
 					
 						// 2) 날짜 설정
