@@ -362,34 +362,38 @@
 	
 	<!-- 상품 재선택 -->
 	<div class="modal hide fade" id="productReselect">
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal">×</button>
-			<h3>상품 선택</h3>
-		</div>
-		<div class="modal-body">
-			<div class="row-fluid">		
-				<div class="box span12">					
-					<ul class="nav nav-tabs">
-						<li class="active"><a data-toggle="tab" id="type-select-hs" data-product_type="1" href="#product-reselect-list-hs">예금</a></li>
-						<li><a data-toggle="tab" id="type-select-hs" data-product_type="2" href="#product-reselect-list-hs">적금</a></li>
-						<li><a data-toggle="tab" id="type-select-hs" data-product_type="3" href="#product-reselect-list-hs">보험</a></li>
-						<li><a data-toggle="tab" id="type-select-hs" data-product_type="4" href="#product-reselect-list-hs">대출</a></li>
-						<li><a data-toggle="tab" id="type-select-hs" data-product_type="5" href="#product-reselect-list-hs">펀드</a></li>
-						<li><a data-toggle="tab" id="type-select-hs" data-product_type="6" href="#product-reselect-list-hs">카드</a></li>
-					</ul>				
-					<!-- <div class="box-header" data-original-title>
-						<h2 id="tab-name-hs"></h2>								
-					</div> -->
-					<div class="box-content" id="product-reselect-list-hs">
-						
-					</div>
-				</div><!--/span-->					
-			</div><!--/row-->
-		</div>
-		<div class="modal-footer">
-			<a href="#" class="btn basicColor">다음</a>
-			<a href="#" class="btn" data-dismiss="modal">취소</a>			
-		</div>
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">×</button>
+					<h3>상품 선택</h3>					
+				</div>
+				<div class="modal-body">
+					<div class="row-fluid">		
+						<div class="box span12">					
+							<ul class="nav nav-tabs">
+								<li class="active"><a data-toggle="tab" id="type-select-hs" data-product_type="1" href="#product-reselect-list-hs">예금</a></li>
+								<li><a data-toggle="tab" id="type-select-hs" data-product_type="2" href="#product-reselect-list-hs">적금</a></li>
+								<li><a data-toggle="tab" id="type-select-hs" data-product_type="3" href="#product-reselect-list-hs">보험</a></li>
+								<li><a data-toggle="tab" id="type-select-hs" data-product_type="4" href="#product-reselect-list-hs">대출</a></li>
+								<li><a data-toggle="tab" id="type-select-hs" data-product_type="5" href="#product-reselect-list-hs">펀드</a></li>
+								<li><a data-toggle="tab" id="type-select-hs" data-product_type="6" href="#product-reselect-list-hs">카드</a></li>
+							</ul>				
+							<!-- <div class="box-header" data-original-title>
+								<h2 id="tab-name-hs"></h2>								
+							</div> -->
+							<div class="box-content" id="product-reselect-list-hs">
+								
+							</div>
+						</div><!--/span-->					
+					</div><!--/row-->
+				</div>
+				<div class="modal-footer">
+					<a href="#" class="btn basicColor" id="product-reselect-submit-hs">확인</a>
+					<a href="#" class="btn" data-dismiss="modal">취소</a>			
+				</div>
+			</div>
+		</div>		
 	</div>
 	
 	<!-- 삭제 -->
@@ -561,9 +565,9 @@
 					console.log("스케줄 넘버버버: " + consultJson);
 					
 					//getList(1);
-	////////////////////				
-					$('div[id=product-list-hs]').html(getList(1));
-	    	        
+	////////////////////		
+					$('div[id=product-list-hs]').html(getList(1, []));
+    	        
 	    	        $('.datatable').dataTable({
 	    				//"sDom": "<'row-fluid'<'span6'f><'span6'l>r>t<'row-fluid'<'span12'i><'span12 center'p>>",
 	    				"sDom": "<'row-fluid'<'span6'f><'span6'l>r>t<'row-fluid'<'span12 center'p>>",
@@ -573,41 +577,26 @@
 	    				"oLanguage": {
 	    				"sLengthMenu": "_MENU_ 개씩 보기"
 	    				}
-	    			} );
+	    			} );	
+	    	        
+	    	        selectProductFunction();
 					
 					$('#consultScheduleSelect').modal("hide");
-					$('#consultProductSelect').modal();
-					selectProductFunction();
+					$('#consultProductSelect').modal();					
+					
 					console.log("상품 선택");
 				} else {
 					alert("일정을 선택하세요.");
 				}				
 			});
 			
-			/* 탭에 따른 상품 목록 출력 */
-			$(document).on('click.tab.data-api', '[data-toggle="tab"]', function(e) {
-			    e.preventDefault();
-			    
-			    //getList($(this).data('product_type'));
-////////////////////			    
-				$(this).parent().parent().parent().find('div').html(getList($(this).data('product_type')));
-				//$('div[id=' + e.target.id + ']').html(getList($(this).data('product_type')));
-    	        
-    	        $('.datatable').dataTable({
-    				//"sDom": "<'row-fluid'<'span6'f><'span6'l>r>t<'row-fluid'<'span12'i><'span12 center'p>>",
-    				"sDom": "<'row-fluid'<'span6'f><'span6'l>r>t<'row-fluid'<'span12 center'p>>",
-    				"sPaginationType": "bootstrap",
-    				"bRetrieve": true,
-    				//"bDestroy": true,
-    				"oLanguage": {
-    				"sLengthMenu": "_MENU_ 개씩 보기"
-    				}
-    			} );
-			});
-			
 			/* 상품 목록 출력하는 함수 */
-			function getList(type) {
+			function getList(type, selectedProduct) {
 				var productListByType;
+				//$(this).prop("checked")
+				
+				console.log(typeof selectedProduct);
+				console.log(selectedProduct);
 				
 				$.ajax({
 	        		url: "${pageContext.request.contextPath}/sales/product/" + type,
@@ -620,8 +609,17 @@
 	        	        var html = '<table class="table table-striped table-bordered bootstrap-datatable datatable">';
 	        	        html += '<thead><tr><th style="text-align: center; width: 30px;">선택</th><th style="text-align:center; width: 156px;">금융상품코드</th><th style="text-align:center; width: 251px;		">금융상품명</th></tr></thead><tbody>'; /* <th>적립유형명</th></tr></thead><tbody>'; */
 	        	        
+	        	        
 	        	        for (var i = 0; i < product.length; i++) {		        	        	
-	        	            html += '<tr><td style="text-align: center;"><input type="checkbox" id="product-checkbox" style="vertical-align: baseline;" data-product_type="' + type + '" data-product_json=\'' + JSON.stringify(product[i]) + '\'>' + 
+	        	            html += '<tr><td style="text-align: center;">' + 
+	        	            '<input type="checkbox" id="product-checkbox" style="vertical-align: baseline;" data-product_type="' + type + '" data-product_json=\'' + JSON.stringify(product[i]) + '\' ';
+	        	            for (var j = 0; j < selectedProduct.length; j++) {
+								if(type == selectedProduct[j].type && product[i].no == selectedProduct[j].productJson.no) {
+									html += 'checked';
+									break;
+								}
+							}
+	        	            html += '>' + 
 	        	            '</td><td>' + product[i].finPrdtCd + 
 	        	            '</td><td>' + product[i].finPrdtNm + 
 	        	            '</td></tr>';
@@ -662,6 +660,29 @@
 			function selectProductFunction() {
 				/* 선택한 상품들 담는 배열 */
 				var selectedProduct = [];
+				$('#product-count').html('상품 선택');				
+				
+				/* 탭에 따른 상품 목록 출력 */
+				$(document).on('click.tab.data-api', '[data-toggle="tab"]', function(e) {
+				    e.preventDefault();
+				    
+				    //getList($(this).data('product_type'));
+				    
+				    console.log(selectedProduct);
+					$(this).parent().parent().parent().find('div').html(getList($(this).data('product_type'), selectedProduct));
+					//$('div[id=' + e.target.id + ']').html(getList($(this).data('product_type')));
+	    	        
+	    	        $('.datatable').dataTable({
+	    				//"sDom": "<'row-fluid'<'span6'f><'span6'l>r>t<'row-fluid'<'span12'i><'span12 center'p>>",
+	    				"sDom": "<'row-fluid'<'span6'f><'span6'l>r>t<'row-fluid'<'span12 center'p>>",
+	    				"sPaginationType": "bootstrap",
+	    				"bRetrieve": true,
+	    				//"bDestroy": true,
+	    				"oLanguage": {
+	    				"sLengthMenu": "_MENU_ 개씩 보기"
+	    				}
+	    			} );	    	        
+				});				
 				
 				/* 선택한 상품 담아두기 */
 				$(document).on('change', 'input[id=product-checkbox]', function(e) {
@@ -669,8 +690,8 @@
 					if ($(this).prop("checked")) {
 						$('#product-count').html('상품 선택 <span class="badge-important" id="selected-product-detail-hs" style="padding-left:6px; padding-right:6px; padding-top:2px; padding-bottom:2px; font-size:0.7rem; border-radius: 10px;"> ' + 
 								selectedProduct.push({
-									type : $('li[class=active]').find('a[id=type-select-hs]').data('product_type'),
-									productJson : $(this).data('product_json')
+									"type" : $('li[class=active]').find('a[id=type-select-hs]').data('product_type'),
+									"productJson" : $(this).data('product_json')
 								})					
 								+ ' </span>');				
 					} else {
@@ -730,13 +751,7 @@
 	       				+ '</table>';
 	       			
 	       			$('div[id=consult-insert-table-hs]').html(html);
-	        			
-	        			
-	        			
-	        			
-	        			
-	        			
-	        			
+	        				        			
 	    			/* 	<div class="control-group">
 	    					<label class="control-label">상담 일시</label>
 	    					<div class="controls">
@@ -804,7 +819,13 @@
 						}
 					});									
 				});
+				
+				$('a[id=product-reselect-submit-hs]').click(function(e) {
+					e.preventDefault();
+					e.stopPropagation();
+				});
 			}
+				
 			$('#consult-insert-cancel-hs').on('click', function() {
 				selectedProduct = [];
 				
@@ -824,7 +845,6 @@
 	        		type: "get",
 	        		dataType: "json",
 	        		success: function(consult) {
-	        			console.log(consult);
 	        			
 	        			var html = '<table class="table table-striped table-bordered">' 
 	        			+ '<tr><th style="text-align:center;">상담 일시</th><td>' + consult.regDate + '</td></tr>' 
@@ -836,8 +856,8 @@
 	        			
 	        			for (var i = 0; i < consult.consultProduct.length; i++) {
 	        				productMapList.push({
-	        					"type" : consult.consultProduct[i].type,
-	        					"productNo" : consult.consultProduct[i].productNo
+	        					"type": consult.consultProduct[i].type,
+	        					"productNo": consult.consultProduct[i].productNo
 	        				});
 						}
 	        			//console.log(consult.consultProduct);
@@ -845,7 +865,6 @@
 	        			var productList = getProductDetailList(productMapList);
 	        			
 	        			//var productList = getProductDetailList(consult.consultProduct);
-	        			console.log(productList);
 	        			
 	        			for (var i = 0; i < productList.length; i++) {
 							html += '<li><span id="product-span-hs" data-product_type="' + consult.consultProduct[i].type + '" data-product_no="' + consult.consultProduct[i].productNo + '">' + productList[i].finPrdtNm + '</span></li>';
@@ -928,31 +947,43 @@
 					}
 				});
 				
+				var selectedProduct = [];
+				
+				for (var i = 0; i < consultProductList.length; i++) {
+					selectedProduct.push({
+						"type": consultProductList[i].type,
+						"productJson" : returnProductList[i]
+					});
+				}
+				
+				/* 상품 다시 선택 */
+				$(document).on('click', 'button[id=product-reselect-hs]', function(e) {	
+					console.log(selectedProduct);
+					$('div[id=product-reselect-list-hs]').html(getList($('span[id=product-span-hs]').data("product_type"), selectedProduct));
+					//$('div[id=product-list-hs]').html(getList($('span[id=product-span-hs]').data("product_type")));
+					
+					$('.datatable').dataTable({
+	    				//"sDom": "<'row-fluid'<'span6'f><'span6'l>r>t<'row-fluid'<'span12'i><'span12 center'p>>",
+	    				"sDom": "<'row-fluid'<'span6'f><'span6'l>r>t<'row-fluid'<'span12 center'p>>",
+	    				"sPaginationType": "bootstrap",
+	    				"bRetrieve": true,
+	    				//"bDestroy": true,
+	    				"oLanguage": {
+	    				"sLengthMenu": "_MENU_ 개씩 보기"
+	    				}
+	    			} );
+					
+					selectProductFunction();
+					
+					$('#productReselect').modal();
+					//$('#consultProductSelect').modal();
+					
+					console.log('상품 다시 선택');
+				});
+				
 				console.log(typeof returnProductList);
 				return returnProductList;
-			}
-			
-			/* 상품 다시 선택 */
-			$(document).on('click', 'button[id=product-reselect-hs]', function(e) {				
-				$('div[id=product-reselect-list-hs]').html(getList($('span[id=product-span-hs]').data("product_type")));
-				//$('div[id=product-list-hs]').html(getList($('span[id=product-span-hs]').data("product_type")));
-				
-				$('.datatable').dataTable({
-    				//"sDom": "<'row-fluid'<'span6'f><'span6'l>r>t<'row-fluid'<'span12'i><'span12 center'p>>",
-    				"sDom": "<'row-fluid'<'span6'f><'span6'l>r>t<'row-fluid'<'span12 center'p>>",
-    				"sPaginationType": "bootstrap",
-    				"bRetrieve": true,
-    				//"bDestroy": true,
-    				"oLanguage": {
-    				"sLengthMenu": "_MENU_ 개씩 보기"
-    				}
-    			} );
-				
-				$('#productReselect').modal();
-				//$('#consultProductSelect').modal();
-				
-				console.log('상품 다시 선택');
-			});
+			}			
 			
 			/* 고객정보 상세보기 */
 			$(document).on('click', 'a[id=customer-detail-hs]', function(e) {
