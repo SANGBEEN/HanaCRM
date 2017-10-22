@@ -46,7 +46,10 @@
 	</select>
 	
 	<select id="select" parameterType="int" resultMap="consultMap">
-		select no, customer_no, employee_no, content, to_char(reg_date, 'YYYY-MM-DD hh24:mi') as reg_date, title from consult where customer_no=#{no}
+		select no, customer_no, employee_no, content, to_char(reg_date, 'YYYY-MM-DD hh24:mi') as reg_date, title 
+		from consult 
+		where customer_no=#{no}
+		order by reg_date desc
 	</select>
 	
 	<!-- 추가할 상담 내역 번호 받아오기 -->
