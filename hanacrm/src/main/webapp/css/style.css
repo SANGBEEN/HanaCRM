@@ -178,7 +178,7 @@
 	background: #2D89EF !important;
 	border-color: #2D89EF !important;
 	color: #fff;
-	    height: 30px;
+    height: 30px;
     line-height: 30px;
     width: 80%;
     text-align: center;
@@ -880,7 +880,7 @@ ul.messages li .message {
 
 .box-header {
 	height: 20px;
-	font-size: 20px;
+	font-size: 15px;
     line-height: 20px;
   	padding: 10px;
   	background: #aaa;
@@ -894,7 +894,7 @@ ul.messages li .message {
 .box-header h2{
 	float:left;
 	margin-top: 0px;
-	font-weight: 300;
+	font-weight: 400;
 }
 
 .box-header h2 i {
@@ -2684,8 +2684,15 @@ blockquote {
 ul.messagesList {
 	list-style: none;
 	margin: 0px;
-	font-size: 14px;
-	
+	font-size: 14px;	
+}
+
+ul.messagesList li:selected{
+  	background-color: #b8d5d5 !important;
+}
+
+ul.messagesList li:hover{
+ 	background-color: #b8d5d5 !important;
 }
 
 ul.messagesList li {
@@ -2694,7 +2701,9 @@ ul.messagesList li {
 	   -moz-border-radius: 4px;
 			border-radius: 4px;
 	padding: 5px 10px;
-	cursor: pointer;		
+	cursor: pointer;
+	height:25px;
+	line-height:25px;	
 }
 
 ul.messagesList li .glyphicons{
@@ -2708,11 +2717,11 @@ ul.messagesList li .glyphicons i:before{
 }
 
 ul.messagesList li:nth-child(odd) {
-	background: #fff !important;
+	background: #fff;
 }
 
 ul.messagesList li.odd {
-	background: #fff !important;
+	background: #fff;
 }
 
 ul.messagesList li span.from {

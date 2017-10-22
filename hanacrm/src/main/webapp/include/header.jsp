@@ -11,7 +11,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</a>
-				<a class="brand" href="${pageContext.request.contextPath}/main"><span style="font-family: Bungee Inline !important; margin-top: 4px;">HANA SFA</span></a>
+				<a class="brand" href="${pageContext.request.contextPath}/main" style="margin-top: 4px;"><span style="font-family: Bungee Inline !important;">HANA SFA</span></a>
 								
 				<!-- start: Header Menu -->
 				<div class="nav-no-collapse header-nav">

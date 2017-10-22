@@ -66,6 +66,7 @@
 			border-color: rgba(175, 10, 51, 0.78) !important;
 			opacity: 0.7 !important;
 		}
+		
 	</style>
 	
 
@@ -104,9 +105,8 @@
 					<br/>
 				</ul>
 				
-				<div class="row-fluid">
+				<div class="row-fluid" style="padding: 0 0 30px 10px;">
 				
-				<h1>메모</h1>
 				<div class="span6" style="padding-right:25px">					
 				<!-- 	<div align="right" style="margin-bottom:10px">
 						<a class="btn btn-info memo-insert" id="memo-insert" href="#" style="align:right; padding:12px">
@@ -121,11 +121,11 @@
 									<i class="halflings-icon plus white"></i>
 								</a>
 						</div>
-						<div style="overflow:auto; height:575px">
+						<div style="overflow:auto; min-height:575px">
 							<ul class="messagesList">
 								<c:forEach items="${ memoList }" var="memoVO" varStatus="status">
-									<li id="li${memoVO.no}">
-										<span class="from">${memoVO.regDate}</span><span id="memo${memoVO.no}" class="title"  onclick="clickTitle('${memoVO.no}','${memoVO.regDate}')">${memoVO.content}</span><span class="pull-right"><a id="memo-delete" href="#" style="margin-left:10px" onclick="clickDelete('${memoVO.no}')"><i class="halflings-icon remove-sign"></i></a></span>
+									<li id="li${memoVO.no}" onclick="clickTitle('${memoVO.no}','${memoVO.regDate}')">
+										<span class="from">${memoVO.regDate}</span><span id="memo${memoVO.no}" class="title">${memoVO.content}</span><span class="pull-right"><a id="memo-delete" href="#" style="margin-left:10px" onclick="clickDelete('${memoVO.no}')"><i class="halflings-icon remove-sign"></i></a></span>
 										<%-- <span id="memo${memoVO.no}" class="title">${memoVO.content}</span><span class="from">${memoVO.regDate}</span><span class="date"><a class="btn memo-delete" id="memo-delete" href="#" style="align:right"><i class="halflings-icon remove-sign"></i></a></span> --%>
 									</li>
 								</c:forEach>
@@ -137,22 +137,16 @@
 					
 					<!-- visibility:hidden; -->
 					<div id="thisMemo" class="span6 noMarginLeft" style="padding-right:10px" >
-						<div class="message dark" style="top:0px; right:5px; margin-right:20px">
+						<div class="message dark" style="top:0px; right:5px; margin-right:20px; border: 0;">
 
 							<div class="header" style="margin-bottom:20px">
 								<h1 id="thisTitle" class="title" style="background-color:#3c4379"> </h1>
-								<div class="from"><i class="halflings-icon user"></i><!--  <b>Dennis Ji</b> / jiguofei@msn.com --></div>
 								<span class="date"><i class="halflings-icon time"></i><span id="thisDate" ></span><!--  Today, <b>3:47 PM</b> --></span>
-								
 								<div class="menu"></div>
-								
 							</div>
 							
 							<div class="content">
 								<textarea tabindex="3" class="input-xlarge span12" id="thisMessage" name="body" rows="25" placeholder="메모를 입력하세요."></textarea>
-								<!-- <blockquote>
-									Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-								</blockquote> -->
 							</div>
 							
 							<!-- <div class="attachments">
@@ -417,7 +411,7 @@
 						
 						// 메모리스트에 동적 추가
 						// 1. append 추가하기 테스트
-						addHtml = '<li id="li'+memoData.no+'"><span class="from">'+today+'</span><span id="memo'
+						addHtml = '<li id="li'+memoData.no+'" style="height: 25px; line-height: 25px;"><span class="from">'+today+'</span><span id="memo'
 									+ memoData.no + '" class="title">'
 									+ memoData.content + '</span><span class="pull-right"><a id="memo-delete" href="#" style="margin-left:10px" onclick="clickDelete(\''+memoData.no+'\')"><i class="halflings-icon remove-sign"></i></a></span></li>';
 						$('.messagesList').prepend(addHtml);

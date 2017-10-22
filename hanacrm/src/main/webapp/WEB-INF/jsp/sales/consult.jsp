@@ -716,7 +716,7 @@
    				}
        			
        			html += '</ul></div></td></tr>'
-       				+ '<tr><th style="text-align:center;">상담 내용</th><td><textarea id="consult-content-hs"></textarea></td></tr>' 
+       				+ '<tr><th style="text-align:center;">상담 내용</th><td><textarea id="consult-content-hs" style="width: 410px; height: 250px;"></textarea></td></tr>' 
        				+ '</table>';
        			
        			$('div[id=consult-insert-table-hs]').html(html);
