@@ -654,6 +654,7 @@
 			function selectProductFunction(selectProductParam) {
 				/* 선택한 상품들 담는 배열 */
 				var selectedProduct = selectProductParam;
+				$('#product-count').html('상품 선택');	
 				
 				/* 탭에 따른 상품 목록 출력 */
 				$(document).on('click.tab.data-api', '[data-toggle="tab"]', function(e) {
@@ -827,39 +828,7 @@
 				$('a[id=product-reselect-submit-hs]').click(function(e) {
 					e.preventDefault();
 					e.stopPropagation();
-				});
-				
-				/* 수정 확인 */
-				$('a[id=consult-update-complete-hs]').click(function(e) {
-					e.preventDefault();
-					e.stopPropagation();
-					
-					console.log("수정 완료");
-					
-					var content = $('textarea[id="consult-content-update-hs"]').val();
-					var title = content.length > 20 ? content.substring(0, 20) + "..." : content;
-					var consultUpdateNo = $('a[id=consult-update-complete-hs]').data("consult_no");
-					
-					$.ajax({	
-		        		url: "${pageContext.request.contextPath}/sales/consult",
-		        		type: "put",
-		        		contentType: "application/json; charset=utf-8",
-		        		data: JSON.stringify({ 
-	        				"no"		:	consultUpdateNo, 
-	        				"content"	:	content,
-	        				"title"		:	title
-	        			}),
-		        		success: function(consultNo) {
-		        			console.log(consultNo + "번 수정 완료");
-		        			$('#consultDetail').modal('hide');
-		        			location.href = '${pageContext.request.contextPath}/sales/consult';
-						},
-		        		error: function(e) {
-		        			console.log(e);
-		        			alert('error');
-						}
-					});			
-				});
+				});				
 			}
 				
 			$('#consult-insert-cancel-hs').on('click', function() {
@@ -886,7 +855,8 @@
 	        			+ '<tr><th style="text-align:center;">상담 일시</th><td>' + consult.regDate + '</td></tr>' 
 	        			+ '<tr><th style="text-align:center;">고객명</th><td><a id="customer-detail-hs" href="#">' + consult.customerVO.name + '<i class="halflings-icon user"></i></a></td></tr>'
 	        			//+ '<tr><th>상담 요약</th><td>' + consult.title + '</td></tr>'
-	        			+ '<tr><th style="text-align:center;">상담 상품 <button id="product-reselect-hs">선택</button></th><td><div><ul class="messagesList">';
+	        			+ '<tr><th style="text-align:center;">상담 상품'// <button id="product-reselect-hs">선택</button>
+	        			+ '</th><td><div><ul class="messagesList">';
 	        			
 	        			var productMapList = [];
 	        			
@@ -961,6 +931,38 @@
 				
 				$('#consultDetail').modal();
 				console.log("상세보기");
+			});
+			
+			/* 수정 확인 */
+			$('a[id=consult-update-complete-hs]').click(function(e) {
+				e.preventDefault();
+				e.stopPropagation();
+				
+				console.log("수정 완료");
+				
+				var content = $('textarea[id="consult-content-update-hs"]').val();
+				var title = content.length > 20 ? content.substring(0, 20) + "..." : content;
+				var consultUpdateNo = $('a[id=consult-update-complete-hs]').data("consult_no");
+				
+				$.ajax({	
+	        		url: "${pageContext.request.contextPath}/sales/consult",
+	        		type: "put",
+	        		contentType: "application/json; charset=utf-8",
+	        		data: JSON.stringify({ 
+        				"no"		:	consultUpdateNo, 
+        				"content"	:	content,
+        				"title"		:	title
+        			}),
+	        		success: function(consultNo) {
+	        			console.log(consultNo + "번 수정 완료");
+	        			$('#consultDetail').modal('hide');
+	        			location.href = '${pageContext.request.contextPath}/sales/consult';
+					},
+	        		error: function(e) {
+	        			console.log(e);
+	        			alert('error');
+					}
+				});			
 			});
 			
 			/* 선택한 상품의 상세정보 가져오기 */
